@@ -22,4 +22,4 @@ docs/                  brief, PRD, technical plan, tasks, decisions, templates
 
 ## Licence
 
-Not chosen yet (AGPL-3.0 with a contributor licence agreement is proposed; see `docs/decisions/README.md`). The repository is private until then.
+AGPL-3.0 (decision D-4). The repository stays private for now.

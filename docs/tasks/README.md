@@ -1,6 +1,6 @@
 # Tasks and dependency graph
 
-All tasks are **Draft** until G1 (Azhar approves PRD-001 and TP-001). U1 and U2 are Azhar's own tasks and can start now. V1 is an investigation that also needs GPU-spend approval.
+G1 passed 2026-11-09 (D-1, D-2). Milestone v0.1 = every task except V1–V4 (D-8). Task PRs merge into integration branch `v0.1` (D-9). U1 and U2 are Azhar's own tasks and can start now. V1 is an investigation that also needs GPU-spend approval.
 
 Next step after G1: write a task contract per task (`docs/tasks/<ID>.md`, template `docs/templates/WORK-TEMPLATES.md` section 4) using the requirements-to-ready-task skill, starting with waves 1–3, then mark them Ready.
 
