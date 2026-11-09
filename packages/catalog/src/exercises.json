@@ -1,0 +1,2388 @@
+[
+  {
+    "id": "bodyweight_squat",
+    "name": "Bodyweight Squat",
+    "sessionTypes": ["lower_strength", "warmup"],
+    "equipment": ["bodyweight"],
+    "loads": ["knee", "hip"],
+    "avoidIf": ["knee"],
+    "primaryMuscles": ["quads"],
+    "cues": ["Feet shoulder width", "Knees track over toes", "Chest up, sit between the hips"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [10, 20]
+    },
+    "progressionId": "goblet_squat",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "goblet_squat",
+    "name": "Goblet Squat",
+    "sessionTypes": ["lower_strength"],
+    "equipment": ["dumbbell", "gym"],
+    "loads": ["knee", "hip"],
+    "avoidIf": ["knee"],
+    "primaryMuscles": ["quads"],
+    "cues": [
+      "Hold weight at the chest",
+      "Elbows inside the knees",
+      "Drive up through the whole foot"
+    ],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 4],
+      "amount": [8, 12]
+    },
+    "regressionId": "bodyweight_squat",
+    "progressionId": "back_squat",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "back_squat",
+    "name": "Barbell Squat",
+    "sessionTypes": ["lower_strength"],
+    "equipment": ["gym"],
+    "loads": ["knee", "hip", "lower_back"],
+    "avoidIf": ["knee", "lower_back"],
+    "primaryMuscles": ["quads"],
+    "cues": ["Brace before each rep", "Bar sits on upper back", "Stand tall at the top"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 5],
+      "amount": [4, 8]
+    },
+    "regressionId": "goblet_squat",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "leg_press",
+    "name": "Leg Press",
+    "sessionTypes": ["lower_strength"],
+    "equipment": ["gym"],
+    "loads": ["knee", "hip"],
+    "avoidIf": ["knee"],
+    "primaryMuscles": ["quads"],
+    "cues": ["Feet flat on the platform", "Lower under control", "Do not lock the knees out"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 4],
+      "amount": [8, 12]
+    },
+    "regressionId": "goblet_squat",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "dumbbell_lunge",
+    "name": "Dumbbell Lunges",
+    "sessionTypes": ["lower_strength"],
+    "equipment": ["dumbbell", "gym"],
+    "loads": ["knee", "hip"],
+    "avoidIf": ["knee"],
+    "primaryMuscles": ["quads"],
+    "cues": [
+      "Long step, torso upright",
+      "Front knee over the middle foot",
+      "Push back to standing"
+    ],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [8, 12]
+    },
+    "regressionId": "split_squat",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "reverse_lunge",
+    "name": "Dumbbell Rear Lunge",
+    "sessionTypes": ["lower_strength"],
+    "equipment": ["dumbbell", "gym"],
+    "loads": ["knee", "hip"],
+    "avoidIf": ["knee"],
+    "primaryMuscles": ["quads"],
+    "cues": ["Step back, not down", "Weight stays on the front foot", "Keep hips square"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [8, 12]
+    },
+    "regressionId": "split_squat",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "walking_lunge",
+    "name": "Bodyweight Walking Lunge",
+    "sessionTypes": ["lower_strength", "warmup"],
+    "equipment": ["bodyweight"],
+    "loads": ["knee", "hip"],
+    "avoidIf": ["knee"],
+    "primaryMuscles": ["quads"],
+    "cues": ["Smooth steps, no rushing", "Back knee hovers over the floor", "Stay tall"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [10, 16]
+    },
+    "regressionId": "split_squat",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "split_squat",
+    "name": "Split Squats",
+    "sessionTypes": ["lower_strength"],
+    "equipment": ["bodyweight"],
+    "loads": ["knee", "hip"],
+    "avoidIf": ["knee"],
+    "primaryMuscles": ["hamstrings"],
+    "cues": [
+      "Feet fixed in a long stance",
+      "Lower straight down",
+      "Weight mostly on the front leg"
+    ],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [8, 12]
+    },
+    "progressionId": "dumbbell_split_squat",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "dumbbell_split_squat",
+    "name": "Split Squat with Dumbbells",
+    "sessionTypes": ["lower_strength"],
+    "equipment": ["dumbbell", "gym"],
+    "loads": ["knee", "hip"],
+    "avoidIf": ["knee"],
+    "primaryMuscles": ["quads"],
+    "cues": ["Dumbbells at your sides", "Lower straight down", "Drive through the front heel"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 4],
+      "amount": [8, 12]
+    },
+    "regressionId": "split_squat",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "step_up",
+    "name": "Step-up with Knee Raise",
+    "sessionTypes": ["lower_strength"],
+    "equipment": ["bodyweight"],
+    "loads": ["knee", "hip"],
+    "avoidIf": ["knee"],
+    "primaryMuscles": ["glutes"],
+    "cues": [
+      "Whole foot on the step",
+      "Stand fully up before stepping down",
+      "Control the way down"
+    ],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [8, 12]
+    },
+    "regressionId": "glute_bridge",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "romanian_deadlift",
+    "name": "Romanian Deadlift",
+    "sessionTypes": ["lower_strength"],
+    "equipment": ["gym"],
+    "loads": ["hip", "hamstring", "lower_back"],
+    "avoidIf": ["lower_back", "hamstring"],
+    "primaryMuscles": ["hamstrings"],
+    "cues": ["Hips back, soft knees", "Bar slides down the thighs", "Flat back throughout"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 4],
+      "amount": [6, 10]
+    },
+    "regressionId": "dumbbell_rdl",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "dumbbell_rdl",
+    "name": "Stiff-Legged Dumbbell Deadlift",
+    "sessionTypes": ["lower_strength"],
+    "equipment": ["dumbbell", "gym"],
+    "loads": ["hip", "hamstring", "lower_back"],
+    "avoidIf": ["lower_back", "hamstring"],
+    "primaryMuscles": ["hamstrings"],
+    "cues": [
+      "Push hips back, not down",
+      "Dumbbells close to the legs",
+      "Stop when the back would round"
+    ],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [8, 12]
+    },
+    "regressionId": "glute_bridge",
+    "progressionId": "romanian_deadlift",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "deadlift",
+    "name": "Barbell Deadlift",
+    "sessionTypes": ["lower_strength"],
+    "equipment": ["gym"],
+    "loads": ["hip", "hamstring", "lower_back", "knee"],
+    "avoidIf": ["lower_back", "hamstring"],
+    "primaryMuscles": ["lower_back"],
+    "cues": ["Brace before pulling", "Push the floor away", "Lock out with the glutes"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 5],
+      "amount": [3, 6]
+    },
+    "regressionId": "romanian_deadlift",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "glute_bridge",
+    "name": "Butt Lift (Bridge)",
+    "sessionTypes": ["lower_strength", "back_core", "warmup"],
+    "equipment": ["bodyweight"],
+    "loads": ["hip", "lower_back"],
+    "avoidIf": [],
+    "primaryMuscles": ["glutes"],
+    "cues": ["Feet close to the hips", "Squeeze glutes at the top", "Ribs down, no arching"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [10, 15]
+    },
+    "progressionId": "single_leg_glute_bridge",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "single_leg_glute_bridge",
+    "name": "Single Leg Glute Bridge",
+    "sessionTypes": ["lower_strength"],
+    "equipment": ["bodyweight"],
+    "loads": ["hip", "hamstring", "lower_back"],
+    "avoidIf": ["hamstring"],
+    "primaryMuscles": ["glutes"],
+    "cues": ["Hips stay level", "Drive through the heel", "Other leg held in line"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [8, 12]
+    },
+    "regressionId": "glute_bridge",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "hip_thrust",
+    "name": "Barbell Hip Thrust",
+    "sessionTypes": ["lower_strength"],
+    "equipment": ["gym"],
+    "loads": ["hip", "lower_back"],
+    "avoidIf": ["lower_back"],
+    "primaryMuscles": ["glutes"],
+    "cues": ["Upper back on the bench", "Chin tucked", "Pause at the top"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 4],
+      "amount": [6, 10]
+    },
+    "regressionId": "glute_bridge",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "banded_hip_lift",
+    "name": "Hip Lift with Band",
+    "sessionTypes": ["lower_strength"],
+    "equipment": ["band"],
+    "loads": ["hip", "lower_back"],
+    "avoidIf": [],
+    "primaryMuscles": ["glutes"],
+    "cues": ["Band above the knees", "Push knees out against the band", "Squeeze at the top"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [12, 20]
+    },
+    "regressionId": "glute_bridge",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "seated_leg_curl",
+    "name": "Seated Leg Curl",
+    "sessionTypes": ["lower_strength"],
+    "equipment": ["gym"],
+    "loads": ["hamstring", "knee"],
+    "avoidIf": ["hamstring", "knee"],
+    "primaryMuscles": ["hamstrings"],
+    "cues": ["Pad snug above the heels", "Curl smoothly", "Return slowly"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [8, 12]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "lying_leg_curl",
+    "name": "Lying Leg Curls",
+    "sessionTypes": ["lower_strength"],
+    "equipment": ["gym"],
+    "loads": ["hamstring", "knee"],
+    "avoidIf": ["hamstring", "knee"],
+    "primaryMuscles": ["hamstrings"],
+    "cues": ["Hips pressed into the pad", "Curl without bouncing", "Lower for three seconds"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [8, 12]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "nordic_curl",
+    "name": "Natural Glute Ham Raise",
+    "sessionTypes": ["lower_strength"],
+    "equipment": ["bodyweight"],
+    "loads": ["hamstring", "knee"],
+    "avoidIf": ["hamstring", "knee", "lower_back"],
+    "primaryMuscles": ["hamstrings"],
+    "cues": ["Anchor the heels", "Lower as slowly as you can", "Hips stay straight"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [4, 8]
+    },
+    "regressionId": "lying_leg_curl",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "leg_extension",
+    "name": "Leg Extensions",
+    "sessionTypes": ["lower_strength"],
+    "equipment": ["gym"],
+    "loads": ["knee"],
+    "avoidIf": ["knee"],
+    "primaryMuscles": ["quads"],
+    "cues": ["Pad above the ankles", "Extend smoothly", "Lower slowly"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [10, 15]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "calf_raise",
+    "name": "Calf Raise",
+    "sessionTypes": ["lower_strength", "mobility_knee"],
+    "equipment": ["bodyweight"],
+    "loads": ["calf", "achilles", "ankle"],
+    "avoidIf": ["achilles", "calf"],
+    "primaryMuscles": ["calves"],
+    "cues": ["Rise high onto the toes", "Pause at the top", "Lower for two seconds"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [10, 20]
+    },
+    "progressionId": "dumbbell_calf_raise",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "dumbbell_calf_raise",
+    "name": "Standing Dumbbell Calf Raise",
+    "sessionTypes": ["lower_strength"],
+    "equipment": ["dumbbell", "gym"],
+    "loads": ["calf", "achilles", "ankle"],
+    "avoidIf": ["achilles", "calf"],
+    "primaryMuscles": ["calves"],
+    "cues": ["Hold dumbbells at your sides", "Full range, slow lowering", "Do not bounce"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [10, 15]
+    },
+    "regressionId": "calf_raise",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "banded_calf_raise",
+    "name": "Calf Raises - With Bands",
+    "sessionTypes": ["lower_strength"],
+    "equipment": ["band"],
+    "loads": ["calf", "achilles", "ankle"],
+    "avoidIf": ["achilles", "calf"],
+    "primaryMuscles": ["calves"],
+    "cues": ["Band under the balls of the feet", "Rise high", "Lower under control"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [12, 20]
+    },
+    "regressionId": "calf_raise",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "seated_calf_raise",
+    "name": "Seated Calf Raise",
+    "sessionTypes": ["lower_strength"],
+    "equipment": ["gym"],
+    "loads": ["calf", "ankle"],
+    "avoidIf": ["calf"],
+    "primaryMuscles": ["calves"],
+    "cues": ["Pad on the lower thigh", "Full stretch at the bottom", "Pause at the top"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [10, 15]
+    },
+    "regressionId": "calf_raise",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "clam",
+    "name": "Clamshell",
+    "sessionTypes": ["lower_strength", "mobility_knee"],
+    "equipment": ["bodyweight", "band"],
+    "loads": ["hip"],
+    "avoidIf": [],
+    "primaryMuscles": ["abductors"],
+    "cues": ["Side-lying, knees bent", "Open the top knee, feet together", "Keep the pelvis still"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [12, 20]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "lateral_band_walk",
+    "name": "Lateral Band Walk",
+    "sessionTypes": ["lower_strength", "mobility_knee", "warmup"],
+    "equipment": ["band"],
+    "loads": ["hip", "knee"],
+    "avoidIf": [],
+    "primaryMuscles": ["abductors"],
+    "cues": ["Band above the knees", "Small steps, stay low", "Toes forward"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [10, 15]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "wall_sit",
+    "name": "Wall Sit",
+    "sessionTypes": ["lower_strength", "mobility_knee"],
+    "equipment": ["bodyweight"],
+    "loads": ["knee", "hip"],
+    "avoidIf": ["knee"],
+    "primaryMuscles": ["quads"],
+    "cues": ["Back flat on the wall", "Thighs near parallel", "Breathe steadily"],
+    "unit": "seconds",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [20, 45]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "pushup",
+    "name": "Pushups",
+    "sessionTypes": ["upper_strength"],
+    "equipment": ["bodyweight"],
+    "loads": ["shoulder", "wrist", "elbow"],
+    "avoidIf": ["wrist"],
+    "primaryMuscles": ["chest"],
+    "cues": ["Body in one line", "Elbows about 45 degrees", "Chest to just above the floor"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [8, 15]
+    },
+    "regressionId": "incline_pushup",
+    "progressionId": "feet_elevated_pushup",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "incline_pushup",
+    "name": "Incline Push-Up",
+    "sessionTypes": ["upper_strength"],
+    "equipment": ["bodyweight"],
+    "loads": ["shoulder", "wrist", "elbow"],
+    "avoidIf": ["wrist"],
+    "primaryMuscles": ["chest"],
+    "cues": ["Hands on a bench or counter", "Body in one line", "Lower the chest to the edge"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [8, 15]
+    },
+    "progressionId": "pushup",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "feet_elevated_pushup",
+    "name": "Push-Ups With Feet Elevated",
+    "sessionTypes": ["upper_strength"],
+    "equipment": ["bodyweight"],
+    "loads": ["shoulder", "wrist", "elbow"],
+    "avoidIf": ["wrist", "shoulder"],
+    "primaryMuscles": ["chest"],
+    "cues": ["Feet on a step", "Brace the belly", "Press the floor away"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [6, 12]
+    },
+    "regressionId": "pushup",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "close_grip_pushup",
+    "name": "Push-Ups - Close Triceps Position",
+    "sessionTypes": ["upper_strength"],
+    "equipment": ["bodyweight"],
+    "loads": ["elbow", "wrist", "shoulder"],
+    "avoidIf": ["wrist", "elbow"],
+    "primaryMuscles": ["triceps"],
+    "cues": ["Hands under the chest", "Elbows brush the ribs", "Full lockout"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [6, 12]
+    },
+    "regressionId": "incline_pushup",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "dumbbell_bench_press",
+    "name": "Dumbbell Bench Press",
+    "sessionTypes": ["upper_strength"],
+    "equipment": ["dumbbell", "gym"],
+    "loads": ["shoulder", "elbow"],
+    "avoidIf": ["shoulder"],
+    "primaryMuscles": ["chest"],
+    "cues": ["Shoulder blades pinched back", "Press up and slightly in", "Lower to chest level"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 4],
+      "amount": [6, 12]
+    },
+    "regressionId": "pushup",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "dumbbell_fly",
+    "name": "Dumbbell Flyes",
+    "sessionTypes": ["upper_strength"],
+    "equipment": ["dumbbell", "gym"],
+    "loads": ["shoulder", "elbow"],
+    "avoidIf": ["shoulder"],
+    "primaryMuscles": ["chest"],
+    "cues": ["Slight bend in the elbows", "Open to chest height only", "Squeeze up in an arc"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [10, 15]
+    },
+    "regressionId": "dumbbell_bench_press",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "dumbbell_shoulder_press",
+    "name": "Standing Dumbbell Press",
+    "sessionTypes": ["upper_strength"],
+    "equipment": ["dumbbell", "gym"],
+    "loads": ["shoulder", "elbow", "neck"],
+    "avoidIf": ["shoulder"],
+    "primaryMuscles": ["shoulders"],
+    "cues": ["Ribs down, no leaning back", "Press straight overhead", "Lower to ear level"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [6, 12]
+    },
+    "regressionId": "band_shoulder_press",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "band_shoulder_press",
+    "name": "Shoulder Press - With Bands",
+    "sessionTypes": ["upper_strength"],
+    "equipment": ["band"],
+    "loads": ["shoulder", "elbow"],
+    "avoidIf": ["shoulder"],
+    "primaryMuscles": ["shoulders"],
+    "cues": ["Stand on the band", "Press overhead without arching", "Control the return"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [10, 15]
+    },
+    "progressionId": "dumbbell_shoulder_press",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "dumbbell_lateral_raise",
+    "name": "Side Lateral Raise",
+    "sessionTypes": ["upper_strength"],
+    "equipment": ["dumbbell", "gym"],
+    "loads": ["shoulder"],
+    "avoidIf": ["shoulder"],
+    "primaryMuscles": ["shoulders"],
+    "cues": ["Lead with the elbows", "Raise to shoulder height", "Lower slowly"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [10, 15]
+    },
+    "regressionId": "band_lateral_raise",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "band_lateral_raise",
+    "name": "Lateral Raise - With Bands",
+    "sessionTypes": ["upper_strength"],
+    "equipment": ["band"],
+    "loads": ["shoulder"],
+    "avoidIf": ["shoulder"],
+    "primaryMuscles": ["shoulders"],
+    "cues": ["Stand on the band", "Raise to shoulder height", "No shrugging"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [12, 20]
+    },
+    "progressionId": "dumbbell_lateral_raise",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "dumbbell_reverse_fly",
+    "name": "Reverse Flyes",
+    "sessionTypes": ["upper_strength"],
+    "equipment": ["dumbbell", "gym"],
+    "loads": ["shoulder", "upper_back", "lower_back"],
+    "avoidIf": ["lower_back"],
+    "primaryMuscles": ["shoulders"],
+    "cues": ["Hinge with a flat back", "Open the arms wide", "Squeeze the shoulder blades"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [10, 15]
+    },
+    "regressionId": "band_pull_apart",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "band_pull_apart",
+    "name": "Band Pull Apart",
+    "sessionTypes": ["upper_strength", "warmup"],
+    "equipment": ["band"],
+    "loads": ["shoulder", "upper_back"],
+    "avoidIf": [],
+    "primaryMuscles": ["shoulders"],
+    "cues": [
+      "Arms straight at chest height",
+      "Pull the band to the chest",
+      "Shoulder blades together"
+    ],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [12, 20]
+    },
+    "progressionId": "dumbbell_reverse_fly",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "face_pull",
+    "name": "Face Pull",
+    "sessionTypes": ["upper_strength"],
+    "equipment": ["gym"],
+    "loads": ["shoulder", "upper_back"],
+    "avoidIf": [],
+    "primaryMuscles": ["shoulders"],
+    "cues": ["Pull toward the face", "Elbows high and wide", "Pause with hands by the ears"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [12, 20]
+    },
+    "regressionId": "band_pull_apart",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "pullup",
+    "name": "Pullups",
+    "sessionTypes": ["upper_strength"],
+    "equipment": ["gym"],
+    "loads": ["shoulder", "elbow", "upper_back"],
+    "avoidIf": ["shoulder", "elbow"],
+    "primaryMuscles": ["lats"],
+    "cues": ["Start from a dead hang", "Pull the chest to the bar", "Lower fully under control"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [4, 10]
+    },
+    "regressionId": "lat_pulldown",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "lat_pulldown",
+    "name": "Wide-Grip Lat Pulldown",
+    "sessionTypes": ["upper_strength"],
+    "equipment": ["gym"],
+    "loads": ["shoulder", "elbow", "upper_back"],
+    "avoidIf": ["shoulder"],
+    "primaryMuscles": ["lats"],
+    "cues": [
+      "Chest up, lean back slightly",
+      "Pull the bar to the collarbone",
+      "Control the way up"
+    ],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [8, 12]
+    },
+    "progressionId": "pullup",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "dumbbell_row",
+    "name": "One-Arm Dumbbell Row",
+    "sessionTypes": ["upper_strength", "back_core"],
+    "equipment": ["dumbbell", "gym"],
+    "loads": ["upper_back", "shoulder"],
+    "avoidIf": [],
+    "primaryMuscles": ["upper_back"],
+    "cues": ["Hand and knee on a bench", "Pull the elbow to the hip", "Keep the back flat"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [8, 12]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "bent_over_dumbbell_row",
+    "name": "Bent Over Two-Dumbbell Row",
+    "sessionTypes": ["upper_strength", "back_core"],
+    "equipment": ["dumbbell", "gym"],
+    "loads": ["upper_back", "lower_back", "shoulder"],
+    "avoidIf": ["lower_back"],
+    "primaryMuscles": ["upper_back"],
+    "cues": ["Hinge to a flat back", "Pull both elbows back", "Do not jerk the weight"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [8, 12]
+    },
+    "regressionId": "dumbbell_row",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "barbell_row",
+    "name": "Bent Over Barbell Row",
+    "sessionTypes": ["upper_strength", "back_core"],
+    "equipment": ["gym"],
+    "loads": ["upper_back", "lower_back"],
+    "avoidIf": ["lower_back"],
+    "primaryMuscles": ["upper_back"],
+    "cues": ["Hinge and brace", "Pull the bar to the lower ribs", "Lower without losing posture"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 4],
+      "amount": [6, 10]
+    },
+    "regressionId": "bent_over_dumbbell_row",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "seated_cable_row",
+    "name": "Seated Cable Rows",
+    "sessionTypes": ["upper_strength", "back_core"],
+    "equipment": ["gym"],
+    "loads": ["upper_back"],
+    "avoidIf": [],
+    "primaryMuscles": ["upper_back"],
+    "cues": [
+      "Sit tall, chest up",
+      "Pull the handle to the belly",
+      "Let the shoulders reach forward on return"
+    ],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [8, 12]
+    },
+    "regressionId": "band_row",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "band_row",
+    "name": "Banded Seated Row",
+    "sessionTypes": ["upper_strength", "back_core"],
+    "equipment": ["band"],
+    "loads": ["upper_back"],
+    "avoidIf": [],
+    "primaryMuscles": ["upper_back"],
+    "cues": [
+      "Sit tall with legs out",
+      "Pull the elbows back",
+      "Pause with shoulder blades together"
+    ],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [10, 20]
+    },
+    "progressionId": "seated_cable_row",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "inverted_row",
+    "name": "Inverted Row",
+    "sessionTypes": ["upper_strength", "back_core"],
+    "equipment": ["bodyweight"],
+    "loads": ["upper_back", "shoulder", "elbow"],
+    "avoidIf": [],
+    "primaryMuscles": ["upper_back"],
+    "cues": ["Body straight under a bar or table", "Pull the chest to the bar", "Lower fully"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [6, 12]
+    },
+    "regressionId": "band_row",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "dumbbell_curl",
+    "name": "Dumbbell Bicep Curl",
+    "sessionTypes": ["upper_strength"],
+    "equipment": ["dumbbell", "gym"],
+    "loads": ["elbow"],
+    "avoidIf": ["elbow"],
+    "primaryMuscles": ["biceps"],
+    "cues": ["Elbows pinned to the sides", "Curl without swinging", "Lower slowly"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [8, 15]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "hammer_curl",
+    "name": "Hammer Curls",
+    "sessionTypes": ["upper_strength"],
+    "equipment": ["dumbbell", "gym"],
+    "loads": ["elbow", "wrist"],
+    "avoidIf": ["elbow"],
+    "primaryMuscles": ["biceps"],
+    "cues": ["Palms face each other", "Elbows still", "Control the lowering"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [8, 15]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "triceps_pushdown",
+    "name": "Triceps Pushdown",
+    "sessionTypes": ["upper_strength"],
+    "equipment": ["gym"],
+    "loads": ["elbow"],
+    "avoidIf": ["elbow"],
+    "primaryMuscles": ["triceps"],
+    "cues": ["Elbows tight to the ribs", "Extend fully", "Return slowly"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [10, 15]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "triceps_kickback",
+    "name": "Tricep Dumbbell Kickback",
+    "sessionTypes": ["upper_strength"],
+    "equipment": ["dumbbell", "gym"],
+    "loads": ["elbow"],
+    "avoidIf": ["elbow"],
+    "primaryMuscles": ["triceps"],
+    "cues": ["Upper arm parallel to the floor", "Straighten the elbow", "Do not swing"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [10, 15]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "bench_dip",
+    "name": "Bench Dips",
+    "sessionTypes": ["upper_strength"],
+    "equipment": ["bodyweight"],
+    "loads": ["shoulder", "elbow", "wrist"],
+    "avoidIf": ["shoulder", "elbow", "wrist"],
+    "primaryMuscles": ["triceps"],
+    "cues": [
+      "Hands on the bench edge",
+      "Lower until elbows hit 90 degrees",
+      "Keep the back close to the bench"
+    ],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [8, 12]
+    },
+    "regressionId": "close_grip_pushup",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "dead_bug",
+    "name": "Dead Bug",
+    "sessionTypes": ["back_core", "warmup"],
+    "equipment": ["bodyweight"],
+    "loads": ["lower_back"],
+    "avoidIf": [],
+    "primaryMuscles": ["abdominals"],
+    "cues": ["Low back stays on the floor", "Opposite arm and leg lower together", "Move slowly"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [8, 12]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "bird_dog",
+    "name": "Bird Dog",
+    "sessionTypes": ["back_core", "warmup"],
+    "equipment": ["bodyweight"],
+    "loads": ["lower_back", "wrist"],
+    "avoidIf": ["wrist"],
+    "primaryMuscles": ["lower_back"],
+    "cues": ["Hips and shoulders level", "Reach long, not high", "Pause for a second"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [8, 12]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "plank",
+    "name": "Plank",
+    "sessionTypes": ["back_core"],
+    "equipment": ["bodyweight"],
+    "loads": ["shoulder", "lower_back"],
+    "avoidIf": [],
+    "primaryMuscles": ["abdominals"],
+    "cues": ["Elbows under the shoulders", "Body in one line", "Squeeze glutes and belly"],
+    "unit": "seconds",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [20, 60]
+    },
+    "progressionId": "side_plank",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "side_plank",
+    "name": "Side Bridge",
+    "sessionTypes": ["back_core"],
+    "equipment": ["bodyweight"],
+    "loads": ["shoulder", "lower_back", "hip"],
+    "avoidIf": ["shoulder"],
+    "primaryMuscles": ["abdominals"],
+    "cues": ["Elbow under the shoulder", "Hips lifted in line", "Breathe steadily"],
+    "unit": "seconds",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [15, 45]
+    },
+    "regressionId": "plank",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "hollow_hold",
+    "name": "Hollow Hold",
+    "sessionTypes": ["back_core"],
+    "equipment": ["bodyweight"],
+    "loads": ["lower_back"],
+    "avoidIf": ["lower_back"],
+    "primaryMuscles": ["abdominals"],
+    "cues": [
+      "Press the low back down",
+      "Arms and legs reach long",
+      "Lower the legs only as far as you can control"
+    ],
+    "unit": "seconds",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [15, 40]
+    },
+    "regressionId": "dead_bug",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "superman",
+    "name": "Superman",
+    "sessionTypes": ["back_core"],
+    "equipment": ["bodyweight"],
+    "loads": ["lower_back"],
+    "avoidIf": ["lower_back"],
+    "primaryMuscles": ["lower_back"],
+    "cues": ["Lie face down, reach long", "Lift arms and legs slightly", "Pause, then lower"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [8, 12]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "back_extension",
+    "name": "Hyperextensions With No Hyperextension Bench",
+    "sessionTypes": ["back_core"],
+    "equipment": ["bodyweight"],
+    "loads": ["lower_back", "hip"],
+    "avoidIf": ["lower_back"],
+    "primaryMuscles": ["lower_back"],
+    "cues": ["Move from the hips", "Rise to a straight line only", "Lower slowly"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [8, 12]
+    },
+    "regressionId": "bird_dog",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "reverse_hyper",
+    "name": "Reverse Hyperextension",
+    "sessionTypes": ["back_core"],
+    "equipment": ["gym"],
+    "loads": ["lower_back", "hip", "hamstring"],
+    "avoidIf": ["lower_back"],
+    "primaryMuscles": ["hamstrings"],
+    "cues": ["Hold the bench firmly", "Swing legs up to body line", "Lower with control"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [10, 15]
+    },
+    "regressionId": "superman",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "cable_pallof_press",
+    "name": "Pallof Press",
+    "sessionTypes": ["back_core"],
+    "equipment": ["gym"],
+    "loads": ["lower_back"],
+    "avoidIf": [],
+    "primaryMuscles": ["abdominals"],
+    "cues": ["Stand side-on to the cable", "Press out and resist the twist", "Hold one second"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [8, 12]
+    },
+    "regressionId": "band_pallof_press",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "band_pallof_press",
+    "name": "Banded Pallof Press",
+    "sessionTypes": ["back_core"],
+    "equipment": ["band"],
+    "loads": ["lower_back"],
+    "avoidIf": [],
+    "primaryMuscles": ["abdominals"],
+    "cues": [
+      "Anchor the band at chest height",
+      "Press out and resist the twist",
+      "Hold one second"
+    ],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [8, 12]
+    },
+    "progressionId": "cable_pallof_press",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "mountain_climber",
+    "name": "Mountain Climbers",
+    "sessionTypes": ["back_core"],
+    "equipment": ["bodyweight"],
+    "loads": ["shoulder", "wrist", "hip"],
+    "avoidIf": ["wrist", "shoulder"],
+    "primaryMuscles": ["quads"],
+    "cues": ["Hands under the shoulders", "Drive knees alternately", "Hips stay low"],
+    "unit": "seconds",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [20, 40]
+    },
+    "regressionId": "plank",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "hanging_leg_raise",
+    "name": "Hanging Leg Raise",
+    "sessionTypes": ["back_core"],
+    "equipment": ["gym"],
+    "loads": ["shoulder", "lower_back", "hip"],
+    "avoidIf": ["shoulder", "lower_back"],
+    "primaryMuscles": ["abdominals"],
+    "cues": ["Hang without swinging", "Curl the pelvis up", "Lower slowly"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [6, 12]
+    },
+    "regressionId": "dead_bug",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "cable_crunch",
+    "name": "Cable Crunch",
+    "sessionTypes": ["back_core"],
+    "equipment": ["gym"],
+    "loads": ["lower_back", "neck"],
+    "avoidIf": ["lower_back", "neck"],
+    "primaryMuscles": ["abdominals"],
+    "cues": ["Kneel under the cable", "Curl the ribs to the pelvis", "Hips stay still"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [10, 15]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "crunch",
+    "name": "Crunches",
+    "sessionTypes": ["back_core"],
+    "equipment": ["bodyweight"],
+    "loads": ["lower_back", "neck"],
+    "avoidIf": ["lower_back", "neck"],
+    "primaryMuscles": ["abdominals"],
+    "cues": [
+      "Hands light behind the head",
+      "Lift the shoulder blades only",
+      "Do not pull on the neck"
+    ],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [10, 20]
+    },
+    "regressionId": "dead_bug",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "cat_cow",
+    "name": "Cat Stretch",
+    "sessionTypes": ["back_core", "warmup"],
+    "equipment": ["bodyweight"],
+    "loads": ["lower_back", "upper_back"],
+    "avoidIf": [],
+    "primaryMuscles": ["lower_back"],
+    "cues": ["On hands and knees", "Round then arch slowly", "Move with your breathing"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 2],
+      "amount": [8, 12]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "farmer_carry",
+    "name": "Farmer Carry",
+    "sessionTypes": ["back_core"],
+    "equipment": ["dumbbell", "gym"],
+    "loads": ["lower_back", "shoulder"],
+    "avoidIf": ["lower_back"],
+    "primaryMuscles": ["forearms"],
+    "cues": ["Stand tall, shoulders back", "Short, even steps", "Do not lean to one side"],
+    "unit": "meters",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [20, 40]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "tibialis_raise",
+    "name": "Tibialis Raise",
+    "sessionTypes": ["mobility_knee"],
+    "equipment": ["bodyweight"],
+    "loads": ["ankle"],
+    "avoidIf": [],
+    "primaryMuscles": ["tibialis"],
+    "cues": ["Heels about 30 cm from a wall", "Lift the toes toward the shins", "Lower slowly"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [12, 25]
+    },
+    "progressionId": "banded_tibialis_raise",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "banded_tibialis_raise",
+    "name": "Banded Tibialis Raise",
+    "sessionTypes": ["mobility_knee"],
+    "equipment": ["band"],
+    "loads": ["ankle"],
+    "avoidIf": [],
+    "primaryMuscles": ["tibialis"],
+    "cues": ["Seated, band over the foot", "Pull the toes up against the band", "Lower slowly"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [12, 20]
+    },
+    "regressionId": "tibialis_raise",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "backward_walk",
+    "name": "Backward Walking",
+    "sessionTypes": ["mobility_knee", "warmup"],
+    "equipment": ["bodyweight"],
+    "loads": ["knee"],
+    "avoidIf": [],
+    "primaryMuscles": ["quads"],
+    "cues": ["Short, relaxed steps", "Reach back with the toe first", "Stay on a safe, clear path"],
+    "unit": "minutes",
+    "rx": {
+      "sets": [1, 1],
+      "amount": [5, 10]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "terminal_knee_extension",
+    "name": "Banded Terminal Knee Extension",
+    "sessionTypes": ["mobility_knee"],
+    "equipment": ["band"],
+    "loads": ["knee"],
+    "avoidIf": [],
+    "primaryMuscles": ["quads"],
+    "cues": ["Band behind the knee", "Straighten the knee fully", "Squeeze the thigh for a second"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [12, 20]
+    },
+    "progressionId": "spanish_squat",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "spanish_squat",
+    "name": "Spanish Squat Hold",
+    "sessionTypes": ["mobility_knee"],
+    "equipment": ["band"],
+    "loads": ["knee"],
+    "avoidIf": [],
+    "primaryMuscles": ["quads"],
+    "cues": [
+      "Band behind the knees, lean back",
+      "Sit into a shallow squat",
+      "Hold still and breathe"
+    ],
+    "unit": "seconds",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [30, 45]
+    },
+    "regressionId": "terminal_knee_extension",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "step_down",
+    "name": "Slow Step-Down",
+    "sessionTypes": ["lower_strength", "mobility_knee"],
+    "equipment": ["bodyweight"],
+    "loads": ["knee", "hip"],
+    "avoidIf": ["knee"],
+    "primaryMuscles": ["quads"],
+    "cues": [
+      "Stand on a low step",
+      "Lower the other heel slowly",
+      "Knee stays over the middle toes"
+    ],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [6, 10]
+    },
+    "regressionId": "wall_sit",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "single_leg_balance",
+    "name": "Single-Leg Balance",
+    "sessionTypes": ["mobility_knee", "warmup"],
+    "equipment": ["bodyweight"],
+    "loads": ["ankle", "foot", "knee"],
+    "avoidIf": [],
+    "primaryMuscles": ["calves"],
+    "cues": ["Soft knee, tall posture", "Eyes forward", "Switch legs"],
+    "unit": "seconds",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [20, 45]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "straight_leg_raise",
+    "name": "Straight Leg Raise",
+    "sessionTypes": ["mobility_knee"],
+    "equipment": ["bodyweight"],
+    "loads": ["hip", "knee"],
+    "avoidIf": [],
+    "primaryMuscles": ["quads"],
+    "cues": ["Lie with one knee bent", "Tighten the thigh, lift the straight leg", "Lower slowly"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [10, 15]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "hamstring_stretch",
+    "name": "Hamstring Stretch",
+    "sessionTypes": ["mobility_knee"],
+    "equipment": ["bodyweight"],
+    "loads": ["hamstring"],
+    "avoidIf": ["hamstring"],
+    "primaryMuscles": ["hamstrings"],
+    "cues": ["Straight leg, hinge forward", "Stop at a mild stretch", "Never bounce"],
+    "unit": "seconds",
+    "rx": {
+      "sets": [2, 2],
+      "amount": [20, 40]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "calf_stretch",
+    "name": "Calf Stretch Hands Against Wall",
+    "sessionTypes": ["mobility_knee"],
+    "equipment": ["bodyweight"],
+    "loads": ["calf", "achilles"],
+    "avoidIf": [],
+    "primaryMuscles": ["calves"],
+    "cues": ["Back heel flat", "Lean the hips toward the wall", "Stop at a mild stretch"],
+    "unit": "seconds",
+    "rx": {
+      "sets": [2, 2],
+      "amount": [20, 40]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "kneeling_hip_flexor_stretch",
+    "name": "Kneeling Hip Flexor",
+    "sessionTypes": ["mobility_knee", "warmup"],
+    "equipment": ["bodyweight"],
+    "loads": ["hip", "knee"],
+    "avoidIf": ["knee"],
+    "primaryMuscles": ["quads"],
+    "cues": ["Pad under the knee", "Tuck the pelvis, tall chest", "Shift forward gently"],
+    "unit": "seconds",
+    "rx": {
+      "sets": [2, 2],
+      "amount": [20, 40]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "quad_stretch",
+    "name": "Standing Quad Stretch",
+    "sessionTypes": ["mobility_knee"],
+    "equipment": ["bodyweight"],
+    "loads": ["knee", "hip"],
+    "avoidIf": ["knee"],
+    "primaryMuscles": ["quads"],
+    "cues": ["Hold the ankle, knees together", "Tuck the pelvis", "Stop at a mild stretch"],
+    "unit": "seconds",
+    "rx": {
+      "sets": [2, 2],
+      "amount": [20, 40]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "knee_to_wall",
+    "name": "Knee-to-Wall Ankle Mobilisation",
+    "sessionTypes": ["mobility_knee", "warmup"],
+    "equipment": ["bodyweight"],
+    "loads": ["ankle", "calf"],
+    "avoidIf": [],
+    "primaryMuscles": ["calves"],
+    "cues": ["Toes a hand width from the wall", "Drive the knee over the toes", "Heel stays down"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 2],
+      "amount": [10, 15]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "ankle_circles",
+    "name": "Ankle Circles",
+    "sessionTypes": ["mobility_knee", "warmup"],
+    "equipment": ["bodyweight"],
+    "loads": ["ankle"],
+    "avoidIf": [],
+    "primaryMuscles": ["calves"],
+    "cues": ["Slow, big circles", "Move only the ankle", "Both directions"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 2],
+      "amount": [10, 15]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "arm_circles",
+    "name": "Arm Circles",
+    "sessionTypes": ["warmup"],
+    "equipment": ["bodyweight"],
+    "loads": ["shoulder"],
+    "avoidIf": [],
+    "primaryMuscles": ["shoulders"],
+    "cues": ["Start small, grow the circles", "Keep the neck relaxed", "Both directions"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 2],
+      "amount": [10, 20]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "leg_swing",
+    "name": "Leg Swing",
+    "sessionTypes": ["warmup"],
+    "equipment": ["bodyweight"],
+    "loads": ["hip", "hamstring", "groin"],
+    "avoidIf": [],
+    "primaryMuscles": ["hamstrings"],
+    "cues": ["Hold a wall for balance", "Swing from the hip", "Keep the torso still"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 2],
+      "amount": [10, 15]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "inchworm",
+    "name": "Inchworm",
+    "sessionTypes": ["warmup"],
+    "equipment": ["bodyweight"],
+    "loads": ["hamstring", "shoulder", "wrist", "lower_back"],
+    "avoidIf": ["wrist"],
+    "primaryMuscles": ["hamstrings"],
+    "cues": ["Walk the hands out slowly", "Hold a short plank", "Walk the feet to the hands"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 2],
+      "amount": [6, 10]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "hip_circles",
+    "name": "Standing Hip Circles",
+    "sessionTypes": ["warmup"],
+    "equipment": ["bodyweight"],
+    "loads": ["hip"],
+    "avoidIf": [],
+    "primaryMuscles": ["abductors"],
+    "cues": ["Lift the knee, open the hip", "Large slow circles", "Both directions"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 2],
+      "amount": [8, 12]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "worlds_greatest_stretch",
+    "name": "Lunge with Rotation",
+    "sessionTypes": ["warmup"],
+    "equipment": ["bodyweight"],
+    "loads": ["hip", "hamstring", "upper_back"],
+    "avoidIf": ["knee", "wrist"],
+    "primaryMuscles": ["hip_flexors"],
+    "cues": ["Long lunge, hand inside the foot", "Rotate the chest to the ceiling", "Switch sides"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 2],
+      "amount": [4, 8]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "high_knees",
+    "name": "High Knees",
+    "sessionTypes": ["warmup"],
+    "equipment": ["bodyweight"],
+    "loads": ["hip", "knee", "ankle", "foot"],
+    "avoidIf": ["knee", "ankle", "foot", "achilles"],
+    "primaryMuscles": ["quads"],
+    "cues": ["Quick light steps", "Lift the knees to hip height", "Tall posture"],
+    "unit": "seconds",
+    "rx": {
+      "sets": [2, 2],
+      "amount": [20, 30]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "butt_kicks",
+    "name": "Butt Kicks",
+    "sessionTypes": ["warmup"],
+    "equipment": ["bodyweight"],
+    "loads": ["hamstring", "knee"],
+    "avoidIf": ["hamstring"],
+    "primaryMuscles": ["hamstrings"],
+    "cues": ["Light bouncing steps", "Heels toward the glutes", "Tall posture"],
+    "unit": "seconds",
+    "rx": {
+      "sets": [2, 2],
+      "amount": [20, 30]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "jumping_jack",
+    "name": "Jumping Jack",
+    "sessionTypes": ["warmup"],
+    "equipment": ["bodyweight"],
+    "loads": ["knee", "ankle", "foot", "achilles"],
+    "avoidIf": ["knee", "ankle", "achilles", "foot"],
+    "primaryMuscles": ["cardio"],
+    "cues": ["Soft landings", "Arms overhead", "Steady rhythm"],
+    "unit": "seconds",
+    "rx": {
+      "sets": [2, 2],
+      "amount": [20, 40]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "glute_activation_walk",
+    "name": "Banded Side Step",
+    "sessionTypes": ["warmup"],
+    "equipment": ["band"],
+    "loads": ["hip"],
+    "avoidIf": [],
+    "primaryMuscles": ["abductors"],
+    "cues": ["Band above the knees", "Side steps with a soft knee", "Feel the outer hip work"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 2],
+      "amount": [10, 12]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "pogo_hop",
+    "name": "Pogo Hop",
+    "sessionTypes": ["plyo"],
+    "equipment": ["bodyweight"],
+    "loads": ["knee", "ankle", "achilles", "foot"],
+    "avoidIf": ["knee", "ankle", "achilles", "foot", "calf"],
+    "primaryMuscles": ["calves"],
+    "cues": ["Stiff ankles, quick bounces", "Land on the balls of the feet", "Short ground time"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [10, 20]
+    },
+    "footContactsPerRep": 2,
+    "progressionId": "single_leg_pogo",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "single_leg_pogo",
+    "name": "Single-Leg Pogo Hop",
+    "sessionTypes": ["plyo"],
+    "equipment": ["bodyweight"],
+    "loads": ["knee", "ankle", "achilles", "foot"],
+    "avoidIf": ["knee", "ankle", "achilles", "foot", "calf"],
+    "primaryMuscles": ["calves"],
+    "cues": ["Stay tall on one leg", "Quick small bounces", "Hold the landing steady"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 2],
+      "amount": [8, 15]
+    },
+    "footContactsPerRep": 1,
+    "regressionId": "pogo_hop",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "jump_rope",
+    "name": "Jump Rope",
+    "sessionTypes": ["plyo"],
+    "equipment": ["bodyweight"],
+    "loads": ["knee", "ankle", "achilles", "foot", "calf"],
+    "avoidIf": ["knee", "ankle", "achilles", "foot", "calf"],
+    "primaryMuscles": ["calves"],
+    "cues": ["Wrists turn the rope", "Small hops, quiet landings", "Stay on the balls of the feet"],
+    "unit": "reps",
+    "rx": {
+      "sets": [3, 3],
+      "amount": [20, 50]
+    },
+    "footContactsPerRep": 2,
+    "regressionId": "pogo_hop",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "a_skip",
+    "name": "A-Skip",
+    "sessionTypes": ["plyo", "warmup"],
+    "equipment": ["bodyweight"],
+    "loads": ["ankle", "foot", "achilles", "hip"],
+    "avoidIf": ["foot", "achilles"],
+    "primaryMuscles": ["hip_flexors"],
+    "cues": ["Knee drives up, opposite arm swings", "Rhythm: step, hop", "Light on the feet"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [10, 20]
+    },
+    "footContactsPerRep": 1,
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "squat_jump",
+    "name": "Squat Jump",
+    "sessionTypes": ["plyo"],
+    "equipment": ["bodyweight"],
+    "loads": ["knee", "hip", "ankle", "achilles", "foot"],
+    "avoidIf": ["knee", "ankle", "achilles", "foot"],
+    "primaryMuscles": ["quads"],
+    "cues": [
+      "Squat only to a comfortable depth",
+      "Jump up, reach tall",
+      "Land softly, knees over toes"
+    ],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [5, 10]
+    },
+    "footContactsPerRep": 2,
+    "regressionId": "bodyweight_squat",
+    "progressionId": "box_jump",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "box_jump",
+    "name": "Box Jump",
+    "sessionTypes": ["plyo"],
+    "equipment": ["bodyweight"],
+    "loads": ["knee", "hip", "ankle", "achilles", "foot"],
+    "avoidIf": ["knee", "ankle", "achilles", "foot"],
+    "primaryMuscles": ["quads"],
+    "cues": [
+      "Swing the arms, jump onto the box",
+      "Land softly with both feet",
+      "Step down, do not jump down"
+    ],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [4, 8]
+    },
+    "footContactsPerRep": 2,
+    "regressionId": "squat_jump",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "broad_jump",
+    "name": "Broad Jump",
+    "sessionTypes": ["plyo"],
+    "equipment": ["bodyweight"],
+    "loads": ["knee", "hip", "ankle", "achilles", "foot", "hamstring"],
+    "avoidIf": ["knee", "ankle", "achilles", "foot", "hamstring"],
+    "primaryMuscles": ["glutes"],
+    "cues": [
+      "Swing the arms, jump forward",
+      "Stick the landing for two seconds",
+      "Reset between jumps"
+    ],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [4, 6]
+    },
+    "footContactsPerRep": 2,
+    "regressionId": "squat_jump",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "lateral_bound",
+    "name": "Lateral Bound",
+    "sessionTypes": ["plyo"],
+    "equipment": ["bodyweight"],
+    "loads": ["knee", "hip", "ankle", "achilles", "foot", "groin"],
+    "avoidIf": ["knee", "ankle", "achilles", "foot", "groin"],
+    "primaryMuscles": ["adductors"],
+    "cues": ["Push off the outside leg", "Land on one foot, hold it", "Hips and knees soft"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [6, 10]
+    },
+    "footContactsPerRep": 1,
+    "regressionId": "squat_jump",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "split_jump",
+    "name": "Split Jump",
+    "sessionTypes": ["plyo"],
+    "equipment": ["bodyweight"],
+    "loads": ["knee", "hip", "ankle", "achilles", "foot"],
+    "avoidIf": ["knee", "ankle", "achilles", "foot"],
+    "primaryMuscles": ["quads"],
+    "cues": ["Start in a short lunge", "Jump and switch legs", "Land softly, torso upright"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 2],
+      "amount": [6, 10]
+    },
+    "footContactsPerRep": 2,
+    "regressionId": "split_squat",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "single_leg_hop",
+    "name": "Single-Leg Hop",
+    "sessionTypes": ["plyo"],
+    "equipment": ["bodyweight"],
+    "loads": ["knee", "hip", "ankle", "achilles", "foot"],
+    "avoidIf": ["knee", "ankle", "achilles", "foot"],
+    "primaryMuscles": ["quads"],
+    "cues": [
+      "Hop forward, stick the landing",
+      "Knee over the middle toes",
+      "Pause before the next hop"
+    ],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 2],
+      "amount": [5, 8]
+    },
+    "footContactsPerRep": 1,
+    "regressionId": "squat_jump",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "depth_drop_landing",
+    "name": "Depth-Drop Landing",
+    "sessionTypes": ["plyo"],
+    "equipment": ["bodyweight"],
+    "loads": ["knee", "hip", "ankle", "achilles", "foot"],
+    "avoidIf": ["knee", "ankle", "achilles", "foot"],
+    "primaryMuscles": ["quads"],
+    "cues": [
+      "Step off a low box, do not jump",
+      "Land softly on both feet and freeze",
+      "Knees track over the toes"
+    ],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [4, 6]
+    },
+    "footContactsPerRep": 2,
+    "regressionId": "step_down",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "skater_hop",
+    "name": "Skater Hop",
+    "sessionTypes": ["plyo"],
+    "equipment": ["bodyweight"],
+    "loads": ["knee", "hip", "ankle", "achilles", "foot", "groin"],
+    "avoidIf": ["knee", "ankle", "achilles", "foot", "groin"],
+    "primaryMuscles": ["glutes"],
+    "cues": ["Hop side to side on one leg", "Stick each landing", "Reach the other leg behind"],
+    "unit": "reps",
+    "rx": {
+      "sets": [2, 3],
+      "amount": [8, 12]
+    },
+    "footContactsPerRep": 1,
+    "regressionId": "lateral_band_walk",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "run_easy",
+    "name": "Easy Run",
+    "sessionTypes": ["run"],
+    "equipment": ["bodyweight"],
+    "loads": ["knee", "ankle", "foot", "achilles", "calf", "hip"],
+    "avoidIf": ["knee", "ankle", "foot", "achilles"],
+    "primaryMuscles": ["cardio"],
+    "cues": ["Conversational pace", "Short quick steps", "Relax shoulders and hands"],
+    "unit": "minutes",
+    "rx": {
+      "sets": [1, 1],
+      "amount": [20, 45]
+    },
+    "progressionId": "run_long",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "run_recovery",
+    "name": "Recovery Run",
+    "sessionTypes": ["run"],
+    "equipment": ["bodyweight"],
+    "loads": ["knee", "ankle", "foot", "achilles", "calf"],
+    "avoidIf": ["knee", "ankle", "foot", "achilles"],
+    "primaryMuscles": ["cardio"],
+    "cues": ["Slower than easy", "Flat ground", "Stop if anything hurts"],
+    "unit": "minutes",
+    "rx": {
+      "sets": [1, 1],
+      "amount": [15, 30]
+    },
+    "progressionId": "run_easy",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "run_long",
+    "name": "Long Run",
+    "sessionTypes": ["run"],
+    "equipment": ["bodyweight"],
+    "loads": ["knee", "ankle", "foot", "achilles", "calf", "hip", "hamstring"],
+    "avoidIf": ["knee", "ankle", "foot", "achilles"],
+    "primaryMuscles": ["cardio"],
+    "cues": [
+      "Start slower than feels needed",
+      "Fuel and drink on long ones",
+      "Keep the effort easy"
+    ],
+    "unit": "minutes",
+    "rx": {
+      "sets": [1, 1],
+      "amount": [50, 120]
+    },
+    "regressionId": "run_easy",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "run_strides",
+    "name": "Easy Run with Strides",
+    "sessionTypes": ["run"],
+    "equipment": ["bodyweight"],
+    "loads": ["knee", "ankle", "foot", "achilles", "calf", "hamstring"],
+    "avoidIf": ["knee", "ankle", "foot", "achilles", "calf", "hamstring"],
+    "primaryMuscles": ["cardio"],
+    "cues": [
+      "Easy run, then 4-6 pickups of about 20 seconds",
+      "Build up smoothly to fast, not all-out",
+      "Walk back to recover"
+    ],
+    "unit": "minutes",
+    "rx": {
+      "sets": [1, 1],
+      "amount": [15, 30]
+    },
+    "regressionId": "run_easy",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "run_fartlek",
+    "name": "Fartlek Run",
+    "sessionTypes": ["run"],
+    "equipment": ["bodyweight"],
+    "loads": ["knee", "ankle", "foot", "achilles", "calf", "hamstring"],
+    "avoidIf": ["knee", "ankle", "foot", "achilles", "calf", "hamstring"],
+    "primaryMuscles": ["cardio"],
+    "cues": [
+      "Easy running with surges by feel",
+      "Surges 30 seconds to 2 minutes",
+      "Recover until breathing settles"
+    ],
+    "unit": "minutes",
+    "rx": {
+      "sets": [1, 1],
+      "amount": [25, 45]
+    },
+    "regressionId": "run_easy",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "run_tempo",
+    "name": "Tempo Run",
+    "sessionTypes": ["run"],
+    "equipment": ["bodyweight"],
+    "loads": ["knee", "ankle", "foot", "achilles", "calf", "hamstring", "hip"],
+    "avoidIf": ["knee", "ankle", "foot", "achilles", "calf", "hamstring"],
+    "primaryMuscles": ["cardio"],
+    "cues": [
+      "Warm up first, then comfortably hard",
+      "Steady effort you could hold for about an hour",
+      "Cool down easy"
+    ],
+    "unit": "minutes",
+    "rx": {
+      "sets": [1, 1],
+      "amount": [20, 40]
+    },
+    "regressionId": "run_fartlek",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "run_intervals",
+    "name": "Interval Run",
+    "sessionTypes": ["run"],
+    "equipment": ["bodyweight"],
+    "loads": ["knee", "ankle", "foot", "achilles", "calf", "hamstring", "hip"],
+    "avoidIf": ["knee", "ankle", "foot", "achilles", "calf", "hamstring"],
+    "primaryMuscles": ["cardio"],
+    "cues": [
+      "Warm up, then repeats of 1-4 minutes hard",
+      "Equal or longer easy jog between",
+      "Cool down easy"
+    ],
+    "unit": "minutes",
+    "rx": {
+      "sets": [1, 1],
+      "amount": [20, 35]
+    },
+    "regressionId": "run_fartlek",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "run_hills",
+    "name": "Hill Repeats",
+    "sessionTypes": ["run"],
+    "equipment": ["bodyweight"],
+    "loads": ["knee", "ankle", "foot", "achilles", "calf", "hamstring", "hip"],
+    "avoidIf": ["knee", "ankle", "foot", "achilles", "calf", "hamstring"],
+    "primaryMuscles": ["cardio"],
+    "cues": [
+      "Easy run with 4-8 uphill repeats",
+      "Short steps, lean from the ankles",
+      "Jog down to recover"
+    ],
+    "unit": "minutes",
+    "rx": {
+      "sets": [1, 1],
+      "amount": [25, 40]
+    },
+    "regressionId": "run_strides",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "swim_easy",
+    "name": "Easy Swim",
+    "sessionTypes": ["swim"],
+    "equipment": ["bodyweight"],
+    "loads": ["shoulder", "neck"],
+    "avoidIf": ["shoulder"],
+    "primaryMuscles": ["cardio"],
+    "cues": [
+      "Smooth, relaxed strokes",
+      "Breathe every 3 strokes if comfortable",
+      "Rest briefly at the wall as needed"
+    ],
+    "unit": "meters",
+    "rx": {
+      "sets": [1, 1],
+      "amount": [400, 1200]
+    },
+    "progressionId": "swim_endurance",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "swim_drills",
+    "name": "Technique Drills",
+    "sessionTypes": ["swim"],
+    "equipment": ["bodyweight"],
+    "loads": ["shoulder", "neck"],
+    "avoidIf": ["shoulder"],
+    "primaryMuscles": ["cardio"],
+    "cues": [
+      "One skill per length",
+      "Slow and precise over fast",
+      "Rest 15 seconds between lengths"
+    ],
+    "unit": "meters",
+    "rx": {
+      "sets": [4, 8],
+      "amount": [25, 50]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "swim_intervals",
+    "name": "Swim Intervals",
+    "sessionTypes": ["swim"],
+    "equipment": ["bodyweight"],
+    "loads": ["shoulder", "neck"],
+    "avoidIf": ["shoulder"],
+    "primaryMuscles": ["cardio"],
+    "cues": ["Hard but repeatable pace", "Fixed rest 15-30 seconds", "Hold form as you tire"],
+    "unit": "meters",
+    "rx": {
+      "sets": [6, 12],
+      "amount": [50, 100]
+    },
+    "regressionId": "swim_easy",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "swim_kick",
+    "name": "Kick Set",
+    "sessionTypes": ["swim"],
+    "equipment": ["bodyweight"],
+    "loads": ["hip", "ankle"],
+    "avoidIf": [],
+    "primaryMuscles": ["cardio"],
+    "cues": [
+      "Kick from the hips, loose ankles",
+      "Hold a board or stay streamlined",
+      "Small fast kick"
+    ],
+    "unit": "meters",
+    "rx": {
+      "sets": [4, 8],
+      "amount": [25, 50]
+    },
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "swim_pull",
+    "name": "Pull Set",
+    "sessionTypes": ["swim"],
+    "equipment": ["bodyweight"],
+    "loads": ["shoulder", "upper_back"],
+    "avoidIf": ["shoulder"],
+    "primaryMuscles": ["lats"],
+    "cues": [
+      "Float the legs with a pull buoy",
+      "Long strokes, high elbow",
+      "Rotate the body each stroke"
+    ],
+    "unit": "meters",
+    "rx": {
+      "sets": [4, 6],
+      "amount": [50, 100]
+    },
+    "regressionId": "swim_drills",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "swim_endurance",
+    "name": "Steady Endurance Swim",
+    "sessionTypes": ["swim"],
+    "equipment": ["bodyweight"],
+    "loads": ["shoulder", "neck"],
+    "avoidIf": ["shoulder"],
+    "primaryMuscles": ["cardio"],
+    "cues": [
+      "Steady rhythm, long strokes",
+      "Count strokes per length to stay consistent",
+      "Keep the effort easy-moderate"
+    ],
+    "unit": "meters",
+    "rx": {
+      "sets": [1, 1],
+      "amount": [1000, 2000]
+    },
+    "regressionId": "swim_easy",
+    "demo": {
+      "status": "film-it"
+    }
+  },
+  {
+    "id": "swim_mixed",
+    "name": "Mixed Technique Swim",
+    "sessionTypes": ["swim"],
+    "equipment": ["bodyweight"],
+    "loads": ["shoulder", "neck"],
+    "avoidIf": ["shoulder"],
+    "primaryMuscles": ["cardio"],
+    "cues": [
+      "Mix drill, swim and kick lengths",
+      "Easy warm-up and cool-down",
+      "Keep each length clean"
+    ],
+    "unit": "meters",
+    "rx": {
+      "sets": [1, 1],
+      "amount": [800, 1600]
+    },
+    "regressionId": "swim_easy",
+    "demo": {
+      "status": "film-it"
+    }
+  }
+]
