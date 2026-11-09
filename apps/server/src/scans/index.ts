@@ -167,7 +167,7 @@ const catalogId = (name: string) => {
 };
 
 type Item = Obj & { itemId: string; decision: "approve" | "reject" | null };
-type Extracted = { items: Item[]; unreadable: boolean; dropped: number };
+type Extracted = { items: Item[]; unreadable: boolean; dropped: number; tzOffsetMin?: number };
 
 export function scanRoutes(db: BetterSQLite3Database, ai: AiProvider, dataDir: string) {
   ensureReceipts(db);
@@ -183,13 +183,18 @@ export function scanRoutes(db: BetterSQLite3Database, ai: AiProvider, dataDir: s
     const ext = EXT[file.type];
     if (!ext) return c.json({ error: "file must be jpeg, png, webp or pdf" }, 415);
     if (file.size > MAX_BYTES) return c.json({ error: "file over 15 MB" }, 413);
+    // Minutes east of UTC (UTC+5:30 = 330), i.e. -new Date().getTimezoneOffset(). Default 0.
+    const tz =
+      body?.tzOffsetMin === undefined || body.tzOffsetMin === "" ? 0 : Number(body.tzOffsetMin);
+    if (!Number.isInteger(tz) || Math.abs(tz) > 14 * 60)
+      return c.json({ error: "tzOffsetMin must be an integer within +-840" }, 400);
     const text = typeof body?.text === "string" ? body.text.trim() : "";
 
-    let extracted: Extracted = { items: [], unreadable: true, dropped: 0 };
+    let extracted: Extracted = { items: [], unreadable: true, dropped: 0, tzOffsetMin: tz };
     if (text.length >= MIN_TEXT) {
       try {
         const raw = await ai.extract({ system: SYSTEM[kind], input: text, schema: SCHEMAS[kind] });
-        extracted = cleanExtraction(kind, raw) as Extracted;
+        extracted = { ...(cleanExtraction(kind, raw) as Extracted), tzOffsetMin: tz };
       } catch (e) {
         if (e instanceof AiUnavailableError) return c.json({ error: e.message }, 503);
         return c.json({ error: (e as Error).message }, 502);
@@ -275,7 +280,8 @@ export function scanRoutes(db: BetterSQLite3Database, ai: AiProvider, dataDir: s
             const w = {
               ...newRow(now),
               type: it.type,
-              startedAt: Date.parse(`${it.date}T12:00:00Z`),
+              // local noon of the extracted date in the uploader's timezone
+              startedAt: Date.parse(`${it.date}T12:00:00Z`) - (ex.tzOffsetMin ?? 0) * 60_000,
               source: "scan",
             } as typeof workout.$inferInsert;
             for (const e of it.exercises as { name: string; sets: Obj[] }[]) {

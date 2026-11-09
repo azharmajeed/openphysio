@@ -27,11 +27,12 @@ function setup(extract: AiProvider["extract"] = async () => ({})) {
       ...init,
       headers: { ...(auth ? { authorization: "Bearer t" } : {}), ...(init.headers ?? {}) },
     });
-  const upload = (kind: string, text: string, type = "image/jpeg", auth = true) => {
+  const upload = (kind: string, text: string, type = "image/jpeg", auth = true, tz?: string) => {
     const f = new FormData();
     f.set("file", new File([new Uint8Array([1, 2, 3])], "x", { type }));
     f.set("kind", kind);
     f.set("text", text);
+    if (tz !== undefined) f.set("tzOffsetMin", tz);
     return call("", { method: "POST", body: f }, auth);
   };
   const decide = (id: string, body: unknown) =>
@@ -153,6 +154,26 @@ test("log: approved session writes workout + set_log, maps catalogue names, note
     [exercises[0]!.id, exercises[0]!.id, "unmapped"].sort(),
   );
   expect(s.db.all(sql`select * from sync_receipt`)).toHaveLength(1 + 3);
+});
+
+test("log: session time is local noon of the date in the uploader's timezone (default UTC)", async () => {
+  const noonUtc = Date.parse(log.sessions[0]!.date + "T12:00:00Z");
+  for (const [tz, shift] of [
+    [undefined, 0],
+    ["330", 330],
+    ["-300", -300],
+  ] as const) {
+    const s = setup(async () => log);
+    const row = await (await s.upload("log", "04/02 squats 8x20 8x22.5, mystery machine 10", "image/jpeg", true, tz)).json();
+    await s.decide(row.id, { approve: [row.extracted.items[0].itemId], reject: [] });
+    expect((await s.db.select().from(workout))[0]!.startedAt).toBe(noonUtc - shift * 60_000);
+  }
+});
+
+test("bad tzOffsetMin is rejected", async () => {
+  const s = setup();
+  for (const tz of ["abc", "1.5", "900"])
+    expect((await s.upload("log", TEXT, "image/jpeg", true, tz)).status, tz).toBe(400);
 });
 
 test("decision validation, list, get, file, 404", async () => {

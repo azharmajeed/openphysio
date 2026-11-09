@@ -1,3 +1,5 @@
+import Database from "better-sqlite3";
+import { drizzle } from "drizzle-orm/better-sqlite3";
 import { expect, test, vi } from "vitest";
 import { parseFeed } from "./feed.ts";
 import { learnRoutes } from "./index.ts";
@@ -28,29 +30,65 @@ test("parseFeed reads entries and decodes entities", () => {
   expect(parseFeed("<feed></feed>")).toEqual([]);
 });
 
+const ID = (c: string) => "UC" + c.repeat(22);
 const chans = [
-  { name: "A", id: "UCa" },
-  { name: "B", id: "UCb" },
-  { name: "C", id: "UCc" },
+  { channelId: ID("a"), name: "A" },
+  { channelId: ID("b"), name: "B" },
+  { channelId: ID("c"), name: "C" },
 ];
 const xmls: Record<string, string> = {
-  UCa: feed(entry("a1", "Old", "2026-01-01T00:00:00+00:00")),
-  UCb: feed(entry("b1", "New", "2026-03-01T00:00:00+00:00")),
+  [ID("a")]: feed(entry("a1", "Old", "2026-01-01T00:00:00+00:00")),
+  [ID("b")]: feed(entry("b1", "New", "2026-03-01T00:00:00+00:00")),
 };
+const mem = () => drizzle(new Database(":memory:"));
+const json = (method: string, body: unknown) => ({
+  method,
+  headers: { "content-type": "application/json" },
+  body: JSON.stringify(body),
+});
 const stub = () =>
   vi.fn(async (url: string | URL | Request) => {
     const xml = xmls[new URL(String(url)).searchParams.get("channel_id")!];
     return xml ? new Response(xml) : new Response("nope", { status: 404 });
   });
 
-test("feed merges newest first, reports failed channels, caches 1h", async () => {
+test("defaults seed an empty table once; add, duplicate, validation, delete", async () => {
+  const db = mem();
+  const app = learnRoutes(db, { now: () => 1000 });
+  const list = async () => (await app.request("/channels")).json();
+  const seeded = await list();
+  expect(seeded.length).toBeGreaterThan(0);
+  expect(seeded[0]).toMatchObject({
+    channelId: expect.stringMatching(/^UC/),
+    name: expect.any(String),
+  });
+
+  expect((await app.request("/channels", json("POST", chans[0]))).status).toBe(201);
+  expect((await app.request("/channels", json("POST", chans[0]))).status).toBe(409);
+  expect((await app.request("/channels", json("POST", { channelId: "x", name: "n" }))).status).toBe(
+    400,
+  );
+  expect(
+    (await app.request("/channels", json("POST", { channelId: ID("z"), name: " " }))).status,
+  ).toBe(400);
+  expect(await list()).toHaveLength(seeded.length + 1);
+
+  // a second app on the same db does not re-seed
+  expect(await (await learnRoutes(db).request("/channels")).json()).toHaveLength(seeded.length + 1);
+
+  expect((await app.request(`/channels/${ID("a")}`, { method: "DELETE" })).status).toBe(204);
+  expect((await app.request(`/channels/${ID("a")}`, { method: "DELETE" })).status).toBe(404);
+  expect(await list()).toHaveLength(seeded.length);
+});
+
+test("feed reads followed channels, merges newest first, reports failures, caches 1h", async () => {
   const fetchFn = stub();
   let t = 0;
-  const app = learnRoutes({
-    channels: chans,
-    fetchFn: fetchFn as unknown as typeof fetch,
-    now: () => t,
-  });
+  const db = mem();
+  const app = learnRoutes(db, { fetchFn: fetchFn as unknown as typeof fetch, now: () => t });
+  for (const c of await (await app.request("/channels")).json())
+    await app.request(`/channels/${c.channelId}`, { method: "DELETE" });
+  for (const c of chans) await app.request("/channels", json("POST", c));
 
   const body = await (await app.request("/feed")).json();
   expect(body.items.map((i: { videoId: string }) => i.videoId)).toEqual(["b1", "a1"]);

@@ -44,7 +44,7 @@ export function createApp({
   app.route("/api/ai", aiRoutes(ai));
   app.route("/api/coach", coachRoutes(db, ai));
   app.route("/api/knowledge", knowledgeRoutes());
-  app.route("/api/learn", learnRoutes());
+  app.route("/api/learn", learnRoutes(db));
   app.route("/api/scans", scanRoutes(db, ai, dataDir));
 
   return app;
