@@ -59,3 +59,13 @@ Response 200:
 - `items`: all channels merged, newest `published` first.
 - `errors`: channels that failed to load; the others are still returned (so `items` can be partial, or empty, with HTTP 200).
 - Each channel is cached in server memory for 1 hour (failures are not cached). The server needs outbound access to youtube.com.
+## Scans: /api/scans
+
+Import a scanned medical report or paper training log. The phone does on-device text recognition and uploads the image plus the text. Originals stay on the server (`DATA_DIR/scans/<id>.<ext>`) and are served back only to the authenticated owner.
+
+- `POST /api/scans`: multipart form with `file` (jpeg, png, webp or pdf, max 15 MB), `kind` (`medical` or `log`), `text` (on-device OCR text). Returns `201` with the `scan_import` row (`status: "pending"`). If `text` is under 20 characters the model is not called and `extracted` is `{ "items": [], "unreadable": true, "dropped": 0 }` (show "could not read this, enter it manually"). Otherwise `extracted` is `{ items, unreadable: false, dropped }`; items with unknown enum values are dropped and counted in `dropped`. Every item has a stable `itemId` and `decision: null`. Errors: `400` bad kind or no file, `413` too big, `415` bad content type, `502` provider error, `503` AI not configured.
+  - medical item: `{ itemId, kind: "injury", bodyArea, side, description, startedOn, avoidAreas, decision }`
+  - log item: `{ itemId, kind: "session", date, type, exercises: [{ name, sets: [{ reps, loadKg, durationS }] }], decision }`
+- `GET /api/scans`: all scans, newest first. `GET /api/scans/:id`: one scan (`404` if missing).
+- `GET /api/scans/:id/file`: the original file.
+- `POST /api/scans/:id/decision` with `{ "approve": [itemId], "reject": [itemId] }`: approved items are written as rows with `source: "scan"` (injury; or workout plus `set_log` rows) and reach the phone on its next `/api/sync/pull`. Exercise names are matched case-insensitively to catalogue id or name; unmatched sets get `exerciseId: "unmapped"` and the name is added to the workout `notes`. Already-decided items are ignored. Returns the scan plus `written` (`{ table: [ids] }`). Scan `status` becomes `approved` (some approved) or `rejected` (all rejected) once every item is decided, else stays `pending`. `400` for unknown or conflicting `itemId`s.

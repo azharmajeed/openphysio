@@ -8,7 +8,7 @@ const cfg = loadConfig();
 const db = openDb(cfg.dataDir);
 serve(
   {
-    fetch: createApp({ token: cfg.token, db, ai: createProvider(cfg) }).fetch,
+    fetch: createApp({ token: cfg.token, db, ai: createProvider(cfg), dataDir: cfg.dataDir }).fetch,
     port: cfg.port,
     hostname: "0.0.0.0",
   },
