@@ -1,5 +1,5 @@
-import { Placeholder } from "../../placeholder";
+import { BandCard } from "../../health/BandCard";
 
 export default function Screen() {
-  return <Placeholder title="Today" />;
+  return <BandCard />;
 }

@@ -27,6 +27,7 @@ export default function Settings() {
   return (
     <View style={{ padding: 16 }}>
       <Link href="/profile" style={{ marginBottom: 16, color: "#2563eb" }}>Edit profile</Link>
+      <Link href="/health" style={{ marginBottom: 16, color: "#2563eb" }}>Import band data</Link>
       <Text>Server URL</Text>
       <TextInput style={input} value={url} onChangeText={setUrl} autoCapitalize="none" keyboardType="url" />
       <Text>Token</Text>
