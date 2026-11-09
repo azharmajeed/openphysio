@@ -40,6 +40,7 @@ Sizes: S ≈ 1 day, M ≈ 2–4 days, L ≈ 1–2 weeks (rough, one part-time bu
 | V3 | Mannequin render + review | AI demos | V2 | M | AC-11 | 20 approved clips |
 | C4 | Weekly adaptation | Core | M3, M4, I1 | M | AC-3 | Next week adapts |
 | V4 | Clips hosted and played in app | AI demos | V3, S2, M3 | S | AC-11 | Clip or "film it" flag per exercise |
+| A2M | Coach tab: chat UI with citation chips, offline notice (server done in A2) | Mobile | A2, M2 | S | AC-10 | Chat works against /api/coach/chat |
 | R1 | Dogfood 2 weeks on the Pixel | You | M3, M4, M5, I1, A2 | — | all | 2 weeks logged, feedback written |
 | A3 | Coach proposes plan changes via safety rules | Server + AI | A2, C2, C4 | S | AC-2, AC-10 | Rule-breaking proposal refused with reason |
 
