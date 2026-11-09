@@ -13,6 +13,7 @@
     "drizzle-orm": "^0.45.4"
   },
   "devDependencies": {
+    "@openphysio/catalog": "workspace:*",
     "@types/node": "^26.6.6",
     "drizzle-kit": "^0.31.11"
   }

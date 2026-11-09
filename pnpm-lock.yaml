@@ -71,6 +71,9 @@ importers:
         specifier: ^0.45.4
         version: 0.45.4(@types/better-sqlite3@7.6.13)(better-sqlite3@12.11.1)
     devDependencies:
+      '@openphysio/catalog':
+        specifier: workspace:*
+        version: link:../catalog
       '@types/node':
         specifier: ^26.6.6
         version: 26.6.6
