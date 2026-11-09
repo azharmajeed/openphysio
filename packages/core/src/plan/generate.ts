@@ -1,5 +1,6 @@
 import { newRow } from "../db/row.ts";
 import { filterForInjuries, spikeGuard, SPIKE_WINDOW_MS } from "../safety/index.ts";
+import type { NutritionGoal } from "../nutrition/index.ts";
 import type { BodyArea, NewPlannedSession, Profile, WorkoutType } from "../types/index.ts";
 
 /** Structural subset of the catalogue Exercise (core must not import @openphysio/catalog). */
@@ -74,6 +75,8 @@ export interface PlanGoal {
   id: string;
   label: string;
   demands: readonly PlanDemand[];
+  /** Optional nutrition choices; see resolveNutrition. */
+  nutrition?: NutritionGoal;
 }
 
 export type PlanBlock = string;
