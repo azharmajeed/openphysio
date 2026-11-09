@@ -1,5 +1,6 @@
 import { name as coreName } from "@openphysio/core";
 import * as SecureStore from "expo-secure-store";
+import { Link } from "expo-router";
 import { useEffect, useState } from "react";
 import { Button, Text, TextInput, View } from "react-native";
 
@@ -25,6 +26,7 @@ export default function Settings() {
 
   return (
     <View style={{ padding: 16 }}>
+      <Link href="/profile" style={{ marginBottom: 16, color: "#2563eb" }}>Edit profile</Link>
       <Text>Server URL</Text>
       <TextInput style={input} value={url} onChangeText={setUrl} autoCapitalize="none" keyboardType="url" />
       <Text>Token</Text>
