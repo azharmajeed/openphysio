@@ -19,13 +19,14 @@ Sizes: S ≈ 1 day, M ≈ 2–4 days, L ≈ 1–2 weeks (rough, one part-time bu
 | M2 | Local DB, intake, profile and injury screens | Mobile | T02, M1 | M | AC-1 | Intake saved offline |
 | C1 | Exercise catalogue v1 (free-exercise-db + own entries, injury flags) | Core/Catalogue | T02 | L | AC-2, AC-3 | 5+ options per session type |
 | C2 | Safety rules: injury filter, spike guard, pain monitor | Core | T02 | M | AC-2, AC-4 | Unit tests per rule |
-| C5 | Form-rule schema and joint-angle maths | Core | T02 | S | AC-11 | Angles from a skeleton frame |
+| C5 | Form-rule schema and joint-angle maths | Core | T02 | S | AC-11 | Angles from a skeleton frame (deferred with V1–V4: only V2 uses it) |
 | N1 | Nutrition targets and weight trend | Core | T02 | S | AC-12 | Tests pass |
 | I2 | FIT/GPX/TCX writer | Integrations | T02 | S | AC-6 | Files validate |
 | S2 | Phone ↔ server sync | Server + AI | S1, T02 | M | — | Round-trip works |
 | S3 | AI provider adapter | Server + AI | S1 | S | AC-10, AC-14 | Chat call through each provider |
-| L1 | Learn tab feeds (Knees Over Toes etc.) | Server + AI | S1, M1 | S | AC-13 | New uploads appear |
-| I1 | Health Connect reader | Integrations | M1, U1 | M | AC-7, AC-8 | Band data in app |
+| L1 | Learn tab feeds (Knees Over Toes etc.) | Server + AI | S1, M2 | S | AC-13 | New uploads appear |
+| I1 | Health Connect reader | Integrations | M2, U1 | M | AC-7, AC-8 | Band data in app |
+| M7 | Wire sync into the app (on open + Sync now) | Mobile | S2, M2 | S | — | Edits made offline reach the server |
 | M4 | Set logging: tap, voice, rest timer | Mobile | M2 | M | AC-5 | Gym session logged without typing |
 | M5 | GPS run tracker | Mobile | M2 | M | AC-6 | Route, pace, HR saved |
 | C3 | Plan engine | Core | C1, C2 | L | AC-2, AC-3, AC-4 | Example week generated within rules |
@@ -41,6 +42,12 @@ Sizes: S ≈ 1 day, M ≈ 2–4 days, L ≈ 1–2 weeks (rough, one part-time bu
 | V4 | Clips hosted and played in app | AI demos | V3, S2, M3 | S | AC-11 | Clip or "film it" flag per exercise |
 | R1 | Dogfood 2 weeks on the Pixel | You | M3, M4, M5, I1, A2 | — | all | 2 weeks logged, feedback written |
 | A3 | Coach proposes plan changes via safety rules | Server + AI | A2, C2, C4 | S | AC-2, AC-10 | Rule-breaking proposal refused with reason |
+
+## Orchestrator notes for milestone v0.1-app (2026-11-09)
+
+- C5 is deferred with V1–V4 (D-8): nothing else in the milestone uses it.
+- M7 added: S2 builds the server routes and shared sync client; M7 wires them into the app.
+- I1 and L1 now need M2, because they write to or read from the phone database. Mobile-lane tasks run one at a time, since they share `apps/mobile` layout files.
 
 ## Waves (same wave = can run in parallel)
 
