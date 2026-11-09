@@ -19,6 +19,8 @@ Sizes: S ≈ 1 day, M ≈ 2–4 days, L ≈ 1–2 weeks (rough, one part-time bu
 | M2 | Local DB, intake, profile and injury screens | Mobile | T02, M1 | M | AC-1 | Intake saved offline |
 | C1 | Exercise catalogue v1 (free-exercise-db + own entries, injury flags) | Core/Catalogue | T02 | L | AC-2, AC-3 | 5+ options per session type |
 | C3b | Plan engine driven by goal and catalogue data (no hard-coded ids, injuries, weekdays) | Core | C3 | M | AC-2, AC-3, AC-4 | Any profile gets a valid week |
+| H1 | Server choices from data: channels, red flags, scan dates | Server + AI | L1, A2, S4 | S | AC-9, AC-10, AC-13 | No hard-coded lists in server code |
+| H2 | Nutrition follows goal data (gain, maintain, lose) | Core | C3b | S | AC-12 | Targets change with goals |
 | C2 | Safety rules: injury filter, spike guard, pain monitor | Core | T02 | M | AC-2, AC-4 | Unit tests per rule |
 | C5 | Form-rule schema and joint-angle maths | Core | T02 | S | AC-11 | Angles from a skeleton frame (deferred with V1–V4: only V2 uses it) |
 | N1 | Nutrition targets and weight trend | Core | T02 | S | AC-12 | Tests pass |
