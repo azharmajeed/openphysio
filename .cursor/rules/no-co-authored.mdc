@@ -1,0 +1,15 @@
+---
+description: Never add Co-authored-by trailers to commits or messages
+alwaysApply: true
+---
+
+# No co-authored trailers
+
+Never add `Co-authored-by:` (or any co-author attribution) anywhere, including:
+
+- Git commit subject or body
+- Git commit message trailers / footers
+- Pull request descriptions
+- Chat replies or other written output
+
+Unless the user explicitly asks for co-author attribution, keep all messages free of it.

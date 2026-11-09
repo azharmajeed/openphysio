@@ -1,0 +1,28 @@
+# deps and builds
+node_modules/
+dist/
+build/
+.expo/
+.turbo/
+*.tsbuildinfo
+android/
+ios/
+# python
+.venv/
+__pycache__/
+*.pyc
+# secrets and local data
+.env
+.env.*
+!.env.example
+data/
+*.sqlite
+*.db
+# generated media
+workers/motion/out/
+*.mp4
+*.npz
+# os/editor
+.DS_Store
+Thumbs.db
+.vscode/
