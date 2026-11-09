@@ -32,6 +32,9 @@ importers:
       '@hono/node-server':
         specifier: ^2.1.6
         version: 2.1.6(hono@4.13.17)
+      '@openphysio/catalog':
+        specifier: workspace:*
+        version: link:../../packages/catalog
       '@openphysio/core':
         specifier: workspace:*
         version: link:../../packages/core

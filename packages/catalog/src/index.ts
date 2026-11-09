@@ -1,6 +1,8 @@
 import type { BodyArea } from "@openphysio/core";
 import data from "./exercises.json" with { type: "json" };
 
+export * from "./evidence/index.ts";
+
 export const name = "@openphysio/catalog";
 
 export const SESSION_TYPES = [

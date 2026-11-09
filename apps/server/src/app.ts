@@ -3,6 +3,7 @@ import type { BetterSQLite3Database } from "drizzle-orm/better-sqlite3";
 import { Hono } from "hono";
 import { aiRoutes, type AiProvider } from "./ai/index.ts";
 import { mockProvider } from "./ai/mock.ts";
+import { knowledgeRoutes } from "./knowledge/index.ts";
 import { syncRoutes } from "./sync.ts";
 
 export const version = "0.0.0";
@@ -36,6 +37,7 @@ export function createApp({
 
   app.route("/api/sync", syncRoutes(db));
   app.route("/api/ai", aiRoutes(ai));
+  app.route("/api/knowledge", knowledgeRoutes());
 
   return app;
 }
