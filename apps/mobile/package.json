@@ -5,21 +5,29 @@
   "main": "expo-router/entry",
   "expo": {
     "autolinking": {
-      "exclude": ["react-native-gesture-handler", "react-native-reanimated", "react-native-worklets"]
+      "exclude": [
+        "react-native-gesture-handler",
+        "react-native-reanimated",
+        "react-native-worklets"
+      ]
     }
   },
   "scripts": {
     "start": "expo start",
     "typecheck": "tsc --noEmit",
-    "android:apk": "expo prebuild --platform android --no-install && cd android && .\\gradlew.bat assembleRelease"
+    "android:apk": "expo prebuild --platform android --no-install && cd android && .\\gradlew.bat assembleRelease -PreactNativeArchitectures=arm64-v8a"
   },
   "dependencies": {
+    "@openphysio/catalog": "workspace:*",
     "@openphysio/core": "workspace:*",
+    "drizzle-orm": "^0.45.4",
     "expo": "~58.0.23",
     "expo-constants": "~58.0.15",
+    "expo-crypto": "~58.0.7",
     "expo-linking": "~58.0.16",
     "expo-router": "~58.0.30",
     "expo-secure-store": "~58.0.2",
+    "expo-sqlite": "~58.0.15",
     "expo-status-bar": "~58.0.4",
     "react": "19.3.0",
     "react-native": "0.88.1",
@@ -28,6 +36,7 @@
   },
   "devDependencies": {
     "@types/react": "~19.3.0",
+    "babel-plugin-inline-import": "^3.0.0",
     "typescript": "~6.0.3"
   }
 }
