@@ -33,3 +33,29 @@ Response 200:
 Errors: `400` bad body, `401` bad token, `502` provider error, `503` AI not configured (e.g. `ANTHROPIC_API_KEY` unset). With `AI_PROVIDER=mock` replies are canned. On network failure the client should show an offline notice.
 
 Side effect: each chat saves a short `coach_note` row (memory), which syncs to devices.
+
+## GET /api/learn/feed
+
+New videos from the followed trainer channels (list in `apps/server/src/learn/channels.ts`), read from each channel's public YouTube RSS feed. No API key; video content is never downloaded or proxied, the client embeds or links `url`.
+
+Response 200:
+
+```json
+{
+  "items": [
+    {
+      "videoId": "MMrOVv1CFFw",
+      "title": "Example video",
+      "published": "2026-10-14T18:07:23+00:00",
+      "channel": "ATG Exercise Coaching",
+      "thumbnailUrl": "https://i2.ytimg.com/vi/MMrOVv1CFFw/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=MMrOVv1CFFw"
+    }
+  ],
+  "errors": [{ "channel": "PhysioRun", "error": "HTTP 404" }]
+}
+```
+
+- `items`: all channels merged, newest `published` first.
+- `errors`: channels that failed to load; the others are still returned (so `items` can be partial, or empty, with HTTP 200).
+- Each channel is cached in server memory for 1 hour (failures are not cached). The server needs outbound access to youtube.com.

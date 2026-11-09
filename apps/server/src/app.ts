@@ -5,6 +5,7 @@ import { aiRoutes, type AiProvider } from "./ai/index.ts";
 import { mockProvider } from "./ai/mock.ts";
 import { coachRoutes } from "./coach/index.ts";
 import { knowledgeRoutes } from "./knowledge/index.ts";
+import { learnRoutes } from "./learn/index.ts";
 import { syncRoutes } from "./sync.ts";
 
 export const version = "0.0.0";
@@ -40,6 +41,7 @@ export function createApp({
   app.route("/api/ai", aiRoutes(ai));
   app.route("/api/coach", coachRoutes(db, ai));
   app.route("/api/knowledge", knowledgeRoutes());
+  app.route("/api/learn", learnRoutes());
 
   return app;
 }
