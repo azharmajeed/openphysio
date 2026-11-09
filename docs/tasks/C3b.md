@@ -34,3 +34,8 @@ Open decisions/blockers: none
 Next action: review
 Task state and reason: In review
 Usage/cost, or unavailable: unavailable
+
+# C3b / run 2 (repair)
+Work completed: demands merged across goals as a shared session (max count, union muscles, max priority) instead of stacked; priority field on demands; two-pass placement (minimums by priority, then extras); generateBlock returns { sessions, warnings } and reports every dropped or option-less demand; AC-3 test now uses the all-five-goals fixture; new warning tests.
+Validation performed and results: pnpm lint, typecheck, test pass (117 tests).
+Task state and reason: In review

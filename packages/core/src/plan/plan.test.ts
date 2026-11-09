@@ -24,7 +24,13 @@ const AZHAR = {
 };
 const KNEE = [{ status: "active" as const, avoidAreas: ["knee" as const], deletedAt: null }];
 
-const gen = (o: Partial<GenerateBlockInput> = {}) =>
+const ALL_FIVE = {
+  ...AZHAR,
+  goals: goals.map((g) => g.id),
+  equipment: [...AZHAR.equipment, "pool"],
+};
+
+const run = (o: Partial<GenerateBlockInput> = {}) =>
   generateBlock({
     profile: AZHAR,
     injuries: [],
@@ -36,6 +42,7 @@ const gen = (o: Partial<GenerateBlockInput> = {}) =>
     now: 1,
     ...o,
   });
+const gen = (o: Partial<GenerateBlockInput> = {}) => run(o).sessions;
 
 const week = (rows: PlannedSessionRow[], w: number) =>
   rows.filter((r) => {
@@ -50,7 +57,7 @@ const days = (rows: PlannedSessionRow[], b: string) =>
 const all = (rows: PlannedSessionRow[]) => rows.flatMap((r) => [...r.warmup, ...r.items]);
 
 describe("generateBlock", () => {
-  const rows = gen();
+  const rows = gen({ profile: ALL_FIVE });
 
   test("rows are insertable planned_session rows covering 28 days", () => {
     const row: NewPlannedSession = rows[0]!;
@@ -61,9 +68,9 @@ describe("generateBlock", () => {
     ).toBeLessThanOrEqual(27 * 86_400_000);
   });
 
-  test("AC-3: weekly counts", () => {
-    for (let w = 0; w < 4; w++) {
-      const wk = week(rows, w);
+  test("AC-3: weekly counts, all five goals and the four-goal fixture", () => {
+    for (const [w, rs] of [...[0, 1, 2, 3].map((w) => [w, rows] as const), [0, gen()] as const]) {
+      const wk = week(rs, w);
       expect(
         wk.filter((r) => r.type === "run"),
         `w${w} runs`,
@@ -181,7 +188,8 @@ describe("generateBlock", () => {
           title: "Extra core",
           sessionType: "back_core",
           kind: "strength" as const,
-          perWeek: [3, 3] as const,
+          perWeek: [2, 2] as const,
+          priority: 9,
           impact: "low" as const,
           muscles: ["abdominals", "lower_back"],
         },
@@ -192,10 +200,40 @@ describe("generateBlock", () => {
       goals: [...goals, extra],
       profile: { ...AZHAR, goals: [...AZHAR.goals, "fake_goal"] },
     });
-    expect(week(more, 0).filter((x) => x.title === "Extra core")).toHaveLength(3);
+    expect(week(more, 0).filter((x) => x.title === "Extra core")).toHaveLength(2);
     expect(base.some((x) => x.title === "Extra core")).toBe(false);
     // unknown goal ids are ignored, no goals = no sessions
     expect(gen({ profile: { ...AZHAR, goals: ["nope"] } })).toEqual([]);
+  });
+
+  test("five goals: long run kept, no silent drops", () => {
+    const r = run({ profile: ALL_FIVE });
+    expect(r.warnings).toEqual([]);
+    const wk = week(r.sessions, 0);
+    expect(wk.filter((x) => x.title === "Long run")).toHaveLength(1);
+    expect(wk.length).toBeLessThanOrEqual(14);
+  });
+
+  test("over-full week: lowest priority dropped first, reported as warnings", () => {
+    const r = run({ profile: { ...ALL_FIVE, trainingDays: [1, 2, 3] } });
+    expect(r.warnings.length).toBeGreaterThan(0);
+    for (const x of r.warnings) expect(x.reason).toBeTruthy();
+    const dropped = new Set(r.warnings.map((x) => x.demandId));
+    const kept = new Set(week(r.sessions, 0).map((x) => x.title));
+    expect(dropped.has("mobility")).toBe(true);
+    expect(kept.has("Mobility and prehab")).toBe(false);
+    expect(kept.has("Easy run") || kept.has("Quality run") || kept.has("Long run")).toBe(true);
+  });
+
+  test("no option and no alternative: warning, not silence", () => {
+    const r = run({
+      injuries: KNEE,
+      profile: { ...AZHAR, equipment: [], poolDays: [] },
+    });
+    expect(r.warnings.map((x) => x.demandId)).toEqual(
+      expect.arrayContaining(["run_long", "run_quality", "run_easy"]),
+    );
+    expect(r.warnings[0]!.reason).toMatch(/no alternative/);
   });
 
   test("scheduling rules: <=2 a day, no high-impact on neighbouring days (week wraps), trainingDays kept", () => {
@@ -361,7 +399,8 @@ describe("generateBlock", () => {
             )
             .join("\n"),
       );
-    show("AZHAR-LIKE WEEK 1", rows);
+    show("AZHAR (ALL FIVE GOALS) WEEK 1", rows);
+    show("AZHAR-LIKE (FOUR GOALS) WEEK 1", gen());
     show(
       "GAIN-WEIGHT-ONLY GYM WEEK 1",
       gen({

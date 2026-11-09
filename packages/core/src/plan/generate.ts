@@ -43,6 +43,8 @@ export interface PlanDemand {
   /** run: share of the long-run minutes (default 1). */
   volume?: number;
   /** Placed last, on the day with the most free capacity. */
+  /** Higher survives when the week is too full (default 0). */
+  priority?: number;
   long?: boolean;
   /** strength: use the gym when the profile has one. */
   prefersGym?: boolean;
@@ -54,6 +56,18 @@ export interface PlanDemand {
     sessionType: string;
     kind: DemandKind;
   })[];
+}
+
+/** Something the plan could not give the user, never dropped silently. */
+export interface PlanWarning {
+  demandId: string;
+  title: string;
+  reason: string;
+}
+
+export interface PlanBlockResult {
+  sessions: PlannedSessionRow[];
+  warnings: PlanWarning[];
 }
 
 export interface PlanGoal {
@@ -150,7 +164,7 @@ const hash = (s: string) =>
 /** A demand that survived injuries and equipment, placed on a weekday. `from` = title it replaced. */
 type Slot = { d: PlanDemand; n: number; from?: string };
 
-export function generateBlock(input: GenerateBlockInput): PlannedSessionRow[] {
+export function generateBlock(input: GenerateBlockInput): PlanBlockResult {
   const { profile, injuries, history, startDate, seed } = input;
   const { allowed } = filterForInjuries(input.exercises, injuries);
   const exById = new Map(input.exercises.map((e) => [e.id, e]));
@@ -174,7 +188,7 @@ export function generateBlock(input: GenerateBlockInput): PlannedSessionRow[] {
   const noRunHistory = !recent(history.runs);
   const noSetsHistory = (m: string) => !recent(history.hardSetsByMuscle[m] ?? []);
 
-  // ---- merge the demands of the profile's goals (same id: bigger count wins) ----
+  // ---- merge the demands of the profile's goals (same id = same session: bigger count, union of muscles, higher priority) ----
   const merged = new Map<string, PlanDemand>();
   for (const g of input.goals.filter((x) => profile.goals.includes(x.id)))
     for (const d of g.demands) {
@@ -187,6 +201,11 @@ export function generateBlock(input: GenerateBlockInput): PlannedSessionRow[] {
               ...m,
               perWeek: [Math.max(m.perWeek[0], d.perWeek[0]), Math.max(m.perWeek[1], d.perWeek[1])],
               prefersGym: m.prefersGym || d.prefersGym,
+              priority: Math.max(m.priority ?? 0, d.priority ?? 0),
+              muscles: m.muscles && [
+                ...m.muscles,
+                ...(d.muscles ?? []).filter((x) => !m.muscles!.includes(x)),
+              ],
             }
           : d,
       );
@@ -239,19 +258,47 @@ export function generateBlock(input: GenerateBlockInput): PlannedSessionRow[] {
     return true;
   }
 
+  const warnings: PlanWarning[] = [];
   const resolved = [...merged.values()].flatMap((d) => {
     const opts: PlanDemand[] = [
       d,
       ...(d.alternatives ?? []).map((a) => ({ ...d, ...a, alternatives: undefined })),
     ];
     const i = opts.findIndex((o) => cands(o).length > 0);
+    if (i < 0)
+      warnings.push({
+        demandId: d.id,
+        title: d.title,
+        reason: `No ${d.title.toLowerCase()} option fits your injuries or equipment, and no alternative does either`,
+      });
     return i < 0 ? [] : [{ d: opts[i]!, count: d.perWeek, from: i > 0 ? d.title : undefined }];
   });
   const rank = (d: PlanDemand) =>
     d.long ? 3 : cands(d).every(needsPool) ? 0 : d.impact === "high" ? 1 : 2;
-  resolved.sort((a, b) => rank(a.d) - rank(b.d) || a.d.id.localeCompare(b.d.id));
-  for (const r of resolved)
-    for (let n = 0; n < r.count[1]; n++) if (!place(r.d, n, r.from) && n >= r.count[0]) break;
+  // Highest priority first, so overflow past the daily cap drops the lowest priority.
+  resolved.sort(
+    (a, b) =>
+      (b.d.priority ?? 0) - (a.d.priority ?? 0) ||
+      rank(a.d) - rank(b.d) ||
+      a.d.id.localeCompare(b.d.id),
+  );
+  // Pass 1 places every demand's minimum, pass 2 tops up toward the maximum.
+  const placed = new Map<string, number>();
+  for (const target of [0, 1])
+    for (const r of resolved) {
+      let n = placed.get(r.d.id) ?? 0;
+      while (n < r.count[target]! && place(r.d, n, r.from)) n++;
+      placed.set(r.d.id, n);
+    }
+  for (const r of resolved) {
+    const n = placed.get(r.d.id) ?? 0;
+    if (n < r.count[0])
+      warnings.push({
+        demandId: r.d.id,
+        title: r.d.title,
+        reason: `Only ${n} of ${r.count[0]} ${r.d.title.toLowerCase()} session(s) fit per week (days, pool days and the daily limit)`,
+      });
+  }
 
   // ---- builders ----
   /** Seeded order per key, stable across weeks, so week w takes entry w: choices rotate. */
@@ -517,5 +564,5 @@ export function generateBlock(input: GenerateBlockInput): PlannedSessionRow[] {
       });
     }
   }
-  return rows;
+  return { sessions: rows, warnings };
 }

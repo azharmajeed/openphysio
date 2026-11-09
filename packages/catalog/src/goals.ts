@@ -1,7 +1,9 @@
 import type { PlanDemand, PlanGoal } from "@openphysio/core";
 
 // Goal definitions are data: the plan engine reads them, nothing else knows a goal by name.
-// Adding a goal = adding an entry here. Demands with the same id across goals merge (larger count wins).
+// Adding a goal = adding an entry here. Demands with the same id across goals are one shared session:
+// the larger count wins (not the sum), muscles are united, the higher priority wins.
+// priority: higher survives when the week is too full (see PlanWarning).
 export type Goal = PlanGoal;
 export type Demand = PlanDemand;
 
@@ -29,6 +31,7 @@ export const goals: Goal[] = [
         sessionType: "run",
         kind: "run",
         perWeek: [1, 1],
+        priority: 3,
         impact: "high",
         role: "quality",
         volume: 0.65,
@@ -41,6 +44,7 @@ export const goals: Goal[] = [
         sessionType: "run",
         kind: "run",
         perWeek: [1, 1],
+        priority: 3,
         impact: "high",
         role: "long",
         long: true,
@@ -53,6 +57,7 @@ export const goals: Goal[] = [
         sessionType: "run",
         kind: "run",
         perWeek: [1, 1],
+        priority: 3,
         impact: "moderate",
         role: "easy",
         volume: 0.55,
@@ -65,6 +70,7 @@ export const goals: Goal[] = [
         sessionType: "mobility",
         kind: "light",
         perWeek: [1, 1],
+        priority: 1,
         impact: "low",
         muscles: ["tibialis", "quads", "calves", "abductors", "quads"],
         workoutType: "mobility",
@@ -81,6 +87,7 @@ export const goals: Goal[] = [
         sessionType: "swim",
         kind: "cardio",
         perWeek: [1, 1],
+        priority: 3,
         impact: "low",
         role: "technique",
         items: 2,
@@ -93,6 +100,7 @@ export const goals: Goal[] = [
         sessionType: "swim",
         kind: "cardio",
         perWeek: [1, 1],
+        priority: 3,
         impact: "low",
         role: "endurance",
         sport: "swimming",
@@ -111,6 +119,7 @@ export const goals: Goal[] = [
         sessionType: "plyo",
         kind: "plyo",
         perWeek: [2, 2],
+        priority: 3,
         impact: "moderate",
         alternatives: [
           {
@@ -128,6 +137,7 @@ export const goals: Goal[] = [
         sessionType: "lower_strength",
         kind: "strength",
         perWeek: [1, 1],
+        priority: 2,
         impact: "low",
         muscles: LOWER,
       },
@@ -143,6 +153,7 @@ export const goals: Goal[] = [
         sessionType: "back_core",
         kind: "strength",
         perWeek: [2, 2],
+        priority: 3,
         impact: "low",
         muscles: BACK,
       },
@@ -152,6 +163,7 @@ export const goals: Goal[] = [
         sessionType: "upper_strength",
         kind: "strength",
         perWeek: [1, 1],
+        priority: 2,
         impact: "low",
         muscles: ["upper_back", "lats", "shoulders", "chest", "triceps"],
         prefersGym: true,
@@ -167,7 +179,8 @@ export const goals: Goal[] = [
         title: "Lower strength",
         sessionType: "lower_strength",
         kind: "strength",
-        perWeek: [2, 2],
+        perWeek: [1, 2],
+        priority: 1,
         impact: "low",
         muscles: LOWER,
         prefersGym: true,
@@ -177,7 +190,8 @@ export const goals: Goal[] = [
         title: "Upper strength",
         sessionType: "upper_strength",
         kind: "strength",
-        perWeek: [2, 2],
+        perWeek: [1, 2],
+        priority: 1,
         impact: "low",
         muscles: UPPER,
         prefersGym: true,
@@ -188,6 +202,7 @@ export const goals: Goal[] = [
         sessionType: "back_core",
         kind: "strength",
         perWeek: [1, 1],
+        priority: 1,
         impact: "low",
         muscles: BACK,
         prefersGym: true,
