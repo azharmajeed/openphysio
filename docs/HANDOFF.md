@@ -1,6 +1,20 @@
 # Handoff — OpenPhysio (2026-11-09)
 
-Planning happened in a Claude (Cowork) session. This repo holds everything needed to continue in Claude Code. Nothing is implemented yet.
+## Current state (orchestrator checkpoint, paused 2026-11-09 evening)
+
+Work paused at Azhar's request (laptop off). Resume from here.
+
+- **Process:** G1 passed (D-1, D-2), decisions D-3 to D-10 recorded. Every implementation task gets its own branch, worktree and PR into the integration branch `v0.1`. The orchestrator merges a PR after review (D-9), and Azhar merges `v0.1` into `main`. Implementers are Sonnet subagents with ponytail lite, briefed with `docs/tasks/AGENT-BRIEF.md`. Conventions and the no-hard-coding rule are in `docs/tasks/EXECUTION.md`. Framework decision: stay on React Native (Azhar, 2026-11-09).
+- **Done (18 PRs in v0.1):** T01, T02, S1, S2, S3, C1, C2, C3, C3b, N1, H2, I2, A1, H1; plus the server halves of A2 (coach), L1 (Learn feed) and S4 (scans); and M1 (app shell; a release APK builds locally).
+- **Paused mid-task: M2** (intake, profile, local DB). Branch `feat/m2-intake` (WIP commit pushed), worktree `C:\w\M2`. The native build compiles, but the release JS bundle fails. Next step: reproduce with `npx expo export -p android` in `apps/mobile` and fix it, then run the contract checks and open the PR.
+- **Next phone tasks, one at a time:** M2 → M4 (logging) → M3 (plan, Today, player) = first testable build. Then M5, I1, M7, the phone halves of L1, A2 (A2M) and S4, M6, I3, C4, then A3. Deferred: C5, V1–V4 (D-8).
+- **Windows build lessons** (in AGENT-BRIEF): short worktree path `C:\w\<ID>`, JDK 17 at `%LOCALAPPDATA%\Programs\jdk-17`, `JAVA_TOOL_OPTIONS=-Djava.net.preferIPv4Stack=true`, `node-linker=hoisted`, build arm64-v8a only.
+- **Needs Azhar:** a Pixel connected with USB debugging (none seen yet); approval before any real Claude API calls (everything uses the mock provider).
+- **Leftover scratch folders, safe to delete:** `C:\op`, `C:\b`, and the empty folders under `..\openphysio-wt\`.
+
+## Original handoff (planning session)
+
+Planning happened in a Claude (Cowork) session. This repo holds everything needed to continue in Claude Code.
 
 ## Living docs (diagrams, comments)
 - Product plan: https://claude.ai/artifact/P4HHsbmc7kHbwoM9TP52oS (broad vision: AI coach, catalogue, evidence base, ages 13–80+, demo videos)
