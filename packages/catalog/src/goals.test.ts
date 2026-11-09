@@ -1,4 +1,5 @@
 import { expect, test } from "vitest";
+import { resolveNutrition } from "@openphysio/core";
 import { ROLES, SESSION_TYPES, exercises, goals } from "./index.ts";
 
 test("goal ids unique; demands use real session types and roles", () => {
@@ -18,4 +19,15 @@ test("every exercise has a level; templates have roles; no conditioning without 
     if (["run", "swim", "conditioning"].some((t) => e.sessionTypes.includes(t as never)))
       expect(e.role, e.id).toBeDefined();
   }
+});
+
+test("nutrition: gain_weight carries the gain numbers with sources; other goals fall back to maintain", () => {
+  const n = resolveNutrition(goals, ["gain_weight"]);
+  expect(n).toMatchObject({
+    direction: "gain",
+    energyPct: { min: 10, max: 20 },
+    weightPctPerWeek: { min: 0.25, max: 0.5 },
+  });
+  expect(n.sourceIds.length).toBeGreaterThan(0);
+  expect(resolveNutrition(goals, ["swim_more"]).direction).toBe("maintain");
 });

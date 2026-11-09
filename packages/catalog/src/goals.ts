@@ -173,6 +173,13 @@ export const goals: Goal[] = [
   {
     id: "gain_weight",
     label: "Gain healthy weight",
+    nutrition: {
+      direction: "gain",
+      energyPct: { min: 10, max: 20 },
+      weightPctPerWeek: { min: 0.25, max: 0.5 },
+      proteinGPerKg: { min: 1.4, max: 2.0 },
+      sourceIds: ["src-energy-surplus", "src-issn-protein-2017"],
+    },
     demands: [
       {
         id: "lower_strength",
