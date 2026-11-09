@@ -1,12 +1,14 @@
 import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import Database from "better-sqlite3";
+import { drizzle } from "drizzle-orm/better-sqlite3";
 import { expect, test } from "vitest";
 import { createApp, version } from "./app.ts";
 import { loadConfig } from "./config.ts";
 import { openDb } from "./db.ts";
 
-const app = createApp("secret");
+const app = createApp({ token: "secret", db: drizzle(new Database(":memory:")) });
 
 test("health is open", async () => {
   const res = await app.request("/health");
