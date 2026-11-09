@@ -82,3 +82,15 @@ export function searchNotes(notes: Note[], q: string, limit = 5): Hit[] {
       score: Math.round(score * 1000) / 1000,
     }));
 }
+
+export type RedFlagData = {
+  reply: string;
+  negation: string[];
+  symptoms: { label: string; pattern: string; requires?: string }[];
+};
+
+/** Red-flag symptom patterns, negation words and stop reply (knowledge/red-flags.json). */
+export function loadRedFlags(dir: URL | string = knowledgeDir): RedFlagData {
+  const d = typeof dir === "string" ? dir : fileURLToPath(dir);
+  return JSON.parse(readFileSync(join(d, "red-flags.json"), "utf8")) as RedFlagData;
+}

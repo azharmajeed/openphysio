@@ -14,7 +14,7 @@ import {
 import { and, between, inArray, isNull } from "drizzle-orm";
 import type { BetterSQLite3Database } from "drizzle-orm/better-sqlite3";
 import type { AiProvider, Block, Message, ToolDef } from "../ai/index.ts";
-import { RED_FLAG_REPLY, detectRedFlag } from "./redflags.ts";
+import { RED_FLAG_LABELS, RED_FLAG_REPLY, detectRedFlag } from "./redflags.ts";
 
 export const MAX_TURNS = 5;
 
@@ -59,7 +59,7 @@ Rules:
 - Injuries come first. The injury list below is always in force: never suggest loading or exercises that stress an injured area; prefer easier variants.
 - Use the tools to read the user's data before answering; do not guess at their plan, logs or recovery.
 - Back health claims with the knowledge base: call search_knowledge, then cite the source id in square brackets, like [src-id]. Cite only ids returned by tools. If there is no source, say it is general coaching advice.
-- If the user describes anything alarming (chest pain, fainting, spreading numbness, night pain, sudden swelling, cannot bear weight, fever with joint pain), tell them to stop and see a professional.
+- If the user describes anything alarming (${RED_FLAG_LABELS.join(", ")}), tell them to stop and see a professional.
 - Never use Strava data. Be brief and practical.`;
 
 export function systemPrompt(injuries: unknown[]): string {

@@ -34,9 +34,17 @@ Errors: `400` bad body, `401` bad token, `502` provider error, `503` AI not conf
 
 Side effect: each chat saves a short `coach_note` row (memory), which syncs to devices.
 
+## Followed channels: /api/learn/channels
+
+Server-only table `followed_channel` (`channelId`, `name`, `addedAt`), created by the server. On first start, when the table is empty, it is seeded from `apps/server/defaults/channels.json`. All routes need auth.
+
+- `GET /api/learn/channels`: array of `{ channelId, name, addedAt }`, oldest first.
+- `POST /api/learn/channels` with `{ "channelId": "UC...", "name": "..." }`: `201` with the row. `channelId` is `UC` plus 22 characters; `name` is 1 to 100 characters. `400` invalid, `409` already followed.
+- `DELETE /api/learn/channels/:channelId`: `204`, or `404` if not followed.
+
 ## GET /api/learn/feed
 
-New videos from the followed trainer channels (list in `apps/server/src/learn/channels.ts`), read from each channel's public YouTube RSS feed. No API key; video content is never downloaded or proxied, the client embeds or links `url`.
+New videos from the followed trainer channels (the `followed_channel` table, managed with `/api/learn/channels` below), read from each channel's public YouTube RSS feed. No API key; video content is never downloaded or proxied, the client embeds or links `url`.
 
 Response 200:
 
@@ -63,7 +71,7 @@ Response 200:
 
 Import a scanned medical report or paper training log. The phone does on-device text recognition and uploads the image plus the text. Originals stay on the server (`DATA_DIR/scans/<id>.<ext>`) and are served back only to the authenticated owner.
 
-- `POST /api/scans`: multipart form with `file` (jpeg, png, webp or pdf, max 15 MB), `kind` (`medical` or `log`), `text` (on-device OCR text). Returns `201` with the `scan_import` row (`status: "pending"`). If `text` is under 20 characters the model is not called and `extracted` is `{ "items": [], "unreadable": true, "dropped": 0 }` (show "could not read this, enter it manually"). Otherwise `extracted` is `{ items, unreadable: false, dropped }`; items with unknown enum values are dropped and counted in `dropped`. Every item has a stable `itemId` and `decision: null`. Errors: `400` bad kind or no file, `413` too big, `415` bad content type, `502` provider error, `503` AI not configured.
+- `POST /api/scans`: multipart form with `file` (jpeg, png, webp or pdf, max 15 MB), `kind` (`medical` or `log`), `text` (on-device OCR text), optional `tzOffsetMin` (integer minutes east of UTC, e.g. `330` for UTC+5:30, i.e. `-new Date().getTimezoneOffset()`; default `0`, range +-840, else `400`). Imported session times are local noon of the extracted date in that offset. Returns `201` with the `scan_import` row (`status: "pending"`). If `text` is under 20 characters the model is not called and `extracted` is `{ "items": [], "unreadable": true, "dropped": 0 }` (show "could not read this, enter it manually"). Otherwise `extracted` is `{ items, unreadable: false, dropped }`; items with unknown enum values are dropped and counted in `dropped`. Every item has a stable `itemId` and `decision: null`. Errors: `400` bad kind or no file, `413` too big, `415` bad content type, `502` provider error, `503` AI not configured.
   - medical item: `{ itemId, kind: "injury", bodyArea, side, description, startedOn, avoidAreas, decision }`
   - log item: `{ itemId, kind: "session", date, type, exercises: [{ name, sets: [{ reps, loadKg, durationS }] }], decision }`
 - `GET /api/scans`: all scans, newest first. `GET /api/scans/:id`: one scan (`404` if missing).
