@@ -74,11 +74,16 @@ export interface DailyTargetsInput extends MaintenanceInput {
   trendDeltaKcal?: number;
 }
 
-/** Daily target: maintenance + 10% surplus (low end of 10-20%) + training-day add-on + trend delta. */
+/**
+ * Daily target: maintenance + 10% surplus (low end of 10-20%) + band add-on + trend delta.
+ * With band active kcal the band measures the training, so maintenance uses the sedentary factor
+ * (1.2) instead of the sessions/week factor; otherwise training would be counted twice.
+ */
 export function dailyTargets(i: DailyTargetsInput, now: Date) {
-  const m = maintenanceKcal(i, now);
+  const band = trainingDayAddOn(i.bandActiveKcal).kcal;
+  const m = maintenanceKcal(band > 0 ? { ...i, sessionsPerWeek: 0 } : i, now);
   const surplus = Math.round(m.kcal * 0.1);
-  const addOn = i.trainingDay ? trainingDayAddOn(i.bandActiveKcal).kcal : 0;
+  const addOn = band;
   const p = proteinTargets(i.weightKg);
   return {
     kcal: m.kcal + surplus + addOn + (i.trendDeltaKcal ?? 0),

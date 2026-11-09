@@ -61,15 +61,17 @@ describe("weeklyGainTarget", () => {
 });
 
 describe("dailyTargets", () => {
-  test("maintenance + 10% (+ add-on on training day, + trend delta), all sources", () => {
+  test("no band: maintenance x activity factor + 10% (+ trend delta), all sources", () => {
     expect(dailyTargets(base, now).kcal).toBe(2556 + 256);
-    const train = dailyTargets({ ...base, trainingDay: true, bandActiveKcal: 300, trendDeltaKcal: 150 }, now);
-    expect(train.kcal).toBe(2556 + 256 + 300 + 150);
-    expect(train.sourceIds).toEqual(["src-mifflin-1990", "src-issn-protein-2017", "src-energy-surplus"]);
-    expect(train.proteinG.max).toBe(140);
+    const r = dailyTargets({ ...base, trendDeltaKcal: 150 }, now);
+    expect(r.kcal).toBe(2556 + 256 + 150);
+    expect(r.sourceIds).toEqual(["src-mifflin-1990", "src-issn-protein-2017", "src-energy-surplus"]);
+    expect(r.proteinG.max).toBe(140);
   });
-  test("band kcal ignored on rest day", () => {
-    expect(dailyTargets({ ...base, bandActiveKcal: 300 }, now).kcal).toBe(2812);
+  test("band kcal replaces the activity factor, so training is not counted twice", () => {
+    // sedentary 1648.75 x 1.2 = 1979; +10% = 198; + band 300
+    expect(dailyTargets({ ...base, bandActiveKcal: 300 }, now).kcal).toBe(1979 + 198 + 300);
+    expect(dailyTargets({ ...base, bandActiveKcal: 300 }, now).maintenanceKcal).toBe(1979);
   });
 });
 
