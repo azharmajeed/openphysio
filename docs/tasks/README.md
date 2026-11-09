@@ -18,6 +18,7 @@ Sizes: S ≈ 1 day, M ≈ 2–4 days, L ≈ 1–2 weeks (rough, one part-time bu
 | S1 | Server: Hono, SQLite, Docker Compose, single-user token | Server + AI | T01 | M | AC-14 | `docker compose up` health check passes |
 | M2 | Local DB, intake, profile and injury screens | Mobile | T02, M1 | M | AC-1 | Intake saved offline |
 | C1 | Exercise catalogue v1 (free-exercise-db + own entries, injury flags) | Core/Catalogue | T02 | L | AC-2, AC-3 | 5+ options per session type |
+| C3b | Plan engine driven by goal and catalogue data (no hard-coded ids, injuries, weekdays) | Core | C3 | M | AC-2, AC-3, AC-4 | Any profile gets a valid week |
 | C2 | Safety rules: injury filter, spike guard, pain monitor | Core | T02 | M | AC-2, AC-4 | Unit tests per rule |
 | C5 | Form-rule schema and joint-angle maths | Core | T02 | S | AC-11 | Angles from a skeleton frame (deferred with V1–V4: only V2 uses it) |
 | N1 | Nutrition targets and weight trend | Core | T02 | S | AC-12 | Tests pass |

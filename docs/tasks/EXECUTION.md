@@ -25,5 +25,6 @@ Merge authority: task PRs → `v0.1` merged by the orchestrator after an indepen
 - Tests: Vitest from the repo root (`pnpm test`). Lint: ESLint flat config + Prettier (`pnpm lint`). Types: `pnpm typecheck` (tsc --noEmit per package).
 - Database: one Drizzle schema in `packages/core/src/db` (sqlite-core) shared by phone (expo-sqlite) and server. Every synced row has `id` (uuid text), `updatedAt` (ms), `deletedAt` (ms, nullable).
 - Pure logic (safety rules, plan engine, nutrition, file writers) lives in packages and has unit tests; apps stay thin.
+- No hard-coding for a specific user, goal, injury, body area, exercise id or weekday in logic (Azhar, 2026-11-09). Behaviour comes from data: the profile, the catalogue (exercise fields such as level, role, sessionTypes, avoidIf) and goal definitions. Code holds rules; data holds choices. Tests may use Azhar-like fixtures, but production code must never special-case them.
 - Ponytail lite: build what the contract asks, no speculative abstractions; name lazier alternatives in one line.
 - Hard rules from `AGENTS.md` apply: no co-author or AI attribution in commits/PRs, never read `.env`, no paid API calls or GPU runs (use the mock AI provider), injuries always read first, health rules cite `docs/research/sources.md`.
