@@ -18,10 +18,10 @@
 ## Training and nutrition evidence
 - ISSN protein position stand (1.4–2.0 g/kg/day): https://cdr.lib.unc.edu/concern/articles/gh93h184p
 - Energy surplus 10–20%, 0.25–0.5% bodyweight/week: https://examine.com/faq/should-the-magnitude-of-the-energy-surplus-depend-on-the-training-status-of-the-individual
-- Running load spikes (Frandsen 2025, BJSM): https://blogs.bmj.com/bjsm/?p=11751
+- `src-frandsen-2025-bjsm` Running load spikes (Frandsen 2025, BJSM): https://blogs.bmj.com/bjsm/?p=11751
 - WHO 2020 physical activity guidelines: https://pmc.ncbi.nlm.nih.gov/articles/PMC7719906/
 - ACSM 2026 resistance training position stand (summary): https://www.medicalnewstoday.com/amp/articles/new-resistance-training-guidelines-debunk-myths-stronger-muscles-strength-size
-- IOC load and injury consensus (2016): https://nih.brage.unit.no/nih-xmlui/handle/11250/2408720
+- `src-ioc-load-2016` IOC load and injury consensus (2016): https://nih.brage.unit.no/nih-xmlui/handle/11250/2408720
 - JOSPT ankle sprain CPG 2021: https://www.orthopt.org/uploads/content_files/files/jospt.2021.0302.pdf
 - PEDro: https://pedro.org.au/english/pedro-statistics-2024/
 
