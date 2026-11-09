@@ -5,3 +5,4 @@ export * from "./safety/index.ts";
 export * from "./sync/index.ts";
 export * from "./plan/generate.ts";
 export * from "./nutrition/index.ts";
+export * from "./voice/index.ts";

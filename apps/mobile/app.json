@@ -20,6 +20,11 @@
       "expo-router",
       "expo-secure-store",
       "expo-status-bar",
+      [
+        "expo-speech-recognition",
+        { "microphonePermission": "Used to log sets by voice.", "speechRecognitionPermission": "Used to log sets by voice." }
+      ],
+      "expo-notifications",
       "./plugins/short-cxx"
     ],
     "experiments": {
