@@ -1,15 +1,19 @@
 import { getExercise, type Exercise } from "@openphysio/catalog";
-import { useCallback, useEffect, useState } from "react";
+import type { PlanItem } from "@openphysio/core";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Alert, Pressable, ScrollView, Text, View } from "react-native";
 import { draftFor, fmtSet, restFor, RPE_OPTIONS, STEPS, type LoggableType, type SetDraft } from "../lib/log";
 import { addSet, discardWorkout, finishWorkout, loadContext, savePain, undoSet, workoutSets } from "../lib/logdb";
+import { describeItem, targetDraft } from "../lib/plan";
+import { getPlanned } from "../lib/plandb";
 import { Chips } from "../ui";
 import { PainCheck } from "./Pain";
 import { Picker, type PickerCtx } from "./Picker";
 import { RestTimer } from "./Rest";
 import { useVoice } from "./useVoice";
 
-type W = { id: string; type: string; startedAt: number };
+type W = { id: string; type: string; startedAt: number; plannedSessionId?: string | null };
+type Step = { item: PlanItem; warmup: boolean };
 type SetRow = Awaited<ReturnType<typeof workoutSets>>[number];
 
 function Stepper(p: { label: string; value: number; step: number; unit?: string; onChange: (v: number) => void }) {
@@ -54,21 +58,35 @@ export function Session({ workout, onDone }: { workout: W; onDone: () => void })
   const [picking, setPicking] = useState(false);
   const [pain, setPain] = useState(false);
   const voice = useVoice();
+  // Planned session: warm-up first, then the exercises (first item wins when an exercise repeats).
+  const [steps, setSteps] = useState<Step[]>([]);
+  const positioned = useRef(false);
 
-  const reload = useCallback(() => workoutSets(workout.id).then(setSets), [workout.id]);
+  const [setsLoaded, setSetsLoaded] = useState(false);
+  const reload = useCallback(() => workoutSets(workout.id).then((r) => { setSets(r); setSetsLoaded(true); }), [workout.id]);
   useEffect(() => {
     void reload();
     void loadContext().then(setCtx);
   }, [reload]);
 
-  const order = [...new Set([...sets.map((s) => s.exerciseId), ...extra])];
+  useEffect(() => {
+    if (!workout.plannedSessionId) return;
+    void getPlanned(workout.plannedSessionId).then((p) => {
+      if (!p) return;
+      const all = [...p.warmup.map((item) => ({ item, warmup: true })), ...p.items.map((item) => ({ item, warmup: false }))];
+      setSteps(all.filter((x, i) => all.findIndex((y) => y.item.exerciseId === x.item.exerciseId) === i));
+    });
+  }, [workout.plannedSessionId]);
+
+  const stepOf = (id: string) => steps.find((x) => x.item.exerciseId === id);
+  const order = [...new Set([...steps.map((x) => x.item.exerciseId), ...sets.map((s) => s.exerciseId), ...extra])];
   const cur = curId ? getExercise(curId) : undefined;
   const curSets = sets.filter((s) => s.exerciseId === curId);
   const lastOf = (id: string) => sets.filter((s) => s.exerciseId === id).at(-1);
 
   const select = (e: Exercise) => {
     setCurId(e.id);
-    setDraft(draftFor(e, lastOf(e.id)));
+    setDraft(targetDraft(e, stepOf(e.id)?.item, lastOf(e.id)));
     setExtra((x) => (x.includes(e.id) ? x : [...x, e.id]));
     setPicking(false);
     setPain(false);
@@ -78,7 +96,7 @@ export function Session({ workout, onDone }: { workout: W; onDone: () => void })
     if (!cur) return;
     await addSet(workout.id, cur, d, curSets.length);
     await reload();
-    setRestEnds(Date.now() + restFor(cur) * 1000);
+    setRestEnds(Date.now() + (stepOf(cur.id)?.item.restSec || restFor(cur)) * 1000);
     voice.clear();
   };
 
@@ -91,6 +109,18 @@ export function Session({ workout, onDone }: { workout: W; onDone: () => void })
     setDraft(next);
     void log(next);
   };
+
+  // Start on the first step with sets left, once the plan and logged sets are loaded.
+  useEffect(() => {
+    if (positioned.current || !steps.length || !setsLoaded) return;
+    positioned.current = true;
+    const left = steps.find((x) => sets.filter((s) => s.exerciseId === x.item.exerciseId).length < x.item.sets) ?? steps.at(-1)!;
+    const e = getExercise(left.item.exerciseId);
+    if (e) select(e);
+  });
+
+  const stepIdx = steps.findIndex((x) => x.item.exerciseId === curId);
+  const nextStep = stepIdx >= 0 ? steps[stepIdx + 1] : undefined;
 
   const finish = async () => {
     await finishWorkout(workout.id, workout.startedAt);
@@ -107,6 +137,22 @@ export function Session({ workout, onDone }: { workout: W; onDone: () => void })
   return (
     <ScrollView contentContainerStyle={{ padding: 16 }}>
       <Text style={{ fontSize: 18, fontWeight: "700", marginBottom: 8 }}>{type} session</Text>
+      {stepIdx >= 0 && cur && (
+        <View style={{ backgroundColor: "#f3f4f6", borderRadius: 8, padding: 12, marginBottom: 12 }}>
+          <Text style={{ fontWeight: "700" }}>
+            {steps[stepIdx]!.warmup ? "Warm-up" : "Exercise"} · step {stepIdx + 1} of {steps.length}
+          </Text>
+          <Text style={{ fontSize: 16, marginTop: 4 }}>
+            Target: {describeItem(steps[stepIdx]!.item)} · rest {steps[stepIdx]!.item.restSec}s · done {curSets.length}/{steps[stepIdx]!.item.sets} sets
+          </Text>
+          {steps[stepIdx]!.item.notes !== "" && <Text style={{ fontStyle: "italic", marginTop: 4 }}>{steps[stepIdx]!.item.notes}</Text>}
+          {cur.cues.map((c, i) => (
+            <Text key={i}>- {c}</Text>
+          ))}
+          <Text style={{ fontSize: 11, color: "#6b7280", marginTop: 4 }}>Film it</Text>
+          {nextStep && <Btn t={`Next: ${getExercise(nextStep.item.exerciseId)?.name ?? nextStep.item.exerciseId}`} color="#059669" onPress={() => select(getExercise(nextStep.item.exerciseId)!)} />}
+        </View>
+      )}
       {restEnds && <RestTimer endsAt={restEnds} onChange={setRestEnds} />}
 
       <Chips options={order.map((id) => ({ id, label: getExercise(id)?.name ?? id }))} value={curId} onChange={(id: string) => select(getExercise(id)!)} />

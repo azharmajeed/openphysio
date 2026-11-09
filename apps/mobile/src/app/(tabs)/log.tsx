@@ -43,7 +43,7 @@ export default function Log() {
       {past.map((w) => (
         <View key={w.id} style={{ borderBottomWidth: 1, borderColor: "#ddd", paddingVertical: 8 }}>
           <Text style={{ fontWeight: "600" }}>
-            {new Date(w.startedAt).toLocaleString()} · {w.type} · {Math.round((w.durationS ?? 0) / 60)} min · {w.sets.length} sets
+            {new Date(w.startedAt).toLocaleString()} · {w.type} · {Math.round((w.durationS ?? 0) / 60)} min{w.distanceM ? ` · ${(w.distanceM / 1000).toFixed(2)} km` : ""} · {w.sets.length} sets
           </Text>
           {w.sets.map((s) => {
             const e = getExercise(s.exerciseId);
