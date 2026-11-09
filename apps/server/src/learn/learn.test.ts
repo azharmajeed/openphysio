@@ -79,6 +79,11 @@ test("defaults seed an empty table once; add, duplicate, validation, delete", as
   expect((await app.request(`/channels/${ID("a")}`, { method: "DELETE" })).status).toBe(204);
   expect((await app.request(`/channels/${ID("a")}`, { method: "DELETE" })).status).toBe(404);
   expect(await list()).toHaveLength(seeded.length);
+
+  // removing every channel sticks: a restart (new app on the same db) does not re-seed
+  for (const c of await list())
+    expect((await app.request(`/channels/${c.channelId}`, { method: "DELETE" })).status).toBe(204);
+  expect(await (await learnRoutes(db).request("/channels")).json()).toHaveLength(0);
 });
 
 test("feed reads followed channels, merges newest first, reports failures, caches 1h", async () => {

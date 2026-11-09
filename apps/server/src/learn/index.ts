@@ -10,12 +10,15 @@ const CHANNEL_ID = /^UC[A-Za-z0-9_-]{22}$/;
 
 type Channel = { channelId: string; name: string; addedAt: number };
 
-// Server-only table (like sync_receipt), no core migration. Seeded from defaults/channels.json when empty.
+// Server-only table (like sync_receipt), no core migration. Seeded from defaults/channels.json
+// only when the table is first created, so removing every channel sticks across restarts.
 export function ensureChannels(db: BetterSQLite3Database, seedFile: URL = defaultsFile) {
+  const exists = db.get<{ n: number }>(
+    sql`select count(*) as n from sqlite_master where type = 'table' and name = 'followed_channel'`,
+  ).n;
   db.run(sql`create table if not exists followed_channel (
     channel_id text primary key, name text not null, added_at integer not null)`);
-  const n = db.get<{ n: number }>(sql`select count(*) as n from followed_channel`).n;
-  if (n) return;
+  if (exists) return;
   const seed = JSON.parse(readFileSync(seedFile, "utf8")) as { id: string; name: string }[];
   const at = Date.now();
   seed.forEach((c, i) =>
