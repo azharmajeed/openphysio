@@ -1,3 +1,4 @@
+/* eslint-disable -- CommonJS: Expo loads config plugins with require() */
 // Windows only: ninja (CMake 3.22) breaks on paths over 260 chars, so keep the app's CMake output in a short dir.
 const { withAppBuildGradle } = require("expo/config-plugins");
 
