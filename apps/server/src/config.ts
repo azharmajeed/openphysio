@@ -7,5 +7,6 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env) {
     port: Number(env.PORT) || 8787,
     aiProvider: env.AI_PROVIDER || "mock",
     anthropicApiKey: env.ANTHROPIC_API_KEY || "",
+    aiModel: env.AI_MODEL || "claude-sonnet-5-5",
   };
 }
