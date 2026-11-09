@@ -1,6 +1,6 @@
 # C3b: Plan engine driven by goals and catalogue data, with no hard-coded ids, injuries or weekdays
 Project / milestone / feature: OpenPhysio / v0.1-app / PRD-001
-Status: Ready
+Status: In review
 Approved scope reference: docs/tasks/README.md, docs/tasks/EXECUTION.md
 Approved product specification ID/version: PRD-001 v0.1 (D-1)
 Approved technical plan ID/version: TP-001 v1 (D-2), decisions D-3 to D-10
@@ -18,3 +18,19 @@ Execution budget and retry limit: one implementation run + one repair after revi
 When to request a product or consequential technical decision: per EXECUTION.md escalation conditions
 Completion condition: validated result + PR -> In review
 Merge authority: orchestrator into v0.1 after review (D-9); Azhar for v0.1 -> main
+
+## Checkpoint
+# C3b / run 1
+Agent/runtime/model, if reported: Claude Sonnet subagent, ponytail lite
+Execution host and checkout: local Windows, C:\Users\rahza\Documents\work\openphysio-wt\C3b
+Base commit / current branch / latest commit: fbe2954 / feat/c3b-data-driven-plan / see PR
+Task/spec version: C3b contract, PRD-001 v0.1, TP-001 v1
+Work completed: goal definitions in packages/catalog (goals.ts, five PRD goals); catalogue fields level, role, intensity on every relevant exercise; new "conditioning" session type (bike, elliptical, rower, pool running) and "pool" equipment; session type mobility_knee renamed mobility; generate.ts rewritten to read profile.goals, sports, equipment, poolDays, optional trainingDays and the goal data; greedy weekly layout with impact spacing; alternatives with reasons; tests rewritten.
+Uncommitted changes and where they are preserved: none after commit
+Validation performed and results: pnpm lint, typecheck, test pass (114 tests).
+Artifacts, preview, and PR links: PR to v0.1
+Failures and attempts already made: none
+Open decisions/blockers: none
+Next action: review
+Task state and reason: In review
+Usage/cost, or unavailable: unavailable

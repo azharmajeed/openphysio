@@ -1,12 +1,12 @@
 import { newRow } from "../db/row.ts";
 import { filterForInjuries, spikeGuard, SPIKE_WINDOW_MS } from "../safety/index.ts";
-import type { BodyArea, NewPlannedSession, Profile } from "../types/index.ts";
+import type { BodyArea, NewPlannedSession, Profile, WorkoutType } from "../types/index.ts";
 
 /** Structural subset of the catalogue Exercise (core must not import @openphysio/catalog). */
 export interface PlanExercise {
   id: string;
   sessionTypes: readonly string[];
-  /** Any-of; "bodyweight" is always available. */
+  /** Any-of; "bodyweight" is always available; "pool" needs pool access. */
   equipment: readonly string[];
   avoidIf: readonly BodyArea[];
   primaryMuscles: readonly string[];
@@ -15,17 +15,54 @@ export interface PlanExercise {
   footContactsPerRep?: number;
   /** Easier variant; used to start people with no history lower. */
   regressionId?: string;
+  /** 1 | 2 | 3. With no history for a pattern, level n is held back until week n. */
+  level: number;
+  /** Template role (easy, quality, long, technique, endurance, ...); demands pick by role. */
+  role?: string;
+  /** How hard a template should feel, shown on the item. */
+  intensity?: string;
 }
 
-export type PlanBlock =
-  | "warmup"
-  | "lower_strength"
-  | "upper_strength"
-  | "back_core"
-  | "plyo"
-  | "mobility_knee"
-  | "run"
-  | "swim";
+/** How a demand turns exercises into a session. */
+export type DemandKind = "strength" | "light" | "plyo" | "run" | "cardio";
+
+/** Structural subset of the catalogue Goal demand. */
+export interface PlanDemand {
+  id: string;
+  title: string;
+  sessionType: string;
+  kind: DemandKind;
+  /** Sessions per week [min, max]. */
+  perWeek: readonly [number, number];
+  impact: "low" | "moderate" | "high";
+  role?: string;
+  /** strength / light: one exercise per entry, in order. */
+  muscles?: readonly string[];
+  /** Exercises per session for cardio (default 1). */
+  items?: number;
+  /** run: share of the long-run minutes (default 1). */
+  volume?: number;
+  /** Placed last, on the day with the most free capacity. */
+  long?: boolean;
+  /** strength: use the gym when the profile has one. */
+  prefersGym?: boolean;
+  /** Only when profile.sports is empty or includes it. */
+  sport?: string;
+  workoutType?: WorkoutType;
+  /** Stand-ins, tried in order when no exercise survives injuries and equipment. */
+  alternatives?: readonly (Partial<Omit<PlanDemand, "alternatives">> & {
+    sessionType: string;
+    kind: DemandKind;
+  })[];
+}
+
+export interface PlanGoal {
+  id: string;
+  label: string;
+  demands: readonly PlanDemand[];
+}
+
+export type PlanBlock = string;
 
 /** One prescribed exercise. Stored as JSON in planned_session.items / .warmup. */
 export type PlanItem = {
@@ -62,9 +99,14 @@ export interface PlanHistory {
 }
 
 export interface GenerateBlockInput {
-  profile: Pick<Profile, "equipment" | "poolDays">;
+  profile: Pick<Profile, "goals" | "sports" | "equipment" | "poolDays"> & {
+    /** Weekdays (Date.getDay numbers) available for training; default all 7. */
+    trainingDays?: number[];
+  };
   injuries: Parameters<typeof filterForInjuries>[1];
   exercises: readonly PlanExercise[];
+  /** Goal definitions; the profile's goal ids select from these. */
+  goals: readonly PlanGoal[];
   history: PlanHistory;
   /** YYYY-MM-DD; day 0 of the 28-day block. */
   startDate: string;
@@ -79,23 +121,17 @@ export const RUN_PACE_MIN_PER_KM = 6.5;
 export const STARTER = { runDistanceM: 6000, footContacts: 80, hardSetsPerMuscle: 6 } as const;
 const PLYO_START_CONTACTS = 70;
 const DELOAD = 0.65;
-const POOL_FALLBACK = [2, 0]; // Tue, Sun. Day numbers follow Date.getDay(): 0 = Sunday.
+const DELOAD_WEEK = 3;
+const BLOCK_DAYS = 28;
+const LIGHT_DOSE = 0.3;
+const MAX_SESSIONS_PER_DAY = 2;
 const DAY_MS = 86_400_000;
-/** Plyo staging with no plyo history: tier 0 from week 1, tier 1 from week 2, the rest (shock drills) from week 3. */
-const PLYO_TIER: Record<string, number> = {
-  pogo_hop: 0,
-  jump_rope: 0,
-  a_skip: 0,
-  squat_jump: 1,
-  split_jump: 1,
-  single_leg_pogo: 1,
-};
-/** High-eccentric strength held back for the first two weeks when the muscle has no history. */
-const ADVANCED_STRENGTH = new Set(["nordic_curl"]);
+const DAYS = [0, 1, 2, 3, 4, 5, 6];
 
 const minToM = (min: number) => (min * 1000) / RUN_PACE_MIN_PER_KM;
 const mToMin = (m: number) => Math.floor((m * RUN_PACE_MIN_PER_KM) / 1000 + 1e-9);
 const lerp = (r: readonly [number, number], t: number) => Math.round(r[0] + (r[1] - r[0]) * t);
+const needsPool = (e: PlanExercise) => e.equipment.every((q) => q === "pool");
 
 function rng(seed: number) {
   // mulberry32
@@ -111,31 +147,19 @@ function rng(seed: number) {
 const hash = (s: string) =>
   [...s].reduce((h, c) => Math.imul(h ^ c.charCodeAt(0), 16777619), 2166136261);
 
-const INTENSITY: Record<string, string> = {
-  run_easy: "Easy: you can talk in full sentences",
-  run_recovery: "Very easy recovery jog",
-  run_long: "Easy and steady, conversational pace",
-  run_tempo: "Comfortably hard: short sentences only, after an easy warm-up and before a cool-down",
-  run_intervals: "After an easy warm-up: 3 min hard / 2 min easy repeats, then cool down",
-  run_fartlek: "Easy with surges of 1 min hard whenever you like",
-  run_hills: "Easy jog with short uphill efforts, walk back down",
-  run_strides: "Easy jog with 6 relaxed 20 s strides",
-};
-
-type Session = {
-  type: PlannedSessionRow["type"];
-  title: string;
-  items: PlanItem[];
-  warmupFor: string;
-};
+/** A demand that survived injuries and equipment, placed on a weekday. `from` = title it replaced. */
+type Slot = { d: PlanDemand; n: number; from?: string };
 
 export function generateBlock(input: GenerateBlockInput): PlannedSessionRow[] {
   const { profile, injuries, history, startDate, seed } = input;
   const { allowed } = filterForInjuries(input.exercises, injuries);
-  const byId = new Map(allowed.map((e) => [e.id, e]));
+  const exById = new Map(input.exercises.map((e) => [e.id, e]));
+  const poolDays = [...new Set(profile.poolDays)].sort((a, b) => a - b);
   const have = new Set(["bodyweight", ...profile.equipment]);
+  if (poolDays.length) have.add("pool");
   const hasGym = have.has("gym");
   const homeEquip = new Set([...have].filter((e) => e !== "gym"));
+  const trainDays = profile.trainingDays?.length ? [...new Set(profile.trainingDays)] : DAYS;
 
   const start = Date.parse(`${startDate}T12:00:00Z`);
   const runs = history.runs.map((r) => ({ at: r.at, value: r.distanceM }));
@@ -147,25 +171,98 @@ export function generateBlock(input: GenerateBlockInput): PlannedSessionRow[] {
   const recent = (l: { at: number }[]) =>
     l.some((h) => h.at <= start && start - h.at <= SPIKE_WINDOW_MS);
   const noPlyoHistory = !recent(history.plyoContacts);
+  const noRunHistory = !recent(history.runs);
   const noSetsHistory = (m: string) => !recent(history.hardSetsByMuscle[m] ?? []);
 
-  const poolDays = [...new Set(profile.poolDays)].sort((a, b) => a - b);
-  const swimDays = (poolDays.length ? poolDays : POOL_FALLBACK).slice(0, 2);
+  // ---- merge the demands of the profile's goals (same id: bigger count wins) ----
+  const merged = new Map<string, PlanDemand>();
+  for (const g of input.goals.filter((x) => profile.goals.includes(x.id)))
+    for (const d of g.demands) {
+      if (d.sport && profile.sports.length && !profile.sports.includes(d.sport)) continue;
+      const m = merged.get(d.id);
+      merged.set(
+        d.id,
+        m
+          ? {
+              ...m,
+              perWeek: [Math.max(m.perWeek[0], d.perWeek[0]), Math.max(m.perWeek[1], d.perWeek[1])],
+              prefersGym: m.prefersGym || d.prefersGym,
+            }
+          : d,
+      );
+    }
 
-  const first = (...ids: string[]) => ids.map((i) => byId.get(i)).find(Boolean);
+  const isStrength = (d: PlanDemand) => d.kind === "strength" || d.kind === "light";
+  const equipFor = (d: PlanDemand) =>
+    isStrength(d) && !(d.prefersGym && hasGym) ? homeEquip : have;
+  /** Allowed exercises for a demand; on a known weekday, pool-only ones need a pool day. */
+  const cands = (d: PlanDemand, dow?: number) =>
+    allowed.filter(
+      (e) =>
+        e.sessionTypes.includes(d.sessionType) &&
+        (!d.role || e.role === d.role) &&
+        e.equipment.some((q) => equipFor(d).has(q)) &&
+        (d.kind !== "plyo" || e.footContactsPerRep) &&
+        (!d.muscles || d.muscles.some((m) => e.primaryMuscles.includes(m))) &&
+        (dow === undefined || !poolDays.length || poolDays.includes(dow) || !needsPool(e)),
+    );
+  /** With no history for a pattern, level n waits until week n. */
+  const staged = (c: PlanExercise[], fresh: boolean, w: number) =>
+    c.filter((e) => !fresh || e.level - 1 <= w);
 
-  const pool = (block: PlanBlock, equip: Set<string>) =>
-    allowed.filter((e) => e.sessionTypes.includes(block) && e.equipment.some((q) => equip.has(q)));
+  // ---- layout: one weekly pattern, greedy, repeated across the block ----
+  const week: Slot[][] = DAYS.map(() => []);
+  const rand = rng(seed ^ hash("layout"));
+  const cyc = (a: number, b: number) => Math.min((a - b + 7) % 7, (b - a + 7) % 7);
+  const high = (day: number) => week[day]!.some((x) => x.d.impact === "high");
 
+  function place(d: PlanDemand, n: number, from?: string): boolean {
+    const poolOnly = cands(d).every(needsPool);
+    const pool = poolDays.length && poolOnly ? poolDays : DAYS;
+    const same = DAYS.filter((x) => week[x]!.some((s) => s.d.sessionType === d.sessionType));
+    const ok = DAYS.filter(
+      (day) =>
+        trainDays.includes(day) &&
+        pool.includes(day) &&
+        week[day]!.length < MAX_SESSIONS_PER_DAY &&
+        !week[day]!.some((s) => s.d.sessionType === d.sessionType) &&
+        // high-impact sessions never share a day or sit on neighbouring days (the week wraps)
+        !(d.impact === "high" && DAYS.some((o) => cyc(o, day) <= 1 && high(o))),
+    );
+    if (!ok.length) return false;
+    const score = (day: number) =>
+      week[day]!.length * 2 -
+      (d.long || !same.length ? 0 : Math.min(3, ...same.map((x) => cyc(day, x)))) +
+      rand() * 0.9;
+    const best = ok.map((day) => ({ day, s: score(day) })).sort((a, b) => a.s - b.s)[0]!;
+    week[best.day]!.push({ d, n, from });
+    return true;
+  }
+
+  const resolved = [...merged.values()].flatMap((d) => {
+    const opts: PlanDemand[] = [
+      d,
+      ...(d.alternatives ?? []).map((a) => ({ ...d, ...a, alternatives: undefined })),
+    ];
+    const i = opts.findIndex((o) => cands(o).length > 0);
+    return i < 0 ? [] : [{ d: opts[i]!, count: d.perWeek, from: i > 0 ? d.title : undefined }];
+  });
+  const rank = (d: PlanDemand) =>
+    d.long ? 3 : cands(d).every(needsPool) ? 0 : d.impact === "high" ? 1 : 2;
+  resolved.sort((a, b) => rank(a.d) - rank(b.d) || a.d.id.localeCompare(b.d.id));
+  for (const r of resolved)
+    for (let n = 0; n < r.count[1]; n++) if (!place(r.d, n, r.from) && n >= r.count[0]) break;
+
+  // ---- builders ----
   /** Seeded order per key, stable across weeks, so week w takes entry w: choices rotate. */
   function pickFor(
-    cands: PlanExercise[],
+    list: PlanExercise[],
     key: string,
     w: number,
     used: Set<string>,
   ): PlanExercise | undefined {
     const r = rng(seed ^ hash(key));
-    const order = cands.filter((e) => !used.has(e.id)).sort((a, b) => a.id.localeCompare(b.id));
+    const order = list.filter((e) => !used.has(e.id)).sort((a, b) => a.id.localeCompare(b.id));
     for (let i = order.length - 1; i > 0; i--) {
       const j = Math.floor(r() * (i + 1));
       [order[i], order[j]] = [order[j]!, order[i]!];
@@ -178,18 +275,18 @@ export function generateBlock(input: GenerateBlockInput): PlannedSessionRow[] {
   function item(
     e: PlanExercise,
     block: PlanBlock,
-    level: number,
+    dose: number,
     deload: boolean,
     restSec: number,
     notes = "",
   ): PlanItem {
-    let s = lerp(e.rx.sets, level);
+    let s = lerp(e.rx.sets, dose);
     if (deload) s = Math.max(1, Math.round(s * DELOAD));
     return {
       exerciseId: e.id,
       block,
       sets: s,
-      amount: lerp(e.rx.amount, level),
+      amount: lerp(e.rx.amount, dose),
       unit: e.unit,
       restSec,
       notes,
@@ -198,48 +295,47 @@ export function generateBlock(input: GenerateBlockInput): PlannedSessionRow[] {
   }
 
   function strength(
-    block: PlanBlock,
-    muscles: string[],
-    equip: Set<string>,
+    d: PlanDemand,
+    dow: number,
+    n: number,
     w: number,
-    slot: string,
-    level: number,
+    dose: number,
     deload: boolean,
   ) {
-    const cands = pool(block, equip);
+    const list = cands(d, dow);
     const used = new Set<string>();
     const out: PlanItem[] = [];
-    for (const m of muscles) {
+    for (const m of d.muscles ?? []) {
       const fresh = noSetsHistory(m);
       let e = pickFor(
-        cands.filter(
-          (c) => c.primaryMuscles.includes(m) && !(fresh && w < 2 && ADVANCED_STRENGTH.has(c.id)),
+        staged(
+          list.filter((c) => c.primaryMuscles.includes(m)),
+          fresh,
+          w,
         ),
-        `${block}${slot}${m}`,
+        `${d.id}${n}${m}`,
         w,
         used,
       );
       // week 1, no history for this muscle: start from the regression variant when it is available
       const easier =
         e?.regressionId && fresh && w === 0
-          ? cands.find((c) => c.id === e!.regressionId && !used.has(c.id))
+          ? list.find((c) => c.id === e!.regressionId && !used.has(c.id))
           : undefined;
       if (easier) {
         used.add(easier.id);
         e = easier;
       }
-      if (e) out.push(item(e, block, level, deload, e.rx.amount[1] <= 8 ? 120 : 75));
+      if (e) out.push(item(e, d.sessionType, dose, deload, e.rx.amount[1] <= 8 ? 120 : 75));
     }
     return out;
   }
 
   /** Trim sets so each muscle's session total stays under the spike guard, then record it as history. */
   function guardSets(items: PlanItem[], at: number) {
-    const hard = items.filter((i) =>
-      ["lower_strength", "upper_strength", "back_core"].includes(i.block),
-    );
-    const total = (m: string) => hard.reduce((n, i) => n + (i.muscles.includes(m) ? i.sets : 0), 0);
-    for (const m of new Set(hard.flatMap((i) => i.muscles))) {
+    const total = (m: string) =>
+      items.reduce((n, i) => n + (i.muscles.includes(m) ? i.sets : 0), 0);
+    for (const m of new Set(items.flatMap((i) => i.muscles))) {
       const g = spikeGuard({
         metric: "hard_sets",
         planned: total(m),
@@ -248,19 +344,25 @@ export function generateBlock(input: GenerateBlockInput): PlannedSessionRow[] {
         starter: STARTER.hardSetsPerMuscle,
       });
       while (total(m) > g.value) {
-        const top = hard
+        const top = items
           .filter((i) => i.muscles.includes(m) && i.sets > 0)
           .sort((a, b) => b.sets - a.sets)[0]!;
         top.sets--;
       }
     }
-    for (const m of new Set(hard.flatMap((i) => i.muscles)))
+    for (const m of new Set(items.flatMap((i) => i.muscles)))
       (sets[m] ??= []).push({ at, value: total(m) });
     return items.filter((i) => i.sets > 0);
   }
 
-  function runItem(id: string | undefined, desiredMin: number, at: number): PlanItem | undefined {
-    const e = id ? byId.get(id) : undefined;
+  function runItem(
+    d: PlanDemand,
+    dow: number,
+    w: number,
+    desiredMin: number,
+    at: number,
+  ): PlanItem | undefined {
+    const e = pickFor(staged(cands(d, dow), noRunHistory, w), d.id, w, new Set());
     if (!e) return undefined;
     const g = spikeGuard({
       metric: "run_distance_m",
@@ -275,7 +377,7 @@ export function generateBlock(input: GenerateBlockInput): PlannedSessionRow[] {
     runs.push({ at, value: distanceM });
     return {
       exerciseId: e.id,
-      block: "run",
+      block: d.sessionType,
       sets: 1,
       amount: min,
       unit: "minutes",
@@ -283,12 +385,12 @@ export function generateBlock(input: GenerateBlockInput): PlannedSessionRow[] {
       notes: g.reason,
       muscles: [...e.primaryMuscles],
       distanceM,
-      intensity: INTENSITY[e.id] ?? "Easy",
+      ...(e.intensity ? { intensity: e.intensity } : {}),
     };
   }
 
-  function plyoItems(w: number, slot: number, at: number): PlanItem[] {
-    const deload = w === 3;
+  function plyoItems(d: PlanDemand, dow: number, w: number, slot: number, at: number): PlanItem[] {
+    const deload = w === DELOAD_WEEK;
     const desired = Math.floor(PLYO_START_CONTACTS * 1.1 ** Math.min(w, 2) * (deload ? DELOAD : 1));
     const g = spikeGuard({
       metric: "foot_contacts",
@@ -298,12 +400,10 @@ export function generateBlock(input: GenerateBlockInput): PlannedSessionRow[] {
       starter: STARTER.footContacts,
     });
     const target = Math.floor(g.value);
-    const cands = pool("plyo", have).filter(
-      (e) => e.footContactsPerRep && (!noPlyoHistory || (PLYO_TIER[e.id] ?? 2) <= w),
-    );
+    const list = staged(cands(d, dow), noPlyoHistory, w);
     const used = new Set<string>();
     const picks = [0, 1, 2]
-      .map((i) => pickFor(cands, `plyo${slot}`, w + i, used))
+      .map((i) => pickFor(list, `${d.id}${slot}`, w + i, used))
       .filter((e): e is PlanExercise => !!e);
     const rows = picks.map((e) => ({ e, s: e.rx.sets[0], r: e.rx.amount[0] }));
     const fc = (x: { e: PlanExercise; s: number; r: number }) =>
@@ -329,7 +429,7 @@ export function generateBlock(input: GenerateBlockInput): PlannedSessionRow[] {
         }
     }
     const out = rows.map((x) => ({
-      ...item(x.e, "plyo", 0, false, 90, "Land softly, stop if form breaks"),
+      ...item(x.e, d.sessionType, 0, false, 90, "Land softly, stop if form breaks"),
       sets: x.s,
       amount: x.r,
       footContacts: fc(x),
@@ -339,11 +439,21 @@ export function generateBlock(input: GenerateBlockInput): PlannedSessionRow[] {
     return out;
   }
 
+  function cardioItems(d: PlanDemand, dow: number, w: number, dose: number, deload: boolean) {
+    const list = staged(cands(d, dow), true, w);
+    const used = new Set<string>();
+    return Array.from({ length: d.items ?? 1 }, (_, i) => pickFor(list, d.id, w + i, used))
+      .filter((e): e is PlanExercise => !!e)
+      .map((e) => item(e, d.sessionType, dose, deload, 30));
+  }
+
   const warmup = (key: string, equip: Set<string>, w: number): PlanItem[] => {
-    const cands = pool("warmup", equip);
+    const list = allowed.filter(
+      (e) => e.sessionTypes.includes("warmup") && e.equipment.some((q) => equip.has(q)),
+    );
     const used = new Set<string>();
     return [0, 1, 2, 3]
-      .map((i) => pickFor(cands, `warmup${key}`, w + i, used))
+      .map((i) => pickFor(list, `warmup${key}`, w + i, used))
       .filter((e): e is PlanExercise => !!e)
       .map((e) => item(e, "warmup", 0, false, 20, "Prevention warm-up"));
   };
@@ -354,159 +464,54 @@ export function generateBlock(input: GenerateBlockInput): PlannedSessionRow[] {
     ...runs.filter((r) => r.at <= start && start - r.at <= SPIKE_WINDOW_MS).map((r) => r.value),
   );
   const anchorM = recentMax > 0 ? recentMax : STARTER.runDistanceM;
-  const longMin = (w: number) => mToMin(anchorM * 1.1 ** Math.min(w, 2) * (w === 3 ? DELOAD : 1));
+  const longMin = (w: number) =>
+    mToMin(anchorM * 1.1 ** Math.min(w, 2) * (w === DELOAD_WEEK ? DELOAD : 1));
 
-  // Runs are guarded against history as of the start of their week: a short Wed run must not lower the Sat cap.
+  // Runs are guarded against history as of the start of their week: a short midweek run must not lower the long-run cap.
   let weekRuns = runs.slice();
   const rows: PlannedSessionRow[] = [];
   const stamp = input.now ?? Date.now();
 
-  for (let d = 0; d < 28; d++) {
-    const w = Math.floor(d / 7);
-    if (d % 7 === 0) weekRuns = runs.slice();
-    const deload = w === 3;
-    const level = deload ? 0.8 : [0.2, 0.5, 0.8][w]!;
-    const ms = start + d * DAY_MS;
+  for (let day = 0; day < BLOCK_DAYS; day++) {
+    const w = Math.floor(day / 7);
+    if (day % 7 === 0) weekRuns = runs.slice();
+    const deload = w === DELOAD_WEEK;
+    const dose = deload ? 0.8 : [0.2, 0.5, 0.8][w]!;
+    const ms = start + day * DAY_MS;
     const date = new Date(ms).toISOString().slice(0, 10);
     const dow = new Date(ms).getUTCDay();
-    const day: Session[] = [];
     const wk = deload ? " (deload)" : "";
 
-    if (dow === 1) {
-      const items = strength(
-        "lower_strength",
-        ["quads", "hamstrings", "glutes", "calves", "quads"],
-        homeEquip,
-        w,
-        "mon",
-        level,
-        deload,
-      );
-      day.push({ type: "home", title: `Lower strength, home${wk}`, items, warmupFor: "lower" });
-    }
-    if (dow === 2) {
-      const items = strength(
-        "back_core",
-        ["upper_back", "lower_back", "abdominals", "glutes"],
-        homeEquip,
-        w,
-        "tue",
-        level,
-        deload,
-      );
-      day.push({ type: "home", title: `Back and core${wk}`, items, warmupFor: "back" });
-    }
-    if (dow === 3) {
-      const quality =
-        deload || w === 1
-          ? ["run_tempo", "run_fartlek"]
-          : ["run_intervals", "run_tempo", "run_fartlek"];
-      const it = runItem(first(...quality)?.id, Math.round(longMin(w) * 0.65), ms);
-      if (it)
-        day.push({
-          type: "run",
-          title: `Run: ${it.exerciseId.replace("run_", "")}${wk}`,
-          items: [it],
-          warmupFor: "run",
-        });
-    }
-    if (dow === 4) {
-      const equip = hasGym ? have : homeEquip;
-      const items = [
-        ...strength(
-          "upper_strength",
-          ["chest", "shoulders", "lats", "triceps", "biceps"],
-          equip,
-          w,
-          "thu",
-          level,
-          deload,
-        ),
-        ...strength(
-          "back_core",
-          ["upper_back", "abdominals", "lower_back"],
-          equip,
-          w,
-          "thu",
-          level,
-          deload,
-        ),
-      ];
-      day.push({
-        type: hasGym ? "gym" : "home",
-        title: `Upper strength and back${hasGym ? ", gym" : ", home"}${wk}`,
-        items,
-        warmupFor: "upper",
-      });
-    }
-    if (dow === 5) {
-      const items = strength(
-        "mobility_knee",
-        ["tibialis", "quads", "calves", "abductors", "quads"],
-        homeEquip,
-        w,
-        "fri",
-        0.3,
-        deload,
-      );
-      day.push({
-        type: "mobility",
-        title: `Knee, tibialis and mobility${wk}`,
-        items,
-        warmupFor: "mobility",
-      });
-    }
-    if (dow === 6) {
-      const it = runItem(first("run_long", "run_easy")?.id, longMin(w), ms);
-      if (it) day.push({ type: "run", title: `Long run${wk}`, items: [it], warmupFor: "run" });
-    }
-    if (dow === 0) {
-      const it = runItem(first("run_easy", "run_recovery")?.id, Math.round(longMin(w) * 0.55), ms);
-      if (it) day.push({ type: "run", title: `Easy run${wk}`, items: [it], warmupFor: "run" });
-    }
-    if (dow === 1 || dow === 4) {
-      // plyo sessions are 3 days apart (Mon, Thu)
-      const items = plyoItems(w, dow === 1 ? 0 : 1, ms);
-      if (items.length)
-        day.push({ type: "plyo", title: `Plyometrics${wk}`, items, warmupFor: "plyo" });
-    }
-    const swimIdx = swimDays.indexOf(dow);
-    if (swimIdx >= 0) {
-      const technique = swimIdx === 0 && w < 2;
-      const ids = technique
-        ? ["swim_drills", "swim_kick", "swim_easy"]
-        : deload
-          ? ["swim_easy", "swim_mixed"]
-          : w === 2
-            ? ["swim_intervals", "swim_mixed", "swim_easy"]
-            : ["swim_mixed", "swim_endurance", "swim_easy"];
-      const main = first(...ids);
-      if (main) {
-        const items = [item(main, "swim", level, deload, technique ? 20 : 30)];
-        const kick = technique ? first("swim_kick") : undefined;
-        if (kick && kick.id !== main.id) items.push(item(kick, "swim", level, deload, 20));
-        day.push({
-          type: "swim",
-          title: `Swim: ${main.id.replace("swim_", "")}${wk}`,
-          items,
-          warmupFor: "swim",
-        });
+    for (const { d, n, from } of week[dow]!) {
+      let items: PlanItem[];
+      let type: WorkoutType;
+      if (isStrength(d)) {
+        items = strength(d, dow, n, w, d.kind === "light" ? LIGHT_DOSE : dose, deload);
+        if (d.kind === "strength") items = guardSets(items, ms);
+        type = d.workoutType ?? (d.prefersGym && hasGym ? "gym" : "home");
+      } else if (d.kind === "plyo") {
+        items = plyoItems(d, dow, w, n, ms);
+        type = d.workoutType ?? "plyo";
+      } else if (d.kind === "run") {
+        const it = runItem(d, dow, w, Math.round(longMin(w) * (d.volume ?? 1)), ms);
+        items = it ? [it] : [];
+        type = d.workoutType ?? "run";
+      } else {
+        items = cardioItems(d, dow, w, dose, deload);
+        const inPool = items.length > 0 && items.every((i) => needsPool(exById.get(i.exerciseId)!));
+        type = inPool ? "swim" : (d.workoutType ?? "home");
       }
-    }
-
-    for (const s of day) {
-      const equip = s.type === "gym" ? have : homeEquip;
-      const items =
-        s.type === "plyo" || s.type === "run" || s.type === "swim"
-          ? s.items
-          : guardSets(s.items, ms);
       if (!items.length) continue;
+      if (from) {
+        const why = `No ${from.toLowerCase()} option fits your injuries or equipment; ${d.title.toLowerCase()} stands in`;
+        items[0]!.notes = items[0]!.notes ? `${why}. ${items[0]!.notes}` : why;
+      }
       rows.push({
         ...newRow(stamp),
         date,
-        type: s.type,
-        title: s.title,
-        warmup: warmup(s.warmupFor, equip, w),
+        type,
+        title: `${d.title}${from ? ` (instead of ${from.toLowerCase()})` : ""}${wk}`,
+        warmup: warmup(d.id, type === "gym" ? have : homeEquip, w),
         items,
         status: "planned",
       });
