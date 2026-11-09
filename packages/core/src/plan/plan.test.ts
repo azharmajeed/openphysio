@@ -216,6 +216,31 @@ describe("generateBlock", () => {
         ).toBe(true);
   });
 
+  test("no history: week 1 has no advanced plyo or strength, week 3 can", () => {
+    const advanced = new Set([
+      "box_jump",
+      "depth_drop_landing",
+      "broad_jump",
+      "lateral_bound",
+      "single_leg_hop",
+      "skater_hop",
+      "nordic_curl",
+    ]);
+    const ids = (w: number) => new Set(all(week(rows, w)).map((i) => i.exerciseId));
+    for (const w of [0, 1])
+      for (const id of advanced) expect(ids(w).has(id), `w${w} ${id}`).toBe(false);
+    const any = [0, 1, 2].some((s) => {
+      const r = gen({ seed: s });
+      return [2, 3].some((w) => [...all(week(r, w))].some((i) => advanced.has(i.exerciseId)));
+    });
+    expect(any).toBe(true);
+    // with plyo history, no staging
+    const hist = gen({
+      history: { ...empty, plyoContacts: [{ at: startMs - 86_400_000, contacts: 60 }] },
+    });
+    expect(hist.length).toBeGreaterThan(0);
+  });
+
   test("print example week", () => {
     const lines = week(rows, 0).map((r) => {
       const fmt = (i: (typeof r.items)[number]) =>

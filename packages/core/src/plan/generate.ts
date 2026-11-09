@@ -13,6 +13,8 @@ export interface PlanExercise {
   unit: "reps" | "seconds" | "meters" | "minutes";
   rx: { sets: readonly [number, number]; amount: readonly [number, number] };
   footContactsPerRep?: number;
+  /** Easier variant; used to start people with no history lower. */
+  regressionId?: string;
 }
 
 export type PlanBlock =
@@ -79,6 +81,17 @@ const PLYO_START_CONTACTS = 70;
 const DELOAD = 0.65;
 const POOL_FALLBACK = [2, 0]; // Tue, Sun. Day numbers follow Date.getDay(): 0 = Sunday.
 const DAY_MS = 86_400_000;
+/** Plyo staging with no plyo history: tier 0 from week 1, tier 1 from week 2, the rest (shock drills) from week 3. */
+const PLYO_TIER: Record<string, number> = {
+  pogo_hop: 0,
+  jump_rope: 0,
+  a_skip: 0,
+  squat_jump: 1,
+  split_jump: 1,
+  single_leg_pogo: 1,
+};
+/** High-eccentric strength held back for the first two weeks when the muscle has no history. */
+const ADVANCED_STRENGTH = new Set(["nordic_curl"]);
 
 const minToM = (min: number) => (min * 1000) / RUN_PACE_MIN_PER_KM;
 const mToMin = (m: number) => Math.floor((m * RUN_PACE_MIN_PER_KM) / 1000 + 1e-9);
@@ -130,6 +143,11 @@ export function generateBlock(input: GenerateBlockInput): PlannedSessionRow[] {
   const sets: Record<string, { at: number; value: number }[]> = {};
   for (const [m, l] of Object.entries(history.hardSetsByMuscle))
     sets[m] = l.map((h) => ({ at: h.at, value: h.sets }));
+
+  const recent = (l: { at: number }[]) =>
+    l.some((h) => h.at <= start && start - h.at <= SPIKE_WINDOW_MS);
+  const noPlyoHistory = !recent(history.plyoContacts);
+  const noSetsHistory = (m: string) => !recent(history.hardSetsByMuscle[m] ?? []);
 
   const poolDays = [...new Set(profile.poolDays)].sort((a, b) => a - b);
   const swimDays = (poolDays.length ? poolDays : POOL_FALLBACK).slice(0, 2);
@@ -192,12 +210,24 @@ export function generateBlock(input: GenerateBlockInput): PlannedSessionRow[] {
     const used = new Set<string>();
     const out: PlanItem[] = [];
     for (const m of muscles) {
-      const e = pickFor(
-        cands.filter((c) => c.primaryMuscles.includes(m)),
+      const fresh = noSetsHistory(m);
+      let e = pickFor(
+        cands.filter(
+          (c) => c.primaryMuscles.includes(m) && !(fresh && w < 2 && ADVANCED_STRENGTH.has(c.id)),
+        ),
         `${block}${slot}${m}`,
         w,
         used,
       );
+      // week 1, no history for this muscle: start from the regression variant when it is available
+      const easier =
+        e?.regressionId && fresh && w === 0
+          ? cands.find((c) => c.id === e!.regressionId && !used.has(c.id))
+          : undefined;
+      if (easier) {
+        used.add(easier.id);
+        e = easier;
+      }
       if (e) out.push(item(e, block, level, deload, e.rx.amount[1] <= 8 ? 120 : 75));
     }
     return out;
@@ -268,7 +298,9 @@ export function generateBlock(input: GenerateBlockInput): PlannedSessionRow[] {
       starter: STARTER.footContacts,
     });
     const target = Math.floor(g.value);
-    const cands = pool("plyo", have).filter((e) => e.footContactsPerRep);
+    const cands = pool("plyo", have).filter(
+      (e) => e.footContactsPerRep && (!noPlyoHistory || (PLYO_TIER[e.id] ?? 2) <= w),
+    );
     const used = new Set<string>();
     const picks = [0, 1, 2]
       .map((i) => pickFor(cands, `plyo${slot}`, w + i, used))
