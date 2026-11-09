@@ -1,0 +1,31 @@
+import type { InferInsertModel, InferSelectModel } from "drizzle-orm";
+import type * as s from "../db/schema.ts";
+
+export * from "./enums.ts";
+
+export type Profile = InferSelectModel<typeof s.profile>;
+export type NewProfile = InferInsertModel<typeof s.profile>;
+export type Injury = InferSelectModel<typeof s.injury>;
+export type NewInjury = InferInsertModel<typeof s.injury>;
+export type WeightEntry = InferSelectModel<typeof s.weightEntry>;
+export type NewWeightEntry = InferInsertModel<typeof s.weightEntry>;
+export type PlannedSession = InferSelectModel<typeof s.plannedSession>;
+export type NewPlannedSession = InferInsertModel<typeof s.plannedSession>;
+export type Workout = InferSelectModel<typeof s.workout>;
+export type NewWorkout = InferInsertModel<typeof s.workout>;
+export type SetLog = InferSelectModel<typeof s.setLog>;
+export type NewSetLog = InferInsertModel<typeof s.setLog>;
+export type PainEntry = InferSelectModel<typeof s.painEntry>;
+export type NewPainEntry = InferInsertModel<typeof s.painEntry>;
+export type RunPoint = InferSelectModel<typeof s.runPoint>;
+export type NewRunPoint = InferInsertModel<typeof s.runPoint>;
+export type HealthDaily = InferSelectModel<typeof s.healthDaily>;
+export type NewHealthDaily = InferInsertModel<typeof s.healthDaily>;
+export type HealthHrSample = InferSelectModel<typeof s.healthHrSample>;
+export type NewHealthHrSample = InferInsertModel<typeof s.healthHrSample>;
+export type ScanImport = InferSelectModel<typeof s.scanImport>;
+export type NewScanImport = InferInsertModel<typeof s.scanImport>;
+export type CoachNote = InferSelectModel<typeof s.coachNote>;
+export type NewCoachNote = InferInsertModel<typeof s.coachNote>;
+export type SyncState = InferSelectModel<typeof s.syncState>;
+export type NewSyncState = InferInsertModel<typeof s.syncState>;
