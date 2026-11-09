@@ -81,7 +81,11 @@ importers:
         specifier: ^0.31.11
         version: 0.31.11
 
-  packages/integrations: {}
+  packages/integrations:
+    dependencies:
+      '@openphysio/core':
+        specifier: workspace:*
+        version: link:../core
 
 packages:
 
