@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "OpenPhysio",
+    "slug": "openphysio",
+    "scheme": "openphysio",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "userInterfaceStyle": "automatic",
+    "android": {
+      "package": "com.openphysio.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/images/android-icon-foreground.png",
+        "backgroundImage": "./assets/images/android-icon-background.png",
+        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+      }
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-status-bar",
+      "./plugins/short-cxx"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
