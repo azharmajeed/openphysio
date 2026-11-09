@@ -9,7 +9,9 @@ test("every session type has 5+ options, at home and in the gym", () => {
   for (const t of SESSION_TYPES) {
     const list = bySessionType(t);
     expect(list.length, t).toBeGreaterThanOrEqual(5);
-    expect(list.filter(home).length, `${t} home`).toBeGreaterThanOrEqual(5);
+    // swim and conditioning are pool / gym equipment by nature
+    if (t !== "conditioning" && t !== "swim")
+      expect(list.filter(home).length, `${t} home`).toBeGreaterThanOrEqual(5);
   }
 });
 

@@ -13,9 +13,10 @@ const TYPES: Record<string, string> = {
   u: "upper_strength",
   b: "back_core",
   p: "plyo",
-  m: "mobility_knee",
+  m: "mobility",
   r: "run",
   s: "swim",
+  c: "conditioning",
 };
 const MUSCLES: Record<string, string> = {
   quadriceps: "quads",
@@ -52,6 +53,9 @@ const out = rows.map((r) => {
     avoidIf: list(r.avoid),
     primaryMuscles: f ? f.primaryMuscles.map((m) => MUSCLES[m] ?? m) : list(r.o.m ?? ""),
     cues: r.cues.split("|"),
+    level: r.o.lv ?? 1,
+    ...(r.o.role ? { role: r.o.role } : {}),
+    ...(r.o.int ? { intensity: r.o.int } : {}),
     unit: r.unit,
     rx: { sets: [s0, s1], amount: [a0, a1] },
     ...(r.o.fc ? { footContactsPerRep: r.o.fc } : {}),

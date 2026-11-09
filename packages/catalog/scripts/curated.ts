@@ -6,14 +6,24 @@
 export type Row = {
   id: string;
   fed: string | null;
-  t: string; // session type letters: w l u b p m r s
+  t: string; // session type letters: w l u b p m r s c
   loads: string;
   avoid: string;
   unit: "reps" | "seconds" | "meters" | "minutes";
   sets: string;
   amt: string;
   cues: string;
-  o: { n?: string; eq?: string; m?: string; reg?: string; prog?: string; fc?: number };
+  o: {
+    n?: string;
+    eq?: string;
+    m?: string;
+    reg?: string;
+    prog?: string;
+    fc?: number;
+    lv?: 1 | 2 | 3; // staging level, default 1
+    role?: string; // run / swim / conditioning template role
+    int?: string; // how hard it should feel
+  };
 };
 
 const e = (
@@ -31,7 +41,7 @@ const e = (
 
 const JUMP = "knee ankle achilles foot";
 
-export const rows: Row[] = [
+const base: Row[] = [
   // ---- lower strength ----
   e(
     "bodyweight_squat",
@@ -1494,4 +1504,193 @@ export const rows: Row[] = [
     "Mix drill, swim and kick lengths|Easy warm-up and cool-down|Keep each length clean",
     { n: "Mixed Technique Swim", eq: "bodyweight", m: "cardio", reg: "swim_easy" },
   ),
+
+  // ---- low-impact conditioning (stand-ins when impact work is not allowed) ----
+  e(
+    "stationary_bike_easy",
+    null,
+    "c",
+    "knee hip",
+    "",
+    "minutes",
+    "1",
+    "20-60",
+    "Light resistance, smooth pedalling|Saddle at hip height|Stay conversational",
+    { n: "Easy Stationary Bike", eq: "gym", m: "cardio" },
+  ),
+  e(
+    "stationary_bike_intervals",
+    null,
+    "c",
+    "knee hip",
+    "",
+    "minutes",
+    "1",
+    "20-40",
+    "Warm up easy first|Hard efforts of 1-4 minutes, easy spinning between|Cool down easy",
+    { n: "Bike Intervals", eq: "gym", m: "cardio" },
+  ),
+  e(
+    "stationary_bike_long",
+    null,
+    "c",
+    "knee hip",
+    "",
+    "minutes",
+    "1",
+    "45-90",
+    "Steady easy effort|Sip water through the session|Keep cadence smooth",
+    { n: "Long Steady Bike", eq: "gym", m: "cardio" },
+  ),
+  e(
+    "elliptical_easy",
+    null,
+    "c",
+    "knee hip",
+    "",
+    "minutes",
+    "1",
+    "20-45",
+    "Upright posture, light grip|Smooth full strides|Stay conversational",
+    { n: "Easy Elliptical", eq: "gym", m: "cardio" },
+  ),
+  e(
+    "elliptical_intervals",
+    null,
+    "c",
+    "knee hip",
+    "",
+    "minutes",
+    "1",
+    "20-35",
+    "Warm up easy first|Hard efforts of 1-3 minutes, easy between|Cool down easy",
+    { n: "Elliptical Intervals", eq: "gym", m: "cardio" },
+  ),
+  e(
+    "elliptical_long",
+    null,
+    "c",
+    "knee hip",
+    "",
+    "minutes",
+    "1",
+    "40-75",
+    "Steady easy effort|Change stride direction briefly if it gets dull|Keep shoulders relaxed",
+    { n: "Long Steady Elliptical", eq: "gym", m: "cardio" },
+  ),
+  e(
+    "rower_easy",
+    null,
+    "c",
+    "hip lower_back shoulder",
+    "lower_back",
+    "minutes",
+    "1",
+    "15-30",
+    "Legs, then body, then arms|Keep the back long, not rounded|Easy, even strokes",
+    { n: "Easy Rowing Machine", eq: "gym", m: "cardio" },
+  ),
+  e(
+    "rower_intervals",
+    null,
+    "c",
+    "hip lower_back shoulder",
+    "lower_back",
+    "minutes",
+    "1",
+    "15-30",
+    "Warm up easy first|Hard efforts of 1-3 minutes, easy rowing between|Keep form as you tire",
+    { n: "Rowing Intervals", eq: "gym", m: "cardio" },
+  ),
+  e(
+    "aqua_jog_easy",
+    null,
+    "c",
+    "hip knee",
+    "",
+    "minutes",
+    "1",
+    "20-40",
+    "Deep water with a flotation belt or chest-deep|Run upright with a running arm swing|Stay conversational",
+    { n: "Easy Pool Running", eq: "pool", m: "cardio" },
+  ),
+  e(
+    "aqua_jog_intervals",
+    null,
+    "c",
+    "hip knee",
+    "",
+    "minutes",
+    "1",
+    "20-35",
+    "Warm up easy first|Hard efforts of 1-3 minutes, easy between|Keep the same upright form",
+    { n: "Pool Running Intervals", eq: "pool", m: "cardio" },
+  ),
+  e(
+    "aqua_jog_long",
+    null,
+    "c",
+    "hip knee",
+    "",
+    "minutes",
+    "1",
+    "30-60",
+    "Steady easy effort|Upright, tall posture|Sip water at the wall",
+    { n: "Long Pool Running", eq: "pool", m: "cardio" },
+  ),
 ];
+
+// Staging level, template role and effort text per exercise; everything else defaults to level 1.
+const META: Record<string, Row["o"]> = {
+  // level 2: harder progressions, available from week 2 with no history
+  ...Object.fromEntries(
+    [
+      "back_squat deadlift romanian_deadlift pullup feet_elevated_pushup single_leg_glute_bridge",
+      "side_plank hollow_hold hanging_leg_raise barbell_row spanish_squat squat_jump split_jump",
+      "single_leg_pogo run_intervals run_hills swim_intervals",
+    ]
+      .join(" ")
+      .split(" ")
+      .map((id) => [id, { lv: 2 as const }]),
+  ),
+  // level 3: high-eccentric or shock drills, from week 3 with no history
+  ...Object.fromEntries(
+    "nordic_curl box_jump depth_drop_landing broad_jump lateral_bound single_leg_hop skater_hop"
+      .split(" ")
+      .map((id) => [id, { lv: 3 as const }]),
+  ),
+  run_easy: { role: "easy", int: "Easy: you can talk in full sentences" },
+  run_strides: { role: "easy", int: "Easy jog with 6 relaxed 20 s strides" },
+  run_recovery: { role: "recovery", int: "Very easy recovery jog" },
+  run_long: { role: "long", int: "Easy and steady, conversational pace" },
+  run_tempo: {
+    role: "quality",
+    int: "Comfortably hard: short sentences only, after an easy warm-up and before a cool-down",
+  },
+  run_intervals: {
+    role: "quality",
+    int: "After an easy warm-up: 3 min hard / 2 min easy repeats, then cool down",
+  },
+  run_fartlek: { role: "quality", int: "Easy with surges of 1 min hard whenever you like" },
+  run_hills: { role: "quality", int: "Easy jog with short uphill efforts, walk back down" },
+  swim_drills: { eq: "pool", role: "technique" },
+  swim_kick: { eq: "pool", role: "technique" },
+  swim_pull: { eq: "pool", role: "technique" },
+  swim_mixed: { eq: "pool", role: "technique" },
+  swim_easy: { eq: "pool", role: "endurance" },
+  swim_endurance: { eq: "pool", role: "endurance" },
+  swim_intervals: { eq: "pool", role: "quality" },
+  stationary_bike_easy: { role: "easy" },
+  stationary_bike_intervals: { role: "quality" },
+  stationary_bike_long: { role: "long" },
+  elliptical_easy: { role: "easy" },
+  elliptical_intervals: { role: "quality" },
+  elliptical_long: { role: "long" },
+  rower_easy: { role: "easy" },
+  rower_intervals: { role: "quality" },
+  aqua_jog_easy: { role: "easy" },
+  aqua_jog_intervals: { role: "quality" },
+  aqua_jog_long: { role: "long" },
+};
+
+export const rows: Row[] = base.map((r) => ({ ...r, o: { ...r.o, ...META[r.id] } }));

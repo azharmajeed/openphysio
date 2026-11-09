@@ -1,4 +1,5 @@
-import { exercises } from "@openphysio/catalog";
+import { readFileSync } from "node:fs";
+import { exercises, goals } from "@openphysio/catalog";
 import { describe, expect, test } from "vitest";
 import { SPIKE_FACTOR } from "../safety/index.ts";
 import type { NewPlannedSession } from "../types/index.ts";
@@ -15,17 +16,33 @@ const startMs = Date.parse(`${START}T12:00:00Z`);
 const empty: PlanHistory = { runs: [], plyoContacts: [], hardSetsByMuscle: {} };
 const byId = new Map(exercises.map((e) => [e.id, e]));
 
-const gen = (o: Partial<GenerateBlockInput> = {}) =>
+const AZHAR = {
+  goals: ["run_faster_longer", "swim_more", "jump_higher", "stronger_back"],
+  sports: ["running", "swimming"],
+  equipment: ["band", "dumbbell", "gym"],
+  poolDays: [2, 0],
+};
+const KNEE = [{ status: "active" as const, avoidAreas: ["knee" as const], deletedAt: null }];
+
+const ALL_FIVE = {
+  ...AZHAR,
+  goals: goals.map((g) => g.id),
+  equipment: [...AZHAR.equipment, "pool"],
+};
+
+const run = (o: Partial<GenerateBlockInput> = {}) =>
   generateBlock({
-    profile: { equipment: ["band", "dumbbell", "gym"], poolDays: [2, 0] },
+    profile: AZHAR,
     injuries: [],
     exercises,
+    goals,
     history: empty,
     startDate: START,
     seed: 7,
     now: 1,
     ...o,
   });
+const gen = (o: Partial<GenerateBlockInput> = {}) => run(o).sessions;
 
 const week = (rows: PlannedSessionRow[], w: number) =>
   rows.filter((r) => {
@@ -40,7 +57,7 @@ const days = (rows: PlannedSessionRow[], b: string) =>
 const all = (rows: PlannedSessionRow[]) => rows.flatMap((r) => [...r.warmup, ...r.items]);
 
 describe("generateBlock", () => {
-  const rows = gen();
+  const rows = gen({ profile: ALL_FIVE });
 
   test("rows are insertable planned_session rows covering 28 days", () => {
     const row: NewPlannedSession = rows[0]!;
@@ -51,9 +68,9 @@ describe("generateBlock", () => {
     ).toBeLessThanOrEqual(27 * 86_400_000);
   });
 
-  test("AC-3: weekly counts", () => {
-    for (let w = 0; w < 4; w++) {
-      const wk = week(rows, w);
+  test("AC-3: weekly counts, all five goals and the four-goal fixture", () => {
+    for (const [w, rs] of [...[0, 1, 2, 3].map((w) => [w, rows] as const), [0, gen()] as const]) {
+      const wk = week(rs, w);
       expect(
         wk.filter((r) => r.type === "run"),
         `w${w} runs`,
@@ -74,11 +91,12 @@ describe("generateBlock", () => {
     }
   });
 
-  test("run kinds: easy, quality, long", () => {
-    const ids = week(rows, 0).flatMap((r) =>
-      r.type === "run" ? r.items.map((i) => i.exerciseId) : [],
+  test("run roles: quality, long, easy, picked by role from the catalogue", () => {
+    const role = (id: string) => byId.get(id)!.role;
+    const roles = week(rows, 0).flatMap((r) =>
+      r.type === "run" ? r.items.map((i) => role(i.exerciseId)) : [],
     );
-    expect(ids).toEqual(["run_intervals", "run_long", "run_easy"]);
+    expect(roles.sort()).toEqual(["easy", "long", "quality"]);
   });
 
   test("weeks 1-3 build, week 4 deloads", () => {
@@ -112,7 +130,7 @@ describe("generateBlock", () => {
   });
 
   test("every exercise passes the injury filter (knee injury)", () => {
-    const r = gen({ injuries: [{ status: "active", avoidAreas: ["knee"], deletedAt: null }] });
+    const r = gen({ injuries: KNEE });
     expect(r.length).toBeGreaterThan(0);
     for (const i of all(r))
       expect(byId.get(i.exerciseId)!.avoidIf, i.exerciseId).not.toContain("knee");
@@ -124,7 +142,126 @@ describe("generateBlock", () => {
       ],
     });
     for (const i of all(r2)) expect(byId.get(i.exerciseId)!.avoidIf).not.toContain("lower_back");
-    expect(all(r2).some((i) => i.exerciseId.startsWith("run_"))).toBe(true);
+    expect(r2.some((x) => x.type === "run")).toBe(true);
+  });
+
+  test("knee injury: low-impact alternatives replace runs, with reasons", () => {
+    const r = gen({ injuries: KNEE });
+    expect(r.some((x) => x.type === "run")).toBe(false);
+    const subs = week(r, 0).filter((x) => x.title.includes("instead of"));
+    expect(subs).toHaveLength(3);
+    for (const x of subs) {
+      expect(x.items[0]!.notes).toMatch(/fits your injuries or equipment/);
+      expect(x.items.every((i) => i.block === "conditioning")).toBe(true);
+    }
+  });
+
+  test("achilles injury: plyos are replaced by lower-body strength, with a reason", () => {
+    const r = gen({
+      injuries: [{ status: "active", avoidAreas: ["achilles"], deletedAt: null }],
+    });
+    expect(r.some((x) => x.type === "plyo")).toBe(false);
+    const subs = week(r, 0).filter((x) => x.title.includes("instead of plyometrics"));
+    expect(subs).toHaveLength(2);
+    expect(subs.every((x) => x.items.every((i) => i.block === "lower_strength"))).toBe(true);
+  });
+
+  test("gain_weight only, gym, no pool: strength week, no runs, swims or plyos", () => {
+    const r = gen({
+      profile: { goals: ["gain_weight"], sports: [], equipment: ["gym", "dumbbell"], poolDays: [] },
+    });
+    const wk = week(r, 0);
+    expect(wk.length).toBeGreaterThanOrEqual(5);
+    expect(wk.every((x) => x.type === "gym")).toBe(true);
+    expect(wk.some((x) => ["run", "swim", "plyo"].includes(x.type))).toBe(false);
+    expect(blocks(wk, "upper_strength").length).toBe(2);
+    expect(blocks(wk, "lower_strength").length).toBe(2);
+  });
+
+  test("a goal added in a fixture changes the week with no code change", () => {
+    const extra = {
+      id: "fake_goal",
+      label: "Fake",
+      demands: [
+        {
+          id: "fake_core",
+          title: "Extra core",
+          sessionType: "back_core",
+          kind: "strength" as const,
+          perWeek: [2, 2] as const,
+          priority: 9,
+          impact: "low" as const,
+          muscles: ["abdominals", "lower_back"],
+        },
+      ],
+    };
+    const base = gen({ goals: [...goals, extra] });
+    const more = gen({
+      goals: [...goals, extra],
+      profile: { ...AZHAR, goals: [...AZHAR.goals, "fake_goal"] },
+    });
+    expect(week(more, 0).filter((x) => x.title === "Extra core")).toHaveLength(2);
+    expect(base.some((x) => x.title === "Extra core")).toBe(false);
+    // unknown goal ids are ignored, no goals = no sessions
+    expect(gen({ profile: { ...AZHAR, goals: ["nope"] } })).toEqual([]);
+  });
+
+  test("five goals: long run kept, no silent drops", () => {
+    const r = run({ profile: ALL_FIVE });
+    expect(r.warnings).toEqual([]);
+    const wk = week(r.sessions, 0);
+    expect(wk.filter((x) => x.title === "Long run")).toHaveLength(1);
+    expect(wk.length).toBeLessThanOrEqual(14);
+  });
+
+  test("over-full week: lowest priority dropped first, reported as warnings", () => {
+    const r = run({ profile: { ...ALL_FIVE, trainingDays: [1, 2, 3] } });
+    expect(r.warnings.length).toBeGreaterThan(0);
+    for (const x of r.warnings) expect(x.reason).toBeTruthy();
+    const dropped = new Set(r.warnings.map((x) => x.demandId));
+    const kept = new Set(week(r.sessions, 0).map((x) => x.title));
+    expect(dropped.has("mobility")).toBe(true);
+    expect(kept.has("Mobility and prehab")).toBe(false);
+    expect(kept.has("Easy run") || kept.has("Quality run") || kept.has("Long run")).toBe(true);
+  });
+
+  test("no option and no alternative: warning, not silence", () => {
+    const r = run({
+      injuries: KNEE,
+      profile: { ...AZHAR, equipment: [], poolDays: [] },
+    });
+    expect(r.warnings.map((x) => x.demandId)).toEqual(
+      expect.arrayContaining(["run_long", "run_quality", "run_easy"]),
+    );
+    expect(r.warnings[0]!.reason).toMatch(/no alternative/);
+  });
+
+  test("scheduling rules: <=2 a day, no high-impact on neighbouring days (week wraps), trainingDays kept", () => {
+    const high = new Set(
+      goals.flatMap((g) => g.demands.filter((d) => d.impact === "high").map((d) => d.title)),
+    );
+    for (const seed of [1, 2, 3, 4, 5]) {
+      const r = gen({
+        seed,
+        profile: { ...AZHAR, goals: goals.map((g) => g.id), trainingDays: [1, 2, 3, 4, 5, 6] },
+      });
+      const wk = week(r, 0);
+      const perDay = new Map<number, number>();
+      for (const x of wk) perDay.set(dow(x), (perDay.get(dow(x)) ?? 0) + 1);
+      expect(Math.max(...perDay.values())).toBeLessThanOrEqual(2);
+      expect(perDay.has(0)).toBe(false);
+      const hi = wk.filter((x) => high.has(x.title)).map(dow);
+      for (const a of hi)
+        for (const b of hi)
+          if (a !== b) expect(Math.min((a - b + 7) % 7, (b - a + 7) % 7)).toBeGreaterThan(1);
+    }
+  });
+
+  test("generate.ts holds no catalogue ids and no weekday names", () => {
+    const src = readFileSync(new URL("./generate.ts", import.meta.url), "utf8");
+    for (const e of exercises) expect(src.includes(`"${e.id}"`), e.id).toBe(false);
+    for (const g of goals) expect(src.includes(`"${g.id}"`), g.id).toBe(false);
+    expect(src).not.toMatch(/\b(Mon|Tue|Wed|Thu|Fri|Sat|Sun)(day)?\b/);
   });
 
   test("spike guard: history max 8 km caps long run at 8.8 km, and each run stays within 1.1 x prior max", () => {
@@ -189,21 +326,24 @@ describe("generateBlock", () => {
     expect(quads[0]).toBeLessThanOrEqual(2);
   });
 
-  test("swims land on poolDays (fallback Tue/Sun)", () => {
+  test("pool sessions land on poolDays; with a pool but no days set, any day", () => {
     const swim = (r: PlannedSessionRow[]) => new Set(r.filter((x) => x.type === "swim").map(dow));
-    expect(swim(gen({ profile: { equipment: [], poolDays: [1, 5] } }))).toEqual(new Set([1, 5]));
-    expect(swim(gen({ profile: { equipment: [], poolDays: [] } }))).toEqual(new Set([2, 0]));
+    expect(swim(gen({ profile: { ...AZHAR, poolDays: [1, 5] } }))).toEqual(new Set([1, 5]));
+    expect(swim(gen({ profile: { ...AZHAR, poolDays: [] } })).size).toBe(0); // no pool access
+    expect(
+      swim(gen({ profile: { ...AZHAR, poolDays: [], equipment: ["pool"] } })).size,
+    ).toBeGreaterThan(0);
   });
 
   test("equipment: home-only never schedules gym exercises; gym only on the gym day", () => {
-    const home = gen({ profile: { equipment: ["band", "dumbbell"], poolDays: [2, 0] } });
+    const home = gen({ profile: { ...AZHAR, equipment: ["band", "dumbbell"] } });
     expect(home.some((r) => r.type === "gym")).toBe(false);
     for (const i of all(home))
       expect(
         byId.get(i.exerciseId)!.equipment.some((q) => q !== "gym"),
         i.exerciseId,
       ).toBe(true);
-    const none = gen({ profile: { equipment: [], poolDays: [] } });
+    const none = gen({ profile: { ...AZHAR, equipment: [], poolDays: [] } });
     for (const i of all(none))
       expect(byId.get(i.exerciseId)!.equipment.includes("bodyweight"), i.exerciseId).toBe(true);
     const withGym = gen();
@@ -241,16 +381,37 @@ describe("generateBlock", () => {
     expect(hist.length).toBeGreaterThan(0);
   });
 
-  test("print example week", () => {
-    const lines = week(rows, 0).map((r) => {
-      const fmt = (i: (typeof r.items)[number]) =>
-        i.block === "run"
-          ? `${i.exerciseId} ${i.amount}min (~${(i.distanceM! / 1000).toFixed(1)}km)`
-          : i.footContacts
-            ? `${i.exerciseId} ${i.sets}x${i.amount} (${i.footContacts} contacts)`
-            : `${i.exerciseId} ${i.sets}x${i.amount}${i.unit === "reps" ? "" : i.unit[0]}`;
-      return `${r.date} ${["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][dow(r)]} [${r.type}] ${r.title}\n    warmup: ${r.warmup.map((i) => i.exerciseId).join(", ")}\n    ${r.items.map(fmt).join("; ")}`;
-    });
-    console.log(`EXAMPLE WEEK 1\n${lines.join("\n")}`);
+  test("print example weeks", () => {
+    const fmt = (i: PlannedSessionRow["items"][number]) =>
+      i.block === "run"
+        ? `${i.exerciseId} ${i.amount}min (~${(i.distanceM! / 1000).toFixed(1)}km)`
+        : i.footContacts
+          ? `${i.exerciseId} ${i.sets}x${i.amount} (${i.footContacts} contacts)`
+          : `${i.exerciseId} ${i.sets}x${i.amount}${i.unit === "reps" ? "" : i.unit[0]}`;
+    const show = (title: string, r: PlannedSessionRow[]) =>
+      console.log(
+        `${title}\n` +
+          week(r, 0)
+            .sort((a, b) => a.date.localeCompare(b.date))
+            .map(
+              (x) =>
+                `${x.date} ${["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][dow(x)]} [${x.type}] ${x.title}\n    warmup: ${x.warmup.map((i) => i.exerciseId).join(", ")}\n    ${x.items.map(fmt).join("; ")}${x.items[0]!.notes.startsWith("No ") ? `\n    note: ${x.items[0]!.notes}` : ""}`,
+            )
+            .join("\n"),
+      );
+    show("AZHAR (ALL FIVE GOALS) WEEK 1", rows);
+    show("AZHAR-LIKE (FOUR GOALS) WEEK 1", gen());
+    show(
+      "GAIN-WEIGHT-ONLY GYM WEEK 1",
+      gen({
+        profile: {
+          goals: ["gain_weight"],
+          sports: [],
+          equipment: ["gym", "dumbbell"],
+          poolDays: [],
+        },
+      }),
+    );
+    show("KNEE-INJURY WEEK 1", gen({ injuries: KNEE }));
   });
 });

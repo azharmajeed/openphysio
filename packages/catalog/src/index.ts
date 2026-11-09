@@ -2,6 +2,7 @@ import type { BodyArea } from "@openphysio/core";
 import data from "./exercises.json" with { type: "json" };
 
 export * from "./evidence/index.ts";
+export * from "./goals.ts";
 
 export const name = "@openphysio/catalog";
 
@@ -11,13 +12,16 @@ export const SESSION_TYPES = [
   "upper_strength",
   "back_core",
   "plyo",
-  "mobility_knee",
+  "mobility",
   "run",
   "swim",
+  "conditioning",
 ] as const;
 export type SessionType = (typeof SESSION_TYPES)[number];
 
-export type Equipment = "bodyweight" | "band" | "dumbbell" | "gym";
+export type Equipment = "bodyweight" | "band" | "dumbbell" | "gym" | "pool";
+export const ROLES = ["easy", "quality", "long", "recovery", "technique", "endurance"] as const;
+export type Role = (typeof ROLES)[number];
 export type Unit = "reps" | "seconds" | "meters" | "minutes";
 
 export type Exercise = {
@@ -31,6 +35,12 @@ export type Exercise = {
   /** If the user has an active injury in any of these areas, exclude the exercise. */
   avoidIf: BodyArea[];
   primaryMuscles: string[];
+  /** Staging: with no history for a pattern, level n waits until week n. */
+  level: 1 | 2 | 3;
+  /** Template role for run / swim / conditioning entries. */
+  role?: Role;
+  /** How hard a template should feel. */
+  intensity?: string;
   cues: string[];
   unit: Unit;
   /** Default prescription ranges: sets [min,max], amount [min,max] in `unit`. */
