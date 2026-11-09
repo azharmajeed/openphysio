@@ -7,6 +7,7 @@ Read first: `AGENTS.md`, `docs/tasks/EXECUTION.md` (workflow and conventions —
 Setup:
 - `git -C <repo> fetch origin`, then `git -C <repo> worktree add ..\openphysio-wt\<ID> -b feat/<id>-<slug> origin/v0.1`. Work only in `C:\Users\rahza\Documents\work\openphysio-wt\<ID>`. Never edit the main checkout, `v0.1` or `main` directly.
 - pnpm: `pnpm` if on PATH, otherwise `npx -y pnpm@10.34.9`. Run `pnpm install` in the worktree.
+- Mobile tasks (anything that builds the APK): put the worktree at the short path `C:\w\<ID>` instead of `..\openphysio-wt\<ID>`. The native build fails on Windows's 260-character path limit otherwise (lessons from M1). Build env: `JAVA_HOME=C:\Users\rahza\AppData\Local\Programs\jdk-17`, `ANDROID_HOME=C:\Users\rahza\AppData\Local\Android\Sdk`, `JAVA_TOOL_OPTIONS=-Djava.net.preferIPv4Stack=true`. Build only `arm64-v8a` (the Pixel 8a) to cut build time and APK size. adb is at `%ANDROID_HOME%\platform-tools\adb.exe`; if `adb devices` lists a device, install the APK and take screenshots with `adb exec-out screencap -p`.
 
 Rules:
 - Only the contract's allowed changes. Anything consequential outside it: stop, checkpoint, report the question.
