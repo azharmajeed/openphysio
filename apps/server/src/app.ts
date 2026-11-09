@@ -1,12 +1,14 @@
 import { timingSafeEqual, createHash } from "node:crypto";
+import type { BetterSQLite3Database } from "drizzle-orm/better-sqlite3";
 import { Hono } from "hono";
+import { syncRoutes } from "./sync.ts";
 
 export const version = "0.0.0";
 
 // Hash both sides so lengths match and timingSafeEqual never throws or leaks length.
 const digest = (s: string) => createHash("sha256").update(s).digest();
 
-export function createApp(token: string) {
+export function createApp({ token, db }: { token: string; db: BetterSQLite3Database }) {
   const app = new Hono();
   const expected = digest(token);
 
@@ -21,6 +23,8 @@ export function createApp(token: string) {
   });
 
   app.get("/api/ping", (c) => c.json({ pong: true }));
+
+  app.route("/api/sync", syncRoutes(db));
 
   return app;
 }

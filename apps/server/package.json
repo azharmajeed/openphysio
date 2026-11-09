@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@hono/node-server": "^2.1.6",
+    "@openphysio/core": "workspace:*",
     "better-sqlite3": "^12.4.1",
     "drizzle-orm": "^0.45.4",
     "hono": "^4.13.17",
