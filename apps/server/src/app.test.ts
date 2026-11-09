@@ -43,3 +43,14 @@ test("openDb creates the file and skips absent migrations", () => {
     rmSync(dir, { recursive: true, force: true });
   }
 });
+
+test("knowledge search needs auth and returns cited notes", async () => {
+  expect((await app.request("/api/knowledge/search?q=protein")).status).toBe(401);
+  const res = await app.request("/api/knowledge/search?q=protein&limit=2", {
+    headers: { Authorization: "Bearer secret" },
+  });
+  const { results } = (await res.json()) as { results: { id: string; sources: unknown[] }[] };
+  expect(results[0]!.id).toBe("protein-intake");
+  expect(results.length).toBeLessThanOrEqual(2);
+  expect(results[0]!.sources.length).toBeGreaterThan(0);
+});

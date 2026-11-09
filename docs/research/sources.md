@@ -19,12 +19,12 @@
 - `src-issn-protein-2017` ISSN protein position stand (1.4–2.0 g/kg/day): https://cdr.lib.unc.edu/concern/articles/gh93h184p
 - `src-energy-surplus` Energy surplus 10–20%, 0.25–0.5% bodyweight/week: https://examine.com/faq/should-the-magnitude-of-the-energy-surplus-depend-on-the-training-status-of-the-individual
 - `src-frandsen-2025-bjsm` Running load spikes (Frandsen 2025, BJSM): https://blogs.bmj.com/bjsm/?p=11751
-- WHO 2020 physical activity guidelines: https://pmc.ncbi.nlm.nih.gov/articles/PMC7719906/
-- ACSM 2026 resistance training position stand (summary): https://www.medicalnewstoday.com/amp/articles/new-resistance-training-guidelines-debunk-myths-stronger-muscles-strength-size
+- `src-who-2020` WHO 2020 physical activity guidelines: https://pmc.ncbi.nlm.nih.gov/articles/PMC7719906/
+- `src-acsm-2026` ACSM 2026 resistance training position stand (summary): https://www.medicalnewstoday.com/amp/articles/new-resistance-training-guidelines-debunk-myths-stronger-muscles-strength-size
 - `src-mifflin-1990` Mifflin-St Jeor resting energy equation (Mifflin 1990, AJCN): https://doi.org/10.1093/ajcn/51.2.241
 - `src-ioc-load-2016` IOC load and injury consensus (2016): https://nih.brage.unit.no/nih-xmlui/handle/11250/2408720
-- JOSPT ankle sprain CPG 2021: https://www.orthopt.org/uploads/content_files/files/jospt.2021.0302.pdf
-- PEDro: https://pedro.org.au/english/pedro-statistics-2024/
+- `src-jospt-ankle-2021` JOSPT ankle sprain CPG 2021: https://www.orthopt.org/uploads/content_files/files/jospt.2021.0302.pdf
+- `src-pedro-2024` PEDro: https://pedro.org.au/english/pedro-statistics-2024/
 
 ## Libraries and data
 - free-exercise-db (public domain): https://github.com/yuhonas/free-exercise-db
