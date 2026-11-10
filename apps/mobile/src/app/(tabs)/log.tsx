@@ -58,7 +58,7 @@ export default function Log() {
       {past.map((w) => (
         <Pressable
           key={w.id}
-          disabled={!(w.type === "run" && w.source === "gps")}
+          disabled={!(w.type === "swim" || (w.type === "run" && w.source === "gps"))}
           onPress={() => router.push(`/run/${w.id}`)}
           style={{ borderBottomWidth: 1, borderColor: "#ddd", paddingVertical: 8 }}
         >
