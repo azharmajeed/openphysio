@@ -21,7 +21,10 @@
         "android.permission.health.READ_SLEEP",
         "android.permission.health.READ_EXERCISE",
         "android.permission.health.READ_DISTANCE",
-        "android.permission.health.READ_ACTIVE_CALORIES_BURNED"
+        "android.permission.health.READ_ACTIVE_CALORIES_BURNED",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.FOREGROUND_SERVICE_LOCATION"
       ]
     },
     "plugins": [
@@ -33,6 +36,15 @@
         { "microphonePermission": "Used to log sets by voice.", "speechRecognitionPermission": "Used to log sets by voice." }
       ],
       "expo-notifications",
+      [
+        "expo-location",
+        {
+          "isAndroidForegroundServiceEnabled": true,
+          "isAndroidBackgroundLocationEnabled": true,
+          "locationAlwaysAndWhenInUsePermission": "Used to track your run (distance and pace) while the screen is off.",
+          "locationWhenInUsePermission": "Used to track your run (distance and pace)."
+        }
+      ],
       "./plugins/short-cxx",
       "react-native-health-connect",
       [
