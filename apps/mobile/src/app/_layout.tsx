@@ -40,6 +40,7 @@ export default function RootLayout() {
       <Stack.Screen name="session/[id]" options={{ title: "Session" }} />
       <Stack.Screen name="run/index" options={{ title: "Run" }} />
       <Stack.Screen name="run/[id]" options={{ title: "Run" }} />
+      <Stack.Screen name="progress" options={{ title: "Progress" }} />
       <Stack.Screen name="swim" options={{ title: "Swim" }} />
     </Stack>
   );
