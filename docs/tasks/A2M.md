@@ -1,6 +1,6 @@
 # A2M: Coach tab: chat with the AI coach, with citations and an offline notice
 Project / milestone / feature: OpenPhysio / v0.1-app / PRD-001
-Status: Ready
+Status: In review
 Approved scope reference: docs/tasks/README.md, docs/tasks/EXECUTION.md
 Approved product specification ID/version: PRD-001 v0.1 (D-1)
 Approved technical plan ID/version: TP-001 v1 (D-2), decisions D-3 to D-10
@@ -18,3 +18,15 @@ Execution budget and retry limit: one implementation run + one repair after revi
 When to request a product or consequential technical decision: per EXECUTION.md escalation conditions
 Completion condition: validated result + PR -> In review
 Merge authority: orchestrator into v0.1 after review (D-9); Azhar for v0.1 -> main
+
+## Checkpoint
+# A2M / run 1
+Agent/runtime/model, if reported: Claude Sonnet subagent, ponytail lite
+Execution host and checkout: local Windows, C:\w\A2M
+Base commit / current branch / latest commit: 97a1e7a / feat/a2m-coach-tab / see PR
+Work completed: Coach tab (apps/mobile/src/coach: chat.ts pure helpers + tests, CoachScreen.tsx); citation chips open URL via Linking; red-flag warning style; plain-language errors (not configured with Settings link, offline, 503, bad token); last conversation kept in expo-sqlite kv-store; syncNow() before send, failures ignored.
+Uncommitted changes and where they are preserved: none
+Validation performed and results: pnpm lint, typecheck, test pass (159 tests); expo export -p android ok (output deleted). Gradle build not run. Device check: not run.
+Failures and attempts already made: none
+Open decisions/blockers: sync/index.ts does not export its config reader, so the screen reads serverUrl/serverToken from SecureStore itself (4 lines, same keys). Uses expo-sqlite/kv-store (already-installed package, no new native module). syncNow ignores the 5 min throttle, so each send syncs.
+Next action: review

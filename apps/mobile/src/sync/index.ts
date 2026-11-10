@@ -6,10 +6,13 @@ import { runSync, syncIfDue, type SyncConfig } from "./engine";
 
 export { lastResult, type SyncResult } from "./engine";
 
+/** SecureStore keys for the server connection; the only place they are named. */
+export const SERVER_KEYS = { url: "serverUrl", token: "serverToken" } as const;
+
 /** Server URL + token from Settings; undefined until both are set. */
-async function loadConfig(): Promise<SyncConfig | undefined> {
-  const url = (await SecureStore.getItemAsync("serverUrl"))?.trim();
-  const token = (await SecureStore.getItemAsync("serverToken"))?.trim();
+export async function loadConfig(): Promise<SyncConfig | undefined> {
+  const url = (await SecureStore.getItemAsync(SERVER_KEYS.url))?.trim();
+  const token = (await SecureStore.getItemAsync(SERVER_KEYS.token))?.trim();
   return url && token ? { url, token } : undefined;
 }
 
