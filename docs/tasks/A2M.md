@@ -1,6 +1,6 @@
 # A2M: Coach tab: chat with the AI coach, with citations and an offline notice
 Project / milestone / feature: OpenPhysio / v0.1-app / PRD-001
-Status: In review
+Status: Done
 Approved scope reference: docs/tasks/README.md, docs/tasks/EXECUTION.md
 Approved product specification ID/version: PRD-001 v0.1 (D-1)
 Approved technical plan ID/version: TP-001 v1 (D-2), decisions D-3 to D-10
