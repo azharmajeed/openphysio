@@ -1,6 +1,10 @@
 export type Msg = { role: "user" | "assistant"; content: string };
 export type Citation = { id: string; title: string; url: string; grade: "A" | "B" | "C" };
-export type Reply = { text: string; citations: Citation[]; redFlag: boolean };
+import type { AdaptChange, PlannedSessionRow } from "@openphysio/core";
+
+/** A change the server already checked against injuries and the load cap. Nothing is saved until Apply. */
+export type Proposal = { change: AdaptChange; session: PlannedSessionRow };
+export type Reply = { text: string; citations: Citation[]; redFlag: boolean; proposals: Proposal[]; refusals: string[] };
 export type ChatError = "notConfigured" | "offline" | "aiNotConfigured" | "badToken" | "other";
 export type ChatResult = { ok: true; reply: Reply } | { ok: false; error: ChatError };
 
@@ -65,7 +69,7 @@ export async function sendChat(
   try {
     const j = (await res.json()) as Partial<Reply>;
     if (typeof j.text !== "string") return { ok: false, error: "other" };
-    return { ok: true, reply: { text: j.text, citations: j.citations ?? [], redFlag: j.redFlag === true } };
+    return { ok: true, reply: { text: j.text, citations: j.citations ?? [], redFlag: j.redFlag === true, proposals: j.proposals ?? [], refusals: j.refusals ?? [] } };
   } catch {
     return { ok: false, error: "other" };
   }

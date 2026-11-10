@@ -36,7 +36,7 @@ export const ADAPT_CONFIG = {
   recoveryWindowDays: 28,
 } as const;
 
-export type ChangeKind = "regress" | "progress" | "remove" | "lower_intensity" | "keep";
+export type ChangeKind = "regress" | "progress" | "remove" | "lower_intensity" | "keep" | "swap" | "volume" | "move";
 
 export interface AdaptChange {
   sessionId: string;

@@ -1,5 +1,5 @@
 import { fileURLToPath } from "node:url";
-import { coachNote, injury, newRow } from "@openphysio/core";
+import { coachNote, injury, newRow, plannedSession, setLog, workout } from "@openphysio/core";
 import Database from "better-sqlite3";
 import { drizzle } from "drizzle-orm/better-sqlite3";
 import { migrate } from "drizzle-orm/better-sqlite3/migrator";
@@ -159,4 +159,94 @@ test("validation and auth", async () => {
   expect(bad.status).toBe(400);
   const noAuth = await app.request("/api/coach/chat", { method: "POST", body: "{}" });
   expect(noAuth.status).toBe(401);
+});
+
+// --- A3: propose_plan_change ---
+type Proposed = Reply & {
+  proposals: { change: { kind: string; from: string; to: string; sessionId: string }; session: { items: { exerciseId: string; sets: number }[] } }[];
+  refusals: string[];
+};
+const item = (exerciseId: string, sets: number, muscles = ["quads"]) => ({
+  exerciseId, block: "main", sets, amount: 10, unit: "reps", restSec: 60, notes: "", muscles,
+});
+function seed(db: ReturnType<typeof mem>) {
+  const row = { ...newRow(), date: "2099-01-05", type: "gym" as const, title: "Legs", warmup: [], items: [item("goblet_squat", 3)], status: "planned" as const };
+  db.insert(plannedSession).values(row).run();
+  return row.id;
+}
+/** Stub model: first turn emits the propose call, second turn answers. */
+async function propose(db: ReturnType<typeof mem>, input: Record<string, unknown>) {
+  let n = 0;
+  const ai: AiProvider = {
+    ...mockProvider,
+    chat: async () =>
+      n++ === 0
+        ? { text: "", toolCalls: [{ id: "p1", name: "propose_plan_change", input: { reason: "because", ...input } }] }
+        : { text: "ok", toolCalls: [] },
+  };
+  return (await (await post(createApp({ token: "t", db, ai }), "change my plan")).json()) as Proposed;
+}
+const sessionItems = (db: ReturnType<typeof mem>) => db.select().from(plannedSession).all()[0]!.items;
+
+test("valid proposal is returned for confirmation and changes nothing on the server", async () => {
+  const db = mem();
+  const sessionId = seed(db);
+  const r = await propose(db, { kind: "swap", sessionId, exerciseId: "goblet_squat", toExerciseId: "terminal_knee_extension" });
+  expect(r.refusals).toEqual([]);
+  expect(r.proposals).toHaveLength(1);
+  expect(r.proposals[0]!.change).toMatchObject({ kind: "swap", sessionId, from: "goblet squat", to: "terminal knee extension" });
+  expect(r.proposals[0]!.session.items[0]!.exerciseId).toBe("terminal_knee_extension");
+  expect(sessionItems(db)[0]!.exerciseId).toBe("goblet_squat");
+  const v = await propose(db, { kind: "volume", sessionId, exerciseId: "goblet_squat", sets: 4 });
+  expect(v.proposals[0]!.change).toMatchObject({ kind: "volume", from: "3 x 10 reps", to: "4 x 10 reps" });
+  const m = await propose(db, { kind: "move", sessionId, toDate: "2099-01-06" });
+  expect(m.proposals[0]!.change).toMatchObject({ kind: "move", from: "2099-01-05", to: "2099-01-06" });
+});
+
+test("injury-breaking proposal is refused with a reason", async () => {
+  const db = mem();
+  const sessionId = seed(db);
+  db.insert(injury).values({ ...newRow(), bodyArea: "knee", avoidAreas: ["knee"], status: "active" }).run();
+  const r = await propose(db, { kind: "swap", sessionId, exerciseId: "goblet_squat", toExerciseId: "leg_press" });
+  expect(r.proposals).toEqual([]);
+  expect(r.refusals[0]).toMatch(/^refused: leg press is not safe with your injury/);
+  // easing the already-planned exercise is still allowed
+  const down = await propose(db, { kind: "volume", sessionId, exerciseId: "goblet_squat", sets: 2 });
+  expect(down.proposals).toHaveLength(1);
+});
+
+test("spike-breaking proposal is refused with the percentage over the 30-day max", async () => {
+  const db = mem();
+  const sessionId = seed(db);
+  const w = { ...newRow(), type: "gym" as const, startedAt: Date.now() - 2 * 864e5 };
+  db.insert(workout).values(w).run();
+  for (let i = 0; i < 3; i++)
+    db.insert(setLog).values({ ...newRow(), workoutId: w.id, exerciseId: "goblet_squat", setIndex: i, rpe: 8 }).run();
+  const r = await propose(db, { kind: "volume", sessionId, exerciseId: "goblet_squat", sets: 6 });
+  expect(r.proposals).toEqual([]);
+  expect(r.refusals[0]).toBe("refused: exceeds your 30-day max by 100% (quads sets; the limit is 10% above it)");
+  expect(sessionItems(db)[0]!.sets).toBe(3);
+});
+
+test("bad proposals are refused and the reason goes back to the model", async () => {
+  const db = mem();
+  const sessionId = seed(db);
+  const seen: ChatInput[] = [];
+  const ai: AiProvider = {
+    ...mockProvider,
+    chat: async (i) => {
+      seen.push(structuredClone(i));
+      return seen.length === 1
+        ? { text: "", toolCalls: [{ id: "p1", name: "propose_plan_change", input: { kind: "move", sessionId, toDate: "2001-01-01", reason: "x" } }] }
+        : { text: "ok", toolCalls: [] };
+    },
+  };
+  const r = (await (await post(createApp({ token: "t", db, ai }), "move it")).json()) as Proposed;
+  expect(r.refusals).toEqual(["refused: that date is in the past"]);
+  expect(JSON.stringify(seen[1]!.messages)).toContain("refused: that date is in the past");
+  for (const bad of [{ kind: "swap", sessionId: "nope" }, { kind: "swap", sessionId, exerciseId: "goblet_squat", toExerciseId: "zzz" }, { kind: "volume", sessionId, exerciseId: "goblet_squat", sets: -1 }]) {
+    const b = await propose(db, bad);
+    expect(b.proposals).toEqual([]);
+    expect(b.refusals[0]).toMatch(/^refused: /);
+  }
 });

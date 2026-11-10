@@ -2,13 +2,33 @@ import { Link } from "expo-router";
 import Storage from "expo-sqlite/kv-store";
 import { useEffect, useRef, useState } from "react";
 import { ActivityIndicator, FlatList, KeyboardAvoidingView, Linking, Platform, Pressable, Text, TextInput, View } from "react-native";
+import { applyProposal } from "../lib/adaptdb";
 import { loadConfig, syncNow } from "../sync";
-import { buildRequest, ERROR_TEXT, formatCitations, sendChat, type ChatError, type Reply } from "./chat";
+import { buildRequest, ERROR_TEXT, formatCitations, sendChat, type ChatError, type Proposal, type Reply } from "./chat";
 
-type Item = { role: "user" | "assistant"; content: string; reply?: Reply };
+type Item = { role: "user" | "assistant"; content: string; reply?: Reply; done?: Record<number, "applied" | "dismissed"> };
 const KEY = "coach.conversation";
 
-function Bubble({ m }: { m: Item }) {
+function ProposalCard({ p, state, onApply, onDismiss }: { p: Proposal; state?: "applied" | "dismissed"; onApply: () => void; onDismiss: () => void }) {
+  const c = p.change;
+  return (
+    <View style={{ marginTop: 8, padding: 8, borderRadius: 8, backgroundColor: "#fff", borderWidth: 1, borderColor: "#2563eb" }}>
+      <Text style={{ fontWeight: "700", color: "#111" }}>Proposed change: {c.kind} ({p.session.title}, {p.session.date})</Text>
+      <Text style={{ color: "#111" }}>{c.from} to {c.to}</Text>
+      {!!c.reason && <Text style={{ color: "#444" }}>{c.reason}</Text>}
+      {state ? (
+        <Text style={{ marginTop: 4, color: "#444" }}>{state === "applied" ? "Applied to your plan." : "Dismissed."}</Text>
+      ) : (
+        <View style={{ flexDirection: "row", gap: 16, marginTop: 6 }}>
+          <Pressable onPress={onApply}><Text style={{ color: "#2563eb", fontWeight: "600" }}>Apply</Text></Pressable>
+          <Pressable onPress={onDismiss}><Text style={{ color: "#666" }}>Dismiss</Text></Pressable>
+        </View>
+      )}
+    </View>
+  );
+}
+
+function Bubble({ m, onResolve }: { m: Item; onResolve: (k: number, s: "applied" | "dismissed") => void }) {
   const mine = m.role === "user";
   const red = m.reply?.redFlag;
   const f = m.reply ? formatCitations(m.content, m.reply.citations) : { text: m.content, chips: [] };
@@ -38,6 +58,18 @@ function Bubble({ m }: { m: Item }) {
           </Text>
         </Pressable>
       ))}
+      {m.reply?.refusals.map((r, k) => (
+        <Text key={k} style={{ marginTop: 6, color: "#b91c1c" }}>{r}</Text>
+      ))}
+      {m.reply?.proposals.map((p, k) => (
+        <ProposalCard
+          key={k}
+          p={p}
+          state={m.done?.[k]}
+          onApply={() => onResolve(k, "applied")}
+          onDismiss={() => onResolve(k, "dismissed")}
+        />
+      ))}
     </View>
   );
 }
@@ -58,6 +90,18 @@ export default function CoachScreen() {
       }
     });
   }, []);
+
+  async function resolve(i: number, k: number, s: "applied" | "dismissed") {
+    const p = items[i]?.reply?.proposals[k];
+    if (!p || items[i]?.done?.[k]) return;
+    if (s === "applied") {
+      await applyProposal(p);
+      void syncNow().catch(() => undefined); // saved locally already; sync retries later
+    }
+    const next = items.map((it, j) => (j === i ? { ...it, done: { ...it.done, [k]: s } } : it));
+    setItems(next);
+    await Storage.setItem(KEY, JSON.stringify(next)).catch(() => undefined);
+  }
 
   async function send() {
     const q = text.trim();
@@ -84,7 +128,7 @@ export default function CoachScreen() {
         contentContainerStyle={{ padding: 12 }}
         data={items}
         keyExtractor={(_, i) => String(i)}
-        renderItem={({ item }) => <Bubble m={item} />}
+        renderItem={({ item, index }) => <Bubble m={item} onResolve={(k, s) => void resolve(index, k, s)} />}
         onContentSizeChange={() => list.current?.scrollToEnd()}
         ListEmptyComponent={<Text style={{ color: "#666" }}>Ask about training, recovery or your plan. The coach reads your synced logs and cites its sources.</Text>}
       />
