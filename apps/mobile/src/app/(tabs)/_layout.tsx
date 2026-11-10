@@ -8,6 +8,11 @@ export default function TabsLayout() {
   return (
     <Tabs
       screenOptions={{
+        headerLeft: () => (
+          <Link href="/progress" style={{ marginLeft: 16 }}>
+            <Text>Progress</Text>
+          </Link>
+        ),
         headerRight: () => (
           <Link href="/settings" style={{ marginRight: 16 }}>
             <Text>Settings</Text>
