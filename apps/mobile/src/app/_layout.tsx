@@ -5,11 +5,13 @@ import { ActivityIndicator, Text, View } from "react-native";
 import { db } from "../db";
 import { loadForm } from "../lib/store";
 import migrations from "../migrations";
+import { useSyncOnForeground } from "../sync";
 
 export default function RootLayout() {
   const { success, error } = useMigrations(db, migrations);
   const router = useRouter();
   const [ready, setReady] = useState(false);
+  useSyncOnForeground(ready);
 
   useEffect(() => {
     if (!success) return;
