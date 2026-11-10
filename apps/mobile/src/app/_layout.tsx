@@ -33,6 +33,7 @@ export default function RootLayout() {
       <Stack.Screen name="intake" options={{ title: "Welcome", headerBackVisible: false, gestureEnabled: false }} />
       <Stack.Screen name="profile" options={{ title: "Profile" }} />
       <Stack.Screen name="health" options={{ title: "Band data" }} />
+      <Stack.Screen name="session/[id]" options={{ title: "Session" }} />
     </Stack>
   );
 }

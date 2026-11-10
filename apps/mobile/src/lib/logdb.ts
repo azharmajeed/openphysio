@@ -1,5 +1,5 @@
 import type { Equipment, Exercise } from "@openphysio/catalog";
-import { injury, newRow, painEntry, profile, setLog, workout, type BodyArea, type PainKind } from "@openphysio/core";
+import { injury, newRow, painEntry, plannedSession, profile, setLog, workout, type BodyArea, type PainKind } from "@openphysio/core";
 import { and, desc, eq, inArray, isNull } from "drizzle-orm";
 import { db } from "../db";
 import { LOGGABLE_TYPES, type LoggableType, type SetDraft } from "./log";
@@ -45,7 +45,13 @@ export const undoSet = (id: string) => db.update(setLog).set({ deletedAt: Date.n
 export async function finishWorkout(workoutId: string, startedAt: number) {
   const now = Date.now();
   await db.update(workout).set({ endedAt: now, durationS: Math.round((now - startedAt) / 1000), updatedAt: now }).where(eq(workout.id, workoutId));
+  const [w] = await db.select({ plannedSessionId: workout.plannedSessionId }).from(workout).where(eq(workout.id, workoutId));
+  if (w?.plannedSessionId) await markPlannedDone(w.plannedSessionId);
 }
+
+/** Completing a workout marks the planned session it was started from as done. */
+export const markPlannedDone = (id: string) =>
+  db.update(plannedSession).set({ status: "done", updatedAt: Date.now() }).where(eq(plannedSession.id, id));
 
 export const discardWorkout = (id: string) => db.update(workout).set({ deletedAt: Date.now(), updatedAt: Date.now() }).where(eq(workout.id, id));
 
@@ -56,7 +62,7 @@ export async function history() {
   const ws = await db
     .select()
     .from(workout)
-    .where(and(live(workout), inArray(workout.type, [...LOGGABLE_TYPES])))
+    .where(live(workout))
     .orderBy(desc(workout.startedAt))
     .limit(30);
   const sets = ws.length ? await db.select().from(setLog).where(and(inArray(setLog.workoutId, ws.map((w) => w.id)), live(setLog))) : [];
