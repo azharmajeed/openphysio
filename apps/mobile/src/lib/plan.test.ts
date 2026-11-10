@@ -1,25 +1,6 @@
 import { expect, test } from "vitest";
-import { buildHistory, calendar, parseQuick, targetDraft, typeColor } from "./plan.ts";
+import { calendar, parseQuick, targetDraft, typeColor } from "./plan.ts";
 import { exercises } from "@openphysio/catalog";
-
-const lookup = (id: string) => ({ quad: { primaryMuscles: ["quads"], sessionTypes: ["lower_strength"] }, warm: { primaryMuscles: ["glutes"], sessionTypes: ["warmup"] } })[id as "quad" | "warm"];
-
-test("history: runs, plyo contacts, hard sets (rpe >= 7 or none; warm-up excluded)", () => {
-  const w = [
-    { id: "a", type: "run", startedAt: 1, distanceM: 5000 },
-    { id: "b", type: "gym", startedAt: 2, distanceM: null },
-  ];
-  const s = [
-    { workoutId: "b", exerciseId: "quad", rpe: 8, footContacts: 20 },
-    { workoutId: "b", exerciseId: "quad", rpe: null, footContacts: 20 },
-    { workoutId: "b", exerciseId: "quad", rpe: 6, footContacts: null },
-    { workoutId: "b", exerciseId: "warm", rpe: null, footContacts: null },
-  ];
-  const h = buildHistory(w, s, lookup);
-  expect(h.runs).toEqual([{ at: 1, distanceM: 5000 }]);
-  expect(h.plyoContacts).toEqual([{ at: 2, contacts: 40 }]);
-  expect(h.hardSetsByMuscle).toEqual({ quads: [{ at: 2, sets: 2 }] });
-});
 
 test("type colour is deterministic per type string", () => {
   expect(typeColor("gym")).toBe(typeColor("gym"));

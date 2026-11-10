@@ -1,10 +1,10 @@
-import { exercises, goals } from "@openphysio/catalog";
-import { generateBlock, injury, newRow, plannedSession, profile, setLog, workout, type PlanItem, type PlanWarning, type PlannedSessionRow } from "@openphysio/core";
+import { exercises, goals, historyLookup } from "@openphysio/catalog";
+import { buildHistory, generateBlock, injury, newRow, plannedSession, profile, setLog, workout, type PlanItem, type PlanWarning, type PlannedSessionRow } from "@openphysio/core";
 import { and, eq, gte, inArray, isNull } from "drizzle-orm";
 import Storage from "expo-sqlite/kv-store";
 import { db } from "../db";
 import { markPlannedDone } from "./logdb";
-import { addDays, buildHistory, ymd } from "./plan";
+import { addDays, ymd } from "./plan";
 
 const WARN_KEY = "plan.warnings";
 const HISTORY_DAYS = 60;
@@ -45,7 +45,7 @@ export async function generatePlan(now = new Date()): Promise<{ count: number; w
     injuries,
     exercises,
     goals,
-    history: buildHistory(ws, sets),
+    history: buildHistory(ws, sets, historyLookup),
     startDate,
     seed: now.getTime() % 2 ** 31,
   });

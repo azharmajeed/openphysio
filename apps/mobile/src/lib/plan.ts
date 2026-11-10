@@ -1,5 +1,5 @@
-import { getExercise, type Exercise } from "@openphysio/catalog";
-import type { PlanHistory, PlanItem } from "@openphysio/core";
+import type { Exercise } from "@openphysio/catalog";
+import type { PlanItem } from "@openphysio/core";
 import { draftFor, type SetDraft } from "./log";
 
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -15,36 +15,6 @@ const PALETTE = ["#2563eb", "#059669", "#d97706", "#7c3aed", "#db2777", "#0891b2
 /** Same type string, same colour; no type-to-colour table. */
 export const typeColor = (type: string) =>
   PALETTE[Math.abs([...type].reduce((h, c) => Math.imul(h ^ c.charCodeAt(0), 16777619), 2166136261)) % PALETTE.length]!;
-
-type Lookup = (id: string) => { primaryMuscles: readonly string[]; sessionTypes: readonly string[] } | undefined;
-/** Exercises that only warm up or mobilise do not count as hard work. */
-const LIGHT_TYPES = ["warmup", "mobility"];
-
-/**
- * Plan history from logged rows. Hard set = a set with rpe >= 7 or no rpe, on an exercise that is not warm-up/mobility only;
- * it counts for each of the exercise's primaryMuscles, one entry per workout and muscle.
- */
-export function buildHistory(
-  workouts: { id: string; type: string; startedAt: number; distanceM: number | null }[],
-  sets: { workoutId: string; exerciseId: string; rpe: number | null; footContacts: number | null }[],
-  lookup: Lookup = getExercise,
-): PlanHistory {
-  const h: PlanHistory = { runs: [], plyoContacts: [], hardSetsByMuscle: {} };
-  for (const w of workouts) {
-    if (w.type === "run" && w.distanceM) h.runs.push({ at: w.startedAt, distanceM: w.distanceM });
-    const mine = sets.filter((s) => s.workoutId === w.id);
-    const contacts = mine.reduce((n, s) => n + (s.footContacts ?? 0), 0);
-    if (contacts > 0) h.plyoContacts.push({ at: w.startedAt, contacts });
-    const perMuscle: Record<string, number> = {};
-    for (const s of mine) {
-      const e = lookup(s.exerciseId);
-      if (!e || e.sessionTypes.every((t) => LIGHT_TYPES.includes(t)) || (s.rpe != null && s.rpe < 7)) continue;
-      for (const m of e.primaryMuscles) perMuscle[m] = (perMuscle[m] ?? 0) + 1;
-    }
-    for (const [m, n] of Object.entries(perMuscle)) (h.hardSetsByMuscle[m] ??= []).push({ at: w.startedAt, sets: n });
-  }
-  return h;
-}
 
 /** Target as text: "3 × 10 reps", "3 × 30 s", "35 min", "3 × 200 m". */
 export function describeItem(i: PlanItem): string {
