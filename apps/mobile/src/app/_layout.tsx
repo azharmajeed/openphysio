@@ -42,6 +42,8 @@ export default function RootLayout() {
       <Stack.Screen name="run/[id]" options={{ title: "Run" }} />
       <Stack.Screen name="progress" options={{ title: "Progress" }} />
       <Stack.Screen name="swim" options={{ title: "Swim" }} />
+      <Stack.Screen name="scan/index" options={{ title: "Import scan" }} />
+      <Stack.Screen name="scan/[id]" options={{ title: "Review scan" }} />
     </Stack>
   );
 }
