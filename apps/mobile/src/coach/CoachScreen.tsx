@@ -1,19 +1,12 @@
 import { Link } from "expo-router";
-import * as SecureStore from "expo-secure-store";
 import Storage from "expo-sqlite/kv-store";
 import { useEffect, useRef, useState } from "react";
 import { ActivityIndicator, FlatList, KeyboardAvoidingView, Linking, Platform, Pressable, Text, TextInput, View } from "react-native";
-import { syncNow } from "../sync";
+import { loadConfig, syncNow } from "../sync";
 import { buildRequest, ERROR_TEXT, formatCitations, sendChat, type ChatError, type Reply } from "./chat";
 
 type Item = { role: "user" | "assistant"; content: string; reply?: Reply };
 const KEY = "coach.conversation";
-
-async function loadConfig() {
-  const url = (await SecureStore.getItemAsync("serverUrl"))?.trim();
-  const token = (await SecureStore.getItemAsync("serverToken"))?.trim();
-  return url && token ? { url, token } : undefined;
-}
 
 function Bubble({ m }: { m: Item }) {
   const mine = m.role === "user";

@@ -3,7 +3,7 @@ import * as SecureStore from "expo-secure-store";
 import { Link } from "expo-router";
 import { useEffect, useState } from "react";
 import { db } from "../db";
-import { lastResult, syncNow, type SyncResult } from "../sync";
+import { lastResult, SERVER_KEYS, syncNow, type SyncResult } from "../sync";
 import { Button, Text, TextInput, View } from "react-native";
 
 const input = { borderWidth: 1, padding: 8, marginBottom: 12 };
@@ -17,15 +17,15 @@ export default function Settings() {
 
   useEffect(() => {
     void (async () => {
-      setUrl((await SecureStore.getItemAsync("serverUrl")) ?? "");
-      setToken((await SecureStore.getItemAsync("serverToken")) ?? "");
+      setUrl((await SecureStore.getItemAsync(SERVER_KEYS.url)) ?? "");
+      setToken((await SecureStore.getItemAsync(SERVER_KEYS.token)) ?? "");
       setLast(await lastResult(db));
     })();
   }, []);
 
   async function save() {
-    await SecureStore.setItemAsync("serverUrl", url);
-    await SecureStore.setItemAsync("serverToken", token);
+    await SecureStore.setItemAsync(SERVER_KEYS.url, url);
+    await SecureStore.setItemAsync(SERVER_KEYS.token, token);
     setSaved(true);
   }
 
