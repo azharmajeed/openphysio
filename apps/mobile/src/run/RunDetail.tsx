@@ -5,6 +5,7 @@ import { ScrollView, Text, View } from "react-native";
 import Svg, { Polyline } from "react-native-svg";
 import { db } from "../db";
 import { fmtDistance, fmtDur, fmtPace } from "../lib/run";
+import { ExportActions } from "../export/ExportActions";
 import { runPoints } from "./rundb";
 
 const SIZE = 300;
@@ -78,6 +79,7 @@ export function RunDetail({ id }: { id: string }) {
         </View>
       ))}
       {w.notes ? <Text style={{ marginTop: 12, fontStyle: "italic" }}>{w.notes}</Text> : null}
+      <ExportActions w={w} />
     </ScrollView>
   );
 }
