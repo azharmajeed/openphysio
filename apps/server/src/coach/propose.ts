@@ -1,5 +1,6 @@
-import { getExercise, type Exercise } from "@openphysio/catalog";
+import { getExercise, historyLookup, type Exercise } from "@openphysio/catalog";
 import {
+  buildHistory,
   filterForInjuries,
   injury,
   plannedSession,
@@ -46,7 +47,6 @@ const words = (s: string) => s.replace(/[-_]/g, " ");
 const refuse = (reason: string): Outcome => ({ ok: false, reason: `refused: ${reason}` });
 type Hist = { at: number; value: number }[];
 
-// ponytail: history rebuilt here (mobile's buildHistory can't be imported); hard set = rpe >= 7 or unlogged rpe, light-only exercises not discounted.
 function history(db: BetterSQLite3Database, now: number) {
   const ws = db
     .select()
@@ -60,21 +60,13 @@ function history(db: BetterSQLite3Database, now: number) {
         .where(and(isNull(setLog.deletedAt), inArray(setLog.workoutId, ws.map((w) => w.id))))
         .all()
     : [];
-  const runs: Hist = ws.filter((w) => w.type === "run" && w.distanceM).map((w) => ({ at: w.startedAt, value: w.distanceM! }));
-  const contacts: Hist = [];
-  const hard: Record<string, Hist> = {};
-  for (const w of ws) {
-    const mine = sets.filter((s) => s.workoutId === w.id);
-    const fc = mine.reduce((n, s) => n + (s.footContacts ?? 0), 0);
-    if (fc) contacts.push({ at: w.startedAt, value: fc });
-    const per: Record<string, number> = {};
-    for (const s of mine) {
-      if (s.rpe != null && s.rpe < 7) continue;
-      for (const m of getExercise(s.exerciseId)?.primaryMuscles ?? []) per[m] = (per[m] ?? 0) + 1;
-    }
-    for (const [m, n] of Object.entries(per)) (hard[m] ??= []).push({ at: w.startedAt, value: n });
-  }
-  return { runs, contacts, hard };
+  const h = buildHistory(ws, sets, historyLookup);
+  const hist = (xs: { at: number; v: number }[]): Hist => xs.map((x) => ({ at: x.at, value: x.v }));
+  return {
+    runs: hist(h.runs.map((r) => ({ at: r.at, v: r.distanceM }))),
+    contacts: hist(h.plyoContacts.map((r) => ({ at: r.at, v: r.contacts }))),
+    hard: Object.fromEntries(Object.entries(h.hardSetsByMuscle).map(([m, xs]) => [m, hist(xs.map((r) => ({ at: r.at, v: r.sets })))])),
+  };
 }
 
 /** Item for exercise `e` with the given dose, with the load numbers the spike guard needs. */

@@ -19,6 +19,19 @@ export const SESSION_TYPES = [
 ] as const;
 export type SessionType = (typeof SESSION_TYPES)[number];
 
+/** Per session type data. countsTowardLoad false: sets of these types never count as hard sets in training history. */
+export const SESSION_TYPE_META: Record<SessionType, { countsTowardLoad: boolean }> = {
+  warmup: { countsTowardLoad: false },
+  lower_strength: { countsTowardLoad: true },
+  upper_strength: { countsTowardLoad: true },
+  back_core: { countsTowardLoad: true },
+  plyo: { countsTowardLoad: true },
+  mobility: { countsTowardLoad: false },
+  run: { countsTowardLoad: true },
+  swim: { countsTowardLoad: true },
+  conditioning: { countsTowardLoad: true },
+};
+
 export type Equipment = "bodyweight" | "band" | "dumbbell" | "gym" | "pool";
 export const ROLES = ["easy", "quality", "long", "recovery", "technique", "endurance"] as const;
 export type Role = (typeof ROLES)[number];
@@ -61,3 +74,9 @@ const byId = new Map(exercises.map((e) => [e.id, e]));
 export const getExercise = (id: string) => byId.get(id);
 export const bySessionType = (t: SessionType) =>
   exercises.filter((e) => e.sessionTypes.includes(t));
+
+/** Exercise lookup for core's buildHistory: muscles, and whether any of its session types counts toward load. */
+export const historyLookup = (id: string) => {
+  const e = byId.get(id);
+  return e && { primaryMuscles: e.primaryMuscles, countsTowardLoad: e.sessionTypes.some((t) => SESSION_TYPE_META[t].countsTowardLoad) };
+};

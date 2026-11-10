@@ -1,9 +1,8 @@
-import { exercises } from "@openphysio/catalog";
-import { adaptNextWeek, healthDaily, painEntry, plannedSession, setLog, workout, type AdaptResult, type PlannedSessionRow } from "@openphysio/core";
+import { exercises, historyLookup } from "@openphysio/catalog";
+import { adaptNextWeek, buildHistory, healthDaily, painEntry, plannedSession, setLog, workout, type AdaptResult, type PlannedSessionRow } from "@openphysio/core";
 import { and, eq, gte, inArray, isNull } from "drizzle-orm";
 import Storage from "expo-sqlite/kv-store";
 import { db } from "../db";
-import { buildHistory } from "./plan";
 import { allPlanned } from "./plandb";
 
 const REVIEWED_KEY = "adapt.reviewed";
@@ -26,7 +25,7 @@ export async function proposeNextWeek(now = Date.now()): Promise<AdaptResult> {
     pain,
     recovery,
     exercises,
-    history: buildHistory(ws, sets),
+    history: buildHistory(ws, sets, historyLookup),
     now,
   });
 }

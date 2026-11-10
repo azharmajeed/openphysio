@@ -1,12 +1,12 @@
-import { goals } from "@openphysio/catalog";
-import { healthDaily, profile, setLog, weightEntry, workout } from "@openphysio/core";
+import { goals, historyLookup } from "@openphysio/catalog";
+import { buildHistory, healthDaily, profile, setLog, weightEntry, workout, type PlanHistory } from "@openphysio/core";
 import { localDate } from "@openphysio/integrations";
 import { and, desc, eq, gte, inArray, isNull } from "drizzle-orm";
 import { useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
 import { ScrollView, Text } from "react-native";
 import { db } from "../db";
-import { buildHistory, ymd } from "../lib/plan";
+import { ymd } from "../lib/plan";
 import { bestPace, metricsFor, weeklyTotals, weightSeries, type Metric } from "../lib/progress";
 import { fmtPace } from "../lib/run";
 import { Bars, Card, Line } from "../progress/Charts";
@@ -14,7 +14,7 @@ import { NutritionCard, type NutritionData } from "../progress/NutritionCard";
 
 const WEEKS = 8;
 const DAY = 86_400_000;
-type Data = { metrics: Metric[]; hist: ReturnType<typeof buildHistory>; ws: (typeof workout.$inferSelect)[]; nutrition: NutritionData };
+type Data = { metrics: Metric[]; hist: PlanHistory; ws: (typeof workout.$inferSelect)[]; nutrition: NutritionData };
 
 async function load(): Promise<Data | null> {
   const now = Date.now();
@@ -26,7 +26,7 @@ async function load(): Promise<Data | null> {
   const [band] = await db.select().from(healthDaily).where(and(eq(healthDaily.date, localDate(now)), eq(healthDaily.source, "band"), isNull(healthDaily.deletedAt))).limit(1);
   return {
     metrics: metricsFor(goals, p.goals),
-    hist: buildHistory(ws, sets),
+    hist: buildHistory(ws, sets, historyLookup),
     ws,
     nutrition: {
       profile: p,

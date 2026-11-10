@@ -5,6 +5,7 @@ export * from "./safety/index.ts";
 export * from "./sync/index.ts";
 export * from "./plan/generate.ts";
 export * from "./plan/adapt.ts";
+export * from "./plan/history.ts";
 export * from "./nutrition/index.ts";
 export * from "./voice/index.ts";
 export * from "./geo/index.ts";
