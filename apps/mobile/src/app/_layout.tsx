@@ -36,6 +36,7 @@ export default function RootLayout() {
       <Stack.Screen name="intake" options={{ title: "Welcome", headerBackVisible: false, gestureEnabled: false }} />
       <Stack.Screen name="profile" options={{ title: "Profile" }} />
       <Stack.Screen name="health" options={{ title: "Band data" }} />
+      <Stack.Screen name="checkin" options={{ title: "Next week" }} />
       <Stack.Screen name="session/[id]" options={{ title: "Session" }} />
       <Stack.Screen name="run/index" options={{ title: "Run" }} />
       <Stack.Screen name="run/[id]" options={{ title: "Run" }} />
