@@ -1,16 +1,15 @@
 # Handoff — OpenPhysio (2026-11-09)
 
-## Current state (orchestrator checkpoint, paused 2026-11-09 evening)
-
-Work paused at Azhar's request (laptop off). Resume from here.
+## Current state (orchestrator checkpoint, 2026-11-10)
 
 - **Process:** G1 passed (D-1, D-2), decisions D-3 to D-10 recorded. Every implementation task gets its own branch, worktree and PR into the integration branch `v0.1`. The orchestrator merges a PR after review (D-9), and Azhar merges `v0.1` into `main`. Implementers are Sonnet subagents with ponytail lite, briefed with `docs/tasks/AGENT-BRIEF.md`. Conventions and the no-hard-coding rule are in `docs/tasks/EXECUTION.md`. Framework decision: stay on React Native (Azhar, 2026-11-09).
-- **Done (18 PRs in v0.1):** T01, T02, S1, S2, S3, C1, C2, C3, C3b, N1, H2, I2, A1, H1; plus the server halves of A2 (coach), L1 (Learn feed) and S4 (scans); and M1 (app shell; a release APK builds locally).
-- **Paused mid-task: M2** (intake, profile, local DB). Branch `feat/m2-intake` (WIP commit pushed), worktree `C:\w\M2`. The native build compiles, but the release JS bundle fails. Next step: reproduce with `npx expo export -p android` in `apps/mobile` and fix it, then run the contract checks and open the PR.
-- **Next phone tasks, one at a time:** M2 → M4 (logging) → M3 (plan, Today, player) = first testable build. Then M5, I1, M7, the phone halves of L1, A2 (A2M) and S4, M6, I3, C4, then A3. Deferred: C5, V1–V4 (D-8).
-- **Windows build lessons** (in AGENT-BRIEF): short worktree path `C:\w\<ID>`, JDK 17 at `%LOCALAPPDATA%\Programs\jdk-17`, `JAVA_TOOL_OPTIONS=-Djava.net.preferIPv4Stack=true`, `node-linker=hoisted`, build arm64-v8a only.
-- **Needs Azhar:** a Pixel connected with USB debugging (none seen yet); approval before any real Claude API calls (everything uses the mock provider).
-- **Leftover scratch folders, safe to delete:** `C:\op`, `C:\b`, and the empty folders under `..\openphysio-wt\`.
+- **Milestone v0.1-app is built (32 PRs in v0.1, 210 tests):** every task in `docs/tasks/README.md` except the deferred C5 and V1–V4 (D-8). Plus hard-coding fixes H1–H3, C3b, and the A2M Coach tab.
+- **Not verified on a device:** nothing has run on a phone or emulator yet. The developer options on Azhar's Pixel appear blocked by a company device policy, so the plan is to sideload the APK (no developer options needed). Device checks in every task checkpoint say "not run".
+- **First-test APK sent 2026-11-10:** setup, plan, Today, session player, logging. A combined APK with every feature is next.
+- **Known follow-ups:** a stroke column for swims (currently stored in notes); GPS jitter tuning after a real run; scan cards are read-only (no edit-on-approve); band heart rate isn't attached to runs yet; the two scan modules are legacy (non-TurboModule) and need a device check.
+- **Windows build lessons** (in AGENT-BRIEF): short worktree path `C:\w\<ID>`, JDK 17 at `%LOCALAPPDATA%\Programs\jdk-17`, `JAVA_TOOL_OPTIONS=-Djava.net.preferIPv4Stack=true`, `node-linker=hoisted`, arm64-v8a only, Gradle `--no-daemon`, call gradlew by full path.
+- **Needs Azhar:** install and test the APK; pair the band with Gadgetbridge (U1); approve spend before any real Claude API calls (everything uses the mock provider); review and merge `v0.1` into `main`.
+- **Leftover scratch folders, safe to delete:** `C:\op`, `C:\b`, and anything under `..\openphysio-wt\`.
 
 ## Original handoff (planning session)
 
