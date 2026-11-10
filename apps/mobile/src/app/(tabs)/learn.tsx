@@ -1,5 +1,3 @@
-import { Placeholder } from "../../placeholder";
+import LearnScreen from "../../learn/LearnScreen";
 
-export default function Screen() {
-  return <Placeholder title="Learn" />;
-}
+export default LearnScreen;
