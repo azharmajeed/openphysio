@@ -6,6 +6,7 @@ import { db } from "../db";
 import { loadForm } from "../lib/store";
 import migrations from "../migrations";
 import { useSyncOnForeground } from "../sync";
+import "../run/task";
 
 export default function RootLayout() {
   const { success, error } = useMigrations(db, migrations);
@@ -36,6 +37,9 @@ export default function RootLayout() {
       <Stack.Screen name="profile" options={{ title: "Profile" }} />
       <Stack.Screen name="health" options={{ title: "Band data" }} />
       <Stack.Screen name="session/[id]" options={{ title: "Session" }} />
+      <Stack.Screen name="run/index" options={{ title: "Run" }} />
+      <Stack.Screen name="run/[id]" options={{ title: "Run" }} />
+      <Stack.Screen name="swim" options={{ title: "Swim" }} />
     </Stack>
   );
 }

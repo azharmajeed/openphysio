@@ -79,19 +79,19 @@ export async function workoutFor(planned: Planned) {
   return row;
 }
 
-/** Run or swim logged by hand (M5 will replace this with the GPS tracker). Saves a finished workout and marks the plan done. */
-export async function logQuick(planned: Planned, v: { durationS: number; distanceM: number | null; notes: string }) {
+/** Run (without GPS) or swim logged by hand, planned or not. Saves a finished workout and marks the plan done. */
+export async function logQuick(type: "run" | "swim", planned: Planned | undefined, v: { durationS: number; distanceM: number | null; notes: string }) {
   const now = Date.now();
   await db.insert(workout).values({
     ...newRow(),
-    type: planned.type,
+    type,
     startedAt: now - v.durationS * 1000,
     endedAt: now,
     durationS: v.durationS,
     distanceM: v.distanceM,
     notes: v.notes.trim() || null,
     source: "manual",
-    plannedSessionId: planned.id,
+    plannedSessionId: planned?.id ?? null,
   });
-  await markPlannedDone(planned.id);
+  if (planned) await markPlannedDone(planned.id);
 }
