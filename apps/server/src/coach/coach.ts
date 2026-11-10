@@ -14,12 +14,19 @@ import {
 import { and, between, inArray, isNull } from "drizzle-orm";
 import type { BetterSQLite3Database } from "drizzle-orm/better-sqlite3";
 import type { AiProvider, Block, Message, ToolDef } from "../ai/index.ts";
+import { PROPOSE_TOOL, validateProposal, type Proposal } from "./propose.ts";
 import { RED_FLAG_LABELS, RED_FLAG_REPLY, detectRedFlag } from "./redflags.ts";
 
 export const MAX_TURNS = 5;
 
 export type Citation = { id: string; title: string; url: string; grade: string };
-export type CoachReply = { text: string; citations: Citation[]; redFlag: boolean };
+export type CoachReply = {
+  text: string;
+  citations: Citation[];
+  redFlag: boolean;
+  proposals: Proposal[];
+  refusals: string[];
+};
 
 const none = { type: "object", properties: {} };
 const range = {
@@ -48,6 +55,7 @@ export const TOOLS: ToolDef[] = [
     description: "Search the evidence-backed knowledge base. Results include source ids to cite.",
     input_schema: { type: "object", properties: { q: { type: "string" } }, required: ["q"] },
   },
+  PROPOSE_TOOL,
 ];
 
 const day = (d: Date) => d.toISOString().slice(0, 10);
@@ -59,6 +67,7 @@ Rules:
 - Injuries come first. The injury list below is always in force: never suggest loading or exercises that stress an injured area; prefer easier variants.
 - Use the tools to read the user's data before answering; do not guess at their plan, logs or recovery.
 - Back health claims with the knowledge base: call search_knowledge, then cite the source id in square brackets, like [src-id]. Cite only ids returned by tools. If there is no source, say it is general coaching advice.
+- To change the plan call propose_plan_change (one change per call). It only proposes: the user must tap Apply, and the server refuses unsafe changes with a reason. Explain a refusal plainly and offer a safer option.
 - If the user describes anything alarming (${RED_FLAG_LABELS.join(", ")}), tell them to stop and see a professional.
 - Never use Strava data. Be brief and practical.`;
 
@@ -151,9 +160,11 @@ export async function coachChat(
   const question = typeof lastUser?.content === "string" ? lastUser.content : "";
   const used: string[] = [];
   let reply: CoachReply;
+  const proposals: Proposal[] = [];
+  const refusals: string[] = [];
 
   if (detectRedFlag(question)) {
-    reply = { text: RED_FLAG_REPLY, citations: [], redFlag: true };
+    reply = { text: RED_FLAG_REPLY, citations: [], redFlag: true, proposals: [], refusals: [] };
   } else {
     const tools = coachTools(db);
     const convo = [...messages];
@@ -184,6 +195,14 @@ export async function coachChat(
         role: "user",
         content: r.toolCalls.map((c): Block => {
           used.push(c.name);
+          if (c.name === PROPOSE_TOOL.name) {
+            const o = validateProposal(db, c.input);
+            if (!o.ok) refusals.push(o.reason);
+            else proposals.push(o.proposal);
+            return o.ok
+              ? { type: "tool_result", tool_use_id: c.id, content: "proposed; waiting for the user to tap Apply" }
+              : { type: "tool_result", tool_use_id: c.id, content: o.reason, is_error: true };
+          }
           const out = tools.run(c.name, c.input);
           return out === undefined
             ? {
@@ -196,7 +215,7 @@ export async function coachChat(
         }),
       });
     }
-    reply = { text, citations: resolveCitations(text), redFlag: false };
+    reply = { text, citations: resolveCitations(text), redFlag: false, proposals, refusals };
   }
 
   // ponytail: deterministic one-line memory, no model summary; upgrade when notes need to be richer.

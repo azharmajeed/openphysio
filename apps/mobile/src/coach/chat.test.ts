@@ -32,6 +32,13 @@ test("sendChat covers not configured, offline, 503 and success", async () => {
     seen = u + (init.headers as Record<string, string>).authorization;
     return new Response(JSON.stringify({ text: "hi", citations: [], redFlag: true }));
   }) as unknown as typeof fetch;
-  expect(await sendChat(cfg, msgs, ok)).toEqual({ ok: true, reply: { text: "hi", citations: [], redFlag: true } });
+  expect(await sendChat(cfg, msgs, ok)).toEqual({ ok: true, reply: { text: "hi", citations: [], redFlag: true, proposals: [], refusals: [] } });
   expect(seen).toBe("http://h/api/coach/chatBearer t");
+});
+
+test("proposals and refusals from the server reach the reply", async () => {
+  const body = { text: "t", proposals: [{ change: { kind: "move" }, session: { id: "s" } }], refusals: ["refused: x"] };
+  const f = (async () => new Response(JSON.stringify(body))) as unknown as typeof fetch;
+  const r = await sendChat({ url: "http://s", token: "t" }, [{ role: "user", content: "q" }], f);
+  expect(r).toMatchObject({ ok: true, reply: { proposals: body.proposals, refusals: ["refused: x"] } });
 });

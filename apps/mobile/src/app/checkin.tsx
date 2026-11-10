@@ -4,7 +4,7 @@ import { Pressable, ScrollView, Text, View } from "react-native";
 import type { AdaptResult } from "@openphysio/core";
 import { applyNextWeek, markReviewed, proposeNextWeek } from "../lib/adaptdb";
 
-const LABEL = { regress: "Easier", progress: "Step up", remove: "Removed", lower_intensity: "Lighter", keep: "Note" } as const;
+const LABEL = { regress: "Easier", progress: "Step up", remove: "Removed", lower_intensity: "Lighter", keep: "Note", swap: "Swap", volume: "Volume", move: "Moved" } as const;
 
 export default function CheckIn() {
   const router = useRouter();

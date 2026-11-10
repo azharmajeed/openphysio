@@ -4,7 +4,7 @@ All `/api/*` routes need `Authorization: Bearer <token>`. Errors are `{ "error":
 
 ## POST /api/coach/chat
 
-AI coach. Reads the user's synced data (profile, injuries, plan, logs, recovery) and the knowledge base through server-side tools, and cites sources. Read-only: it never changes data.
+AI coach. Reads the user's synced data (profile, injuries, plan, logs, recovery) and the knowledge base through server-side tools, and cites sources. It never changes data itself: plan changes come back as `proposals` that the phone applies only after the user taps Apply.
 
 Request:
 
@@ -22,13 +22,18 @@ Response 200:
   "citations": [
     { "id": "src-ioc-load-2016", "title": "IOC consensus on load ...", "url": "https://...", "grade": "A" }
   ],
-  "redFlag": false
+  "redFlag": false,
+  "proposals": [],
+  "refusals": []
 }
 ```
 
 - `text`: the reply. Source ids appear inline as `[id]`; the client can turn them into chips by matching `citations[].id`. Ids not in the registry are never listed in `citations`.
 - `citations`: resolved sources (`grade` is `A`, `B` or `C`). Open `url` on tap.
 - `redFlag`: `true` when the last user message describes a red flag (chest pain, fainting, spreading numbness, night pain, sudden swelling, cannot bear weight, fever with joint pain). The model is not called; `text` is a fixed stop-and-see-a-professional reply and `citations` is empty. Show it prominently.
+
+- `proposals`: plan changes the coach suggested that passed server validation (injury filter and 30-day spike guard). Each is `{ change, session }`: `change` is the C4 `AdaptChange` shape (`sessionId`, `kind` swap | volume | move, `exerciseId?`, `from`, `to`, `reason`); `session` is the full planned session as it would look (items and date changed, `updatedAt` set). The phone shows a card with Apply / Dismiss; on Apply it saves `session` locally and syncs. Nothing is written server-side.
+- `refusals`: plain-language reasons for proposals the server rejected, e.g. `refused: exceeds your 30-day max by 18% (run distance; the limit is 10% above it)`. Show them to the user; the model also receives each reason and can propose a safer change.
 
 Errors: `400` bad body, `401` bad token, `502` provider error, `503` AI not configured (e.g. `ANTHROPIC_API_KEY` unset). With `AI_PROVIDER=mock` replies are canned. On network failure the client should show an offline notice.
 

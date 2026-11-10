@@ -31,6 +31,10 @@ export async function proposeNextWeek(now = Date.now()): Promise<AdaptResult> {
   });
 }
 
+/** Saves a confirmed coach proposal through the same path as the weekly check-in. */
+export const applyProposal = (p: { change: AdaptResult["changes"][number]; session: PlannedSessionRow }, now = Date.now()) =>
+  applyNextWeek({ changes: [p.change], sessions: [p.session], week: null }, now);
+
 export const reviewedWeek = (): string | null => {
   try {
     return Storage.getItemSync(REVIEWED_KEY);
@@ -52,7 +56,7 @@ export async function applyNextWeek(r: AdaptResult, now = Date.now()) {
     for (const s of r.sessions)
       await tx
         .update(plannedSession)
-        .set(s.items.length ? { items: s.items, updatedAt: now } : { deletedAt: now, updatedAt: now })
+        .set(s.items.length ? { items: s.items, date: s.date, updatedAt: now } : { deletedAt: now, updatedAt: now })
         .where(eq(plannedSession.id, s.id));
   });
   if (r.week) markReviewed(r.week.next.start);
