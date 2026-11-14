@@ -3,6 +3,7 @@ import { useFocusEffect, useRouter } from "expo-router";
 import { useCallback, useState } from "react";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import { LOGGABLE_TYPES, fmtSet, type LoggableType } from "../../lib/log";
+import { plural } from "../../lib/plan";
 import { fmtDistance, fmtPace } from "../../lib/run";
 import { activeWorkout, history, startWorkout } from "../../lib/logdb";
 import { Session } from "../../log/Session";
@@ -65,7 +66,7 @@ export default function Log() {
           <Text style={{ fontWeight: "600" }}>
             {new Date(w.startedAt).toLocaleString()} · {w.type} · {Math.round((w.durationS ?? 0) / 60)} min{w.distanceM ? ` · ${fmtDistance(w.type, w.distanceM)}` : ""}
             {w.type === "run" && w.distanceM && w.durationS ? ` · ${fmtPace((w.durationS / w.distanceM) * 1000)} /km` : ""}
-            {w.sets.length ? ` · ${w.sets.length} sets` : ""}
+            {w.sets.length ? ` · ${plural(w.sets.length, "set")}` : ""}
           </Text>
           {w.notes ? <Text>{w.notes}</Text> : null}
           {w.sets.map((s) => {

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Alert, Pressable, ScrollView, Text, View } from "react-native";
 import { draftFor, fmtSet, restFor, RPE_OPTIONS, STEPS, type LoggableType, type SetDraft } from "../lib/log";
 import { addSet, discardWorkout, finishWorkout, loadContext, savePain, undoSet, workoutSets } from "../lib/logdb";
-import { describeItem, targetDraft } from "../lib/plan";
+import { describeItem, plural, targetDraft } from "../lib/plan";
 import { getPlanned } from "../lib/plandb";
 import { Chips } from "../ui";
 import { PainCheck } from "./Pain";
@@ -57,6 +57,7 @@ export function Session({ workout, onDone }: { workout: W; onDone: () => void })
   const [restEnds, setRestEnds] = useState<number | null>(null);
   const [picking, setPicking] = useState(false);
   const [pain, setPain] = useState(false);
+  const scroll = useRef<React.ComponentRef<typeof ScrollView>>(null);
   const voice = useVoice();
   // Planned session: warm-up first, then the exercises (first item wins when an exercise repeats).
   const [steps, setSteps] = useState<Step[]>([]);
@@ -135,7 +136,7 @@ export function Session({ workout, onDone }: { workout: W; onDone: () => void })
   if (picking) return <Picker type={type} ctx={ctx} onPick={select} onClose={() => setPicking(false)} />;
 
   return (
-    <ScrollView contentContainerStyle={{ padding: 16 }}>
+    <ScrollView ref={scroll} contentContainerStyle={{ padding: 16 }}>
       <Text style={{ fontSize: 18, fontWeight: "700", marginBottom: 8 }}>{type} session</Text>
       {stepIdx >= 0 && cur && (
         <View style={{ backgroundColor: "#f3f4f6", borderRadius: 8, padding: 12, marginBottom: 12 }}>
@@ -143,7 +144,7 @@ export function Session({ workout, onDone }: { workout: W; onDone: () => void })
             {steps[stepIdx]!.warmup ? "Warm-up" : "Exercise"} · step {stepIdx + 1} of {steps.length}
           </Text>
           <Text style={{ fontSize: 16, marginTop: 4 }}>
-            Target: {describeItem(steps[stepIdx]!.item)} · rest {steps[stepIdx]!.item.restSec}s · done {curSets.length}/{steps[stepIdx]!.item.sets} sets
+            Target: {describeItem(steps[stepIdx]!.item)} · rest {steps[stepIdx]!.item.restSec}s · done {curSets.length}/{plural(steps[stepIdx]!.item.sets, "set")}
           </Text>
           {steps[stepIdx]!.item.notes !== "" && <Text style={{ fontStyle: "italic", marginTop: 4 }}>{steps[stepIdx]!.item.notes}</Text>}
           {cur.cues.map((c, i) => (
@@ -207,14 +208,16 @@ export function Session({ workout, onDone }: { workout: W; onDone: () => void })
       )}
 
       {pain && cur && (
-        <PainCheck
-          exercise={cur}
-          regression={cur.regressionId ? getExercise(cur.regressionId) : undefined}
-          onSave={(v) => savePain({ workoutId: workout.id, exerciseId: cur.id, ...v })}
-          onSwitch={select}
-          onStopSession={() => void finish()}
-          onClose={() => setPain(false)}
-        />
+        <View onLayout={(e) => scroll.current?.scrollTo({ y: e.nativeEvent.layout.y, animated: true })}>
+          <PainCheck
+            exercise={cur}
+            regression={cur.regressionId ? getExercise(cur.regressionId) : undefined}
+            onSave={(v) => savePain({ workoutId: workout.id, exerciseId: cur.id, ...v })}
+            onSwitch={select}
+            onStopSession={() => void finish()}
+            onClose={() => setPain(false)}
+          />
+        </View>
       )}
 
       <Btn t="Finish session" onPress={() => void finish()} />

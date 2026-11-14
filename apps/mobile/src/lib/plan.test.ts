@@ -1,11 +1,6 @@
 import { expect, test } from "vitest";
-import { calendar, parseQuick, targetDraft, typeColor } from "./plan.ts";
+import { calendar, parseQuick, plural, targetDraft, typeColors } from "./plan.ts";
 import { exercises } from "@openphysio/catalog";
-
-test("type colour is deterministic per type string", () => {
-  expect(typeColor("gym")).toBe(typeColor("gym"));
-  expect(typeColor("gym")).toMatch(/^#/);
-});
 
 test("calendar cuts first..last date into weeks", () => {
   const weeks = calendar([{ date: "2026-11-09" }, { date: "2026-11-09" }, { date: "2026-11-24" }]);
@@ -26,4 +21,17 @@ test("target draft uses the plan amount until a set is logged", () => {
   const item = { exerciseId: e.id, block: "x", sets: 3, amount: 9, unit: "reps" as const, restSec: 60, notes: "", muscles: [] as string[] };
   expect(targetDraft(e, item).reps).toBe(9);
   expect(targetDraft(e, item, { reps: 7, loadKg: 0, durationS: null, rpe: null }).reps).toBe(7);
+});
+
+test("types in one plan never share a colour (in order of first appearance)", () => {
+  const colorOf = typeColors(["gym", "plyo", "run", "swim", "gym", "plyo"]);
+  expect(colorOf("gym")).toBe(colorOf("gym"));
+  expect(new Set(["gym", "plyo", "run", "swim"].map(colorOf)).size).toBe(4);
+  expect(typeColors(["plyo", "gym"])("plyo")).toBe(colorOf("gym"));
+});
+
+test("plural helper", () => {
+  expect(plural(1, "set")).toBe("1 set");
+  expect(plural(2, "set")).toBe("2 sets");
+  expect(plural(0, "set")).toBe("0 sets");
 });

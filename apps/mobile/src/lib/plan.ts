@@ -12,9 +12,18 @@ export const addDays = (date: string, n: number) => {
 };
 
 const PALETTE = ["#2563eb", "#059669", "#d97706", "#7c3aed", "#db2777", "#0891b2", "#65a30d", "#dc2626", "#4f46e5"];
-/** Same type string, same colour; no type-to-colour table. */
-export const typeColor = (type: string) =>
-  PALETTE[Math.abs([...type].reduce((h, c) => Math.imul(h ^ c.charCodeAt(0), 16777619), 2166136261)) % PALETTE.length]!;
+/** Colour per session type, handed out in order of first appearance, so types in one plan never share one. */
+export const typeColors = (types: string[]) => {
+  const order = [...new Set(types)];
+  return (type: string) => PALETTE[Math.max(0, order.indexOf(type)) % PALETTE.length]!;
+};
+
+/** Colours for a whole plan, by order of first appearance by date. */
+export const planColors = (sessions: { date: string; type: string }[]) =>
+  typeColors([...sessions].sort((a, b) => a.date.localeCompare(b.date)).map((s) => s.type));
+
+/** "1 set", "2 sets". */
+export const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? "" : "s"}`;
 
 /** Target as text: "3 × 10 reps", "3 × 30 s", "35 min", "3 × 200 m". */
 export function describeItem(i: PlanItem): string {

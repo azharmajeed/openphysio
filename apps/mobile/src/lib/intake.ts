@@ -21,13 +21,26 @@ export const humanizeId = humanize;
 
 export type InjuryForm = {
   id?: string;
-  bodyArea: BodyArea;
+  /** null until the user picks one; validate() blocks saving without it. */
+  bodyArea: BodyArea | null;
   side: Side | null;
   description: string;
   avoidAreas: BodyArea[];
   status: InjuryStatus;
   startedOn: string;
+  /** Set once the user taps an avoid-area chip; avoid areas then stop following the body area. */
+  avoidEdited?: boolean;
 };
+
+export const newInjury = (): InjuryForm => ({ bodyArea: null, side: null, description: "", avoidAreas: [], status: "active", startedOn: today() });
+
+/** Avoid areas follow the body area (empty, or just the old area) until the user edits them. */
+export function changeBodyArea(i: InjuryForm, area: BodyArea): InjuryForm {
+  const follows = !i.avoidEdited && (i.avoidAreas.length === 0 || (i.avoidAreas.length === 1 && i.avoidAreas[0] === i.bodyArea));
+  return { ...i, bodyArea: area, avoidAreas: follows ? [area] : i.avoidAreas };
+}
+
+export const editAvoidAreas = (i: InjuryForm, avoidAreas: BodyArea[]): InjuryForm => ({ ...i, avoidAreas, avoidEdited: true });
 
 export type IntakeForm = {
   name: string;
@@ -62,6 +75,8 @@ const num = (s: string) => {
 };
 export const today = (now = Date.now()) => new Date(now).toISOString().slice(0, 10);
 
+export const NEEDS_AREA = "Choose a body area for every injury";
+
 /** Form -> DB rows. injuries with an id keep it so edits update, not duplicate. */
 export function formToRows(form: IntakeForm, now = Date.now()) {
   const profileRow = {
@@ -80,17 +95,21 @@ export function formToRows(form: IntakeForm, now = Date.now()) {
   };
   const kg = num(form.weightKg);
   const weight = kg === null ? null : { ...newRow(now), date: today(now), kg };
-  const injuries = form.injuries.map((i) => ({
-    ...(i.id ? { id: i.id, updatedAt: now, deletedAt: null } : newRow(now)),
-    bodyArea: i.bodyArea,
-    side: i.side,
-    description: i.description.trim(),
-    avoidAreas: i.avoidAreas.length ? i.avoidAreas : [i.bodyArea],
-    status: i.status,
-    startedOn: i.startedOn || null,
-    source: "manual" as const,
-  }));
+  const injuries = form.injuries.map((i) => {
+    if (!i.bodyArea) throw new Error(NEEDS_AREA);
+    return {
+      ...(i.id ? { id: i.id, updatedAt: now, deletedAt: null } : newRow(now)),
+      bodyArea: i.bodyArea,
+      side: i.side,
+      description: i.description.trim(),
+      avoidAreas: i.avoidAreas.length ? i.avoidAreas : [i.bodyArea],
+      status: i.status,
+      startedOn: i.startedOn || null,
+      source: "manual" as const,
+    };
+  });
   return { profileRow, weight, injuries };
 }
 
-export const validate = (form: IntakeForm) => (form.name.trim() ? null : "Name is required");
+export const validate = (form: IntakeForm) =>
+  !form.name.trim() ? "Name is required" : form.injuries.some((i) => !i.bodyArea) ? NEEDS_AREA : null;

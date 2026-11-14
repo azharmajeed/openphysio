@@ -21,6 +21,7 @@
     "@openphysio/catalog": "workspace:*",
     "@openphysio/core": "workspace:*",
     "@openphysio/integrations": "workspace:*",
+    "@expo/vector-icons": "^15.0.2",
     "@react-native-ml-kit/text-recognition": "2.0.0",
     "drizzle-orm": "^0.45.4",
     "expo": "~58.0.23",
