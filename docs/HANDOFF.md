@@ -1,15 +1,75 @@
 # Handoff — OpenPhysio (2026-11-09)
 
-## Current state (orchestrator checkpoint, 2026-11-10)
+## Current state (orchestrator checkpoint, 2026-11-14)
 
-- **Process:** G1 passed (D-1, D-2), decisions D-3 to D-10 recorded. Every implementation task gets its own branch, worktree and PR into the integration branch `v0.1`. The orchestrator merges a PR after review (D-9), and Azhar merges `v0.1` into `main`. Implementers are Sonnet subagents with ponytail lite, briefed with `docs/tasks/AGENT-BRIEF.md`. Conventions and the no-hard-coding rule are in `docs/tasks/EXECUTION.md`. Framework decision: stay on React Native (Azhar, 2026-11-09).
-- **Milestone v0.1-app is built (32 PRs in v0.1, 210 tests):** every task in `docs/tasks/README.md` except the deferred C5 and V1–V4 (D-8). Plus hard-coding fixes H1–H3, C3b, and the A2M Coach tab.
-- **Not verified on a device:** nothing has run on a phone or emulator yet. The developer options on Azhar's Pixel appear blocked by a company device policy, so the plan is to sideload the APK (no developer options needed). Device checks in every task checkpoint say "not run".
-- **First-test APK sent 2026-11-10:** setup, plan, Today, session player, logging. A combined APK with every feature is next.
-- **Known follow-ups:** a stroke column for swims (currently stored in notes); GPS jitter tuning after a real run; scan cards are read-only (no edit-on-approve); band heart rate isn't attached to runs yet; the two scan modules are legacy (non-TurboModule) and need a device check.
-- **Windows build lessons** (in AGENT-BRIEF): short worktree path `C:\w\<ID>`, JDK 17 at `%LOCALAPPDATA%\Programs\jdk-17`, `JAVA_TOOL_OPTIONS=-Djava.net.preferIPv4Stack=true`, `node-linker=hoisted`, arm64-v8a only, Gradle `--no-daemon`, call gradlew by full path.
-- **Needs Azhar:** install and test the APK; pair the band with Gadgetbridge (U1); approve spend before any real Claude API calls (everything uses the mock provider); review and merge `v0.1` into `main`.
-- **Leftover scratch folders, safe to delete:** `C:\op`, `C:\b`, and anything under `..\openphysio-wt\`.
+### Where things stand
+- **Branch:** `v0.1` @ `5784e89`, clean, no open PRs. 35 task PRs merged, about 222 tests passing (lint, typecheck and test are green in CI). `main` has not been updated: Azhar merges `v0.1` → `main`.
+- **Built:** every task in `docs/tasks/README.md` except the deferred C5 and V1–V4 (D-8). Plus the hard-coding fixes C3b and H1–H3, the A2M Coach tab, and the R0 fixes F1–F3.
+- **Process:** G1 passed (D-1, D-2), decisions D-3 to D-10 recorded. One branch, worktree (`C:\w\<ID>`) and PR per task into `v0.1`. The orchestrator reviews and squash-merges (D-9). Implementers are Sonnet subagents with ponytail lite, briefed with `docs/tasks/AGENT-BRIEF.md`. Conventions and the no-hard-coding rule ("code holds rules; data holds choices") are in `docs/tasks/EXECUTION.md`. Framework: stay on React Native (Azhar, 2026-11-09). Revisit KMP or Lynx only after the first round of testing.
+
+### What happened this session (2026-11-09 → 11-14)
+1. **Planning and approvals:** set up the repo and private GitHub remote; G1 approved PRD-001 v0.1 and TP-001 v1 as-is; defaults accepted for D-3 to D-8; D-9 (integration branch) and D-10 (local Android SDK build) recorded.
+2. **Toolchain:** installed the Android SDK and JDK 17 (no-admin zip) locally. The Windows build lessons are below and in AGENT-BRIEF.
+3. **Build waves:** T01, T02, M1–M7, S1–S4, A1–A3, A2M, C1–C4, N1, L1, I-tasks and so on, all via contracts in `docs/tasks/<ID>.md`. Notable repairs:
+   - N1 double-counted calories.
+   - C3's first week was too aggressive.
+   - C3b was rewritten as goal-data-driven (demands, priority, alternatives, warnings).
+4. **No-hard-coding sweep** (Azhar's rule, 2026-11-09):
+   - H1 moved channels, red flags and the scan timezone into data and tables.
+   - H2 made nutrition come from goal data.
+   - H3 made one `buildHistory` in core, shared by phone and server.
+5. **Device testing:** the developer options on Azhar's Pixel are blocked (likely company MDM or Duo), so testing moved to sideloading plus an emulator.
+   - Set up the AVD `openphysio_pixel` (Pixel 8a, Android 36, x86_64, WHPX).
+   - The arm64 APK can't run on the x86 emulator, so the emulator uses a separate x86_64 build.
+6. **R0 emulator pass:** found 6 bugs (3 of them safety) and 5 polish items (`docs/tasks/R0-emulator-findings.md`).
+   - Fixed by F1 (#35, injury form and UI), F2 (#34, catalogue `avoidIf` plus a data test) and F3 (#33, rest days, one same-type session a day, visible stand-ins and warnings).
+   - The re-test on the emulator confirmed every item fixed.
+7. **APK v0.1.1 sent to Azhar:** `C:\Users\rahza\Documents\work\openphysio-apk\openphysio-v0.1.1.apk` (arm64, 48.6 MB, includes F1–F3).
+
+### In progress when this checkpoint was written
+**Testing server features on the emulator** (Azhar: "Yes, test server features"). Docker Desktop was being started and the server isn't up yet. Next steps:
+1. `docker compose up -d --build` in the repo, with `OPENPHYSIO_TOKEN` set inline and `AI_PROVIDER=mock`. Never create or read `.env`.
+2. Check with `curl http://localhost:8787/health`.
+3. In the emulator app, open Settings and enter the server `http://10.0.2.2:8787` and the token. Tap Sync now.
+4. **Likely blocker:** Android release builds block cleartext `http://`. If sync fails, add a small fix task (e.g. `expo-build-properties` → `android.usesCleartextTraffic: true`), rebuild the x86_64 APK and retest.
+5. Then test Coach (mock provider only), the Learn feed and channels, and Scan import. Write the results as `docs/tasks/R1-server-findings.md` and fix in F-tasks as before.
+
+The emulator app already has a "Tester" profile (five goals, all equipment, pool Sun/Tue, active left-knee injury) with a generated plan.
+
+### Not yet verified on any device
+GPS run (it can be simulated on the emulator), voice logging, Health Connect, sync, Coach, Learn, Scan (two legacy native modules), GPX/TCX export, and the weekly check-in.
+
+### Known follow-ups
+- Swims need a stroke column (the stroke is stored in notes for now).
+- GPS jitter needs tuning after a real run.
+- Scan cards are read-only (no edit-on-approve).
+- Band heart rate isn't attached to runs.
+- C5 and V1–V4 are deferred.
+- A development build (dev client) would make UI iteration faster than release APKs.
+
+### Needs Azhar
+- Install and use APK v0.1.1 on the Pixel.
+- Pair the band with Gadgetbridge (U1).
+- Approve spend before any real Claude API call. Everything uses the mock provider.
+- Review and merge `v0.1` → `main`.
+
+### How to build and run (Windows lessons, also in AGENT-BRIEF)
+- **Environment:**
+  - `JAVA_HOME=%LOCALAPPDATA%\Programs\jdk-17`
+  - `ANDROID_HOME=%LOCALAPPDATA%\Android\Sdk`
+  - `JAVA_TOOL_OPTIONS=-Djava.net.preferIPv4Stack=true`
+  - `node-linker=hoisted`
+- **Paths and Gradle:** use a short worktree path (`C:\w\<ID>`). Run Gradle with `--no-daemon` (the laptop has 15 GB RAM). Call gradlew by its full path through `cmd /c "cd /d … && C:\…\gradlew.bat …"`.
+- **Phone APK:** `pnpm --filter mobile android:apk` builds arm64-v8a.
+- **Emulator APK:** build the same way with `-PreactNativeArchitectures=x86_64`. `C:\w\apk` is a detached worktree of `origin/v0.1` used for this.
+- **Agent validation:** mobile agents check with `npx expo export -p android` instead of Gradle.
+- **Emulator:**
+  - Start with `emulator -avd openphysio_pixel`. The host is `10.0.2.2` from inside the emulator.
+  - Stylus handwriting is off (`settings put secure stylus_handwriting_enabled 0`).
+- **Merging:** always wait for CI before merging. A "workflow file issue" with no jobs is transient: `gh run rerun`.
+
+### Leftover scratch folders, safe to delete
+`C:\op`, `C:\b`, anything under `..\openphysio-wt\`, and finished `C:\w\<ID>` worktrees (check with `git worktree list` first).
 
 ## Original handoff (planning session)
 
