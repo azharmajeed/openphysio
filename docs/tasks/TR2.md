@@ -1,7 +1,7 @@
 # TR2: Status page: filter pills, collapsible sections, click-through to PRD and plan details
 Project / milestone / feature: OpenPhysio / tooling / traceability (Azhar, 2026-11-14)
 Lane: Tooling
-Status: Ready
+Status: In review
 Approved scope reference: Azhar 2026-11-14: "add filter button pills and collapsible sections to make it easier to use. I should be able to click on the cards to read the underlying PRD and tech details."
 Approved product specification ID/version: none (developer tooling)
 Approved technical plan ID/version: none
@@ -41,3 +41,20 @@ Execution budget and retry limit: one implementation run + one repair after revi
 When to request a product or consequential technical decision: per EXECUTION.md escalation conditions
 Completion condition: validated result + PR -> In review
 Merge authority: orchestrator into v0.1 after review (D-9); Azhar for v0.1 -> main
+
+## Checkpoint
+# TR2 / run 1
+Agent/runtime/model, if reported: Claude Sonnet subagent, ponytail lite
+Execution host and checkout: local, ..\openphysio-wt\TR2
+Base commit / current branch / latest commit: 12c5647 / feat/tr2-status-page-ux / see PR
+Task/spec version: TR2 contract
+Last activity time: 2026-11-14
+Work completed: scripts/status-page.mjs now renders filter pills (5 groups, counts, clear), collapsible sections with counts and expand/collapse all, a click-through drawer (task, AC, document) linked by URL hash, a small markdown renderer, and plan-section lookup by task ID. Filters and open state persist in localStorage (try/catch). Tests added for the renderer, escaping and plan sections.
+Uncommitted changes and where they are preserved: none after commit
+Validation performed and results: pnpm lint, typecheck, test (237 passed) pass; node scripts/status-page.mjs runs on the real repo (page 373 KB). Checked in a browser: filters (AND across groups), clear, expand/collapse all, drawer open/close (Esc, button, hash), hash links for task, AC and doc, dark and light, phone width (full-screen sheet, no horizontal overflow).
+Artifacts, preview, and PR links: see PR
+Failures and attempts already made: none
+Open decisions/blockers: none
+Next action: review
+Task state and reason: In review, PR open
+Usage/cost, or unavailable: unavailable

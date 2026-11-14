@@ -2,12 +2,15 @@ import { describe, expect, it } from "vitest";
 import {
   buildBuildState,
   buildModel,
+  findSections,
+  md,
   parseContract,
   parsePrd,
   parsePrs,
   parseReadme,
   parseVerification,
   renderHtml,
+  splitSections,
 } from "./status-page.mjs";
 
 const prdMd = `# PRD-001: Test
@@ -130,7 +133,9 @@ PRD: PRD-002
   it("tasks carry their milestone and the page groups by it", () => {
     const m = v2();
     expect(m.tasks.map((t) => t.milestone)).toEqual(["v0.1", "v0.1", "v0.2"]);
-    expect(renderHtml({ ...m, docs: [], meta: {} })).toContain("v0.2 <small>1 tasks");
+    expect(renderHtml({ ...m, docs: [], meta: {} })).toContain(
+      'v0.2 <small><span class="n">1</span>',
+    );
   });
 });
 
@@ -162,5 +167,81 @@ describe("model", () => {
     expect(html).toContain("prefers-color-scheme:dark");
     expect(html).toContain("https://github.com/azharmajeed/openphysio/pull/7");
     expect(html).not.toMatch(/<(script|link)[^>]+src=/);
+  });
+});
+
+describe("markdown renderer", () => {
+  it("renders the supported syntax", () => {
+    const html = md(
+      [
+        "# Title",
+        "",
+        "Some **bold**, *italic* and `code` with [a link](https://x.io/a).",
+        "",
+        "- one",
+        "- two",
+        "",
+        "1. first",
+        "2. second",
+        "",
+        "| A | B |",
+        "| --- | --- |",
+        "| 1 | 2 |",
+        "",
+        "```",
+        "let a = 1 < 2;",
+        "```",
+      ].join("\n"),
+    );
+    expect(html).toContain("<h1>Title</h1>");
+    expect(html).toContain("<b>bold</b>");
+    expect(html).toContain("<i>italic</i>");
+    expect(html).toContain("<code>code</code>");
+    expect(html).toContain('<a href="https://x.io/a"');
+    expect(html).toContain("<ul><li>one</li><li>two</li></ul>");
+    expect(html).toContain("<ol><li>first</li><li>second</li></ol>");
+    expect(html).toContain("<th>A</th>");
+    expect(html).toContain("<td>2</td>");
+    expect(html).toContain("<pre><code>let a = 1 &lt; 2;</code></pre>");
+  });
+  it("escapes HTML and refuses script links", () => {
+    const html = md(
+      "<script>alert(1)</script> <img src=x onerror=y>\n\n[bad](javascript:alert(1)) `<b>`",
+    );
+    expect(html).not.toMatch(/<(script|img)/);
+    expect(html).toContain("&lt;script&gt;");
+    expect(html).not.toContain('href="javascript');
+    expect(html).toContain("<code>&lt;b&gt;</code>");
+  });
+  it("maps links to other documents onto the drawer", () => {
+    expect(md("[d](../decisions/D-9.md)")).toContain('href="#doc-D-9"');
+  });
+});
+
+describe("plan sections", () => {
+  const tp = "# TP\nintro\n## Mobile\nF4 builds the shell.\n## Other\nF40 and XF4 are different.\n";
+  it("splits at headings, ignoring code fences", () => {
+    const withFence = `${tp}\`\`\`\n# not a heading\n\`\`\`\n`;
+    expect(splitSections(withFence).map((s) => s.heading)).toEqual(["TP", "Mobile", "Other"]);
+  });
+  it("finds sections mentioning a task id as a whole word", () => {
+    const hits = findSections("F4", [{ name: "TP-001", md: tp }]);
+    expect(hits.map((h) => [h.doc, h.heading])).toEqual([["TP-001", "Mobile"]]);
+    expect(findSections("F4", [{ name: "x", md: "## A\nF40 only" }])).toEqual([]);
+  });
+  it("embeds document text once, safely, and makes cards clickable", () => {
+    const html = renderHtml({
+      ...model(),
+      docs: [
+        { name: "TP-001", kind: "tech", title: "T", status: "", href: "x", md: "</script><b>QQ9" },
+      ],
+      contractMd: { A1: "# A1: Alpha" },
+      meta: {},
+    });
+    expect(html.match(/<\/script>/g)).toHaveLength(2);
+    expect(html.split("QQ9").length - 1).toBe(1);
+    expect(html).toContain('data-open="task-A1"');
+    expect(html).toContain('data-open="ac-PRD-001-AC-1"');
+    expect(html).toContain('role="button" tabindex="0"');
   });
 });
