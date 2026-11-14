@@ -1,7 +1,7 @@
 # TR1: Status page: requirements → tasks → status, generated from the repo
 Project / milestone / feature: OpenPhysio / tooling / traceability (Azhar, 2026-11-14)
 Lane: Tooling
-Status: In review
+Status: Done
 Approved scope reference: Azhar 2026-11-14: "keep the current setup; one nice HTML page that updates from what is in the repo, broken down per work section and parallel stream"
 Approved product specification ID/version: none (developer tooling)
 Approved technical plan ID/version: none
