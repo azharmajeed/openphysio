@@ -1,7 +1,7 @@
 # TR1: Status page: requirements → tasks → status, generated from the repo
 Project / milestone / feature: OpenPhysio / tooling / traceability (Azhar, 2026-11-14)
 Lane: Tooling
-Status: Ready
+Status: In review
 Approved scope reference: Azhar 2026-11-14: "keep the current setup; one nice HTML page that updates from what is in the repo, broken down per work section and parallel stream"
 Approved product specification ID/version: none (developer tooling)
 Approved technical plan ID/version: none
@@ -49,3 +49,20 @@ Execution budget and retry limit: one implementation run + one repair after revi
 When to request a product or consequential technical decision: per EXECUTION.md escalation conditions
 Completion condition: validated result + PR -> In review
 Merge authority: orchestrator into v0.1 after review (D-9); Azhar for v0.1 -> main
+
+## Checkpoint
+# TR1 / run 1
+Agent/runtime/model, if reported: Claude Sonnet subagent, ponytail lite
+Execution host and checkout: local, ..\openphysio-wt\TR1
+Base commit / current branch / latest commit: b40ea6a / feat/tr1-status-page / see PR
+Task/spec version: TR1 contract plus orchestrator addition (README `PRD:` line, `PRD-n/AC-n` qualified ids, milestone from folder)
+Last activity time: 2026-11-14
+Work completed: scripts/status-page.mjs (parsers, model, HTML renderer, Node built-ins only), scripts/status-page.test.mjs (fixtures), `pnpm status`, docs/status.html in .gitignore.
+Uncommitted changes and where they are preserved: none after commit
+Validation performed and results: pnpm lint, typecheck, test (231 passed) all pass; node scripts/status-page.mjs runs cleanly on the real repo.
+Artifacts, preview, and PR links: see PR
+Failures and attempts already made: none
+Open decisions/blockers: none
+Next action: review
+Task state and reason: In review, PR open
+Usage/cost, or unavailable: unavailable

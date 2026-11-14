@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "typecheck": "pnpm -r typecheck",
     "test": "vitest run",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "status": "node scripts/status-page.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",

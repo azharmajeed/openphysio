@@ -26,3 +26,5 @@ workers/motion/out/
 .DS_Store
 Thumbs.db
 .vscode/
+# generated status page
+docs/status.html
