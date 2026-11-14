@@ -38,3 +38,23 @@ test("body areas are valid and cues, avoidIf, plyo contacts are filled", () => {
     if (e.sessionTypes.includes("run")) expect(e.avoidIf.length, e.id).toBeGreaterThan(0);
   }
 });
+
+const LOWER_LIMB = ["hip", "knee", "ankle", "foot", "achilles", "hamstring", "calf", "groin"];
+// Impact entries: counted contacts, any plyo or run, and dynamic warm-ups that load the foot.
+const impact = (e: (typeof exercises)[number]) =>
+  (e.footContactsPerRep ?? 0) > 0 ||
+  e.sessionTypes.some((t) => t === "plyo" || t === "run") ||
+  (e.sessionTypes.includes("warmup") && !e.sessionTypes.includes("mobility") && e.loads.includes("foot"));
+
+test("impact entries declare loads and avoid every lower-limb area they load", () => {
+  for (const e of exercises.filter(impact)) {
+    expect(e.loads.length, `${e.id} loads`).toBeGreaterThan(0);
+    const missing = e.loads.filter((a) => LOWER_LIMB.includes(a) && !e.avoidIf.includes(a));
+    expect(missing, `${e.id} loads but does not avoid`).toEqual([]);
+  }
+});
+
+test("any exercise that loads the knee under load is flagged for the knee", () => {
+  for (const e of exercises.filter((x) => x.sessionTypes.includes("lower_strength") && x.loads.includes("knee") && !x.sessionTypes.includes("mobility")))
+    expect(e.avoidIf, e.id).toContain("knee");
+});
