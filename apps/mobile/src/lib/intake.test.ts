@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { emptyForm, equipmentOptions, formToRows, goalOptions, sportOptions } from "./intake.ts";
+import { changeBodyArea, editAvoidAreas, emptyForm, equipmentOptions, formToRows, goalOptions, newInjury, sportOptions, validate, type InjuryForm } from "./intake.ts";
 
 test("options derive from the catalogue", () => {
   expect(goalOptions.length).toBeGreaterThan(0);
@@ -25,4 +25,41 @@ test("formToRows builds synced rows with defaults", () => {
   expect(r.injuries[0].id).toBeTruthy();
   expect(r.injuries[1].id).toBe("keep");
   expect(formToRows(emptyForm()).weight).toBeNull();
+});
+
+const inj = (o: Partial<InjuryForm> = {}): InjuryForm => ({
+  bodyArea: null,
+  side: null,
+  description: "",
+  avoidAreas: [],
+  status: "active",
+  startedOn: "",
+  ...o,
+});
+
+test("new injury starts with no body area and no avoid areas", () => {
+  expect(newInjury().bodyArea).toBeNull();
+  expect(newInjury().avoidAreas).toEqual([]);
+});
+
+test("avoid areas follow the body area until the user edits them", () => {
+  let i = changeBodyArea(inj(), "knee");
+  expect(i.avoidAreas).toEqual(["knee"]);
+  i = changeBodyArea(i, "ankle");
+  expect(i.bodyArea).toBe("ankle");
+  expect(i.avoidAreas).toEqual(["ankle"]);
+  i = editAvoidAreas(i, ["ankle", "hip"]);
+  i = changeBodyArea(i, "knee");
+  expect(i.avoidAreas).toEqual(["ankle", "hip"]);
+});
+
+test("a saved injury's avoid areas are not rewritten by a body area edit once edited", () => {
+  const i = changeBodyArea(inj({ bodyArea: "knee", avoidAreas: ["knee", "hip"] }), "ankle");
+  expect(i.avoidAreas).toEqual(["knee", "hip"]);
+});
+
+test("validate blocks an injury without a body area", () => {
+  const f = { ...emptyForm(), name: "A", injuries: [inj()] };
+  expect(validate(f)).toMatch(/body area/i);
+  expect(validate({ ...f, injuries: [inj({ bodyArea: "knee" })] })).toBeNull();
 });

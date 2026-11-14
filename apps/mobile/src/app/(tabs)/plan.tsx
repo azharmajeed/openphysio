@@ -1,7 +1,7 @@
 import { useFocusEffect, useRouter } from "expo-router";
 import { useCallback, useState } from "react";
 import { Alert, Pressable, ScrollView, Text, View } from "react-native";
-import { calendar, typeColor, ymd } from "../../lib/plan";
+import { calendar, planColors, ymd } from "../../lib/plan";
 import { allPlanned, generatePlan, savedWarnings, type Planned } from "../../lib/plandb";
 import { SessionCard } from "../../plan/SessionCard";
 
@@ -53,6 +53,7 @@ export default function Plan() {
 
   if (!all) return null;
   const weeks = calendar(all);
+  const colorOf = planColors(all);
   const today = ymd(new Date());
   const day = sel ? weeks.flat().find((d) => d.date === sel) : undefined;
 
@@ -95,7 +96,7 @@ export default function Plan() {
                   <Text style={{ fontSize: 10, textAlign: "center" }}>{new Date(`${d.date}T12:00:00`).toLocaleDateString(undefined, { weekday: "short" })}</Text>
                   <Text style={{ fontSize: 12, fontWeight: "600", textAlign: "center" }}>{Number(d.date.slice(8))}</Text>
                   {d.sessions.map((s) => (
-                    <View key={s.id} style={{ backgroundColor: typeColor(s.type), borderRadius: 3, marginTop: 2 }}>
+                    <View key={s.id} style={{ backgroundColor: colorOf(s.type), borderRadius: 3, marginTop: 2 }}>
                       <Text numberOfLines={1} style={{ color: "#fff", fontSize: 9, textAlign: "center" }}>
                         {s.status === "done" ? "✓ " : ""}
                         {s.type}
@@ -113,7 +114,7 @@ export default function Plan() {
           <Text style={{ fontWeight: "700", marginBottom: 8 }}>{longDay(day.date)}</Text>
           {day.sessions.length === 0 && <Text>Rest day.</Text>}
           {day.sessions.map((s) => (
-            <SessionCard key={s.id} s={s} onStart={() => router.push(`/session/${s.id}`)} />
+            <SessionCard key={s.id} s={s} color={colorOf(s.type)} onStart={() => router.push(`/session/${s.id}`)} />
           ))}
         </View>
       )}

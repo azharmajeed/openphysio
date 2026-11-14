@@ -1,7 +1,7 @@
 import { getExercise } from "@openphysio/catalog";
 import type { PlanItem } from "@openphysio/core";
 import { Pressable, Text, View } from "react-native";
-import { describeItem, typeColor } from "../lib/plan";
+import { describeItem, typeColors } from "../lib/plan";
 import type { Planned } from "../lib/plandb";
 
 const Line = ({ i }: { i: PlanItem }) => (
@@ -15,8 +15,7 @@ const Line = ({ i }: { i: PlanItem }) => (
 );
 
 /** One planned session: warm-up first, then the exercises. */
-export function SessionCard({ s, onStart }: { s: Planned; onStart?: () => void }) {
-  const color = typeColor(s.type);
+export function SessionCard({ s, color = typeColors([s.type])(s.type), onStart }: { s: Planned; color?: string; onStart?: () => void }) {
   return (
     <View style={{ borderLeftWidth: 6, borderColor: color, backgroundColor: "#f9fafb", borderRadius: 8, padding: 12, marginBottom: 12 }}>
       <Text style={{ fontSize: 16, fontWeight: "700" }}>{s.title}</Text>

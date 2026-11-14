@@ -1,20 +1,11 @@
 import { BODY_AREAS, INJURY_STATUSES, SEXES, SIDES } from "@openphysio/core";
 import { useState } from "react";
 import { Button, ScrollView, Text, TextInput, View } from "react-native";
-import { equipmentOptions, goalOptions, humanizeId, sportOptions, today, validate, weekdayOptions, type InjuryForm, type IntakeForm } from "./lib/intake";
+import { changeBodyArea, editAvoidAreas, equipmentOptions, goalOptions, humanizeId, NEEDS_AREA, newInjury, sportOptions, validate, weekdayOptions, type InjuryForm, type IntakeForm } from "./lib/intake";
 import { Chips, input, label } from "./ui";
 
 const opts = (xs: readonly string[]) => xs.map((id) => ({ id, label: humanizeId(id) }));
 const areaOpts = opts(BODY_AREAS);
-
-const newInjury = (): InjuryForm => ({
-  bodyArea: BODY_AREAS[0],
-  side: null,
-  description: "",
-  avoidAreas: [BODY_AREAS[0]],
-  status: "active",
-  startedOn: today(),
-});
 
 /** Shared by first-run intake and the Profile screen. */
 export function ProfileForm(p: { initial: IntakeForm; submitLabel: string; onSubmit: (f: IntakeForm) => Promise<void> }) {
@@ -55,13 +46,14 @@ export function ProfileForm(p: { initial: IntakeForm; submitLabel: string; onSub
       {f.injuries.map((i, n) => (
         <View key={i.id ?? n} style={{ borderWidth: 1, borderColor: "#ccc", borderRadius: 8, padding: 8, marginBottom: 12 }}>
           <Text style={label}>Body area</Text>
-          <Chips options={areaOpts} value={i.bodyArea} onChange={(v) => setInj(n, { bodyArea: v, avoidAreas: i.avoidAreas.length ? i.avoidAreas : [v] })} />
+          <Chips options={areaOpts} value={i.bodyArea} onChange={(v) => setInj(n, changeBodyArea(i, v))} />
+          {err === NEEDS_AREA && !i.bodyArea && <Text style={{ color: "#b91c1c", marginBottom: 8 }}>Choose the body area for this injury.</Text>}
           <Text style={label}>Side</Text>
           <Chips options={opts(SIDES)} value={i.side} onChange={(v) => setInj(n, { side: v })} />
           <Text style={label}>Description</Text>
           <TextInput style={input} value={i.description} onChangeText={(v) => setInj(n, { description: v })} multiline />
-          <Text style={label}>Avoid areas (defaults to body area)</Text>
-          <Chips options={areaOpts} value={i.avoidAreas} onChange={(v) => setInj(n, { avoidAreas: v })} />
+          <Text style={label}>Avoid areas (follow the body area until you change them)</Text>
+          <Chips options={areaOpts} value={i.avoidAreas} onChange={(v) => setInj(n, editAvoidAreas(i, v))} />
           <Text style={label}>Status</Text>
           <Chips options={opts(INJURY_STATUSES)} value={i.status} onChange={(v) => setInj(n, { status: v })} />
           <Text style={label}>Started on (YYYY-MM-DD)</Text>

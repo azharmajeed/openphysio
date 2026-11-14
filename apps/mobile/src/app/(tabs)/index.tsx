@@ -4,7 +4,7 @@ import { Pressable, ScrollView, Text } from "react-native";
 import { BandCard } from "../../health/BandCard";
 import { ADAPT_CONFIG, daysLeftInWeek, type AdaptResult } from "@openphysio/core";
 import { proposeNextWeek, reviewedWeek } from "../../lib/adaptdb";
-import { ymd } from "../../lib/plan";
+import { planColors, ymd } from "../../lib/plan";
 import { allPlanned, type Planned } from "../../lib/plandb";
 import { SessionCard } from "../../plan/SessionCard";
 
@@ -21,6 +21,7 @@ export default function Today() {
     }, []),
   );
   if (!all) return null;
+  const colorOf = planColors(all);
   const today = all.filter((s) => s.date === ymd(new Date()));
 
   return (
@@ -34,7 +35,7 @@ export default function Today() {
       )}
       <Text style={{ fontSize: 18, fontWeight: "700", marginBottom: 8 }}>Today</Text>
       {today.map((s) => (
-        <SessionCard key={s.id} s={s} onStart={() => router.push(`/session/${s.id}`)} />
+        <SessionCard key={s.id} s={s} color={colorOf(s.type)} onStart={() => router.push(`/session/${s.id}`)} />
       ))}
       {today.length === 0 && (
         <Text>
