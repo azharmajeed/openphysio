@@ -5,6 +5,7 @@ import { SPIKE_FACTOR } from "../safety/index.ts";
 import type { NewPlannedSession } from "../types/index.ts";
 import {
   generateBlock,
+  PLAN_CONFIG,
   STARTER,
   type GenerateBlockInput,
   type PlanHistory,
@@ -381,6 +382,76 @@ describe("generateBlock", () => {
     expect(hist.length).toBeGreaterThan(0);
   });
 
+  describe("R0 reproduction: all five goals, pool [0, 2], knee injury", () => {
+    const R0 = { ...ALL_FIVE, poolDays: [0, 2] };
+    const r0 = run({ profile: R0, injuries: KNEE });
+
+    test("no two sessions of one type share a day (swims included, stand-ins too)", () => {
+      for (const seed of [1, 2, 3, 7, 11]) {
+        const out = run({ profile: R0, injuries: KNEE, seed });
+        for (const w of [0, 1, 2, 3]) {
+          const seen = new Set<string>();
+          for (const x of week(out.sessions, w)) {
+            const key = `${x.date}|${x.type}`;
+            if (x.type === "swim") expect(seen.has(key), key).toBe(false);
+            seen.add(key);
+          }
+        }
+        for (const x of out.sessions) {
+          const blocksToday = out.sessions
+            .filter((y) => y.date === x.date)
+            .map((y) => y.items[0]!.block);
+          expect(new Set(blocksToday).size, x.date).toBe(blocksToday.length);
+        }
+      }
+    });
+
+    test("at least one rest day every week", () => {
+      for (const seed of [1, 2, 3, 7, 11])
+        for (const prof of [R0, { ...R0, trainingDays: [1, 2, 3, 4, 5, 6, 0] }])
+          for (const w of [0, 1, 2, 3]) {
+            const used = new Set(
+              week(run({ profile: prof, injuries: KNEE, seed }).sessions, w).map((x) => x.date),
+            );
+            expect(used.size, `seed ${seed} w${w}`).toBeLessThanOrEqual(
+              7 - PLAN_CONFIG.minRestDaysPerWeek,
+            );
+          }
+    });
+
+    test("stand-ins are visible: 'instead of' title, reason, and a warning for each", () => {
+      const subs = week(r0.sessions, 0).filter((x) => x.title.includes("instead of"));
+      expect(subs.length).toBeGreaterThan(0);
+      for (const x of subs) expect(x.items[0]!.notes).toMatch(/stands in/);
+      const warned = new Set(r0.warnings.map((x) => x.demandId));
+      for (const id of ["run_quality", "run_long", "run_easy"])
+        expect(warned.has(id), id).toBe(true);
+      expect(r0.warnings.every((x) => x.reason)).toBe(true);
+    });
+
+    test("deterministic per seed", () => {
+      const again = run({ profile: R0, injuries: KNEE });
+      expect(again.sessions.map((x) => [x.date, x.title])).toEqual(
+        r0.sessions.map((x) => [x.date, x.title]),
+      );
+    });
+  });
+
+  test("when every option is filtered out, the day is dropped with a warning, not left silently empty", () => {
+    const r = run({
+      profile: { ...ALL_FIVE, equipment: [], poolDays: [] },
+      injuries: [
+        {
+          status: "active",
+          avoidAreas: ["knee", "shoulder", "lower_back", "foot", "ankle"],
+          deletedAt: null,
+        },
+      ],
+    });
+    for (const x of r.sessions) expect(x.items.length).toBeGreaterThan(0);
+    expect(r.warnings.length).toBeGreaterThan(0);
+  });
+
   test("print example weeks", () => {
     const fmt = (i: PlannedSessionRow["items"][number]) =>
       i.block === "run"
@@ -413,5 +484,10 @@ describe("generateBlock", () => {
       }),
     );
     show("KNEE-INJURY WEEK 1", gen({ injuries: KNEE }));
+    show(
+      "R0 (ALL FIVE, POOL SUN+TUE, KNEE) WEEK 1",
+      gen({ profile: { ...ALL_FIVE, poolDays: [0, 2] }, injuries: KNEE }),
+    );
+    console.log(run({ profile: ALL_FIVE, injuries: KNEE }).warnings);
   });
 });

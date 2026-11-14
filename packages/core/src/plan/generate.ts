@@ -142,6 +142,8 @@ const DELOAD_WEEK = 3;
 const BLOCK_DAYS = 28;
 const LIGHT_DOSE = 0.3;
 const MAX_SESSIONS_PER_DAY = 2;
+/** Plan-wide rules. Grade C coaching convention (load and recovery, src-ioc-load-2016): keep a rest day each week. */
+export const PLAN_CONFIG = { minRestDaysPerWeek: 1, restSourceId: "src-ioc-load-2016" } as const;
 const DAY_MS = 86_400_000;
 const DAYS = [0, 1, 2, 3, 4, 5, 6];
 
@@ -233,33 +235,12 @@ export function generateBlock(input: GenerateBlockInput): PlanBlockResult {
     c.filter((e) => !fresh || e.level - 1 <= w);
 
   // ---- layout: one weekly pattern, greedy, repeated across the block ----
-  const week: Slot[][] = DAYS.map(() => []);
-  const rand = rng(seed ^ hash("layout"));
   const cyc = (a: number, b: number) => Math.min((a - b + 7) % 7, (b - a + 7) % 7);
-  const high = (day: number) => week[day]!.some((x) => x.d.impact === "high");
-
-  function place(d: PlanDemand, n: number, from?: string): boolean {
-    const poolOnly = cands(d).every(needsPool);
-    const pool = poolDays.length && poolOnly ? poolDays : DAYS;
-    const same = DAYS.filter((x) => week[x]!.some((s) => s.d.sessionType === d.sessionType));
-    const ok = DAYS.filter(
-      (day) =>
-        trainDays.includes(day) &&
-        pool.includes(day) &&
-        week[day]!.length < MAX_SESSIONS_PER_DAY &&
-        !week[day]!.some((s) => s.d.sessionType === d.sessionType) &&
-        // high-impact sessions never share a day or sit on neighbouring days (the week wraps)
-        !(d.impact === "high" && DAYS.some((o) => cyc(o, day) <= 1 && high(o))),
-    );
-    if (!ok.length) return false;
-    const score = (day: number) =>
-      week[day]!.length * 2 -
-      (d.long || !same.length ? 0 : Math.min(3, ...same.map((x) => cyc(day, x)))) +
-      rand() * 0.9;
-    const best = ok.map((day) => ({ day, s: score(day) })).sort((a, b) => a.s - b.s)[0]!;
-    week[best.day]!.push({ d, n, from });
-    return true;
-  }
+  /** Keys that make two sessions "the same type": the session type, and one pool visit. */
+  const keysOf = (d: PlanDemand) => {
+    const c = cands(d);
+    return [d.sessionType, ...(c.length && c.every(needsPool) ? ["@pool"] : [])];
+  };
 
   const warnings: PlanWarning[] = [];
   const resolved = [...merged.values()].flatMap((d) => {
@@ -274,6 +255,12 @@ export function generateBlock(input: GenerateBlockInput): PlanBlockResult {
         title: d.title,
         reason: `No ${d.title.toLowerCase()} option fits your injuries or equipment, and no alternative does either`,
       });
+    else if (i > 0)
+      warnings.push({
+        demandId: d.id,
+        title: d.title,
+        reason: `No ${d.title.toLowerCase()} option fits your injuries or equipment; ${opts[i]!.title!.toLowerCase()} stands in`,
+      });
     return i < 0 ? [] : [{ d: opts[i]!, count: d.perWeek, from: i > 0 ? d.title : undefined }];
   });
   const rank = (d: PlanDemand) =>
@@ -285,21 +272,71 @@ export function generateBlock(input: GenerateBlockInput): PlanBlockResult {
       rank(a.d) - rank(b.d) ||
       a.d.id.localeCompare(b.d.id),
   );
-  // Pass 1 places every demand's minimum, pass 2 tops up toward the maximum.
-  const placed = new Map<string, number>();
-  for (const target of [0, 1])
-    for (const r of resolved) {
-      let n = placed.get(r.d.id) ?? 0;
-      while (n < r.count[target]! && place(r.d, n, r.from)) n++;
-      placed.set(r.d.id, n);
+
+  /** Lay one week on the given weekdays. Returns the week and how much priority-weighted minimum it met. */
+  function layout(avail: number[], rand: () => number) {
+    const week: Slot[][] = DAYS.map(() => []);
+    const high = (day: number) => week[day]!.some((x) => x.d.impact === "high");
+    function place(d: PlanDemand, n: number, from?: string): boolean {
+      const keys = keysOf(d);
+      const poolOnly = cands(d).every(needsPool);
+      const pool = poolDays.length && poolOnly ? poolDays : DAYS;
+      const same = DAYS.filter((x) =>
+        week[x]!.some((s) => keysOf(s.d).some((k) => keys.includes(k))),
+      );
+      const ok = avail.filter(
+        (day) =>
+          pool.includes(day) &&
+          week[day]!.length < MAX_SESSIONS_PER_DAY &&
+          !same.includes(day) &&
+          // high-impact sessions never share a day or sit on neighbouring days (the week wraps)
+          !(d.impact === "high" && DAYS.some((o) => cyc(o, day) <= 1 && high(o))),
+      );
+      if (!ok.length) return false;
+      const score = (day: number) =>
+        week[day]!.length * 2 -
+        (d.long || !same.length ? 0 : Math.min(3, ...same.map((x) => cyc(day, x)))) +
+        rand() * 0.9;
+      const best = ok.map((day) => ({ day, s: score(day) })).sort((a, b) => a.s - b.s)[0]!;
+      week[best.day]!.push({ d, n, from });
+      return true;
     }
+    // Pass 1 places every demand's minimum, pass 2 tops up toward the maximum.
+    const placed = new Map<string, number>();
+    for (const target of [0, 1])
+      for (const r of resolved) {
+        let n = placed.get(r.d.id) ?? 0;
+        while (n < r.count[target]! && place(r.d, n, r.from)) n++;
+        placed.set(r.d.id, n);
+      }
+    const met = resolved.reduce(
+      (t, r) => t + Math.min(placed.get(r.d.id) ?? 0, r.count[0]) * ((r.d.priority ?? 0) + 1),
+      0,
+    );
+    return { week, placed, met };
+  }
+
+  // Keep at least minRestDaysPerWeek days empty (trainingDays may leave more); try each choice of rest days, keep the best week.
+  const forced = Math.max(0, PLAN_CONFIG.minRestDaysPerWeek - (7 - trainDays.length));
+  const restSets = (from: number[], k: number): number[][] =>
+    k === 0
+      ? [[]]
+      : from.flatMap((x, i) => restSets(from.slice(i + 1), k - 1).map((r) => [x, ...r]));
+  const tries = restSets(trainDays, Math.min(forced, trainDays.length - 1)).map((rest) => {
+    const r = layout(
+      trainDays.filter((x) => !rest.includes(x)),
+      rng(seed ^ hash("layout")),
+    );
+    return { ...r, tie: rng(seed ^ hash(rest.join()))() };
+  });
+  const { week, placed } = tries.sort((a, b) => b.met - a.met || a.tie - b.tie)[0]!;
   for (const r of resolved) {
     const n = placed.get(r.d.id) ?? 0;
     if (n < r.count[0])
       warnings.push({
         demandId: r.d.id,
         title: r.d.title,
-        reason: `Only ${n} of ${r.count[0]} ${r.d.title.toLowerCase()} session(s) fit per week (days, pool days and the daily limit)`,
+        reason: `Only ${n} of ${r.count[0]} ${r.d.title.toLowerCase()} session(s) fit per week (days, rest days, pool days and the daily limit)`,
       });
   }
 
@@ -489,8 +526,20 @@ export function generateBlock(input: GenerateBlockInput): PlanBlockResult {
     return out;
   }
 
-  function cardioItems(d: PlanDemand, dow: number, w: number, dose: number, deload: boolean) {
-    const list = staged(cands(d, dow), true, w);
+  function cardioItems(
+    d: PlanDemand,
+    dow: number,
+    w: number,
+    dose: number,
+    deload: boolean,
+    poolTaken: boolean,
+  ) {
+    // one pool visit a day: a mixed-equipment stand-in falls back to dry options when the pool is used
+    const list = staged(
+      cands(d, dow).filter((e) => !poolTaken || !needsPool(e)),
+      true,
+      w,
+    );
     const used = new Set<string>();
     return Array.from({ length: d.items ?? 1 }, (_, i) => pickFor(list, d.id, w + i, used))
       .filter((e): e is PlanExercise => !!e)
@@ -532,7 +581,12 @@ export function generateBlock(input: GenerateBlockInput): PlanBlockResult {
     const dow = new Date(ms).getUTCDay();
     const wk = deload ? " (deload)" : "";
 
-    for (const { d, n, from } of week[dow]!) {
+    let poolToday = false;
+    // pool-only sessions first, so a stand-in that could go either way never takes their pool visit
+    const todays = [...week[dow]!].sort(
+      (a, b) => +keysOf(b.d).includes("@pool") - +keysOf(a.d).includes("@pool"),
+    );
+    for (const { d, n, from } of todays) {
       let items: PlanItem[];
       let type: WorkoutType;
       if (isStrength(d)) {
@@ -547,11 +601,20 @@ export function generateBlock(input: GenerateBlockInput): PlanBlockResult {
         items = it ? [it] : [];
         type = d.workoutType ?? "run";
       } else {
-        items = cardioItems(d, dow, w, dose, deload);
+        items = cardioItems(d, dow, w, dose, deload, poolToday);
         const inPool = items.length > 0 && items.every((i) => needsPool(exById.get(i.exerciseId)!));
+        poolToday ||= inPool;
         type = inPool ? "swim" : (d.workoutType ?? "home");
       }
-      if (!items.length) continue;
+      if (!items.length) {
+        if (!warnings.some((x) => x.demandId === d.id && x.reason.startsWith("Could not")))
+          warnings.push({
+            demandId: d.id,
+            title: d.title,
+            reason: `Could not build ${d.title.toLowerCase()} on some days: nothing safe and within your load limits fits`,
+          });
+        continue;
+      }
       if (from) {
         const why = `No ${from.toLowerCase()} option fits your injuries or equipment; ${d.title.toLowerCase()} stands in`;
         items[0]!.notes = items[0]!.notes ? `${why}. ${items[0]!.notes}` : why;
