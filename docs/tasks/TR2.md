@@ -1,7 +1,7 @@
 # TR2: Status page: filter pills, collapsible sections, click-through to PRD and plan details
 Project / milestone / feature: OpenPhysio / tooling / traceability (Azhar, 2026-11-14)
 Lane: Tooling
-Status: In review
+Status: Done
 Approved scope reference: Azhar 2026-11-14: "add filter button pills and collapsible sections to make it easier to use. I should be able to click on the cards to read the underlying PRD and tech details."
 Approved product specification ID/version: none (developer tooling)
 Approved technical plan ID/version: none
