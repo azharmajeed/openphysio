@@ -146,15 +146,19 @@ describe("generateBlock", () => {
     expect(r2.some((x) => x.type === "run")).toBe(true);
   });
 
-  test("knee injury: low-impact alternatives replace runs, with reasons", () => {
-    const r = gen({ injuries: KNEE });
-    expect(r.some((x) => x.type === "run")).toBe(false);
-    const subs = week(r, 0).filter((x) => x.title.includes("instead of"));
-    expect(subs).toHaveLength(3);
-    for (const x of subs) {
-      expect(x.items[0]!.notes).toMatch(/fits your injuries or equipment/);
+  test("knee injury: runs and plyos are replaced or reported, nothing loads the knee", () => {
+    const res = run({ injuries: KNEE });
+    const r = res.sessions;
+    expect(r.some((x) => x.type === "run" || x.type === "plyo")).toBe(false);
+    const subs = r.filter((x) => x.title.includes("instead of"));
+    expect(subs.some((x) => x.title.includes("run"))).toBe(true);
+    for (const x of subs) expect(x.items[0]!.notes).toMatch(/fits your injuries or equipment/);
+    for (const x of subs.filter((s) => s.title.includes("run")))
       expect(x.items.every((i) => i.block === "conditioning")).toBe(true);
-    }
+    const plyoReplaced = subs.some((x) => x.title.includes("plyometrics"));
+    expect(plyoReplaced || res.warnings.length > 0).toBe(true);
+    for (const i of all(r))
+      expect(byId.get(i.exerciseId)?.avoidIf, i.exerciseId).not.toContain("knee");
   });
 
   test("achilles injury: plyos are replaced by lower-body strength, with a reason", () => {
