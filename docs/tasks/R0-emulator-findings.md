@@ -35,3 +35,7 @@ Test data: profile "Tester", all five goals, all equipment, pool days Sun and Tu
 ## Not covered in this pass
 
 GPS run, voice logging, Health Connect, sync, Coach, Learn and Scan with a running server, GPX/TCX export, the weekly check-in. These need the Docker server running and test data; on the emulator, GPS can be simulated.
+
+## Re-test after fixes (2026-11-14, v0.1 @ F1–F3 merged)
+
+Same profile on the emulator. Confirmed on screen: a new injury starts with no body area; avoid areas follow the body area (Knee → Knee); the Plan tab shows a "Not everything fit" card listing each stand-in with its reason; Monday is a rest day every week; at most one swim a day, only on pool days; no runs or plyos with the knee injury (low-impact cardio and lower-body strength stand in); real tab icons; Progress and Settings are header icons; each session type has its own colour. Bugs 1–6 and polish 7–11 are fixed.
