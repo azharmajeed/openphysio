@@ -562,8 +562,12 @@ function client(D) {
     document.body.classList.toggle("lock", Boolean(v));
   };
   const close = () => {
-    history.replaceState(null, "", location.pathname + location.search);
-    sync();
+    try {
+      history.replaceState(null, "", location.pathname + location.search);
+      sync();
+    } catch {
+      location.hash = ""; // file:// pages can't replaceState in Chrome; hashchange runs sync
+    }
   };
   window.addEventListener("hashchange", sync);
   bd.addEventListener("click", close);
