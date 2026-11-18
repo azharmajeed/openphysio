@@ -35,7 +35,7 @@ Execution host and checkout: local, ..\openphysio-wt\K3b
 Base commit / current branch / latest commit: a2f6e31 / feat/k3b-cues-lower / see PR
 Work completed: 34 cues and 27 faults for the 10 exercises; 14 sources (PMIDs checked through PubMed). All records draft.
 Uncommitted changes and where they are preserved: none after commit
-Validation performed and results: pnpm lint, typecheck, test (see PR).
+Validation performed and results: rebased on origin/v0.1 (3b23d7f fixture-based tests, no edit to knowledge.test.ts); pnpm lint, typecheck, test pass; CI pass.
 Open decisions/blockers: see Known gaps in the PR (tibialis has no technique source; source type 'review' used for lab studies).
 Next action: Azhar review of sources and wording.
 Task state and reason: In review, PR open.
