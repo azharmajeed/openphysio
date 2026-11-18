@@ -1,1 +1,249 @@
-[]
+[
+  {
+    "id": "rectus-femoris",
+    "name": "Rectus femoris",
+    "aliases": [
+      "rec fem"
+    ],
+    "region": "lower-limb",
+    "bodyMapArea": "quadriceps",
+    "actions": [
+      "knee extension",
+      "hip flexion"
+    ],
+    "dailyLifeRole": "Lifts your knee when you step up and straightens it when you kick.",
+    "claims": [
+      "claim-rectus-femoris-two-joints"
+    ],
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "vastus-lateralis",
+    "name": "Vastus lateralis",
+    "aliases": [
+      "outer quad"
+    ],
+    "region": "lower-limb",
+    "bodyMapArea": "quadriceps",
+    "actions": [
+      "knee extension"
+    ],
+    "dailyLifeRole": "Straightens your knee to stand up from a chair.",
+    "claims": [],
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "vastus-medialis",
+    "name": "Vastus medialis",
+    "aliases": [
+      "inner quad",
+      "teardrop muscle"
+    ],
+    "region": "lower-limb",
+    "bodyMapArea": "quadriceps",
+    "actions": [
+      "knee extension"
+    ],
+    "dailyLifeRole": "Helps lock your knee straight when you stand or climb stairs.",
+    "claims": [],
+    "review": {
+      "state": "draft",
+      "notes": "Common claim that it targets the final degrees of extension is debated; not recorded. Needs a paper if wanted."
+    }
+  },
+  {
+    "id": "vastus-intermedius",
+    "name": "Vastus intermedius",
+    "aliases": [],
+    "region": "lower-limb",
+    "actions": [
+      "knee extension"
+    ],
+    "dailyLifeRole": "Works with the other quads to straighten your knee when you stand.",
+    "claims": [],
+    "review": {
+      "state": "draft",
+      "notes": "Deep under rectus femoris, so no body-map slug of its own."
+    }
+  },
+  {
+    "id": "biceps-femoris",
+    "name": "Biceps femoris",
+    "aliases": [
+      "outer hamstring"
+    ],
+    "region": "lower-limb",
+    "bodyMapArea": "hamstring",
+    "actions": [
+      "knee flexion",
+      "hip extension",
+      "hip external rotation"
+    ],
+    "dailyLifeRole": "Bends your knee and helps swing your leg back as you walk or run.",
+    "claims": [
+      "claim-hamstrings-two-joints"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Short head crosses only the knee (from general anatomy, not in the OpenStax summary I read): not recorded as a separate fact."
+    }
+  },
+  {
+    "id": "semitendinosus",
+    "name": "Semitendinosus",
+    "aliases": [
+      "inner hamstring"
+    ],
+    "region": "lower-limb",
+    "bodyMapArea": "hamstring",
+    "actions": [
+      "knee flexion",
+      "hip extension",
+      "hip internal rotation"
+    ],
+    "dailyLifeRole": "Bends your knee and extends your hip when you push off.",
+    "claims": [
+      "claim-hamstrings-two-joints"
+    ],
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "semimembranosus",
+    "name": "Semimembranosus",
+    "aliases": [
+      "inner hamstring"
+    ],
+    "region": "lower-limb",
+    "bodyMapArea": "hamstring",
+    "actions": [
+      "knee flexion",
+      "hip extension",
+      "hip internal rotation"
+    ],
+    "dailyLifeRole": "Bends your knee and extends your hip when you push off.",
+    "claims": [
+      "claim-hamstrings-two-joints"
+    ],
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "adductor-longus",
+    "name": "Adductor longus",
+    "aliases": [
+      "inner thigh"
+    ],
+    "region": "lower-limb",
+    "bodyMapArea": "adductors",
+    "actions": [
+      "hip adduction",
+      "hip flexion"
+    ],
+    "dailyLifeRole": "Pulls your leg back toward the middle, such as when you cross your legs.",
+    "claims": [],
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "adductor-magnus",
+    "name": "Adductor magnus",
+    "aliases": [
+      "big adductor"
+    ],
+    "region": "lower-limb",
+    "bodyMapArea": "adductors",
+    "actions": [
+      "hip adduction",
+      "hip extension"
+    ],
+    "dailyLifeRole": "Pulls your thigh inward and helps extend the hip when you stand or climb.",
+    "claims": [],
+    "review": {
+      "state": "draft",
+      "notes": "Question: the split between its adductor part and hamstring part is not recorded here."
+    }
+  },
+  {
+    "id": "gracilis",
+    "name": "Gracilis",
+    "aliases": [
+      "inner thigh strap"
+    ],
+    "region": "lower-limb",
+    "bodyMapArea": "adductors",
+    "actions": [
+      "hip adduction",
+      "knee flexion"
+    ],
+    "dailyLifeRole": "Draws your thigh inward and helps bend your knee as you walk.",
+    "claims": [],
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "gastrocnemius",
+    "name": "Gastrocnemius",
+    "aliases": [
+      "calf"
+    ],
+    "region": "lower-limb",
+    "bodyMapArea": "calves",
+    "actions": [
+      "ankle plantarflexion",
+      "knee flexion"
+    ],
+    "dailyLifeRole": "Pushes you up onto your toes when you walk, run or jump.",
+    "claims": [
+      "claim-calf-gastroc-soleus"
+    ],
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "soleus",
+    "name": "Soleus",
+    "aliases": [
+      "deep calf"
+    ],
+    "region": "lower-limb",
+    "bodyMapArea": "calves",
+    "actions": [
+      "ankle plantarflexion"
+    ],
+    "dailyLifeRole": "Keeps you steady on your feet when you stand and walk.",
+    "claims": [
+      "claim-calf-gastroc-soleus"
+    ],
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "tibialis-anterior",
+    "name": "Tibialis anterior",
+    "aliases": [
+      "shin muscle"
+    ],
+    "region": "lower-limb",
+    "bodyMapArea": "tibialis",
+    "actions": [
+      "ankle dorsiflexion",
+      "foot inversion"
+    ],
+    "dailyLifeRole": "Lifts your toes so your foot clears the ground when you step.",
+    "claims": [],
+    "review": {
+      "state": "draft"
+    }
+  }
+]

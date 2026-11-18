@@ -1,1 +1,41 @@
-[]
+[
+  {
+    "id": "claim-rectus-femoris-two-joints",
+    "text": "The rectus femoris crosses both the hip and the knee, so it flexes the hip and extends the knee.",
+    "sourceId": "src-openstax-ap2e-11-6",
+    "grade": "C",
+    "subjects": [
+      "rectus-femoris"
+    ],
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "claim-hamstrings-two-joints",
+    "text": "The hamstrings bend the knee and extend the hip.",
+    "sourceId": "src-openstax-ap2e-11-6",
+    "grade": "C",
+    "subjects": [
+      "biceps-femoris",
+      "semitendinosus",
+      "semimembranosus"
+    ],
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "claim-calf-gastroc-soleus",
+    "text": "Gastrocnemius and soleus both plantarflex the ankle; only gastrocnemius also helps bend the knee.",
+    "sourceId": "src-openstax-ap2e-11-6",
+    "grade": "C",
+    "subjects": [
+      "gastrocnemius",
+      "soleus"
+    ],
+    "review": {
+      "state": "draft"
+    }
+  }
+]

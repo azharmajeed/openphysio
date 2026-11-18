@@ -1,7 +1,7 @@
 # K2a: Muscle atlas: hip, trunk and lower limb
 Project / milestone / feature: OpenPhysio / v0.2 / PRD-002
 Lane: Knowledge
-Status: Ready
+Status: In review
 Approved scope reference: docs/tasks/v0.2/README.md, docs/tasks/EXECUTION.md
 Approved product specification ID/version: PRD-002 0.2-draft, v0.2 slice (D-18)
 Approved technical plan ID/version: TP-002 v1 sections 1–4 (D-19); review states D-21
@@ -28,3 +28,19 @@ Execution budget and retry limit: one implementation run + one repair after revi
 When to request a product or consequential technical decision: per EXECUTION.md escalation conditions
 Completion condition: validated result + PR -> In review
 Merge authority: orchestrator into v0.1 after review (D-9); Azhar for v0.1 -> main
+
+## Checkpoint
+# K2a / run 1
+Agent/runtime/model, if reported: Claude Sonnet subagent, ponytail lite
+Execution host and checkout: local, worktree openphysio-wt/K2a
+Base commit / current branch / latest commit: a2f6e31 / feat/k2a-muscles-lower / see PR
+Task/spec version: K2a contract
+Work completed: 25 draft Muscle records (13 lower-limb, 12 hip-trunk), 10 MuscleGroup records, 3 OpenStax sources, 7 claims; bodyMapArea made optional (types, validate, test)
+Uncommitted changes and where they are preserved: none after commit
+Validation performed and results: pnpm lint, typecheck, test pass (282 tests)
+Artifacts, preview, and PR links: see PR
+Failures and attempts already made: OpenStax section URLs guessed wrong at first; found 11.3, 11.4, 11.6. Wikidata not used (no item ids verified)
+Open decisions/blockers: questions in review.notes (gluteus minimus action, hip_flexors body-map area)
+Next action: review
+Task state and reason: In review, PR open
+Usage/cost, or unavailable: unavailable

@@ -2,12 +2,230 @@
   {
     "id": "gluteus-maximus",
     "name": "Gluteus maximus",
-    "aliases": ["glutes", "gluteal"],
+    "aliases": [
+      "glutes",
+      "gluteal"
+    ],
     "region": "hip-trunk",
     "bodyMapArea": "gluteal",
-    "actions": ["hip extension", "hip external rotation"],
+    "actions": [
+      "hip extension",
+      "hip external rotation"
+    ],
     "dailyLifeRole": "Drives you up from a chair and up stairs.",
-    "claims": ["claim-glute-max-hip-extension"],
-    "review": { "state": "draft", "notes": "Minimal example." }
+    "claims": [
+      "claim-glute-max-hip-extension"
+    ],
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "gluteus-medius",
+    "name": "Gluteus medius",
+    "aliases": [
+      "side glute"
+    ],
+    "region": "hip-trunk",
+    "bodyMapArea": "gluteal",
+    "actions": [
+      "hip abduction"
+    ],
+    "dailyLifeRole": "Keeps your pelvis level when you stand on one leg while walking.",
+    "claims": [
+      "claim-glute-med-abduction"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Role of holding the pelvis level in single-leg stance is not in the pages read; add a source before a claim."
+    }
+  },
+  {
+    "id": "gluteus-minimus",
+    "name": "Gluteus minimus",
+    "aliases": [],
+    "region": "hip-trunk",
+    "actions": [
+      "hip abduction"
+    ],
+    "dailyLifeRole": "Works with gluteus medius to steady your hip on one leg.",
+    "claims": [],
+    "review": {
+      "state": "draft",
+      "notes": "Question: the OpenStax summary I got listed an adduction-like action for this muscle, which looks wrong against standard anatomy (abduction; medial rotation is widely stated). Recorded abduction only. Check the page directly. Deep to gluteus medius, so no body-map slug."
+    }
+  },
+  {
+    "id": "tensor-fasciae-latae",
+    "name": "Tensor fasciae latae",
+    "aliases": [
+      "TFL"
+    ],
+    "region": "hip-trunk",
+    "actions": [
+      "hip flexion",
+      "hip abduction",
+      "knee stabilisation"
+    ],
+    "dailyLifeRole": "Helps lift your leg forward and sideways and steadies the outer knee.",
+    "claims": [],
+    "review": {
+      "state": "draft",
+      "notes": "No body-map slug sits on the outer hip."
+    }
+  },
+  {
+    "id": "iliopsoas",
+    "name": "Iliopsoas",
+    "aliases": [
+      "psoas",
+      "iliacus",
+      "hip flexor"
+    ],
+    "region": "hip-trunk",
+    "actions": [
+      "hip flexion",
+      "hip external rotation"
+    ],
+    "dailyLifeRole": "Lifts your thigh when you walk, climb stairs or sit up from lying.",
+    "claims": [
+      "claim-iliopsoas-hip-flexion"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "OpenStax lists psoas major and iliacus separately; merged here as one record. Deep muscle, no body-map slug. Psoas also acts on the lumbar spine (debated); not recorded."
+    }
+  },
+  {
+    "id": "rectus-abdominis",
+    "name": "Rectus abdominis",
+    "aliases": [
+      "abs",
+      "six-pack"
+    ],
+    "region": "hip-trunk",
+    "bodyMapArea": "abs",
+    "actions": [
+      "trunk flexion",
+      "abdominal compression"
+    ],
+    "dailyLifeRole": "Curls you up when you sit up from lying down.",
+    "claims": [],
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "external-oblique",
+    "name": "External oblique",
+    "aliases": [
+      "obliques"
+    ],
+    "region": "hip-trunk",
+    "bodyMapArea": "obliques",
+    "actions": [
+      "trunk rotation",
+      "trunk lateral flexion",
+      "abdominal compression"
+    ],
+    "dailyLifeRole": "Turns and bends your trunk, for example when you reach across.",
+    "claims": [],
+    "review": {
+      "state": "draft",
+      "notes": "Which side rotates which way not recorded."
+    }
+  },
+  {
+    "id": "internal-oblique",
+    "name": "Internal oblique",
+    "aliases": [
+      "obliques"
+    ],
+    "region": "hip-trunk",
+    "actions": [
+      "trunk rotation",
+      "trunk lateral flexion",
+      "abdominal compression"
+    ],
+    "dailyLifeRole": "Turns and bends your trunk and helps you breathe out forcefully.",
+    "claims": [],
+    "review": {
+      "state": "draft",
+      "notes": "Lies under external oblique; no separate body-map slug."
+    }
+  },
+  {
+    "id": "transversus-abdominis",
+    "name": "Transversus abdominis",
+    "aliases": [
+      "deep abs",
+      "TVA"
+    ],
+    "region": "hip-trunk",
+    "actions": [
+      "abdominal compression"
+    ],
+    "dailyLifeRole": "Squeezes your belly in, for example when you cough or breathe out hard.",
+    "claims": [],
+    "review": {
+      "state": "draft",
+      "notes": "Common claims about pre-activation and spinal stability are debated; not recorded. Deep muscle, no slug."
+    }
+  },
+  {
+    "id": "erector-spinae",
+    "name": "Erector spinae",
+    "aliases": [
+      "spinal erectors",
+      "back extensors"
+    ],
+    "region": "hip-trunk",
+    "bodyMapArea": "lower-back",
+    "actions": [
+      "trunk extension",
+      "trunk lateral flexion",
+      "trunk rotation"
+    ],
+    "dailyLifeRole": "Holds your back upright and straightens you up from bending.",
+    "claims": [
+      "claim-erector-spinae-extension"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Three columns (iliocostalis, longissimus, spinalis) merged into one record."
+    }
+  },
+  {
+    "id": "multifidus",
+    "name": "Multifidus",
+    "aliases": [],
+    "region": "hip-trunk",
+    "actions": [
+      "trunk extension",
+      "trunk lateral flexion"
+    ],
+    "dailyLifeRole": "Steadies your spine segment by segment as you move.",
+    "claims": [],
+    "review": {
+      "state": "draft",
+      "notes": "Deep muscle, no slug. Role as segmental stabiliser is widely stated but not in the pages read: not recorded."
+    }
+  },
+  {
+    "id": "quadratus-lumborum",
+    "name": "Quadratus lumborum",
+    "aliases": [
+      "QL"
+    ],
+    "region": "hip-trunk",
+    "actions": [
+      "trunk lateral flexion"
+    ],
+    "dailyLifeRole": "Bends your trunk to the side, for example when you carry a bag.",
+    "claims": [],
+    "review": {
+      "state": "draft",
+      "notes": "Deep muscle, no slug. Hip hiking and breathing roles not recorded."
+    }
   }
 ]

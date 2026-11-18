@@ -56,7 +56,8 @@ export function validate(d: KnowledgeData, ctx = catalogCtx): string[] {
   }
   for (const m of d.muscles) {
     bad(inSet(REGIONS, m.region), `${m.id}: bad region`);
-    bad(BODY_MAP_SLUGS.includes(m.bodyMapArea), `${m.id}: ${m.bodyMapArea} is not a body-map slug`);
+    if (m.bodyMapArea !== undefined)
+      bad(BODY_MAP_SLUGS.includes(m.bodyMapArea), `${m.id}: ${m.bodyMapArea} is not a body-map slug`);
     for (const c of m.claims) bad(clm.has(c), `${m.id}: claim ${c} unknown`);
   }
   for (const g of d.muscleGroups) {

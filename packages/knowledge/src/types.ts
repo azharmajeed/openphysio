@@ -42,8 +42,8 @@ export type Muscle = {
   name: string;
   aliases: string[];
   region: (typeof REGIONS)[number];
-  /** A slug from data/body-map-areas.json. */
-  bodyMapArea: string;
+  /** A slug from data/body-map-areas.json. Omit for deep muscles with no slug. */
+  bodyMapArea?: string;
   actions: string[];
   dailyLifeRole: string;
   origin?: string;
