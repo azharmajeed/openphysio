@@ -28,6 +28,7 @@ test("types in one plan never share a colour (in order of first appearance)", ()
   expect(colorOf("gym")).toBe(colorOf("gym"));
   expect(new Set(["gym", "plyo", "run", "swim"].map(colorOf)).size).toBe(4);
   expect(typeColors(["plyo", "gym"])("plyo")).toBe(colorOf("gym"));
+  expect(typeColors(["gym"], "light")("gym")).not.toBe(typeColors(["gym"], "dark")("gym"));
 });
 
 test("plural helper", () => {
