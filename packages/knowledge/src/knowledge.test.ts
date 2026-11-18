@@ -95,3 +95,14 @@ test("coverage report (not a failure yet)", () => {
   );
   expect(Array.isArray(c.exercisesWithoutPrimary)).toBe(true);
 });
+
+test("a video segment's endSec is optional, but must follow startSec when given", () => {
+  const seg = { id: "vs-test", videoId: "abc", channelId: "ch", startSec: 10, title: "T", summary: "S", subjects: ["glute_bridge"], sourceId: "src-test", review: { state: "draft" as const } };
+  const d = fixture();
+  d.videoSegments.push(seg);
+  expect(validate(d)).toEqual([]);
+  d.videoSegments[0]!.endSec = 10;
+  expect(validate(d).join()).toContain("endSec must be after startSec");
+  d.videoSegments[0]!.endSec = 20;
+  expect(validate(d)).toEqual([]);
+});

@@ -40,7 +40,7 @@ function fields(kind: string, r: Any): [string, unknown][] {
     case "claims":
       return [["Claim", r.text], ["Grade", `${r.grade} (A guideline, B review or trial, C convention)`], ["About", list(r.subjects)]];
     default:
-      return [["Title", r.title], ["Summary", r.summary], ["Video", r.videoId], ["From", `${r.startSec}s to ${r.endSec}s`]];
+      return [["Title", r.title], ["Summary", r.summary], ["Video", r.videoId], ["From", r.endSec === undefined ? `${r.startSec}s to the end` : `${r.startSec}s to ${r.endSec}s`]];
   }
 }
 
