@@ -87,13 +87,10 @@ test("a published record needs its references published", () => {
   expect(publish(f).faults).toHaveLength(0);
 });
 
-test("coverage report (not a failure yet)", () => {
+test("coverage: every catalogue exercise has a primary muscle (body-map areas are only reported)", () => {
   const c = coverage(allRecords);
-  console.info(
-    `coverage: ${c.exercisesWithoutPrimary.length} catalogue exercises without a primary muscle, ` +
-      `${c.areasWithoutMuscle.length} body-map areas without a muscle`,
-  );
-  expect(Array.isArray(c.exercisesWithoutPrimary)).toBe(true);
+  console.info(`coverage: ${c.areasWithoutMuscle.length} body-map areas without a muscle`);
+  expect(c.exercisesWithoutPrimary).toEqual([]);
 });
 
 test("a video segment's endSec is optional, but must follow startSec when given", () => {
