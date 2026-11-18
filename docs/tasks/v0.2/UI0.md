@@ -1,7 +1,7 @@
 # UI0: Dev build with native UI libraries, kit spike on Today, D-16 note
 Project / milestone / feature: OpenPhysio / v0.2 / PRD-002
 Lane: UI
-Status: Ready
+Status: In review
 Approved scope reference: docs/tasks/v0.2/README.md, docs/tasks/EXECUTION.md
 Approved product specification ID/version: PRD-002 0.2-draft, v0.2 slice (D-18)
 Approved technical plan ID/version: TP-003 v1 (D-19); build path D-22
@@ -26,3 +26,19 @@ Execution budget and retry limit: Windows attempt, then WSL; stop and report if 
 When to request a product or consequential technical decision: per EXECUTION.md escalation conditions; any paid service; .wslconfig changes
 Completion condition: validated result + PR -> In review
 Merge authority: orchestrator into v0.1 after CI (D-9); Azhar for v0.1 -> main
+
+## Checkpoint
+# UI0 / run 1
+Agent/runtime/model, if reported: orchestrator (Opus)
+Execution host and checkout: C:\w\UI0, branch feat/ui0-dev-build
+Base commit / current branch / latest commit: 6a77c96, rebased on origin/v0.1 / feat/ui0-dev-build / see PR
+Task/spec version: UI0 contract, TP-003 v1, D-22
+Work completed: Reanimated 4.7.1, Gesture Handler 3.3.0, Worklets 0.13.0 re-enabled and building on Windows (cmake.dir → CMake 3.31.6 via plugins/short-cxx.js; WSL not needed). expo-dev-client + expo-system-ui. Uniwind 1.14 + Tailwind 4.3 (metro, global.css theme with good/watch/stop), Reusables components (Uniwind registry) in src/components/ui, `@/` path alias, nav theme from CSS variables, PortalHost. Today ported to the kit; light and dark verified on the emulator. D-16 written. AGENT-BRIEF build notes updated. UI2d added to the v0.2 table (remaining v0.1 screens are unreadable in dark mode until moved onto the kit).
+Uncommitted changes and where they are preserved: none after commit
+Validation performed and results: pnpm lint (0 errors), typecheck, test pass; expo export -p android ok; x86_64 debug dev client builds (22.5 min clean, 18 min after adding expo-system-ui) and runs; release arm64 APK build: see PR
+Artifacts, preview, and PR links: docs/evidence/UI0/today-light.png, today-dark.png
+Failures and attempts already made: Reusables CLI wrote NativeWind icon.tsx into a literal "@" folder → copied the Uniwind registry files instead. Metro hung once after reinstalling the dev client → restart with --clear.
+Open decisions/blockers: none. Note: dev-launcher logs a missing SplashScreenManager class (harmless; expo-splash-screen not installed).
+Next action: orchestrator merge after CI; then UI1a.
+Task state and reason: In review
+Usage/cost, or unavailable: unavailable

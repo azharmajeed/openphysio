@@ -18,6 +18,7 @@ Owner: **Sonnet** = a Sonnet implementer subagent (ponytail lite); **Opus** = th
 | UI2a | Today: load gauge, session card, streak and points, week strip | UI | UI1b, AP3b, F4 | M | AC-1, AC-2 | No scrolling on a Pixel 8a screen size; screenshots approved | Sonnet |
 | UI2b | Plan: compact week strip, day detail, collapsible "Not everything fit" | UI | UI1b, F4 | S | AC-1 | Screenshots approved | Sonnet |
 | UI2c | Session player: one exercise per screen, rest ring, pain check as a sheet | UI | UI1b | M | AC-1 | Pain flow unchanged in tests; screenshots approved | Opus |
+| UI2d | Remaining v0.1 screens on the kit: Coach, Progress, Settings, intake and profile, check-in, run, swim, scan, band data, channels | UI | UI1b | M | AC-1 | Every screen readable in light and dark; no raw colours left (UI1c allowlist empty) | Sonnet |
 | UI3 | Activity cards and history (You), route map for runs | UI | UI1b | M | AC-3 | Runs show maps; cards match the spec | Sonnet |
 | UI4a | "Why and how" sheet: body map, muscle roles, cues, faults, citations, review level | UI | UI1b, K3a, K3b, K3c, K3d | M | AC-5 | Sheet shows reviewed data for any planned exercise | Sonnet |
 | UI4b | Learn restyle, save videos, segment player | UI | UI1b, K5 | S | AC-4, AC-5 | Saved videos persist; segments start at their time | Sonnet |
@@ -44,6 +45,6 @@ Top-30 exercises (K3b–K5): the 30 exercises the plan engine places most often 
 | 2 | UI1a, K6a, K2a, K2b, K3b, AP3b |
 | 3 | UI1b, K3c, K3d, K5 |
 | 4 | UI1c, QA1, K3a |
-| 5 | UI2a, UI2b, UI2c |
+| 5 | UI2a, UI2b, UI2c, UI2d |
 | 6 | UI3, UI4a, UI4b |
 | 7 | R1 |

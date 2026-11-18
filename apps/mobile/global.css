@@ -1,0 +1,65 @@
+/* UI0 spike theme. UI1a replaces this file with one generated from packages/ui-tokens/tokens.json. */
+@import "tailwindcss";
+@import "uniwind";
+@import "tw-animate-css";
+
+@theme {
+  --radius: 12px;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --spacing-hairline: hairlineWidth();
+}
+
+@layer theme {
+  :root {
+    @variant light {
+      --color-background: oklch(0.985 0.002 250);
+      --color-foreground: oklch(0.18 0.01 250);
+      --color-card: oklch(1 0 0);
+      --color-card-foreground: oklch(0.18 0.01 250);
+      --color-popover: oklch(1 0 0);
+      --color-popover-foreground: oklch(0.18 0.01 250);
+      --color-primary: oklch(0.55 0.17 245);
+      --color-primary-foreground: oklch(0.99 0 0);
+      --color-secondary: oklch(0.95 0.005 250);
+      --color-secondary-foreground: oklch(0.25 0.01 250);
+      --color-muted: oklch(0.95 0.005 250);
+      --color-muted-foreground: oklch(0.5 0.01 250);
+      --color-accent: oklch(0.95 0.005 250);
+      --color-accent-foreground: oklch(0.25 0.01 250);
+      --color-destructive: oklch(0.58 0.22 27);
+      --color-border: oklch(0.91 0.005 250);
+      --color-input: oklch(0.91 0.005 250);
+      --color-ring: oklch(0.55 0.17 245);
+      --color-good: oklch(0.6 0.16 150);
+      --color-watch: oklch(0.72 0.16 75);
+      --color-stop: oklch(0.58 0.22 27);
+    }
+
+    @variant dark {
+      --color-background: oklch(0.13 0.005 250);
+      --color-foreground: oklch(0.97 0 0);
+      --color-card: oklch(0.19 0.006 250);
+      --color-card-foreground: oklch(0.97 0 0);
+      --color-popover: oklch(0.19 0.006 250);
+      --color-popover-foreground: oklch(0.97 0 0);
+      --color-primary: oklch(0.72 0.15 240);
+      --color-primary-foreground: oklch(0.13 0.005 250);
+      --color-secondary: oklch(0.25 0.008 250);
+      --color-secondary-foreground: oklch(0.97 0 0);
+      --color-muted: oklch(0.25 0.008 250);
+      --color-muted-foreground: oklch(0.7 0.01 250);
+      --color-accent: oklch(0.25 0.008 250);
+      --color-accent-foreground: oklch(0.97 0 0);
+      --color-destructive: oklch(0.68 0.2 25);
+      --color-border: oklch(1 0 0 / 10%);
+      --color-input: oklch(1 0 0 / 15%);
+      --color-ring: oklch(0.72 0.15 240);
+      --color-good: oklch(0.74 0.17 150);
+      --color-watch: oklch(0.8 0.15 80);
+      --color-stop: oklch(0.68 0.2 25);
+    }
+  }
+}
