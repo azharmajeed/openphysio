@@ -1,1 +1,35 @@
-[]
+[
+  {
+    "id": "src-openstax-ap2e-11-3",
+    "type": "textbook",
+    "citation": "OpenStax. Anatomy and Physiology 2e, section 11.3, Axial Muscles of the Head, Neck, and Back. Rice University, 2022.",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/11-3-axial-muscles-of-the-head-neck-and-back",
+    "year": 2022,
+    "licence": "CC BY 4.0",
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "src-openstax-ap2e-11-4",
+    "type": "textbook",
+    "citation": "OpenStax. Anatomy and Physiology 2e, section 11.4, Axial Muscles of the Abdominal Wall, and Thorax. Rice University, 2022.",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/11-4-axial-muscles-of-the-abdominal-wall-and-thorax",
+    "year": 2022,
+    "licence": "CC BY 4.0",
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "src-openstax-ap2e-11-6",
+    "type": "textbook",
+    "citation": "OpenStax. Anatomy and Physiology 2e, section 11.6, Appendicular Muscles of the Pelvic Girdle and Lower Limbs. Rice University, 2022.",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/11-6-appendicular-muscles-of-the-pelvic-girdle-and-lower-limbs",
+    "year": 2022,
+    "licence": "CC BY 4.0",
+    "review": {
+      "state": "draft"
+    }
+  }
+]

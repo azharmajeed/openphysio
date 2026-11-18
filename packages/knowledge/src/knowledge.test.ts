@@ -17,6 +17,12 @@ test("shipped data is valid", () => {
   expect(validate(allRecords)).toEqual([]);
 });
 
+test("a muscle may omit bodyMapArea", () => {
+  const d = fixture();
+  d.muscles[0]!.bodyMapArea = undefined;
+  expect(validate(d)).toEqual([]);
+});
+
 test("validate catches broken data", () => {
   const cases: [string, (d: KnowledgeData) => void, string][] = [
     ["duplicate id", (d) => d.muscles.push(d.muscles[0]!), "duplicate ids"],

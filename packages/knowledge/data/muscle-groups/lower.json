@@ -1,1 +1,153 @@
-[]
+[
+  {
+    "id": "quads",
+    "name": "Quadriceps",
+    "muscleIds": [
+      "rectus-femoris",
+      "vastus-lateralis",
+      "vastus-medialis",
+      "vastus-intermedius"
+    ],
+    "bodyMapAreas": [
+      "quadriceps"
+    ],
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "hamstrings",
+    "name": "Hamstrings",
+    "muscleIds": [
+      "biceps-femoris",
+      "semitendinosus",
+      "semimembranosus"
+    ],
+    "bodyMapAreas": [
+      "hamstring"
+    ],
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "glutes",
+    "name": "Glutes",
+    "muscleIds": [
+      "gluteus-maximus",
+      "gluteus-medius",
+      "gluteus-minimus"
+    ],
+    "bodyMapAreas": [
+      "gluteal"
+    ],
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "calves",
+    "name": "Calves",
+    "muscleIds": [
+      "gastrocnemius",
+      "soleus"
+    ],
+    "bodyMapAreas": [
+      "calves"
+    ],
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "abductors",
+    "name": "Hip abductors",
+    "muscleIds": [
+      "gluteus-medius",
+      "gluteus-minimus",
+      "tensor-fasciae-latae"
+    ],
+    "bodyMapAreas": [
+      "gluteal"
+    ],
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "adductors",
+    "name": "Hip adductors",
+    "muscleIds": [
+      "adductor-longus",
+      "adductor-magnus",
+      "gracilis"
+    ],
+    "bodyMapAreas": [
+      "adductors"
+    ],
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "tibialis",
+    "name": "Tibialis (shin)",
+    "muscleIds": [
+      "tibialis-anterior"
+    ],
+    "bodyMapAreas": [
+      "tibialis"
+    ],
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "hip_flexors",
+    "name": "Hip flexors",
+    "muscleIds": [
+      "iliopsoas",
+      "rectus-femoris",
+      "tensor-fasciae-latae"
+    ],
+    "bodyMapAreas": [
+      "quadriceps"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "hip_flexors maps to quadriceps because no slug covers the front of the hip: Azhar to confirm."
+    }
+  },
+  {
+    "id": "abdominals",
+    "name": "Abdominals",
+    "muscleIds": [
+      "rectus-abdominis",
+      "external-oblique",
+      "internal-oblique",
+      "transversus-abdominis"
+    ],
+    "bodyMapAreas": [
+      "abs",
+      "obliques"
+    ],
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "lower_back",
+    "name": "Lower back",
+    "muscleIds": [
+      "erector-spinae",
+      "multifidus",
+      "quadratus-lumborum"
+    ],
+    "bodyMapAreas": [
+      "lower-back"
+    ],
+    "review": {
+      "state": "draft"
+    }
+  }
+]
