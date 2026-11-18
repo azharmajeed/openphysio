@@ -1,7 +1,7 @@
 # K3d: Cues and faults: top trunk, rehab and conditioning exercises
 Project / milestone / feature: OpenPhysio / v0.2 / PRD-002
 Lane: Knowledge
-Status: In review
+Status: Done
 Approved scope reference: docs/tasks/v0.2/README.md, docs/tasks/EXECUTION.md
 Approved product specification ID/version: PRD-002 0.2-draft, v0.2 slice (D-18)
 Approved technical plan ID/version: TP-002 v1 sections 1–4 (D-19); review states D-21
