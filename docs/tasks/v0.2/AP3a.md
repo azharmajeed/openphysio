@@ -44,7 +44,12 @@ Uncommitted changes and where they are preserved: none after commit
 Validation performed and results: pnpm lint, typecheck, test all pass (266 tests)
 Artifacts, preview, and PR links: PR in review packet
 Failures and attempts already made: none
-Open decisions/blockers: see PR (check-in storage is AP3b; planned completion with a pain stop earns nothing; rest weeks with no plan keep counting)
+Open decisions/blockers: see PR (check-in storage is AP3b; planned completion with a pain stop earns nothing; weeks with no plan are neutral after review repair)
 Next action: orchestrator review
 Task state and reason: In review, PR open
 Usage/cost, or unavailable: unavailable
+
+# AP3a / run 1, repair
+Work completed: computeStreak now treats a week with no planned sessions as neutral (neither counts nor breaks); JSDoc, PR text and tests updated (3 new streak tests).
+Validation performed and results: pnpm lint, typecheck, test pass.
+Task state and reason: In review, PR #41.

@@ -240,9 +240,22 @@ describe("streak", () => {
     expect(r.current).toBe(1);
   });
 
-  test("a week with no planned sessions counts and never breaks the streak", () => {
+  test("done, empty, done: the empty week is neutral", () => {
     const r = computeStreak({ ...base(merge(done(3, "2026-11-09"), done(3, "2026-11-23"))), today });
-    expect(r.current).toBe(3); // 9th, empty 16th, 23rd
+    expect(r.current).toBe(2);
+    expect(r.best).toBe(2);
+  });
+
+  test("three done weeks then two empty weeks: streak neither grows nor breaks", () => {
+    const r = computeStreak({ ...base(merge(done(3, "2026-11-02"), done(3, "2026-11-09"), done(3, "2026-11-16"))), today });
+    expect(r.current).toBe(3);
+    expect(r.best).toBe(3);
+  });
+
+  test("done, empty, missed: the miss still breaks", () => {
+    const r = computeStreak({ ...base(merge(done(3, "2026-11-09"), plannedOnly(3, "2026-11-23"))), today });
+    expect(r.current).toBe(0);
+    expect(r.best).toBe(1);
   });
 
   test("the running week never breaks a streak", () => {

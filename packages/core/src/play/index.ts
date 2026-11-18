@@ -119,7 +119,8 @@ export function computeLedger(input: PlayInput): LedgerEntry[] {
 }
 
 /**
- * Weekly streak. A week counts when done/planned >= threshold, or when nothing was planned (rest never breaks it).
+ * Weekly streak. A week counts when done/planned >= threshold. A week with nothing planned is neutral: it neither counts nor breaks
+ * (so a streak cannot grow with no plan; a planned week with fewer sessions is handled by the threshold).
  * A week with a pain stop that missed the threshold is frozen: neither counts nor breaks.
  * The running week can count once met but never breaks.
  */
@@ -143,7 +144,7 @@ export function computeStreak(input: PlayInput & { today: string }): StreakResul
     const wk = fmt(ms);
     const w = weeks.get(wk) ?? { done: 0, planned: 0 };
     const running = wk === thisWeek;
-    if (running && w.planned === 0) continue; // nothing to judge yet
+    if (w.planned === 0) continue; // neutral
     if (w.done >= rules.streak.threshold * w.planned - 1e-9) best = Math.max(best, ++current);
     else if (running || frozen.has(wk)) continue;
     else current = 0;
