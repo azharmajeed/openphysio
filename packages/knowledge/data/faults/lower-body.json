@@ -1,0 +1,12 @@
+[
+  {
+    "id": "fault-glute-bridge-arch",
+    "exerciseId": "glute_bridge",
+    "description": "Lower back arches at the top instead of the hips extending.",
+    "whyItMatters": "The work moves from the glutes to the lower back.",
+    "cueId": "cue-glute-bridge-ribs-down",
+    "severity": "low",
+    "sourceId": "src-openstax-ap2e",
+    "review": { "state": "draft", "notes": "Minimal example." }
+  }
+]

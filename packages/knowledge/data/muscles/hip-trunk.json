@@ -1,0 +1,13 @@
+[
+  {
+    "id": "gluteus-maximus",
+    "name": "Gluteus maximus",
+    "aliases": ["glutes", "gluteal"],
+    "region": "hip-trunk",
+    "bodyMapArea": "gluteal",
+    "actions": ["hip extension", "hip external rotation"],
+    "dailyLifeRole": "Drives you up from a chair and up stairs.",
+    "claims": ["claim-glute-max-hip-extension"],
+    "review": { "state": "draft", "notes": "Minimal example." }
+  }
+]

@@ -1,0 +1,10 @@
+[
+  {
+    "id": "claim-glute-max-hip-extension",
+    "text": "The gluteus maximus is the main muscle that extends the hip.",
+    "sourceId": "src-openstax-ap2e",
+    "grade": "C",
+    "subjects": ["gluteus-maximus"],
+    "review": { "state": "draft", "notes": "Minimal example." }
+  }
+]

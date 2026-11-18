@@ -1,0 +1,10 @@
+[
+  {
+    "id": "cue-glute-bridge-ribs-down",
+    "exerciseId": "glute_bridge",
+    "text": "Ribs down, squeeze your glutes at the top",
+    "phase": "top",
+    "sourceId": "src-openstax-ap2e",
+    "review": { "state": "draft", "notes": "Minimal example." }
+  }
+]

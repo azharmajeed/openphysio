@@ -1,0 +1,30 @@
+{
+  "library": "react-native-body-highlighter",
+  "version": "3.2.0",
+  "note": "Slugs drawn in the library's male/female front/back SVGs (dist/assets/*.js), also its Slug type. Re-read when the version changes.",
+  "slugs": [
+    "abs",
+    "adductors",
+    "ankles",
+    "biceps",
+    "calves",
+    "chest",
+    "deltoids",
+    "feet",
+    "forearm",
+    "gluteal",
+    "hair",
+    "hamstring",
+    "hands",
+    "head",
+    "knees",
+    "lower-back",
+    "neck",
+    "obliques",
+    "quadriceps",
+    "tibialis",
+    "trapezius",
+    "triceps",
+    "upper-back"
+  ]
+}

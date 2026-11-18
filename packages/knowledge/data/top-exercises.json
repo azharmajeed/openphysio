@@ -1,0 +1,152 @@
+[
+  {
+    "id": "glute_bridge",
+    "name": "Butt Lift (Bridge)",
+    "planned": 110
+  },
+  {
+    "id": "bird_dog",
+    "name": "Bird Dog",
+    "planned": 80
+  },
+  {
+    "id": "lateral_band_walk",
+    "name": "Lateral Band Walk",
+    "planned": 70
+  },
+  {
+    "id": "backward_walk",
+    "name": "Backward Walking",
+    "planned": 69
+  },
+  {
+    "id": "band_pull_apart",
+    "name": "Band Pull Apart",
+    "planned": 65
+  },
+  {
+    "id": "arm_circles",
+    "name": "Arm Circles",
+    "planned": 64
+  },
+  {
+    "id": "hip_circles",
+    "name": "Standing Hip Circles",
+    "planned": 62
+  },
+  {
+    "id": "dead_bug",
+    "name": "Dead Bug",
+    "planned": 56
+  },
+  {
+    "id": "knee_to_wall",
+    "name": "Knee-to-Wall Ankle Mobilisation",
+    "planned": 56
+  },
+  {
+    "id": "leg_swing",
+    "name": "Leg Swing",
+    "planned": 56
+  },
+  {
+    "id": "inchworm",
+    "name": "Inchworm",
+    "planned": 52
+  },
+  {
+    "id": "single_leg_balance",
+    "name": "Single-Leg Balance",
+    "planned": 50
+  },
+  {
+    "id": "ankle_circles",
+    "name": "Ankle Circles",
+    "planned": 47
+  },
+  {
+    "id": "a_skip",
+    "name": "A-Skip",
+    "planned": 37
+  },
+  {
+    "id": "cat_cow",
+    "name": "Cat Stretch",
+    "planned": 37
+  },
+  {
+    "id": "dumbbell_rdl",
+    "name": "Stiff-Legged Dumbbell Deadlift",
+    "planned": 31
+  },
+  {
+    "id": "butt_kicks",
+    "name": "Butt Kicks",
+    "planned": 29
+  },
+  {
+    "id": "high_knees",
+    "name": "High Knees",
+    "planned": 29
+  },
+  {
+    "id": "bodyweight_squat",
+    "name": "Bodyweight Squat",
+    "planned": 27
+  },
+  {
+    "id": "worlds_greatest_stretch",
+    "name": "Lunge with Rotation",
+    "planned": 27
+  },
+  {
+    "id": "calf_raise",
+    "name": "Calf Raise",
+    "planned": 24
+  },
+  {
+    "id": "lat_pulldown",
+    "name": "Wide-Grip Lat Pulldown",
+    "planned": 22
+  },
+  {
+    "id": "glute_activation_walk",
+    "name": "Banded Side Step",
+    "planned": 20
+  },
+  {
+    "id": "dumbbell_row",
+    "name": "One-Arm Dumbbell Row",
+    "planned": 18
+  },
+  {
+    "id": "incline_pushup",
+    "name": "Incline Push-Up",
+    "planned": 16
+  },
+  {
+    "id": "kneeling_hip_flexor_stretch",
+    "name": "Kneeling Hip Flexor",
+    "planned": 16
+  },
+  {
+    "id": "close_grip_pushup",
+    "name": "Push-Ups - Close Triceps Position",
+    "planned": 14
+  },
+  {
+    "id": "banded_hip_lift",
+    "name": "Hip Lift with Band",
+    "planned": 13
+  },
+  {
+    "id": "band_row",
+    "name": "Banded Seated Row",
+    "planned": 12
+  },
+  {
+    "id": "dumbbell_curl",
+    "name": "Dumbbell Bicep Curl",
+    "planned": 12
+  }
+]
