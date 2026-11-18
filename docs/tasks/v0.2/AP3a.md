@@ -1,7 +1,7 @@
 # AP3a: Points and streak engine in core, rules in data
 Project / milestone / feature: OpenPhysio / v0.2 / PRD-002
 Lane: App
-Status: Ready
+Status: In review
 Approved scope reference: docs/tasks/v0.2/README.md, docs/tasks/EXECUTION.md
 Approved product specification ID/version: PRD-002 0.2-draft, v0.2 slice (D-18)
 Approved technical plan ID/version: TP-004 v1 section 4, points and streaks only (D-19)
@@ -32,3 +32,24 @@ Execution budget and retry limit: one implementation run + one repair after revi
 When to request a product or consequential technical decision: per EXECUTION.md escalation conditions
 Completion condition: validated result + PR -> In review
 Merge authority: orchestrator into v0.1 after review (D-9); Azhar for v0.1 -> main
+
+## Checkpoint
+# AP3a / run 1
+Agent/runtime/model, if reported: Claude Sonnet subagent, ponytail lite
+Execution host and checkout: C:\Users\rahza\Documents\work\openphysio-wt\AP3a
+Base commit / current branch / latest commit: 456b83c / feat/ap3a-points-streak / see PR
+Task/spec version: AP3a contract, PRD-002 0.2-draft, TP-004 v1 section 4
+Work completed: computeLedger, computeStreak, weekStart in packages/core/src/play; rules in packages/catalog/src/play.json exported as playRules; 29 tests (farming and pain stop written first).
+Uncommitted changes and where they are preserved: none after commit
+Validation performed and results: pnpm lint, typecheck, test all pass (266 tests)
+Artifacts, preview, and PR links: PR in review packet
+Failures and attempts already made: none
+Open decisions/blockers: see PR (check-in storage is AP3b; planned completion with a pain stop earns nothing; weeks with no plan are neutral after review repair)
+Next action: orchestrator review
+Task state and reason: In review, PR open
+Usage/cost, or unavailable: unavailable
+
+# AP3a / run 1, repair
+Work completed: computeStreak now treats a week with no planned sessions as neutral (neither counts nor breaks); JSDoc, PR text and tests updated (3 new streak tests).
+Validation performed and results: pnpm lint, typecheck, test pass.
+Task state and reason: In review, PR #41.

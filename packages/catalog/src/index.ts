@@ -1,10 +1,14 @@
-import type { BodyArea } from "@openphysio/core";
+import type { BodyArea, PlayRules } from "@openphysio/core";
 import data from "./exercises.json" with { type: "json" };
+import playData from "./play.json" with { type: "json" };
 
 export * from "./evidence/index.ts";
 export * from "./goals.ts";
 
 export const name = "@openphysio/catalog";
+
+/** Points and streak rules (AP3a). Core computes, this is the data. */
+export const playRules = playData as PlayRules;
 
 export const SESSION_TYPES = [
   "warmup",
