@@ -2,7 +2,8 @@ import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import type { AdaptResult } from "@openphysio/core";
-import { applyNextWeek, markReviewed, proposeNextWeek } from "../lib/adaptdb";
+import { applyNextWeek, markReviewed, proposeNextWeek, recordCheckIn } from "../lib/adaptdb";
+import { ymd } from "../lib/plan";
 
 const LABEL = { regress: "Easier", progress: "Step up", remove: "Removed", lower_intensity: "Lighter", keep: "Note", swap: "Swap", volume: "Volume", move: "Moved" } as const;
 
@@ -14,6 +15,7 @@ export default function CheckIn() {
   const done = async (apply: boolean) => {
     if (apply) await applyNextWeek(r);
     else if (r.week) markReviewed(r.week.next.start);
+    recordCheckIn(ymd(new Date()));
     router.back();
   };
   return (

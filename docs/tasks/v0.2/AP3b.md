@@ -1,7 +1,7 @@
 # AP3b: Points and streak in the app (local)
 Project / milestone / feature: OpenPhysio / v0.2 / PRD-002
 Lane: App
-Status: Ready
+Status: In review
 Approved scope reference: docs/tasks/v0.2/README.md, docs/tasks/EXECUTION.md
 Approved product specification ID/version: PRD-002 0.2-draft, v0.2 slice (D-18)
 Approved technical plan ID/version: TP-004 v1 section 4, points and streaks only (D-19)
@@ -25,3 +25,19 @@ Execution budget and retry limit: one implementation run + one repair after revi
 When to request a product or consequential technical decision: per EXECUTION.md escalation conditions
 Completion condition: validated result + PR -> In review
 Merge authority: orchestrator into v0.1 after review (D-9); Azhar for v0.1 -> main
+
+## Checkpoint
+# AP3b / run 1
+Agent/runtime/model, if reported: Claude Sonnet subagent, ponytail lite
+Execution host and checkout: C:\w\AP3b
+Base commit / current branch / latest commit: a2f6e31 / feat/ap3b-points-app / see PR
+Task/spec version: AP3b contract, PRD-002 0.2-draft, TP-004 v1 section 4
+Work completed: play/playdb.ts (loadPlay returns streak, thisWeek, ledgerToday from logs), play/checkins.ts (addCheckIn, once per week), play/usePlay.ts (focus-refreshed hook); checkInDates and recordCheckIn in lib/adaptdb.ts (kv-store key play.checkins); recordCheckIn called from checkin.tsx done(). 4 tests.
+Uncommitted changes and where they are preserved: none after commit
+Validation performed and results: pnpm lint, typecheck, test pass (285 tests); npx expo export -p android ok
+Artifacts, preview, and PR links: PR in review packet
+Failures and attempts already made: none
+Open decisions/blockers: none
+Next action: orchestrator review
+Task state and reason: In review, PR open
+Usage/cost, or unavailable: unavailable
