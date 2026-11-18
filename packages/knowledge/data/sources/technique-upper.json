@@ -1,1 +1,131 @@
-[]
+[
+  {
+    "id": "src-youdas-2010",
+    "type": "review",
+    "citation": "Youdas JW, Amundson CL, Cicero KS, Hahn JJ, Harezlak DT, Hollman JH. Surface electromyographic activation patterns and elbow joint motion during a pull-up, chin-up, or Perfect-Pullup rotational exercise. J Strength Cond Res. 2010;24(12):3404-3414.",
+    "pmid": "21068680",
+    "doi": "10.1519/JSC.0b013e3181f1598c",
+    "year": 2010,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "Surface EMG, 25 healthy adults. Covers pull-up and chin-up muscle activity, not injured shoulders. Study type is a lab paper; schema has no such type, so 'review' is the nearest."
+    }
+  },
+  {
+    "id": "src-andersen-2014",
+    "type": "review",
+    "citation": "Andersen V, Fimland MS, Wiik E, Skoglund A, Saeterbakken AH. Effects of grip width on muscle strength and activation in the lat pull-down. J Strength Cond Res. 2014;28(4):1135-1142.",
+    "pmid": "24662157",
+    "doi": "10.1097/JSC.0000000000000232",
+    "year": 2014,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "15 healthy men, three pronated grip widths. Covers grip width only. Study type is a lab paper; schema has no such type, so 'review' is the nearest."
+    }
+  },
+  {
+    "id": "src-sperandei-2009",
+    "type": "review",
+    "citation": "Sperandei S, Barros MA, Silveira-Junior PC, Oliveira CG. Electromyographic analysis of three different types of lat pull-down. J Strength Cond Res. 2009;23(7):2033-2038.",
+    "pmid": "19855327",
+    "doi": "10.1519/JSC.0b013e3181b8d30a",
+    "year": 2009,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "24 trained men. Compares behind-the-neck, front and V-bar pulldowns; the avoid-behind-neck advice is the authors' conclusion. Study type is a lab paper; schema has no such type, so 'review' is the nearest."
+    }
+  },
+  {
+    "id": "src-fenwick-2009",
+    "type": "review",
+    "citation": "Fenwick CM, Brown SH, McGill SM. Comparison of different rowing exercises: trunk muscle activation and lumbar spine motion, load, and stiffness. J Strength Cond Res. 2009;23(5):1408-1417.",
+    "pmid": "19620925",
+    "doi": "10.1519/JSC.0b013e3181b07334",
+    "year": 2009,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "Seven healthy men; inverted row, standing bent-over row and standing one-arm cable row. Not a bench-supported dumbbell row or a band row. PubMed also lists a same-titled record, PMID 19197209 (J Strength Cond Res 2009;23(2):350-358); this entry follows 19620925, whose abstract was checked. Study type is a lab paper; schema has no such type, so 'review' is the nearest."
+    }
+  },
+  {
+    "id": "src-youdas-2020",
+    "type": "review",
+    "citation": "Youdas JW, Hubble JW, Johnson PG, McCarthy MM, Hollman JH. Scapular muscle balance and spinal stabilizer recruitment during an inverted row. Physiother Theory Pract. 2020;36(3):432-443.",
+    "pmid": "29944029",
+    "doi": "10.1080/09593985.2018.1486491",
+    "year": 2020,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "26 healthy participants. Says nothing about people who already have shoulder pain. Study type is a lab paper; schema has no such type, so 'review' is the nearest."
+    }
+  },
+  {
+    "id": "src-cogley-2005",
+    "type": "review",
+    "citation": "Cogley RM, Archambault TA, Fibeger JF, Koverman MM, Youdas JW, Hollman JH. Comparison of muscle activation using various hand positions during the push-up exercise. J Strength Cond Res. 2005;19(3):628-633.",
+    "pmid": "16095413",
+    "doi": "10.1519/15094.1",
+    "year": 2005,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "40 healthy adults, one repetition per hand position. Narrow meant hands closer than shoulder width. Study type is a lab paper; schema has no such type, so 'review' is the nearest."
+    }
+  },
+  {
+    "id": "src-ebben-2011",
+    "type": "review",
+    "citation": "Ebben WP, Wurm B, VanderZanden TL, Spadavecchia ML, Durocher JJ, Bickham CT, Petushek EJ. Kinetic analysis of several variations of push-ups. J Strength Cond Res. 2011;25(10):2891-2894.",
+    "pmid": "21873902",
+    "doi": "10.1519/JSC.0b013e31820c8587",
+    "year": 2011,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "23 recreationally fit adults; measures ground force, not muscle activity or joint load. Study type is a lab paper; schema has no such type, so 'review' is the nearest."
+    }
+  },
+  {
+    "id": "src-oliveira-2009",
+    "type": "review",
+    "citation": "Oliveira LF, Matta TT, Alves DS, Garcia MA, Vieira TM. Effect of the shoulder position on the biceps brachii EMG in different dumbbell curls. J Sports Sci Med. 2009;8(1):24-29.",
+    "pmid": "24150552",
+    "year": 2009,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "22 subjects, biceps long head only, at 40% of maximum. Compares standard, incline and preacher dumbbell curls. Study type is a lab paper; schema has no such type, so 'review' is the nearest."
+    }
+  },
+  {
+    "id": "src-marcolin-2018",
+    "type": "review",
+    "citation": "Marcolin G, Panizzolo FA, Petrone N, Moro T, Grigoletto D, Piccolo D, Paoli A. Differences in electromyographic activity of biceps brachii and brachioradialis while performing three variants of curl. PeerJ. 2018;6:e5165.",
+    "pmid": "30013836",
+    "doi": "10.7717/peerj.5165",
+    "year": 2018,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "12 participants at 65% of 1RM; dumbbell versus barbell curls. No hammer grip tested. Study type is a lab paper; schema has no such type, so 'review' is the nearest."
+    }
+  },
+  {
+    "id": "src-saeterbakken-2013",
+    "type": "review",
+    "citation": "Saeterbakken AH, Fimland MS. Effects of body position and loading modality on muscle activity and strength in shoulder presses. J Strength Cond Res. 2013;27(7):1824-1831.",
+    "pmid": "23096062",
+    "doi": "10.1519/JSC.0b013e318276b873",
+    "year": 2013,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "15 healthy men; seated versus standing, dumbbell versus barbell press. Healthy shoulders only. Study type is a lab paper; schema has no such type, so 'review' is the nearest."
+    }
+  }
+]
