@@ -1,1 +1,210 @@
-[]
+[
+  {
+    "id": "claim-pectoralis-major-actions",
+    "text": "Pectoralis major: adducts the arm; flexes the arm at the shoulder (clavicular fibres); medially rotates the arm.",
+    "sourceId": "src-openstax-ap2e-ch11-5",
+    "grade": "C",
+    "subjects": [
+      "pectoralis-major"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Paraphrase of OpenStax actions. Grade C because it is textbook anatomy, not a guideline or study; confirm the grade."
+    }
+  },
+  {
+    "id": "claim-pectoralis-minor-actions",
+    "text": "Pectoralis minor: depresses and protracts the scapula; assists forced inhalation.",
+    "sourceId": "src-openstax-ap2e-ch11-5",
+    "grade": "C",
+    "subjects": [
+      "pectoralis-minor"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Paraphrase of OpenStax actions. Grade C because it is textbook anatomy, not a guideline or study; confirm the grade."
+    }
+  },
+  {
+    "id": "claim-serratus-anterior-actions",
+    "text": "Serratus anterior: protracts the scapula; holds the scapula against the rib cage; assists forced inhalation.",
+    "sourceId": "src-openstax-ap2e-ch11-5",
+    "grade": "C",
+    "subjects": [
+      "serratus-anterior"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Paraphrase of OpenStax actions. Grade C because it is textbook anatomy, not a guideline or study; confirm the grade."
+    }
+  },
+  {
+    "id": "claim-latissimus-dorsi-actions",
+    "text": "Latissimus dorsi: extends the arm; adducts the arm; medially rotates the arm.",
+    "sourceId": "src-openstax-ap2e-ch11-5",
+    "grade": "C",
+    "subjects": [
+      "latissimus-dorsi"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Paraphrase of OpenStax actions. Grade C because it is textbook anatomy, not a guideline or study; confirm the grade."
+    }
+  },
+  {
+    "id": "claim-biceps-brachii-actions",
+    "text": "Biceps brachii: flexes the elbow; supinates the forearm; assists shoulder flexion.",
+    "sourceId": "src-openstax-ap2e-ch11-5",
+    "grade": "C",
+    "subjects": [
+      "biceps-brachii"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Paraphrase of OpenStax actions. Grade C because it is textbook anatomy, not a guideline or study; confirm the grade."
+    }
+  },
+  {
+    "id": "claim-brachialis-actions",
+    "text": "Brachialis: flexes the elbow.",
+    "sourceId": "src-openstax-ap2e-ch11-5",
+    "grade": "C",
+    "subjects": [
+      "brachialis"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Paraphrase of OpenStax actions. Grade C because it is textbook anatomy, not a guideline or study; confirm the grade."
+    }
+  },
+  {
+    "id": "claim-brachioradialis-actions",
+    "text": "Brachioradialis: flexes the elbow, most when the thumb points up.",
+    "sourceId": "src-openstax-ap2e-ch11-5",
+    "grade": "C",
+    "subjects": [
+      "brachioradialis"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Paraphrase of OpenStax actions. Grade C because it is textbook anatomy, not a guideline or study; confirm the grade."
+    }
+  },
+  {
+    "id": "claim-triceps-brachii-actions",
+    "text": "Triceps brachii: extends the elbow; long head extends the arm at the shoulder.",
+    "sourceId": "src-openstax-ap2e-ch11-5",
+    "grade": "C",
+    "subjects": [
+      "triceps-brachii"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Paraphrase of OpenStax actions. Grade C because it is textbook anatomy, not a guideline or study; confirm the grade."
+    }
+  },
+  {
+    "id": "claim-forearm-flexors-actions",
+    "text": "Forearm flexors: flex the wrist; flex the fingers.",
+    "sourceId": "src-openstax-ap2e-ch11-5",
+    "grade": "C",
+    "subjects": [
+      "forearm-flexors"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Paraphrase of OpenStax actions. Grade C because it is textbook anatomy, not a guideline or study; confirm the grade."
+    }
+  },
+  {
+    "id": "claim-forearm-extensors-actions",
+    "text": "Forearm extensors: extend the wrist; extend the fingers.",
+    "sourceId": "src-openstax-ap2e-ch11-5",
+    "grade": "C",
+    "subjects": [
+      "forearm-extensors"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Paraphrase of OpenStax actions. Grade C because it is textbook anatomy, not a guideline or study; confirm the grade."
+    }
+  },
+  {
+    "id": "claim-deltoid-lateral-actions",
+    "text": "Lateral deltoid: abducts the arm.",
+    "sourceId": "src-openstax-ap2e-ch11-5",
+    "grade": "C",
+    "subjects": [
+      "deltoid-lateral"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Paraphrase of OpenStax actions. Grade C because it is textbook anatomy, not a guideline or study; confirm the grade."
+    }
+  },
+  {
+    "id": "claim-supraspinatus-actions",
+    "text": "Supraspinatus: starts arm abduction; holds the humeral head in the socket.",
+    "sourceId": "src-openstax-ap2e-ch11-5",
+    "grade": "C",
+    "subjects": [
+      "supraspinatus"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Paraphrase of OpenStax actions. Grade C because it is textbook anatomy, not a guideline or study; confirm the grade."
+    }
+  },
+  {
+    "id": "claim-infraspinatus-actions",
+    "text": "Infraspinatus: laterally rotates the arm; holds the humeral head in the socket.",
+    "sourceId": "src-openstax-ap2e-ch11-5",
+    "grade": "C",
+    "subjects": [
+      "infraspinatus"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Paraphrase of OpenStax actions. Grade C because it is textbook anatomy, not a guideline or study; confirm the grade."
+    }
+  },
+  {
+    "id": "claim-teres-minor-actions",
+    "text": "Teres minor: laterally rotates the arm; assists arm extension.",
+    "sourceId": "src-openstax-ap2e-ch11-5",
+    "grade": "C",
+    "subjects": [
+      "teres-minor"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Paraphrase of OpenStax actions. Grade C because it is textbook anatomy, not a guideline or study; confirm the grade."
+    }
+  },
+  {
+    "id": "claim-subscapularis-actions",
+    "text": "Subscapularis: medially rotates the arm; holds the humeral head in the socket.",
+    "sourceId": "src-openstax-ap2e-ch11-5",
+    "grade": "C",
+    "subjects": [
+      "subscapularis"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Paraphrase of OpenStax actions. Grade C because it is textbook anatomy, not a guideline or study; confirm the grade."
+    }
+  },
+  {
+    "id": "claim-rhomboids-actions",
+    "text": "Rhomboids: retract the scapula; rotate the scapula downward; stabilise the scapula.",
+    "sourceId": "src-openstax-ap2e-ch11-5",
+    "grade": "C",
+    "subjects": [
+      "rhomboids"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Paraphrase of OpenStax actions. Grade C because it is textbook anatomy, not a guideline or study; confirm the grade."
+    }
+  }
+]

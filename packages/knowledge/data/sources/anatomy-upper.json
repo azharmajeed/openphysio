@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "id": "src-openstax-ap2e-ch11-5",
+    "type": "textbook",
+    "citation": "OpenStax. Anatomy and Physiology 2e, section 11.5: Muscles of the Pectoral Girdle and Upper Limbs. Rice University, 2022.",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/11-5-muscles-of-the-pectoral-girdle-and-upper-limbs",
+    "year": 2022,
+    "licence": "CC BY 4.0",
+    "review": {
+      "state": "draft",
+      "notes": "Origins, insertions and actions paraphrased in our own words."
+    }
+  },
+  {
+    "id": "src-openstax-ap2e-ch11-3",
+    "type": "textbook",
+    "citation": "OpenStax. Anatomy and Physiology 2e, section 11.3: Axial Muscles of the Head, Neck, and Back. Rice University, 2022.",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/11-3-axial-muscles-of-the-head-neck-and-back",
+    "year": 2022,
+    "licence": "CC BY 4.0",
+    "review": {
+      "state": "draft",
+      "notes": "Read for neck muscles; deep neck flexors are not covered there."
+    }
+  }
+]

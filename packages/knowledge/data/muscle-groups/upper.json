@@ -1,1 +1,116 @@
-[]
+[
+  {
+    "id": "chest",
+    "name": "Chest",
+    "muscleIds": [
+      "pectoralis-major",
+      "pectoralis-minor",
+      "serratus-anterior"
+    ],
+    "bodyMapAreas": [
+      "chest"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Id matches the catalogue primaryMuscles name."
+    }
+  },
+  {
+    "id": "shoulders",
+    "name": "Shoulders",
+    "muscleIds": [
+      "deltoid-anterior",
+      "deltoid-lateral",
+      "deltoid-posterior",
+      "supraspinatus",
+      "infraspinatus",
+      "teres-minor",
+      "subscapularis"
+    ],
+    "bodyMapAreas": [
+      "deltoids"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Id matches the catalogue primaryMuscles name."
+    }
+  },
+  {
+    "id": "upper_back",
+    "name": "Upper back",
+    "muscleIds": [
+      "trapezius-upper",
+      "trapezius-middle",
+      "trapezius-lower",
+      "rhomboids",
+      "levator-scapulae"
+    ],
+    "bodyMapAreas": [
+      "upper-back",
+      "trapezius"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Id matches the catalogue primaryMuscles name."
+    }
+  },
+  {
+    "id": "lats",
+    "name": "Lats",
+    "muscleIds": [
+      "latissimus-dorsi"
+    ],
+    "bodyMapAreas": [
+      "upper-back"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Id matches the catalogue primaryMuscles name."
+    }
+  },
+  {
+    "id": "biceps",
+    "name": "Biceps",
+    "muscleIds": [
+      "biceps-brachii",
+      "brachialis"
+    ],
+    "bodyMapAreas": [
+      "biceps"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Id matches the catalogue primaryMuscles name."
+    }
+  },
+  {
+    "id": "triceps",
+    "name": "Triceps",
+    "muscleIds": [
+      "triceps-brachii"
+    ],
+    "bodyMapAreas": [
+      "triceps"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Id matches the catalogue primaryMuscles name."
+    }
+  },
+  {
+    "id": "forearms",
+    "name": "Forearms",
+    "muscleIds": [
+      "brachioradialis",
+      "forearm-flexors",
+      "forearm-extensors"
+    ],
+    "bodyMapAreas": [
+      "forearm"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Id matches the catalogue primaryMuscles name."
+    }
+  }
+]
