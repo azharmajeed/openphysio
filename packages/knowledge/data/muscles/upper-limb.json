@@ -1,1 +1,209 @@
-[]
+[
+  {
+    "id": "pectoralis-major",
+    "name": "Pectoralis major",
+    "aliases": [
+      "pecs",
+      "chest muscle"
+    ],
+    "region": "upper-limb",
+    "bodyMapArea": "chest",
+    "actions": [
+      "adducts the arm",
+      "flexes the arm at the shoulder (clavicular fibres)",
+      "medially rotates the arm"
+    ],
+    "dailyLifeRole": "Pushes a door open, pushes yourself up from the floor and hugs someone.",
+    "claims": [
+      "claim-pectoralis-major-actions"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "OpenStax lists adduction and raising the arm forward; medial rotation and clavicular flexion are standard anatomy not stated on the OpenStax page. Confirm. Wikidata Q532798 (identity check)."
+    }
+  },
+  {
+    "id": "pectoralis-minor",
+    "name": "Pectoralis minor",
+    "aliases": [],
+    "region": "upper-limb",
+    "bodyMapArea": "chest",
+    "actions": [
+      "depresses and protracts the scapula",
+      "assists forced inhalation"
+    ],
+    "dailyLifeRole": "Holds the shoulder blade forward and down when you reach or breathe in deeply.",
+    "claims": [
+      "claim-pectoralis-minor-actions"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Sits under pectoralis major, so it is not drawn on the body map; nearest slug chest used. Wikidata Q757083 (identity check)."
+    }
+  },
+  {
+    "id": "serratus-anterior",
+    "name": "Serratus anterior",
+    "aliases": [
+      "boxer's muscle"
+    ],
+    "region": "upper-limb",
+    "bodyMapArea": "chest",
+    "actions": [
+      "protracts the scapula",
+      "holds the scapula against the rib cage",
+      "assists forced inhalation"
+    ],
+    "dailyLifeRole": "Lets you reach forward and keeps the shoulder blade flat when you push or lift overhead.",
+    "claims": [
+      "claim-serratus-anterior-actions"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Wraps the side of the rib cage, no matching body-map slug; nearest slug chest used. Upward rotation of the scapula is standard anatomy but not on the OpenStax page. Confirm. Wikidata Q743294 (identity check)."
+    }
+  },
+  {
+    "id": "latissimus-dorsi",
+    "name": "Latissimus dorsi",
+    "aliases": [
+      "lats"
+    ],
+    "region": "upper-limb",
+    "bodyMapArea": "upper-back",
+    "actions": [
+      "extends the arm",
+      "adducts the arm",
+      "medially rotates the arm"
+    ],
+    "dailyLifeRole": "Pulls your arm down and back, as in climbing, rowing or pulling a heavy door shut.",
+    "claims": [
+      "claim-latissimus-dorsi-actions"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Body map has no lats slug; upper-back is the nearest drawn area. OpenStax words the action as moving the elbow backward and drawing the elbows apart; extension, adduction and medial rotation are standard anatomy. Confirm. Wikidata Q283673 (identity check)."
+    }
+  },
+  {
+    "id": "biceps-brachii",
+    "name": "Biceps brachii",
+    "aliases": [
+      "biceps"
+    ],
+    "region": "upper-limb",
+    "bodyMapArea": "biceps",
+    "actions": [
+      "flexes the elbow",
+      "supinates the forearm",
+      "assists shoulder flexion"
+    ],
+    "dailyLifeRole": "Bends your elbow to lift a bag and turns your palm up to take a cup.",
+    "claims": [
+      "claim-biceps-brachii-actions"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Wikidata Q201363 (identity check)."
+    }
+  },
+  {
+    "id": "brachialis",
+    "name": "Brachialis",
+    "aliases": [],
+    "region": "upper-limb",
+    "bodyMapArea": "biceps",
+    "actions": [
+      "flexes the elbow"
+    ],
+    "dailyLifeRole": "Does the main work of bending the elbow whichever way your palm faces.",
+    "claims": [
+      "claim-brachialis-actions"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Lies deep to biceps brachii; body map slug biceps is the nearest. Placed in the biceps group because the catalogue has no brachialis group. Wikidata Q752441 (identity check)."
+    }
+  },
+  {
+    "id": "brachioradialis",
+    "name": "Brachioradialis",
+    "aliases": [],
+    "region": "upper-limb",
+    "bodyMapArea": "forearm",
+    "actions": [
+      "flexes the elbow, most when the thumb points up"
+    ],
+    "dailyLifeRole": "Helps bend the elbow when you carry or hammer with the thumb up.",
+    "claims": [
+      "claim-brachioradialis-actions"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "OpenStax states elbow flexion only; thumb-up emphasis is standard anatomy. Confirm."
+    }
+  },
+  {
+    "id": "triceps-brachii",
+    "name": "Triceps brachii",
+    "aliases": [
+      "triceps"
+    ],
+    "region": "upper-limb",
+    "bodyMapArea": "triceps",
+    "actions": [
+      "extends the elbow",
+      "long head extends the arm at the shoulder"
+    ],
+    "dailyLifeRole": "Straightens your elbow to push yourself out of a chair or press something overhead.",
+    "claims": [
+      "claim-triceps-brachii-actions"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Shoulder-extension role of the long head is standard anatomy not stated on the OpenStax page. Confirm. Wikidata Q83379 (identity check)."
+    }
+  },
+  {
+    "id": "forearm-flexors",
+    "name": "Forearm flexors",
+    "aliases": [
+      "wrist and finger flexors"
+    ],
+    "region": "upper-limb",
+    "bodyMapArea": "forearm",
+    "actions": [
+      "flex the wrist",
+      "flex the fingers"
+    ],
+    "dailyLifeRole": "Give you grip strength to hold a bag handle, bar or phone.",
+    "claims": [
+      "claim-forearm-flexors-actions"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Group record covering flexor carpi radialis, flexor carpi ulnaris and flexor digitorum superficialis (all in OpenStax). Pronator and deeper finger flexors not included."
+    }
+  },
+  {
+    "id": "forearm-extensors",
+    "name": "Forearm extensors",
+    "aliases": [
+      "wrist and finger extensors"
+    ],
+    "region": "upper-limb",
+    "bodyMapArea": "forearm",
+    "actions": [
+      "extend the wrist",
+      "extend the fingers"
+    ],
+    "dailyLifeRole": "Hold the wrist straight so your grip stays strong while you lift or type.",
+    "claims": [
+      "claim-forearm-extensors-actions"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Group record covering extensor carpi radialis (longus and brevis), extensor carpi ulnaris and extensor digitorum (all in OpenStax)."
+    }
+  }
+]

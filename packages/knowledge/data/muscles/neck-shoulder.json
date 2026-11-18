@@ -1,1 +1,264 @@
-[]
+[
+  {
+    "id": "deltoid-anterior",
+    "name": "Anterior deltoid",
+    "aliases": [
+      "front delt"
+    ],
+    "region": "neck-shoulder",
+    "bodyMapArea": "deltoids",
+    "actions": [
+      "flexes the arm at the shoulder",
+      "medially rotates the arm",
+      "assists horizontal adduction"
+    ],
+    "dailyLifeRole": "Raises your arm in front of you, such as reaching for a shelf.",
+    "claims": [],
+    "review": {
+      "state": "draft",
+      "notes": "OpenStax does not split this muscle into parts; the part-level action comes from general anatomy and needs a source check. OpenStax gives actions for the deltoid as a whole (abduction, flexion, extension, rotation). Wikidata Q130243 (identity check)."
+    }
+  },
+  {
+    "id": "deltoid-lateral",
+    "name": "Lateral deltoid",
+    "aliases": [
+      "side delt",
+      "middle deltoid"
+    ],
+    "region": "neck-shoulder",
+    "bodyMapArea": "deltoids",
+    "actions": [
+      "abducts the arm"
+    ],
+    "dailyLifeRole": "Lifts your arm out to the side.",
+    "claims": [
+      "claim-deltoid-lateral-actions"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "OpenStax calls the deltoid as a whole the major abductor of the arm. Wikidata Q130243 (identity check)."
+    }
+  },
+  {
+    "id": "deltoid-posterior",
+    "name": "Posterior deltoid",
+    "aliases": [
+      "rear delt"
+    ],
+    "region": "neck-shoulder",
+    "bodyMapArea": "deltoids",
+    "actions": [
+      "extends the arm at the shoulder",
+      "laterally rotates the arm",
+      "assists horizontal abduction"
+    ],
+    "dailyLifeRole": "Draws your arm back, as when reaching behind or pulling a rope.",
+    "claims": [],
+    "review": {
+      "state": "draft",
+      "notes": "OpenStax does not split this muscle into parts; the part-level action comes from general anatomy and needs a source check. Wikidata Q130243 (identity check)."
+    }
+  },
+  {
+    "id": "supraspinatus",
+    "name": "Supraspinatus",
+    "aliases": [
+      "rotator cuff"
+    ],
+    "region": "neck-shoulder",
+    "bodyMapArea": "deltoids",
+    "actions": [
+      "starts arm abduction",
+      "holds the humeral head in the socket"
+    ],
+    "dailyLifeRole": "Starts lifting your arm out to the side and steadies the shoulder.",
+    "claims": [
+      "claim-supraspinatus-actions"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Sits above the shoulder blade spine under trapezius, not drawn; nearest slug deltoids. OpenStax states abduction; the initiation role and stabilising function are standard anatomy. Confirm. Wikidata Q74959 (identity check)."
+    }
+  },
+  {
+    "id": "infraspinatus",
+    "name": "Infraspinatus",
+    "aliases": [
+      "rotator cuff"
+    ],
+    "region": "neck-shoulder",
+    "bodyMapArea": "upper-back",
+    "actions": [
+      "laterally rotates the arm",
+      "holds the humeral head in the socket"
+    ],
+    "dailyLifeRole": "Turns your arm outward, for example when you throw or comb your hair at the back.",
+    "claims": [
+      "claim-infraspinatus-actions"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Lies over the back of the shoulder blade; upper-back is the nearest drawn slug. Wikidata Q19087 (identity check)."
+    }
+  },
+  {
+    "id": "teres-minor",
+    "name": "Teres minor",
+    "aliases": [
+      "rotator cuff"
+    ],
+    "region": "neck-shoulder",
+    "bodyMapArea": "upper-back",
+    "actions": [
+      "laterally rotates the arm",
+      "assists arm extension"
+    ],
+    "dailyLifeRole": "Turns your arm outward and keeps the shoulder joint steady.",
+    "claims": [
+      "claim-teres-minor-actions"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Lies over the back of the shoulder blade; upper-back is the nearest drawn slug. Wikidata Q74963 (identity check)."
+    }
+  },
+  {
+    "id": "subscapularis",
+    "name": "Subscapularis",
+    "aliases": [
+      "rotator cuff"
+    ],
+    "region": "neck-shoulder",
+    "bodyMapArea": "deltoids",
+    "actions": [
+      "medially rotates the arm",
+      "holds the humeral head in the socket"
+    ],
+    "dailyLifeRole": "Turns your arm inward, as when you tuck in a shirt, and steadies the front of the shoulder.",
+    "claims": [
+      "claim-subscapularis-actions"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Lies on the front of the shoulder blade, no matching slug; deltoids used as the nearest slug (K2a may add a slug). Wikidata Q130050 (identity check)."
+    }
+  },
+  {
+    "id": "trapezius-upper",
+    "name": "Upper trapezius",
+    "aliases": [
+      "upper traps"
+    ],
+    "region": "neck-shoulder",
+    "bodyMapArea": "trapezius",
+    "actions": [
+      "elevates the scapula",
+      "upwardly rotates the scapula",
+      "extends and side-bends the neck"
+    ],
+    "dailyLifeRole": "Shrugs your shoulders and helps lift your arm overhead.",
+    "claims": [],
+    "review": {
+      "state": "draft",
+      "notes": "OpenStax does not split this muscle into parts; the part-level action comes from general anatomy and needs a source check. OpenStax lists elevation, retraction and rotation of the scapula and head/neck extension for the whole muscle. Wikidata Q204113 (identity check)."
+    }
+  },
+  {
+    "id": "trapezius-middle",
+    "name": "Middle trapezius",
+    "aliases": [
+      "mid traps"
+    ],
+    "region": "neck-shoulder",
+    "bodyMapArea": "trapezius",
+    "actions": [
+      "retracts the scapula"
+    ],
+    "dailyLifeRole": "Pulls your shoulder blades together, as when you row or sit tall.",
+    "claims": [],
+    "review": {
+      "state": "draft",
+      "notes": "OpenStax does not split this muscle into parts; the part-level action comes from general anatomy and needs a source check. Wikidata Q204113 (identity check)."
+    }
+  },
+  {
+    "id": "trapezius-lower",
+    "name": "Lower trapezius",
+    "aliases": [
+      "lower traps"
+    ],
+    "region": "neck-shoulder",
+    "bodyMapArea": "trapezius",
+    "actions": [
+      "depresses the scapula",
+      "upwardly rotates the scapula"
+    ],
+    "dailyLifeRole": "Draws your shoulder blades down and steadies them as you reach overhead.",
+    "claims": [],
+    "review": {
+      "state": "draft",
+      "notes": "OpenStax does not split this muscle into parts; the part-level action comes from general anatomy and needs a source check. Wikidata Q204113 (identity check)."
+    }
+  },
+  {
+    "id": "rhomboids",
+    "name": "Rhomboids",
+    "aliases": [
+      "rhomboid major",
+      "rhomboid minor"
+    ],
+    "region": "neck-shoulder",
+    "bodyMapArea": "upper-back",
+    "actions": [
+      "retract the scapula",
+      "rotate the scapula downward",
+      "stabilise the scapula"
+    ],
+    "dailyLifeRole": "Pull your shoulder blades together and hold them against the rib cage when you row or pull.",
+    "claims": [
+      "claim-rhomboids-actions"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "One record for rhomboid major and minor, which OpenStax describes with the same actions. Wikidata Q617389 and Q901538 (identity check)."
+    }
+  },
+  {
+    "id": "levator-scapulae",
+    "name": "Levator scapulae",
+    "aliases": [],
+    "region": "neck-shoulder",
+    "bodyMapArea": "trapezius",
+    "actions": [
+      "elevates the scapula",
+      "tilts and rotates the neck to the same side"
+    ],
+    "dailyLifeRole": "Lifts the shoulder blade and turns the neck, such as when you check over your shoulder.",
+    "claims": [],
+    "review": {
+      "state": "draft",
+      "notes": "Not covered on the OpenStax pages used. Actions are general anatomy and need a source. Lies deep to trapezius, so slug trapezius used (neck is the other candidate). Wikidata Q755141 (identity check)."
+    }
+  },
+  {
+    "id": "deep-neck-flexors",
+    "name": "Deep neck flexors",
+    "aliases": [
+      "longus colli",
+      "longus capitis"
+    ],
+    "region": "neck-shoulder",
+    "bodyMapArea": "neck",
+    "actions": [
+      "flex the head and upper neck (nod the chin down)",
+      "support the cervical spine"
+    ],
+    "dailyLifeRole": "Keep your head balanced over your neck when you sit or stand.",
+    "claims": [],
+    "review": {
+      "state": "draft",
+      "notes": "Not covered on the OpenStax pages used (longus colli and capitis absent). Actions are general anatomy and need a source. No catalogue group maps to this muscle. Wikidata Q1055786 (longus capitis) (identity check)."
+    }
+  }
+]
