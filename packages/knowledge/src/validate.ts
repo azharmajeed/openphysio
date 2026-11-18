@@ -92,7 +92,7 @@ export function validate(d: KnowledgeData, ctx = catalogCtx): string[] {
   }
   for (const v of d.videoSegments) {
     bad(src.has(v.sourceId), `${v.id}: source ${v.sourceId} unknown`);
-    bad(v.endSec > v.startSec, `${v.id}: endSec must be after startSec`);
+    bad(v.endSec === undefined || v.endSec > v.startSec, `${v.id}: endSec must be after startSec`);
     for (const s of v.subjects) bad(subject(s), `${v.id}: subject ${s} unknown`);
   }
   return errs;

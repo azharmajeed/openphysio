@@ -108,7 +108,8 @@ export type VideoSegment = {
   videoId: string;
   channelId: string;
   startSec: number;
-  endSec: number;
+  /** Omitted when the end is unknown: the player runs to the end of the video. */
+  endSec?: number;
   title: string;
   /** Our words. */
   summary: string;
