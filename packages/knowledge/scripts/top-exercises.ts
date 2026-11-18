@@ -1,4 +1,4 @@
-// Which exercises does the plan engine pick most? Guides where cues and faults (K3) go first.
+// Which main (non warm-up) exercises does the plan engine pick most? Guides where cues and faults (K3) go first.
 // Run: pnpm --filter @openphysio/knowledge top   (writes data/top-exercises.json)
 import { writeFileSync } from "node:fs";
 import { exercises, goals } from "@openphysio/catalog";
@@ -31,14 +31,18 @@ for (const profile of profiles)
       seed: 7,
       now: 1,
     }).sessions)
-      for (const i of [...row.warmup, ...row.items])
-        counts.set(i.exerciseId, (counts.get(i.exerciseId) ?? 0) + 1);
+      for (const i of row.items) counts.set(i.exerciseId, (counts.get(i.exerciseId) ?? 0) + 1);
 
-const names = new Map(exercises.map((e) => [e.id, e.name]));
+const byId = new Map(exercises.map((e) => [e.id, e]));
 const top = [...counts]
   .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
   .slice(0, 30)
-  .map(([id, planned]) => ({ id, name: names.get(id), planned }));
+  .map(([id, planned]) => ({
+    id,
+    name: byId.get(id)?.name,
+    sessionTypes: byId.get(id)?.sessionTypes,
+    planned,
+  }));
 const json = JSON.stringify(top, null, 2) + "\n";
 writeFileSync(new URL("../data/top-exercises.json", import.meta.url), json);
 console.log(json);
