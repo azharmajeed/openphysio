@@ -36,3 +36,13 @@ data/top-exercises.json    the 30 most-planned exercises (pnpm --filter @openphy
 3. Every claim, cue, fault and exercise link needs a `sourceId`; add the source under `data/sources/` (DOI, PMID or URL, plus licence). Paraphrase and cite; never paste source text.
 4. `pnpm test`. `validate()` reports broken references, grades, cue length (12 words) and body-map slugs.
 5. Review sets `state` to `source-checked` with `reviewer` and `date`.
+
+## How to review
+
+1. `pnpm --filter @openphysio/knowledge review` writes `packages/knowledge/review.html` (gitignored). Open it in a browser. Each entry shows its fields in plain words, its source with links, what it points at, and what to check. Raw JSON is behind a toggle.
+2. Per entry choose `source-checked`, `rejected` or `leave as draft`, and add notes. Choices are kept in the browser. Filters: file, state, "Needs a decision".
+3. Click "Download decisions" (saves `review-decisions.json`).
+4. `pnpm --filter @openphysio/knowledge apply-review path/to/review-decisions.json` updates the data files (reviewer defaults to Azhar, `--reviewer Name` to change; date is today) and runs validation. `clinician-reviewed` is refused unless `--clinician` is passed. Unknown ids or files refuse the whole file, nothing is written. Applying the same file again changes nothing. `leave as draft` clears reviewer and date.
+5. Review the diff, then commit the data files.
+
+Files are rewritten as 2-space JSON with a trailing newline, so the first apply on a hand-formatted file may reformat it once.

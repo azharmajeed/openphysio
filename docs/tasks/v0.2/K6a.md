@@ -1,7 +1,7 @@
 # K6a: Review page generator and bulk review update
 Project / milestone / feature: OpenPhysio / v0.2 / PRD-002
 Lane: Knowledge
-Status: Ready
+Status: In review
 Approved scope reference: docs/tasks/v0.2/README.md, docs/tasks/EXECUTION.md
 Approved product specification ID/version: PRD-002 0.2-draft, v0.2 slice (D-18)
 Approved technical plan ID/version: TP-002 v1 section 4 step 5 (D-19); review states D-21
@@ -27,3 +27,19 @@ Execution budget and retry limit: one implementation run + one repair after revi
 When to request a product or consequential technical decision: per EXECUTION.md escalation conditions
 Completion condition: validated result + PR -> In review
 Merge authority: orchestrator into v0.1 after review (D-9); Azhar for v0.1 -> main
+
+## Checkpoint
+# K6a / run 1
+Agent/runtime/model, if reported: Claude Sonnet subagent, ponytail lite
+Execution host and checkout: local, C:\Users\rahza\Documents\work\openphysio-wt\K6a
+Base commit / current branch / latest commit: bf68d0d / feat/k6a-review-page / see PR
+Task/spec version: K6a contract (Ready)
+Work completed: review page generator (scripts/review.ts, src/review-page.ts), apply-review (scripts/apply-review.ts, src/review.ts), tests on temp copies of the K1 fixture, README "How to review", package scripts, .gitignore
+Uncommitted changes and where they are preserved: none after commit
+Validation performed and results: pnpm lint, typecheck, test pass; pnpm --filter @openphysio/knowledge review writes review.html
+Artifacts, preview, and PR links: see PR
+Failures and attempts already made: none
+Open decisions/blockers: none
+Next action: review
+Task state and reason: In review, PR open
+Usage/cost, or unavailable: unavailable
