@@ -1,7 +1,7 @@
 # K2b: Muscle atlas: upper limb, neck and shoulder
 Project / milestone / feature: OpenPhysio / v0.2 / PRD-002
 Lane: Knowledge
-Status: Blocked
+Status: In review
 Approved scope reference: docs/tasks/v0.2/README.md, docs/tasks/EXECUTION.md
 Approved product specification ID/version: PRD-002 0.2-draft, v0.2 slice (D-18)
 Approved technical plan ID/version: TP-002 v1 sections 1–4 (D-19); review states D-21
@@ -37,10 +37,10 @@ Base commit / current branch / latest commit: a2f6e31 / feat/k2b-muscles-upper /
 Task/spec version: K2b contract as of a2f6e31
 Work completed: 23 muscles, 7 groups, 2 sources, 16 claims, all draft
 Uncommitted changes and where they are preserved: none after commit
-Validation performed and results: lint and typecheck pass; test: 1 failure (the K1 fixture test above), 280 pass
+Validation performed and results: lint, typecheck, test pass after rebase on the fixture-based tests
 Artifacts, preview, and PR links: PR title "K2b: Muscle atlas: upper limb, neck and shoulder"
 Failures and attempts already made: none
 Open decisions/blockers: claim grade for textbook anatomy; unsourced part-level actions listed in review.notes
 Next action: Azhar review
-Task state and reason: Blocked. packages/knowledge/src/knowledge.test.ts "a published record needs its references published" assumes the K1 example data set (one source, one claim, one cue), so any real data fails it; fix is outside the contract
+Task state and reason: In review, PR open
 Usage/cost, or unavailable: unavailable
