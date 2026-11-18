@@ -1,7 +1,7 @@
 # K6a: Review page generator and bulk review update
 Project / milestone / feature: OpenPhysio / v0.2 / PRD-002
 Lane: Knowledge
-Status: In review
+Status: Done
 Approved scope reference: docs/tasks/v0.2/README.md, docs/tasks/EXECUTION.md
 Approved product specification ID/version: PRD-002 0.2-draft, v0.2 slice (D-18)
 Approved technical plan ID/version: TP-002 v1 section 4 step 5 (D-19); review states D-21
