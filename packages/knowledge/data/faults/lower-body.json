@@ -2,11 +2,332 @@
   {
     "id": "fault-glute-bridge-arch",
     "exerciseId": "glute_bridge",
-    "description": "Lower back arches at the top instead of the hips extending.",
-    "whyItMatters": "The work moves from the glutes to the lower back.",
+    "description": "Lower back arches at the top and the ribs flare.",
+    "whyItMatters": "The lower back does the lifting instead of the glutes, so the target muscles work less and your back can ache. Coaching convention, grade C.",
     "cueId": "cue-glute-bridge-ribs-down",
+    "severity": "medium",
+    "sourceId": "src-contreras-2015",
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "fault-glute-bridge-toes",
+    "exerciseId": "glute_bridge",
+    "description": "Heels lift and you push through your toes.",
+    "whyItMatters": "Weight on the toes tends to hand the work to the hamstrings and can cause cramping. Coaching convention, grade C.",
+    "cueId": "cue-glute-bridge-heels-press",
     "severity": "low",
-    "sourceId": "src-openstax-ap2e",
-    "review": { "state": "draft", "notes": "Minimal example." }
+    "sourceId": "src-selkowitz-2013",
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "fault-glute-bridge-feet-far",
+    "exerciseId": "glute_bridge",
+    "description": "Feet sit far from the hips.",
+    "whyItMatters": "Feet too far out tends to make the back of the thigh cramp before the glutes tire. Coaching convention, grade C.",
+    "cueId": "cue-glute-bridge-feet-close",
+    "severity": "low",
+    "sourceId": "src-selkowitz-2013",
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "fault-dumbbell-rdl-back-rounds",
+    "exerciseId": "dumbbell_rdl",
+    "description": "Lower back rounds as the dumbbells go down.",
+    "whyItMatters": "The spine takes the load instead of the hips, which is the usual way people strain their back in this lift. Stopping the lowering earlier is the fix. Coaching convention, grade C.",
+    "cueId": "cue-dumbbell-rdl-stop-flat",
+    "severity": "high",
+    "sourceId": "src-mcallister-2014",
+    "review": {
+      "state": "draft",
+      "notes": "Whole 'why' is convention (grade C). Want a spine-loading citation."
+    }
+  },
+  {
+    "id": "fault-dumbbell-rdl-squatting",
+    "exerciseId": "dumbbell_rdl",
+    "description": "Knees bend a lot and the hips drop straight down.",
+    "whyItMatters": "It turns into a squat, so the hamstrings and glutes get less of the work the lift is meant to give. Coaching convention, grade C.",
+    "cueId": "cue-dumbbell-rdl-hips-back",
+    "severity": "low",
+    "sourceId": "src-mcallister-2014",
+    "review": {
+      "state": "draft",
+      "notes": "McAllister found hamstring activity high in the RDL; the 'turns into a squat' claim is convention."
+    }
+  },
+  {
+    "id": "fault-dumbbell-rdl-weights-away",
+    "exerciseId": "dumbbell_rdl",
+    "description": "Dumbbells drift away from your legs.",
+    "whyItMatters": "The further the weight is from your body, the harder your lower back has to work to hold it. Coaching convention, grade C.",
+    "cueId": "cue-dumbbell-rdl-weights-close",
+    "severity": "medium",
+    "sourceId": "src-mcallister-2014",
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "fault-calf-raise-short-range",
+    "exerciseId": "calf_raise",
+    "description": "Heels only rise a little before dropping.",
+    "whyItMatters": "A short range works the calf less, so you get less out of each rep. Coaching convention, grade C.",
+    "cueId": "cue-calf-raise-high",
+    "severity": "low",
+    "sourceId": "src-lunsford-1995",
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "fault-calf-raise-bounce",
+    "exerciseId": "calf_raise",
+    "description": "Dropping fast or bouncing at the bottom.",
+    "whyItMatters": "A sudden drop loads the Achilles tendon sharply instead of smoothly, which is unhelpful if it is already sore. Coaching convention, grade C.",
+    "cueId": "cue-calf-raise-slow-down",
+    "severity": "medium",
+    "sourceId": "src-silbernagel-2007",
+    "review": {
+      "state": "draft",
+      "notes": "Achilles guidance: sharp pain means stop. Silbernagel uses a pain-monitoring model; pain-score limits deliberately not repeated here. Azhar to confirm wording."
+    }
+  },
+  {
+    "id": "fault-calf-raise-roll-out",
+    "exerciseId": "calf_raise",
+    "description": "Ankles roll outward as you rise.",
+    "whyItMatters": "The ankle wobbles off the big toe, so load shifts to the outer foot and the rep gets less stable. Coaching convention, grade C.",
+    "cueId": "cue-calf-raise-straight",
+    "severity": "low",
+    "sourceId": "src-lunsford-1995",
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "fault-banded-hip-lift-knees-in",
+    "exerciseId": "banded_hip_lift",
+    "description": "Knees fall inward and the band goes slack.",
+    "whyItMatters": "Without the push-out the glutes do less and the knees drift toward the middle, a pattern linked to knee pain. The hip-to-knee link comes from commentary, not trials. Grade C.",
+    "cueId": "cue-banded-hip-lift-knees-out",
+    "severity": "medium",
+    "sourceId": "src-powers-2010",
+    "review": {
+      "state": "draft",
+      "notes": "Powers is a level-5 commentary; grade C is honest."
+    }
+  },
+  {
+    "id": "fault-banded-hip-lift-arch",
+    "exerciseId": "banded_hip_lift",
+    "description": "Lower back arches at the top.",
+    "whyItMatters": "The lower back takes over from the glutes, so you feel it in your back. Coaching convention, grade C.",
+    "cueId": "cue-banded-hip-lift-squeeze",
+    "severity": "medium",
+    "sourceId": "src-contreras-2015",
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "fault-single-leg-glute-bridge-pelvis-drops",
+    "exerciseId": "single_leg_glute_bridge",
+    "description": "One side of the pelvis drops or twists.",
+    "whyItMatters": "The planted-side hip muscles are not holding the pelvis, so the lift comes from the back and the glutes get less. Coaching convention, grade C.",
+    "cueId": "cue-single-leg-glute-bridge-hips-level",
+    "severity": "medium",
+    "sourceId": "src-selkowitz-2013",
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "fault-single-leg-glute-bridge-toes",
+    "exerciseId": "single_leg_glute_bridge",
+    "description": "Heel lifts and you push through the toes.",
+    "whyItMatters": "Toe pushing tends to hand the work to the hamstrings, which can cramp. Coaching convention, grade C.",
+    "cueId": "cue-single-leg-glute-bridge-heel",
+    "severity": "low",
+    "sourceId": "src-selkowitz-2013",
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "fault-single-leg-glute-bridge-leg-swing",
+    "exerciseId": "single_leg_glute_bridge",
+    "description": "Lifted leg swings up or the back arches to get higher.",
+    "whyItMatters": "Extra height comes from the back, not the planted-side glute. Coaching convention, grade C.",
+    "cueId": "cue-single-leg-glute-bridge-leg-line",
+    "severity": "medium",
+    "sourceId": "src-selkowitz-2013",
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "fault-wall-sit-knees-forward",
+    "exerciseId": "wall_sit",
+    "description": "Feet too close to the wall so the knees push past the toes.",
+    "whyItMatters": "More forward knee travel and a deeper bend raise the load on the front of the knee. Escamilla measured this in squats, not wall sits, so treat it as grade C.",
+    "cueId": "cue-wall-sit-knees-ankles",
+    "severity": "medium",
+    "sourceId": "src-escamilla-1998",
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "fault-wall-sit-too-deep",
+    "exerciseId": "wall_sit",
+    "description": "Sitting lower than feels comfortable.",
+    "whyItMatters": "Kneecap forces tend to rise with deeper knee bend, so the first fix for a sore kneecap is a higher sit. Grade C, by analogy to squats.",
+    "cueId": "cue-wall-sit-comfort-depth",
+    "severity": "medium",
+    "sourceId": "src-escamilla-1998",
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "fault-wall-sit-breath-hold",
+    "exerciseId": "wall_sit",
+    "description": "Holding your breath through the hold.",
+    "whyItMatters": "Breath-holding during effort pushes blood pressure up sharply; it matters most with heart or blood pressure concerns. Evidence is from heavy lifting, so grade C here.",
+    "cueId": "cue-wall-sit-breathe",
+    "severity": "low",
+    "sourceId": "src-macdougall-1985",
+    "review": {
+      "state": "draft",
+      "notes": "Question: should the heart/BP caution live in the app flag system too?"
+    }
+  },
+  {
+    "id": "fault-clam-rolls-back",
+    "exerciseId": "clam",
+    "description": "Hips roll backward as the knee opens.",
+    "whyItMatters": "Movement comes from rolling the pelvis instead of rotating the hip, so the glutes do little. Coaching convention, grade C.",
+    "cueId": "cue-clam-pelvis-still",
+    "severity": "low",
+    "sourceId": "src-distefano-2009",
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "fault-clam-feet-apart",
+    "exerciseId": "clam",
+    "description": "Feet come apart while the knee lifts.",
+    "whyItMatters": "The top leg lifts instead of rotating, so the front-of-hip muscles take over. Coaching convention, grade C.",
+    "cueId": "cue-clam-open",
+    "severity": "low",
+    "sourceId": "src-selkowitz-2013",
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "fault-lateral-band-walk-knees-in",
+    "exerciseId": "lateral_band_walk",
+    "description": "Knees fall inward as you step.",
+    "whyItMatters": "Knees collapsing in means the hip muscles are not controlling the leg, which the literature links to knee problems. Commentary-level evidence, grade C.",
+    "cueId": "cue-lateral-band-walk-knees-out",
+    "severity": "medium",
+    "sourceId": "src-powers-2010",
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "fault-lateral-band-walk-feet-together",
+    "exerciseId": "lateral_band_walk",
+    "description": "Feet come together and the band goes slack.",
+    "whyItMatters": "With slack in the band the muscles get a break, so the set does less work. Coaching convention, grade C.",
+    "cueId": "cue-lateral-band-walk-small-steps",
+    "severity": "low",
+    "sourceId": "src-cambridge-2012",
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "fault-lateral-band-walk-toes-out",
+    "exerciseId": "lateral_band_walk",
+    "description": "Toes turn outward as you step.",
+    "whyItMatters": "Turning the toes out changes which hip muscles work and tends to push the effort to the front of the hip. Coaching convention, grade C.",
+    "cueId": "cue-lateral-band-walk-toes-forward",
+    "severity": "low",
+    "sourceId": "src-cambridge-2012",
+    "review": {
+      "state": "draft",
+      "notes": "Question: source for toe direction effect on TFL versus glutes."
+    }
+  },
+  {
+    "id": "fault-bodyweight-squat-knees-in",
+    "exerciseId": "bodyweight_squat",
+    "description": "Knees drift inward on the way down or up.",
+    "whyItMatters": "The hip muscles are not holding the thigh in line, which is associated with knee pain and ligament strain. Commentary-level evidence, grade C.",
+    "cueId": "cue-bodyweight-squat-knees-track",
+    "severity": "medium",
+    "sourceId": "src-powers-2010",
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "fault-bodyweight-squat-heels-lift",
+    "exerciseId": "bodyweight_squat",
+    "description": "Heels come off the floor.",
+    "whyItMatters": "Weight shifts onto the toes and the knees get pushed forward, which often means a stiff ankle. Lower the depth or raise the heels slightly. Coaching convention, grade C.",
+    "cueId": "cue-bodyweight-squat-whole-foot",
+    "severity": "low",
+    "sourceId": "src-schoenfeld-2010",
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "fault-bodyweight-squat-torso-folds",
+    "exerciseId": "bodyweight_squat",
+    "description": "Chest folds forward and the back rounds.",
+    "whyItMatters": "Leaning far forward moves the load to the lower back. Hartmann supports deep squats for healthy people with good technique, so depth is not the concern, back position is. Grade B for depth, C for the lean.",
+    "cueId": "cue-bodyweight-squat-chest-up",
+    "severity": "medium",
+    "sourceId": "src-hartmann-2013",
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "fault-tibialis-raise-cheating",
+    "exerciseId": "tibialis_raise",
+    "description": "Hips and knees bend to swing the toes up.",
+    "whyItMatters": "Moving the whole leg takes the work off the shin muscle, so it gets little training. Coaching convention, grade C.",
+    "cueId": "cue-tibialis-raise-lift",
+    "severity": "low",
+    "sourceId": "src-egerton-2022",
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "fault-tibialis-raise-drops",
+    "exerciseId": "tibialis_raise",
+    "description": "Toes drop quickly at the bottom.",
+    "whyItMatters": "A fast drop skips the slow lowering that does much of the work for the shin muscle. Coaching convention, grade C.",
+    "cueId": "cue-tibialis-raise-lower",
+    "severity": "low",
+    "sourceId": "src-egerton-2022",
+    "review": {
+      "state": "draft",
+      "notes": "Question: source for slow-lowering benefit at the tibialis."
+    }
   }
 ]

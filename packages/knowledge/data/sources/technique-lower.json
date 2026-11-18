@@ -1,1 +1,184 @@
-[]
+[
+  {
+    "id": "src-selkowitz-2013",
+    "type": "review",
+    "citation": "Selkowitz DM, Beneck GJ, Powers CM. Which exercises target the gluteal muscles while minimizing activation of the tensor fascia lata? J Orthop Sports Phys Ther. 2013;43(2):54-64.",
+    "pmid": "23160432",
+    "doi": "10.2519/jospt.2013.4116",
+    "year": 2013,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "Fine-wire EMG, 20 healthy adults. Study type is a lab or narrative paper; schema has no such type, so 'review' is the nearest."
+    }
+  },
+  {
+    "id": "src-distefano-2009",
+    "type": "review",
+    "citation": "Distefano LJ, Blackburn JT, Marshall SW, Padua DA. Gluteal muscle activation during common therapeutic exercises. J Orthop Sports Phys Ther. 2009;39(7):532-540.",
+    "pmid": "19574661",
+    "doi": "10.2519/jospt.2009.2796",
+    "year": 2009,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "Surface EMG, 21 healthy adults. Study type is a lab or narrative paper; schema has no such type, so 'review' is the nearest."
+    }
+  },
+  {
+    "id": "src-berry-2015",
+    "type": "review",
+    "citation": "Berry JW, Lee TS, Foley HD, Lewis CL. Resisted side stepping: the effect of posture on hip abductor muscle activation. J Orthop Sports Phys Ther. 2015;45(9):675-682.",
+    "pmid": "26161629",
+    "doi": "10.2519/jospt.2015.5888",
+    "year": 2015,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "24 healthy adults. Study type is a lab or narrative paper; schema has no such type, so 'review' is the nearest."
+    }
+  },
+  {
+    "id": "src-cambridge-2012",
+    "type": "review",
+    "citation": "Cambridge ED, Sidorkewicz N, Ikeda DM, McGill SM. Progressive hip rehabilitation: the effects of resistance band placement on gluteal activation during two common exercises. Clin Biomech. 2012;27(7):719-724.",
+    "pmid": "22464817",
+    "doi": "10.1016/j.clinbiomech.2012.03.002",
+    "year": 2012,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "Nine healthy men only. Study type is a lab or narrative paper; schema has no such type, so 'review' is the nearest."
+    }
+  },
+  {
+    "id": "src-contreras-2015",
+    "type": "review",
+    "citation": "Contreras B, Vigotsky AD, Schoenfeld BJ, Beardsley C, Cronin J. A comparison of gluteus maximus, biceps femoris, and vastus lateralis electromyographic activity in the back squat and barbell hip thrust exercises. J Appl Biomech. 2015;31(6):452-458.",
+    "pmid": "26214739",
+    "doi": "10.1123/jab.2014-0301",
+    "year": 2015,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "13 trained women, loaded hip thrust, not a bodyweight bridge. Study type is a lab or narrative paper; schema has no such type, so 'review' is the nearest."
+    }
+  },
+  {
+    "id": "src-powers-2010",
+    "type": "review",
+    "citation": "Powers CM. The influence of abnormal hip mechanics on knee injury: a biomechanical perspective. J Orthop Sports Phys Ther. 2010;40(2):42-51.",
+    "pmid": "20118526",
+    "doi": "10.2519/jospt.2010.3337",
+    "year": 2010,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "Clinical commentary, level 5 evidence per its own label."
+    }
+  },
+  {
+    "id": "src-mcallister-2014",
+    "type": "review",
+    "citation": "McAllister MJ, Hammond KG, Schilling BK, Ferreria LC, Reed JP, Weiss LW. Muscle activation during various hamstring exercises. J Strength Cond Res. 2014;28(6):1573-1580.",
+    "pmid": "24149748",
+    "doi": "10.1519/JSC.0000000000000302",
+    "year": 2014,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "12 weight-trained men at 85% 1RM with a barbell, not light dumbbells. Study type is a lab or narrative paper; schema has no such type, so 'review' is the nearest."
+    }
+  },
+  {
+    "id": "src-schoenfeld-2010",
+    "type": "review",
+    "citation": "Schoenfeld BJ. Squatting kinematics and kinetics and their application to exercise performance. J Strength Cond Res. 2010;24(12):3497-3506.",
+    "pmid": "20182386",
+    "doi": "10.1519/JSC.0b013e3181bac2d7",
+    "year": 2010,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "Narrative review. Only the abstract was read; technique points taken from it are general. Check the full text before review."
+    }
+  },
+  {
+    "id": "src-hartmann-2013",
+    "type": "review",
+    "citation": "Hartmann H, Wirth K, Klusemann M. Analysis of the load on the knee joint and vertebral column with changes in squatting depth and weight load. Sports Med. 2013;43(10):993-1008.",
+    "pmid": "23821469",
+    "doi": "10.1007/s40279-013-0073-6",
+    "year": 2013,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "Literature review of squat depth and joint loading."
+    }
+  },
+  {
+    "id": "src-escamilla-1998",
+    "type": "review",
+    "citation": "Escamilla RF, Fleisig GS, Zheng N, Barrentine SW, Wilk KE, Andrews JR. Biomechanics of the knee during closed kinetic chain and open kinetic chain exercises. Med Sci Sports Exerc. 1998;30(4):556-569.",
+    "pmid": "9565938",
+    "doi": "10.1097/00005768-199804000-00014",
+    "year": 1998,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "Ten men, dynamic squat and leg press at 12RM. Not a wall sit; applied by analogy."
+    }
+  },
+  {
+    "id": "src-silbernagel-2007",
+    "type": "RCT",
+    "citation": "Silbernagel KG, Thomee R, Eriksson BI, Karlsson J. Continued sports activity, using a pain-monitoring model, during rehabilitation in patients with Achilles tendinopathy. Am J Sports Med. 2007;35(6):897-906.",
+    "pmid": "17307888",
+    "doi": "10.1177/0363546506298279",
+    "year": 2007,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "RCT of 38 patients. Supports heel-rise loading with pain monitoring, not specific technique cues."
+    }
+  },
+  {
+    "id": "src-lunsford-1995",
+    "type": "review",
+    "citation": "Lunsford BR, Perry J. The standing heel-rise test for ankle plantar flexion: criterion for normal. Phys Ther. 1995;75(8):694-698.",
+    "pmid": "7644573",
+    "doi": "10.1093/ptj/75.8.694",
+    "year": 1995,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "Normative test paper. Supports full-height heel rise as the measure of calf function."
+    }
+  },
+  {
+    "id": "src-egerton-2022",
+    "type": "review",
+    "citation": "Egerton T, Donkin D, Kazantzis S, Ware H, Moore S. Conceptualisation of a region-based group of musculoskeletal pain conditions as 'tibial loading pain' and systematic review of effects of load-modifying interventions. J Sci Med Sport. 2022;25(1):46-52.",
+    "pmid": "34366244",
+    "doi": "10.1016/j.jsams.2021.07.008",
+    "year": 2022,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "Found no good trial evidence for shin-strengthening programmes. Cited only to show tibialis work is convention, not proven. No technique source found for the tibialis raise."
+    }
+  },
+  {
+    "id": "src-macdougall-1985",
+    "type": "review",
+    "citation": "MacDougall JD, Tuxen D, Sale DG, Moroz JR, Sutton JR. Arterial blood pressure response to heavy resistance exercise. J Appl Physiol. 1985;58(3):785-790.",
+    "pmid": "3980383",
+    "doi": "10.1152/jappl.1985.58.3.785",
+    "year": 1985,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "Five bodybuilders, heavy lifts. Applied to a bodyweight hold by analogy, so grade C."
+    }
+  }
+]

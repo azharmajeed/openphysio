@@ -1,10 +1,376 @@
 [
   {
+    "id": "cue-glute-bridge-feet-close",
+    "exerciseId": "glute_bridge",
+    "text": "Heels close to your hips, feet flat.",
+    "phase": "setup",
+    "sourceId": "src-selkowitz-2013",
+    "review": {
+      "state": "draft",
+      "notes": "Selkowitz supports bridging as a glute exercise; foot distance is convention. Question: source for the cue itself?"
+    }
+  },
+  {
+    "id": "cue-glute-bridge-heels-press",
+    "exerciseId": "glute_bridge",
+    "text": "Push the floor away through your heels.",
+    "phase": "ascent",
+    "sourceId": "src-selkowitz-2013",
+    "review": {
+      "state": "draft",
+      "notes": "Convention. Question: any EMG source for heel versus toe push in a bridge?"
+    }
+  },
+  {
     "id": "cue-glute-bridge-ribs-down",
     "exerciseId": "glute_bridge",
-    "text": "Ribs down, squeeze your glutes at the top",
+    "text": "Ribs down, squeeze your glutes at the top.",
     "phase": "top",
-    "sourceId": "src-openstax-ap2e",
-    "review": { "state": "draft", "notes": "Minimal example." }
+    "sourceId": "src-contreras-2015",
+    "review": {
+      "state": "draft",
+      "notes": "Kept from the K1 example. Contreras studied the loaded hip thrust; the rib cue is convention."
+    }
+  },
+  {
+    "id": "cue-dumbbell-rdl-hips-back",
+    "exerciseId": "dumbbell_rdl",
+    "text": "Push hips back, knees only slightly bent.",
+    "phase": "descent",
+    "sourceId": "src-mcallister-2014",
+    "review": {
+      "state": "draft",
+      "notes": "Hinge pattern defines the RDL in McAllister; wording is ours."
+    }
+  },
+  {
+    "id": "cue-dumbbell-rdl-weights-close",
+    "exerciseId": "dumbbell_rdl",
+    "text": "Keep the dumbbells brushing your legs.",
+    "phase": "descent",
+    "sourceId": "src-mcallister-2014",
+    "review": {
+      "state": "draft",
+      "notes": "Convention. Question: source for keeping the load close to the body?"
+    }
+  },
+  {
+    "id": "cue-dumbbell-rdl-stop-flat",
+    "exerciseId": "dumbbell_rdl",
+    "text": "Stop lowering when your back would round.",
+    "phase": "bottom",
+    "sourceId": "src-mcallister-2014",
+    "review": {
+      "state": "draft",
+      "notes": "McAllister reports erector spinae activity, but the stop rule is convention. Question: want a spine-loading source."
+    }
+  },
+  {
+    "id": "cue-dumbbell-rdl-stand-tall",
+    "exerciseId": "dumbbell_rdl",
+    "text": "Squeeze glutes, stand tall, don't lean back.",
+    "phase": "top",
+    "sourceId": "src-mcallister-2014",
+    "review": {
+      "state": "draft",
+      "notes": "Convention."
+    }
+  },
+  {
+    "id": "cue-calf-raise-high",
+    "exerciseId": "calf_raise",
+    "text": "Rise as high as you can, then pause.",
+    "phase": "top",
+    "sourceId": "src-lunsford-1995",
+    "review": {
+      "state": "draft",
+      "notes": "Lunsford and Perry use full-height heel rise as the measure of calf function."
+    }
+  },
+  {
+    "id": "cue-calf-raise-slow-down",
+    "exerciseId": "calf_raise",
+    "text": "Lower slowly, counting two seconds.",
+    "phase": "descent",
+    "sourceId": "src-silbernagel-2007",
+    "review": {
+      "state": "draft",
+      "notes": "Tempo comes from the catalogue cue. Silbernagel shows heel-rise loading in Achilles care but not this tempo. Question: tempo source."
+    }
+  },
+  {
+    "id": "cue-calf-raise-straight",
+    "exerciseId": "calf_raise",
+    "text": "Press through the big toe, ankles straight.",
+    "phase": "ascent",
+    "sourceId": "src-lunsford-1995",
+    "review": {
+      "state": "draft",
+      "notes": "Convention. Question: source for ankle alignment."
+    }
+  },
+  {
+    "id": "cue-banded-hip-lift-band-above",
+    "exerciseId": "banded_hip_lift",
+    "text": "Band just above the knees, feet hip-width apart.",
+    "phase": "setup",
+    "sourceId": "src-cambridge-2012",
+    "review": {
+      "state": "draft",
+      "notes": "Cambridge studied walks, not lifts; the knee band position was the easiest there."
+    }
+  },
+  {
+    "id": "cue-banded-hip-lift-knees-out",
+    "exerciseId": "banded_hip_lift",
+    "text": "Press knees out against the band.",
+    "phase": "ascent",
+    "sourceId": "src-selkowitz-2013",
+    "review": {
+      "state": "draft",
+      "notes": "Selkowitz: bridging gluteal activity above tensor fascia lata. Knees-out push is convention."
+    }
+  },
+  {
+    "id": "cue-banded-hip-lift-squeeze",
+    "exerciseId": "banded_hip_lift",
+    "text": "Hold the top, ribs down.",
+    "phase": "top",
+    "sourceId": "src-contreras-2015",
+    "review": {
+      "state": "draft",
+      "notes": "Convention."
+    }
+  },
+  {
+    "id": "cue-single-leg-glute-bridge-hips-level",
+    "exerciseId": "single_leg_glute_bridge",
+    "text": "Keep both hip bones level, like a tray.",
+    "phase": "top",
+    "sourceId": "src-selkowitz-2013",
+    "review": {
+      "state": "draft",
+      "notes": "Selkowitz: unilateral bridge had a high glute-to-TFL index. Level-pelvis cue is convention."
+    }
+  },
+  {
+    "id": "cue-single-leg-glute-bridge-heel",
+    "exerciseId": "single_leg_glute_bridge",
+    "text": "Drive through your planted heel.",
+    "phase": "ascent",
+    "sourceId": "src-selkowitz-2013",
+    "review": {
+      "state": "draft",
+      "notes": "Convention."
+    }
+  },
+  {
+    "id": "cue-single-leg-glute-bridge-leg-line",
+    "exerciseId": "single_leg_glute_bridge",
+    "text": "Lifted leg stays in line with your body.",
+    "phase": "top",
+    "sourceId": "src-selkowitz-2013",
+    "review": {
+      "state": "draft",
+      "notes": "Catalogue cue reworded."
+    }
+  },
+  {
+    "id": "cue-wall-sit-back-flat",
+    "exerciseId": "wall_sit",
+    "text": "Back flat on the wall, feet forward.",
+    "phase": "setup",
+    "sourceId": "src-escamilla-1998",
+    "review": {
+      "state": "draft",
+      "notes": "Convention. Escamilla is about dynamic squats, used by analogy."
+    }
+  },
+  {
+    "id": "cue-wall-sit-knees-ankles",
+    "exerciseId": "wall_sit",
+    "text": "Knees over ankles, thighs near parallel.",
+    "phase": "bottom",
+    "sourceId": "src-escamilla-1998",
+    "review": {
+      "state": "draft",
+      "notes": "Convention, from the catalogue cue."
+    }
+  },
+  {
+    "id": "cue-wall-sit-comfort-depth",
+    "exerciseId": "wall_sit",
+    "text": "Sit only as low as feels comfortable.",
+    "phase": "bottom",
+    "sourceId": "src-escamilla-1998",
+    "review": {
+      "state": "draft",
+      "notes": "Escamilla: knee-joint forces rise with more bend in squats. Applied by analogy, grade C."
+    }
+  },
+  {
+    "id": "cue-wall-sit-breathe",
+    "exerciseId": "wall_sit",
+    "text": "Breathe steadily, don't hold your breath.",
+    "phase": "breathing",
+    "sourceId": "src-macdougall-1985",
+    "review": {
+      "state": "draft",
+      "notes": "MacDougall measured heavy lifts; applying it to a wall sit is an extrapolation."
+    }
+  },
+  {
+    "id": "cue-clam-setup",
+    "exerciseId": "clam",
+    "text": "Lie on your side, knees bent, feet together.",
+    "phase": "setup",
+    "sourceId": "src-selkowitz-2013",
+    "review": {
+      "state": "draft",
+      "notes": "Setup is convention."
+    }
+  },
+  {
+    "id": "cue-clam-open",
+    "exerciseId": "clam",
+    "text": "Open the top knee, heels stay touching.",
+    "phase": "ascent",
+    "sourceId": "src-selkowitz-2013",
+    "review": {
+      "state": "draft",
+      "notes": "Selkowitz had the clam top of its glute-to-TFL index."
+    }
+  },
+  {
+    "id": "cue-clam-pelvis-still",
+    "exerciseId": "clam",
+    "text": "Keep your pelvis still, don't roll back.",
+    "phase": "whole",
+    "sourceId": "src-distefano-2009",
+    "review": {
+      "state": "draft",
+      "notes": "Convention. Distefano found clam activation modest (about 34-40% of max effort), so it is a low-load drill."
+    }
+  },
+  {
+    "id": "cue-lateral-band-walk-low",
+    "exerciseId": "lateral_band_walk",
+    "text": "Stay slightly squatted, knees soft.",
+    "phase": "setup",
+    "sourceId": "src-berry-2015",
+    "review": {
+      "state": "draft",
+      "notes": "Berry: squat posture raised gluteal and lowered tensor fascia lata activity in resisted side-stepping."
+    }
+  },
+  {
+    "id": "cue-lateral-band-walk-small-steps",
+    "exerciseId": "lateral_band_walk",
+    "text": "Take small steps, keep the band tight.",
+    "phase": "whole",
+    "sourceId": "src-cambridge-2012",
+    "review": {
+      "state": "draft",
+      "notes": "Convention."
+    }
+  },
+  {
+    "id": "cue-lateral-band-walk-toes-forward",
+    "exerciseId": "lateral_band_walk",
+    "text": "Toes point forward, not out.",
+    "phase": "whole",
+    "sourceId": "src-cambridge-2012",
+    "review": {
+      "state": "draft",
+      "notes": "Convention. Cambridge found a band at the feet shifts work toward the glutes; toe direction itself is unsourced."
+    }
+  },
+  {
+    "id": "cue-lateral-band-walk-knees-out",
+    "exerciseId": "lateral_band_walk",
+    "text": "Push your knees gently out into the band.",
+    "phase": "whole",
+    "sourceId": "src-powers-2010",
+    "review": {
+      "state": "draft",
+      "notes": "Convention."
+    }
+  },
+  {
+    "id": "cue-bodyweight-squat-feet",
+    "exerciseId": "bodyweight_squat",
+    "text": "Feet about shoulder-width, toes slightly out.",
+    "phase": "setup",
+    "sourceId": "src-schoenfeld-2010",
+    "review": {
+      "state": "draft",
+      "notes": "Catalogue says shoulder width; toe angle is convention."
+    }
+  },
+  {
+    "id": "cue-bodyweight-squat-knees-track",
+    "exerciseId": "bodyweight_squat",
+    "text": "Knees follow the line of your toes.",
+    "phase": "descent",
+    "sourceId": "src-powers-2010",
+    "review": {
+      "state": "draft",
+      "notes": "From the catalogue. Powers links hip control and knee mechanics."
+    }
+  },
+  {
+    "id": "cue-bodyweight-squat-chest-up",
+    "exerciseId": "bodyweight_squat",
+    "text": "Chest up, sit down between your hips.",
+    "phase": "descent",
+    "sourceId": "src-schoenfeld-2010",
+    "review": {
+      "state": "draft",
+      "notes": "Catalogue cue reworded."
+    }
+  },
+  {
+    "id": "cue-bodyweight-squat-whole-foot",
+    "exerciseId": "bodyweight_squat",
+    "text": "Keep your whole foot on the floor.",
+    "phase": "whole",
+    "sourceId": "src-schoenfeld-2010",
+    "review": {
+      "state": "draft",
+      "notes": "Check the full text of Schoenfeld before review."
+    }
+  },
+  {
+    "id": "cue-tibialis-raise-setup",
+    "exerciseId": "tibialis_raise",
+    "text": "Back to a wall, heels about 30 cm out.",
+    "phase": "setup",
+    "sourceId": "src-egerton-2022",
+    "review": {
+      "state": "draft",
+      "notes": "No technique source found. Catalogue cue reworded."
+    }
+  },
+  {
+    "id": "cue-tibialis-raise-lift",
+    "exerciseId": "tibialis_raise",
+    "text": "Lift your toes toward your shins, heels down.",
+    "phase": "ascent",
+    "sourceId": "src-egerton-2022",
+    "review": {
+      "state": "draft",
+      "notes": "Convention only. Question: source wanted."
+    }
+  },
+  {
+    "id": "cue-tibialis-raise-lower",
+    "exerciseId": "tibialis_raise",
+    "text": "Lower slowly, don't let your toes slap down.",
+    "phase": "descent",
+    "sourceId": "src-egerton-2022",
+    "review": {
+      "state": "draft",
+      "notes": "Convention only."
+    }
   }
 ]

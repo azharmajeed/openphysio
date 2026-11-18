@@ -65,8 +65,8 @@ test("both checked states publish", () => {
 
 test("a published record needs its references published", () => {
   const d = withState("source-checked");
-  d.sources[0]!.review.state = "rejected";
-  expect(count(publish(d))).toBe(0); // everything cites the one source
+  for (const s of d.sources) s.review.state = "rejected";
+  expect(count(publish(d))).toBe(0); // every record cites a source
 
   const e = withState("source-checked");
   e.claims[0]!.review.state = "draft"; // muscle lists the claim, so it falls too
@@ -74,11 +74,11 @@ test("a published record needs its references published", () => {
   expect(out.claims).toHaveLength(0);
   expect(out.muscles).toHaveLength(0);
   expect(out.exerciseMuscles).toHaveLength(0);
-  expect(out.cues).toHaveLength(1);
+  expect(out.cues).toHaveLength(e.cues.length);
 
   const f = withState("source-checked");
   f.cues[0]!.review.state = "draft";
-  expect(publish(f).faults).toHaveLength(0);
+  expect(publish(f).faults.some((x) => x.cueId === f.cues[0]!.id)).toBe(false);
 });
 
 test("coverage report (not a failure yet)", () => {
