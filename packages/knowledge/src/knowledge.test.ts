@@ -1,9 +1,11 @@
 import { expect, test } from "vitest";
 import { allRecords, coverage, publish, published, validate } from "./index.ts";
+import { fixture } from "./fixture.test-data.ts";
 import type { KnowledgeData, ReviewState } from "./types.ts";
 
-const clone = (): KnowledgeData => structuredClone(allRecords);
-/** The example data set with every record set to one review state. */
+// Mutation and publish tests use the fixed fixture, never the real content (which K tasks keep changing).
+const clone = fixture;
+/** The fixture with every record set to one review state. */
 const withState = (state: ReviewState): KnowledgeData => {
   const d = clone();
   for (const list of Object.values(d)) for (const r of list) r.review = { state };
@@ -51,8 +53,12 @@ test("drafts and rejected records never publish", () => {
   expect(count(publish(withState("rejected")))).toBe(0);
 });
 
+test("the fixture is valid", () => {
+  expect(validate(fixture())).toEqual([]);
+});
+
 test("both checked states publish", () => {
-  const total = count(allRecords);
+  const total = count(fixture());
   expect(count(publish(withState("source-checked")))).toBe(total);
   expect(count(publish(withState("clinician-reviewed")))).toBe(total);
 });
