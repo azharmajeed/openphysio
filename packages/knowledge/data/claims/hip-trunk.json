@@ -46,5 +46,120 @@
     "review": {
       "state": "draft"
     }
+  },
+  {
+    "id": "claim-side-bridge-gluteus-medius",
+    "text": "Side-bridge variations switch on the gluteus medius strongly (over about two-thirds of its maximum) in healthy adults.",
+    "sourceId": "src-youdas-2014",
+    "grade": "C",
+    "subjects": [
+      "side_plank",
+      "gluteus-medius"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Single small lab study; no pain or injury outcome. Grade C because it is not a review or trial."
+    }
+  },
+  {
+    "id": "claim-prone-bridge-trunk",
+    "text": "Healthy adults use the belly and back muscles in the elbow-and-toe plank and the side bridge; in one small study these showed clear activation.",
+    "sourceId": "src-ekstrom-2007",
+    "grade": "C",
+    "subjects": [
+      "plank",
+      "side_plank",
+      "rectus-abdominis"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Single small lab study; no pain or injury outcome. Grade C because it is not a review or trial."
+    }
+  },
+  {
+    "id": "claim-quadruped-lifts-multifidus",
+    "text": "In four-point kneeling, lifting a leg or an arm and a leg switches on the same-side deep back muscle (multifidus) and the gluteus maximus most.",
+    "sourceId": "src-stevens-2007",
+    "grade": "C",
+    "subjects": [
+      "bird_dog",
+      "multifidus",
+      "gluteus-maximus"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Single small lab study; no pain or injury outcome. Grade C because it is not a review or trial."
+    }
+  },
+  {
+    "id": "claim-back-extension-spine-load",
+    "text": "Active trunk extension exercises put the most load on the lower spine; lifting one leg with the spine held still puts much less.",
+    "sourceId": "src-callaghan-1998",
+    "grade": "C",
+    "subjects": [
+      "superman",
+      "bird_dog"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Single small lab study; no pain or injury outcome. Grade C because it is not a review or trial."
+    }
+  },
+  {
+    "id": "claim-backward-walk-paraspinals",
+    "text": "Walking backward on a treadmill makes the deep and surface back muscles work harder than walking forward, in people with and without chronic low back pain.",
+    "sourceId": "src-ansari-2018",
+    "grade": "C",
+    "subjects": [
+      "backward_walk",
+      "multifidus",
+      "erector-spinae"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Single small lab study; no pain or injury outcome. Grade C because it is not a review or trial."
+    }
+  },
+  {
+    "id": "claim-slr-quadriceps",
+    "text": "A straight leg raise activates the quadriceps and gluteus medius more than a squat in women with and without patellofemoral pain.",
+    "sourceId": "src-felicio-2019",
+    "grade": "C",
+    "subjects": [
+      "straight_leg_raise",
+      "rectus-femoris"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Single small lab study; no pain or injury outcome. Grade C because it is not a review or trial."
+    }
+  },
+  {
+    "id": "claim-pallof-lumbopelvic-control",
+    "text": "The Pallof press is a lumbopelvic control exercise whose difficulty rises with a narrower stance or a less stable surface.",
+    "sourceId": "src-juan-recio-2025",
+    "grade": "C",
+    "subjects": [
+      "band_pallof_press"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Single small lab study; no pain or injury outcome. Grade C because it is not a review or trial."
+    }
+  },
+  {
+    "id": "claim-pull-apart-scapular-muscles",
+    "text": "The band pull-apart works the middle trapezius, rear deltoid and other shoulder-blade muscles; hand position and direction change how much.",
+    "sourceId": "src-fukunaga-2022",
+    "grade": "C",
+    "subjects": [
+      "band_pull_apart",
+      "trapezius-middle",
+      "deltoid-posterior"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Single small lab study; no pain or injury outcome. Grade C because it is not a review or trial."
+    }
   }
 ]

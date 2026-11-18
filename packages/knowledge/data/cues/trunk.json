@@ -1,1 +1,431 @@
-[]
+[
+  {
+    "id": "cue-bird-dog-setup",
+    "exerciseId": "bird_dog",
+    "text": "Hands under shoulders, knees under hips, spine long.",
+    "phase": "setup",
+    "sourceId": "src-stevens-2007",
+    "review": {
+      "state": "draft",
+      "notes": "Convention for setup; Stevens studied four-point kneeling lifts."
+    }
+  },
+  {
+    "id": "cue-bird-dog-reach",
+    "exerciseId": "bird_dog",
+    "text": "Reach long, keeping hips and shoulders level.",
+    "phase": "ascent",
+    "sourceId": "src-stevens-2007",
+    "review": {
+      "state": "draft",
+      "notes": "Level pelvis is convention; Stevens and Callaghan support single-leg and arm-and-leg lifts as low-load trunk work."
+    }
+  },
+  {
+    "id": "cue-bird-dog-brace",
+    "exerciseId": "bird_dog",
+    "text": "Pause a second, belly lightly braced, back steady.",
+    "phase": "top",
+    "sourceId": "src-kavcic-2004",
+    "review": {
+      "state": "draft",
+      "notes": "Kavcic ranks stabilisation exercises by spine stability and load; the bracing wording and hold time are convention."
+    }
+  },
+  {
+    "id": "cue-bird-dog-lower",
+    "exerciseId": "bird_dog",
+    "text": "Return slowly; do not let your back sag.",
+    "phase": "descent",
+    "sourceId": "src-callaghan-1998",
+    "review": {
+      "state": "draft",
+      "notes": "Callaghan says holding the spine still while a limb moves is low-risk; the sag cue is convention."
+    }
+  },
+  {
+    "id": "cue-dead-bug-setup",
+    "exerciseId": "dead_bug",
+    "text": "Lie on your back, knees over hips, arms up.",
+    "phase": "setup",
+    "sourceId": "src-mcgill-1998",
+    "review": {
+      "state": "draft",
+      "notes": "Convention. McGill 1998 covers trunk-stability principles generally, not this exact position."
+    }
+  },
+  {
+    "id": "cue-dead-bug-back",
+    "exerciseId": "dead_bug",
+    "text": "Keep your lower back gently resting on the floor.",
+    "phase": "whole",
+    "sourceId": "src-mcgill-1998",
+    "review": {
+      "state": "draft",
+      "notes": "Convention. No source found that tests the flat-back cue in the dead bug."
+    }
+  },
+  {
+    "id": "cue-dead-bug-slow",
+    "exerciseId": "dead_bug",
+    "text": "Lower opposite arm and leg slowly, only as far as you control.",
+    "phase": "descent",
+    "sourceId": "src-mcgill-1998",
+    "review": {
+      "state": "draft",
+      "notes": "Convention; limits the range to what the trunk can control."
+    }
+  },
+  {
+    "id": "cue-dead-bug-breath",
+    "exerciseId": "dead_bug",
+    "text": "Breathe out as you lower; do not hold your breath.",
+    "phase": "breathing",
+    "sourceId": "src-mcgill-1998",
+    "review": {
+      "state": "draft",
+      "notes": "Convention. Breath holding tends to tense the neck; not tested here."
+    }
+  },
+  {
+    "id": "cue-plank-setup",
+    "exerciseId": "plank",
+    "text": "Elbows under shoulders, forearms flat, body in one line.",
+    "phase": "setup",
+    "sourceId": "src-ekstrom-2007",
+    "review": {
+      "state": "draft",
+      "notes": "Ekstrom studied the prone bridge on elbows and toes; the elbow position wording is convention."
+    }
+  },
+  {
+    "id": "cue-plank-squeeze",
+    "exerciseId": "plank",
+    "text": "Gently squeeze glutes and belly; keep hips level.",
+    "phase": "whole",
+    "sourceId": "src-okubo-2010",
+    "review": {
+      "state": "draft",
+      "notes": "Okubo measured deep abdominal activity in elbow-toe planks; the glute cue is convention."
+    }
+  },
+  {
+    "id": "cue-plank-neck",
+    "exerciseId": "plank",
+    "text": "Look at the floor, neck long and relaxed.",
+    "phase": "whole",
+    "sourceId": "src-ekstrom-2007",
+    "review": {
+      "state": "draft",
+      "notes": "Convention. No source found on neck position in the plank."
+    }
+  },
+  {
+    "id": "cue-plank-breath",
+    "exerciseId": "plank",
+    "text": "Keep breathing steadily; stop when your form slips.",
+    "phase": "breathing",
+    "sourceId": "src-mcgill-1998",
+    "review": {
+      "state": "draft",
+      "notes": "Convention. Ending a hold when form drops is common coaching; not tested here."
+    }
+  },
+  {
+    "id": "cue-side-plank-setup",
+    "exerciseId": "side_plank",
+    "text": "Elbow under shoulder, feet stacked or one in front.",
+    "phase": "setup",
+    "sourceId": "src-youdas-2014",
+    "review": {
+      "state": "draft",
+      "notes": "Youdas used side-bridge variations; foot position and the wording are convention."
+    }
+  },
+  {
+    "id": "cue-side-plank-lift",
+    "exerciseId": "side_plank",
+    "text": "Lift hips until shoulders, hips and knees line up.",
+    "phase": "ascent",
+    "sourceId": "src-ekstrom-2007",
+    "review": {
+      "state": "draft",
+      "notes": "Ekstrom tested the side bridge; the straight-line wording is convention."
+    }
+  },
+  {
+    "id": "cue-side-plank-push",
+    "exerciseId": "side_plank",
+    "text": "Push the floor away; keep your shoulder from your ear.",
+    "phase": "whole",
+    "sourceId": "src-ekstrom-2007",
+    "review": {
+      "state": "draft",
+      "notes": "Convention for shoulder position. Shoulder load is not measured in the source."
+    }
+  },
+  {
+    "id": "cue-side-plank-breath",
+    "exerciseId": "side_plank",
+    "text": "Breathe steadily; lower if your hips start to drop.",
+    "phase": "breathing",
+    "sourceId": "src-mcgill-1998",
+    "review": {
+      "state": "draft",
+      "notes": "Convention. McGill 1998 discusses trunk exercise in general; the stopping rule is ours."
+    }
+  },
+  {
+    "id": "cue-superman-setup",
+    "exerciseId": "superman",
+    "text": "Lie face down, forehead toward the floor, neck long.",
+    "phase": "setup",
+    "sourceId": "src-callaghan-1998",
+    "review": {
+      "state": "draft",
+      "notes": "Convention. Callaghan studied extensor exercises but this exact setup is not described in the abstract."
+    }
+  },
+  {
+    "id": "cue-superman-lift",
+    "exerciseId": "superman",
+    "text": "Lift arms and legs only a few centimetres.",
+    "phase": "ascent",
+    "sourceId": "src-callaghan-1998",
+    "review": {
+      "state": "draft",
+      "notes": "Callaghan found active trunk extension gives the highest spine load, so a small lift is a convention-based safety limit."
+    }
+  },
+  {
+    "id": "cue-superman-pause",
+    "exerciseId": "superman",
+    "text": "Pause, squeeze glutes, then lower slowly.",
+    "phase": "top",
+    "sourceId": "src-callaghan-1998",
+    "review": {
+      "state": "draft",
+      "notes": "Convention."
+    }
+  },
+  {
+    "id": "cue-cat-cow-setup",
+    "exerciseId": "cat_cow",
+    "text": "Hands under shoulders, knees under hips, relaxed neck.",
+    "phase": "setup",
+    "sourceId": "src-mcgill-1998",
+    "review": {
+      "state": "draft",
+      "notes": "Convention. McGill describes cat-camel as a spine mobility movement; confirm in full text."
+    }
+  },
+  {
+    "id": "cue-cat-cow-range",
+    "exerciseId": "cat_cow",
+    "text": "Stay in a comfortable range; stop if it sharply hurts.",
+    "phase": "whole",
+    "sourceId": "src-mcgill-1998",
+    "review": {
+      "state": "draft",
+      "notes": "Convention and safety wording; no pain-relief claim."
+    }
+  },
+  {
+    "id": "cue-cat-cow-breath",
+    "exerciseId": "cat_cow",
+    "text": "Breathe out as you round, in as you arch.",
+    "phase": "breathing",
+    "sourceId": "src-mcgill-1998",
+    "review": {
+      "state": "draft",
+      "notes": "Convention. Breathing pairing is common coaching, not tested."
+    }
+  },
+  {
+    "id": "cue-cat-cow-head",
+    "exerciseId": "cat_cow",
+    "text": "Let your head follow your spine; keep your neck long.",
+    "phase": "whole",
+    "sourceId": "src-mcgill-1998",
+    "review": {
+      "state": "draft",
+      "notes": "Convention."
+    }
+  },
+  {
+    "id": "cue-pallof-setup",
+    "exerciseId": "band_pallof_press",
+    "text": "Feet hip-width apart, band at chest height, stand sideways.",
+    "phase": "setup",
+    "sourceId": "src-juan-recio-2025",
+    "review": {
+      "state": "draft",
+      "notes": "Juan-Recio studied the Pallof press as a lumbopelvic control task; setup details are convention."
+    }
+  },
+  {
+    "id": "cue-pallof-press",
+    "exerciseId": "band_pallof_press",
+    "text": "Press straight out; do not let the band turn you.",
+    "phase": "ascent",
+    "sourceId": "src-juan-recio-2025",
+    "review": {
+      "state": "draft",
+      "notes": "Resisting rotation is the point of the exercise; wording is ours."
+    }
+  },
+  {
+    "id": "cue-pallof-hold",
+    "exerciseId": "band_pallof_press",
+    "text": "Hold one second, ribs down, hips square.",
+    "phase": "top",
+    "sourceId": "src-juan-recio-2025",
+    "review": {
+      "state": "draft",
+      "notes": "Hold time and rib cue are convention."
+    }
+  },
+  {
+    "id": "cue-pallof-return",
+    "exerciseId": "band_pallof_press",
+    "text": "Bring your hands back to your chest slowly.",
+    "phase": "descent",
+    "sourceId": "src-juan-recio-2025",
+    "review": {
+      "state": "draft",
+      "notes": "Convention."
+    }
+  },
+  {
+    "id": "cue-slr-setup",
+    "exerciseId": "straight_leg_raise",
+    "text": "Lie back, one knee bent, other leg straight.",
+    "phase": "setup",
+    "sourceId": "src-felicio-2019",
+    "review": {
+      "state": "draft",
+      "notes": "Felicio studied straight leg raises; setup wording is convention."
+    }
+  },
+  {
+    "id": "cue-slr-lift",
+    "exerciseId": "straight_leg_raise",
+    "text": "Tighten the thigh first, then lift the straight leg.",
+    "phase": "ascent",
+    "sourceId": "src-felicio-2019",
+    "review": {
+      "state": "draft",
+      "notes": "Felicio supports quadriceps activity in this exercise; the tighten-first cue is convention."
+    }
+  },
+  {
+    "id": "cue-slr-top",
+    "exerciseId": "straight_leg_raise",
+    "text": "Lift to the height of your bent knee, then pause.",
+    "phase": "top",
+    "sourceId": "src-felicio-2019",
+    "review": {
+      "state": "draft",
+      "notes": "Convention for the stopping height."
+    }
+  },
+  {
+    "id": "cue-slr-lower",
+    "exerciseId": "straight_leg_raise",
+    "text": "Lower slowly; keep your lower back from arching.",
+    "phase": "descent",
+    "sourceId": "src-felicio-2019",
+    "review": {
+      "state": "draft",
+      "notes": "Convention."
+    }
+  },
+  {
+    "id": "cue-backward-walk-setup",
+    "exerciseId": "backward_walk",
+    "text": "Pick a clear, flat path with something to hold nearby.",
+    "phase": "setup",
+    "sourceId": "src-ansari-2018",
+    "review": {
+      "state": "draft",
+      "notes": "Ansari tested treadmill walking; path and support advice is safety convention."
+    }
+  },
+  {
+    "id": "cue-backward-walk-steps",
+    "exerciseId": "backward_walk",
+    "text": "Take short steps, reach back toe first, then heel.",
+    "phase": "whole",
+    "sourceId": "src-ansari-2018",
+    "review": {
+      "state": "draft",
+      "notes": "Convention for step style."
+    }
+  },
+  {
+    "id": "cue-backward-walk-look",
+    "exerciseId": "backward_walk",
+    "text": "Glance behind often; stop if you feel unsteady.",
+    "phase": "whole",
+    "sourceId": "src-ansari-2018",
+    "review": {
+      "state": "draft",
+      "notes": "Safety convention."
+    }
+  },
+  {
+    "id": "cue-backward-walk-tall",
+    "exerciseId": "backward_walk",
+    "text": "Stand tall, eyes ahead, no leaning.",
+    "phase": "whole",
+    "sourceId": "src-ansari-2018",
+    "review": {
+      "state": "draft",
+      "notes": "Ansari found back muscles work harder in backward walking; the posture cue is convention."
+    }
+  },
+  {
+    "id": "cue-pull-apart-setup",
+    "exerciseId": "band_pull_apart",
+    "text": "Arms straight at chest height, hands shoulder-width apart.",
+    "phase": "setup",
+    "sourceId": "src-fukunaga-2022",
+    "review": {
+      "state": "draft",
+      "notes": "Fukunaga tested pull-apart hand positions; wording is ours."
+    }
+  },
+  {
+    "id": "cue-pull-apart-pull",
+    "exerciseId": "band_pull_apart",
+    "text": "Pull the band apart, squeezing shoulder blades together.",
+    "phase": "ascent",
+    "sourceId": "src-fukunaga-2022",
+    "review": {
+      "state": "draft",
+      "notes": "Fukunaga shows shoulder-blade muscle activity; the squeeze cue is convention."
+    }
+  },
+  {
+    "id": "cue-pull-apart-ribs",
+    "exerciseId": "band_pull_apart",
+    "text": "Ribs down; do not lean back.",
+    "phase": "top",
+    "sourceId": "src-fukunaga-2022",
+    "review": {
+      "state": "draft",
+      "notes": "Convention. Trunk posture not studied in the paper."
+    }
+  },
+  {
+    "id": "cue-pull-apart-neck",
+    "exerciseId": "band_pull_apart",
+    "text": "Keep your shoulders away from your ears, neck relaxed.",
+    "phase": "whole",
+    "sourceId": "src-fukunaga-2022",
+    "review": {
+      "state": "draft",
+      "notes": "Convention. Upper trapezius activity was measured but not the shrug cue."
+    }
+  }
+]

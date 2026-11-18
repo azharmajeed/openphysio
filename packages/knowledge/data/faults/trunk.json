@@ -1,1 +1,392 @@
-[]
+[
+  {
+    "id": "fault-bird-dog-twist",
+    "exerciseId": "bird_dog",
+    "description": "Hips twist open as the leg lifts.",
+    "whyItMatters": "A twisting pelvis moves the load into the lower back instead of the hip and trunk muscles. Coaching convention, grade C.",
+    "cueId": "cue-bird-dog-reach",
+    "severity": "medium",
+    "sourceId": "src-stevens-2007",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source supports the exercise, not the fault itself."
+    }
+  },
+  {
+    "id": "fault-bird-dog-sag",
+    "exerciseId": "bird_dog",
+    "description": "Lower back sags or arches as the arm or leg rises.",
+    "whyItMatters": "Reaching too high bends the lower back, which adds load there rather than training trunk control; this is where people with back pain feel it. Coaching convention, grade C.",
+    "cueId": "cue-bird-dog-lower",
+    "severity": "medium",
+    "sourceId": "src-callaghan-1998",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source supports the exercise, not the fault itself."
+    }
+  },
+  {
+    "id": "fault-bird-dog-rush",
+    "exerciseId": "bird_dog",
+    "description": "Limbs swing up fast with no pause.",
+    "whyItMatters": "Momentum replaces muscle work and makes the trunk wobble, so the steady-spine benefit is lost. Coaching convention, grade C.",
+    "cueId": "cue-bird-dog-brace",
+    "severity": "low",
+    "sourceId": "src-kavcic-2004",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source supports the exercise, not the fault itself."
+    }
+  },
+  {
+    "id": "fault-dead-bug-arch",
+    "exerciseId": "dead_bug",
+    "description": "Lower back lifts off the floor as the limbs lower.",
+    "whyItMatters": "The back arches instead of the belly muscles holding the pelvis still, so the exercise stops training what it is for and can irritate a sore back. Coaching convention, grade C.",
+    "cueId": "cue-dead-bug-back",
+    "severity": "medium",
+    "sourceId": "src-mcgill-1998",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source is general; does not test this exact fault."
+    }
+  },
+  {
+    "id": "fault-dead-bug-rush",
+    "exerciseId": "dead_bug",
+    "description": "Arms and legs drop quickly or swing.",
+    "whyItMatters": "Fast movement lets momentum do the work and makes the lower back arch at the end of the range. Coaching convention, grade C.",
+    "cueId": "cue-dead-bug-slow",
+    "severity": "low",
+    "sourceId": "src-mcgill-1998",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source is general; does not test this exact fault."
+    }
+  },
+  {
+    "id": "fault-dead-bug-hold",
+    "exerciseId": "dead_bug",
+    "description": "Holding your breath through the rep.",
+    "whyItMatters": "Breath holding adds strain and neck tension without helping the trunk. Coaching convention, grade C.",
+    "cueId": "cue-dead-bug-breath",
+    "severity": "low",
+    "sourceId": "src-mcgill-1998",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source is general; does not test this exact fault."
+    }
+  },
+  {
+    "id": "fault-plank-sag",
+    "exerciseId": "plank",
+    "description": "Hips sag toward the floor and the lower back arches.",
+    "whyItMatters": "Sagging hips bend the lower back and shift the work off the belly muscles; this is the most common way a plank leaves the back sore. Coaching convention, grade C.",
+    "cueId": "cue-plank-squeeze",
+    "severity": "medium",
+    "sourceId": "src-ekstrom-2007",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source supports the exercise, not the fault itself."
+    }
+  },
+  {
+    "id": "fault-plank-pike",
+    "exerciseId": "plank",
+    "description": "Hips rise above shoulder height.",
+    "whyItMatters": "Hips high make the exercise easier for the belly muscles, so you lose the trunk work. Coaching convention, grade C.",
+    "cueId": "cue-plank-setup",
+    "severity": "low",
+    "sourceId": "src-ekstrom-2007",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source supports the exercise, not the fault itself."
+    }
+  },
+  {
+    "id": "fault-plank-neck",
+    "exerciseId": "plank",
+    "description": "Head drops or chin lifts and the neck cranes.",
+    "whyItMatters": "A bent neck adds strain to the neck and upper shoulders without any trunk benefit. Coaching convention, grade C.",
+    "cueId": "cue-plank-neck",
+    "severity": "medium",
+    "sourceId": "src-ekstrom-2007",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source supports the exercise, not the fault itself."
+    }
+  },
+  {
+    "id": "fault-side-plank-drop",
+    "exerciseId": "side_plank",
+    "description": "Hips drop toward the floor.",
+    "whyItMatters": "Dropping hips bends the spine sideways and takes the load off the side trunk muscles, so the hold stops being useful. Coaching convention, grade C.",
+    "cueId": "cue-side-plank-breath",
+    "severity": "medium",
+    "sourceId": "src-youdas-2014",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source supports the exercise, not the fault itself."
+    }
+  },
+  {
+    "id": "fault-side-plank-roll",
+    "exerciseId": "side_plank",
+    "description": "Body rolls forward or back instead of staying stacked.",
+    "whyItMatters": "Rolling turns the trunk and moves work away from the side trunk and hip muscles. Coaching convention, grade C.",
+    "cueId": "cue-side-plank-lift",
+    "severity": "low",
+    "sourceId": "src-ekstrom-2007",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source supports the exercise, not the fault itself."
+    }
+  },
+  {
+    "id": "fault-side-plank-shrug",
+    "exerciseId": "side_plank",
+    "description": "Shoulder sinks into the joint and the neck shortens.",
+    "whyItMatters": "A collapsed supporting shoulder can pinch and tire the shoulder and neck; skip this exercise if the shoulder hurts. Coaching convention, grade C.",
+    "cueId": "cue-side-plank-push",
+    "severity": "medium",
+    "sourceId": "src-ekstrom-2007",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source supports the exercise, not the fault itself."
+    }
+  },
+  {
+    "id": "fault-superman-high",
+    "exerciseId": "superman",
+    "description": "Lifting high and arching the lower back.",
+    "whyItMatters": "Active extension to a high lift loads the lower spine most, so skip this exercise if it bothers your back. Callaghan 1998 supports that extension exercises load the spine more; the advice itself is convention, grade C.",
+    "cueId": "cue-superman-lift",
+    "severity": "high",
+    "sourceId": "src-callaghan-1998",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source supports the exercise, not the fault itself."
+    }
+  },
+  {
+    "id": "fault-superman-neck",
+    "exerciseId": "superman",
+    "description": "Head tilts up, neck cranes back.",
+    "whyItMatters": "Cranking the neck back strains it for no extra benefit to the back muscles. Coaching convention, grade C.",
+    "cueId": "cue-superman-setup",
+    "severity": "medium",
+    "sourceId": "src-callaghan-1998",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source supports the exercise, not the fault itself."
+    }
+  },
+  {
+    "id": "fault-superman-swing",
+    "exerciseId": "superman",
+    "description": "Jerking limbs up and dropping them.",
+    "whyItMatters": "Jerky movement adds load to the spine with no control. Coaching convention, grade C.",
+    "cueId": "cue-superman-pause",
+    "severity": "low",
+    "sourceId": "src-callaghan-1998",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source supports the exercise, not the fault itself."
+    }
+  },
+  {
+    "id": "fault-cat-cow-force",
+    "exerciseId": "cat_cow",
+    "description": "Pushing into the end of the range.",
+    "whyItMatters": "Forcing the end range can aggravate a sore or irritated back; the movement is meant to be gentle. Coaching convention, grade C.",
+    "cueId": "cue-cat-cow-range",
+    "severity": "medium",
+    "sourceId": "src-mcgill-1998",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source is general; does not test this exact fault."
+    }
+  },
+  {
+    "id": "fault-cat-cow-fast",
+    "exerciseId": "cat_cow",
+    "description": "Rushing or bouncing between positions.",
+    "whyItMatters": "Fast movement loses control and can jolt the spine without any benefit. Coaching convention, grade C.",
+    "cueId": "cue-cat-cow-breath",
+    "severity": "low",
+    "sourceId": "src-mcgill-1998",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source is general; does not test this exact fault."
+    }
+  },
+  {
+    "id": "fault-cat-cow-neck",
+    "exerciseId": "cat_cow",
+    "description": "Head drops or cranes up out of line.",
+    "whyItMatters": "Hanging or cranking the neck adds strain to the neck. Coaching convention, grade C.",
+    "cueId": "cue-cat-cow-head",
+    "severity": "low",
+    "sourceId": "src-mcgill-1998",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source is general; does not test this exact fault."
+    }
+  },
+  {
+    "id": "fault-pallof-twist",
+    "exerciseId": "band_pallof_press",
+    "description": "Torso turns toward the anchor.",
+    "whyItMatters": "If the band turns you, the trunk is not resisting rotation and the lower back takes a twisting load. Coaching convention, grade C.",
+    "cueId": "cue-pallof-press",
+    "severity": "medium",
+    "sourceId": "src-juan-recio-2025",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source supports the exercise, not the fault itself."
+    }
+  },
+  {
+    "id": "fault-pallof-arch",
+    "exerciseId": "band_pallof_press",
+    "description": "Leaning back or arching the lower back.",
+    "whyItMatters": "Leaning shifts the work to the lower back instead of the trunk muscles; this matters for a sore back. Coaching convention, grade C.",
+    "cueId": "cue-pallof-hold",
+    "severity": "medium",
+    "sourceId": "src-juan-recio-2025",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source supports the exercise, not the fault itself."
+    }
+  },
+  {
+    "id": "fault-pallof-shift",
+    "exerciseId": "band_pallof_press",
+    "description": "Hips shift or feet step as the band pulls.",
+    "whyItMatters": "Losing the base means the band is too heavy or you are too close; the trunk stops being trained. Coaching convention, grade C.",
+    "cueId": "cue-pallof-setup",
+    "severity": "low",
+    "sourceId": "src-juan-recio-2025",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source supports the exercise, not the fault itself."
+    }
+  },
+  {
+    "id": "fault-slr-bend",
+    "exerciseId": "straight_leg_raise",
+    "description": "Knee bends as the leg lifts.",
+    "whyItMatters": "A bent knee means the thigh is not tightened first, so the quadriceps work less. Coaching convention, grade C.",
+    "cueId": "cue-slr-lift",
+    "severity": "low",
+    "sourceId": "src-felicio-2019",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source supports the exercise, not the fault itself."
+    }
+  },
+  {
+    "id": "fault-slr-arch",
+    "exerciseId": "straight_leg_raise",
+    "description": "Lower back arches or pelvis tips as the leg lifts.",
+    "whyItMatters": "Lifting higher than the bent knee tends to arch the lower back, which can irritate it. Coaching convention, grade C.",
+    "cueId": "cue-slr-top",
+    "severity": "medium",
+    "sourceId": "src-felicio-2019",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source supports the exercise, not the fault itself."
+    }
+  },
+  {
+    "id": "fault-slr-swing",
+    "exerciseId": "straight_leg_raise",
+    "description": "Leg swings up and drops fast.",
+    "whyItMatters": "Momentum replaces muscle work and the lower back jolts at the bottom. Coaching convention, grade C.",
+    "cueId": "cue-slr-lower",
+    "severity": "low",
+    "sourceId": "src-felicio-2019",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source supports the exercise, not the fault itself."
+    }
+  },
+  {
+    "id": "fault-backward-walk-unsafe",
+    "exerciseId": "backward_walk",
+    "description": "Walking backward on a path you have not checked.",
+    "whyItMatters": "Falls are the main risk because you cannot see where you are going; use a clear path or a handrail. Coaching convention, grade C.",
+    "cueId": "cue-backward-walk-setup",
+    "severity": "high",
+    "sourceId": "src-ansari-2018",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source supports the exercise, not the fault itself."
+    }
+  },
+  {
+    "id": "fault-backward-walk-long",
+    "exerciseId": "backward_walk",
+    "description": "Taking long steps.",
+    "whyItMatters": "Long steps reduce balance and make a trip more likely. Coaching convention, grade C.",
+    "cueId": "cue-backward-walk-steps",
+    "severity": "medium",
+    "sourceId": "src-ansari-2018",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source supports the exercise, not the fault itself."
+    }
+  },
+  {
+    "id": "fault-backward-walk-lean",
+    "exerciseId": "backward_walk",
+    "description": "Leaning forward or arching the lower back.",
+    "whyItMatters": "Leaning shifts load onto the lower back and reduces balance. Coaching convention, grade C.",
+    "cueId": "cue-backward-walk-tall",
+    "severity": "medium",
+    "sourceId": "src-ansari-2018",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source supports the exercise, not the fault itself."
+    }
+  },
+  {
+    "id": "fault-pull-apart-shrug",
+    "exerciseId": "band_pull_apart",
+    "description": "Shoulders hike up toward the ears.",
+    "whyItMatters": "Shrugging puts the work into the neck and upper shoulder muscles instead of the mid-back. Coaching convention, grade C.",
+    "cueId": "cue-pull-apart-neck",
+    "severity": "medium",
+    "sourceId": "src-fukunaga-2022",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source supports the exercise, not the fault itself."
+    }
+  },
+  {
+    "id": "fault-pull-apart-arch",
+    "exerciseId": "band_pull_apart",
+    "description": "Leaning back or flaring the ribs.",
+    "whyItMatters": "Leaning back arches the lower back and takes work off the mid-back muscles. Coaching convention, grade C.",
+    "cueId": "cue-pull-apart-ribs",
+    "severity": "medium",
+    "sourceId": "src-fukunaga-2022",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source supports the exercise, not the fault itself."
+    }
+  },
+  {
+    "id": "fault-pull-apart-snap",
+    "exerciseId": "band_pull_apart",
+    "description": "Letting the band snap back.",
+    "whyItMatters": "A snapping band jerks the shoulders and removes the slow lowering work. Coaching convention, grade C.",
+    "cueId": "cue-pull-apart-pull",
+    "severity": "low",
+    "sourceId": "src-fukunaga-2022",
+    "review": {
+      "state": "draft",
+      "notes": "Coaching convention. Source supports the exercise, not the fault itself."
+    }
+  }
+]
