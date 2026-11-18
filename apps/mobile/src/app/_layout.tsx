@@ -1,7 +1,11 @@
+import "../../global.css";
+import { PortalHost } from "@rn-primitives/portal";
 import { Stack, useRouter } from "expo-router";
+import { DarkTheme, DefaultTheme, ThemeProvider } from "expo-router/react-navigation";
 import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, Text, View } from "react-native";
+import { useCSSVariable, useUniwind } from "uniwind";
 import { db } from "../db";
 import { loadForm } from "../lib/store";
 import migrations from "../migrations";
@@ -11,6 +15,7 @@ import "../run/task";
 export default function RootLayout() {
   const { success, error } = useMigrations(db, migrations);
   const router = useRouter();
+  const navTheme = useNavTheme();
   const [ready, setReady] = useState(false);
   useSyncOnForeground(ready);
 
@@ -29,6 +34,30 @@ export default function RootLayout() {
         <ActivityIndicator />
       </View>
     );
+  return (
+    <ThemeProvider value={navTheme}>
+      <Screens />
+      <PortalHost />
+    </ThemeProvider>
+  );
+}
+
+/** Navigation chrome (headers, tab bar) follows the kit's theme colours. */
+function useNavTheme() {
+  const { theme } = useUniwind();
+  const [background, card, text, border, primary, notification] = useCSSVariable([
+    "--color-background",
+    "--color-card",
+    "--color-foreground",
+    "--color-border",
+    "--color-primary",
+    "--color-destructive",
+  ]) as string[];
+  const base = theme === "dark" ? DarkTheme : DefaultTheme;
+  return { ...base, colors: { ...base.colors, background, card, text, border, primary, notification } } as typeof base;
+}
+
+function Screens() {
   return (
     <Stack>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />

@@ -3,31 +3,29 @@
   "version": "0.0.0",
   "private": true,
   "main": "expo-router/entry",
-  "expo": {
-    "autolinking": {
-      "exclude": [
-        "react-native-gesture-handler",
-        "react-native-reanimated",
-        "react-native-worklets"
-      ]
-    }
-  },
+  "expo": {},
   "scripts": {
     "start": "expo start",
     "typecheck": "tsc --noEmit",
     "android:apk": "expo prebuild --platform android --no-install && cd android && .\\gradlew.bat assembleRelease -PreactNativeArchitectures=arm64-v8a --no-daemon"
   },
   "dependencies": {
+    "@expo/vector-icons": "^15.0.2",
     "@openphysio/catalog": "workspace:*",
     "@openphysio/core": "workspace:*",
     "@openphysio/integrations": "workspace:*",
-    "@expo/vector-icons": "^15.0.2",
     "@react-native-ml-kit/text-recognition": "2.0.0",
+    "@rn-primitives/portal": "^1.5.3",
+    "@rn-primitives/progress": "^1.5.2",
+    "@rn-primitives/slot": "^1.5.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "drizzle-orm": "^0.45.4",
     "expo": "~58.0.23",
     "expo-build-properties": "^58.0.12",
     "expo-constants": "~58.0.15",
     "expo-crypto": "~58.0.7",
+    "expo-dev-client": "~58.0.21",
     "expo-file-system": "~58.0.13",
     "expo-linking": "~58.0.16",
     "expo-location": "~58.0.20",
@@ -38,15 +36,24 @@
     "expo-speech-recognition": "58.0.1",
     "expo-sqlite": "~58.0.15",
     "expo-status-bar": "~58.0.4",
+    "expo-system-ui": "~58.0.7",
     "expo-task-manager": "~58.0.13",
+    "lucide-react-native": "^1.75.0",
     "react": "19.3.0",
     "react-native": "0.88.1",
     "react-native-document-scanner-plugin": "2.0.4",
+    "react-native-gesture-handler": "~3.3.0",
     "react-native-health-connect": "^4.1.3",
+    "react-native-reanimated": "4.7.1",
     "react-native-safe-area-context": "~5.11.1",
     "react-native-screens": "~4.30.1",
     "react-native-svg": "15.16.0",
-    "react-native-webview": "14.0.1"
+    "react-native-webview": "14.0.1",
+    "react-native-worklets": "0.13.0",
+    "tailwind-merge": "^3.7.0",
+    "tailwindcss": "^4.3.5",
+    "tw-animate-css": "^1.4.0",
+    "uniwind": "^1.14.0"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.13",
