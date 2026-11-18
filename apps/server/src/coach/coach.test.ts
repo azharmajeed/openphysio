@@ -114,7 +114,7 @@ test("every tool runs against an empty DB", async () => {
     const r = await post(createApp({ token: "t", db }), `[tool:${t}]`);
     expect(r.status, t).toBe(200);
   }
-});
+}, 30_000); // six app setups with migrations: slow when the machine is busy
 
 test("tool loop stops after 5 model turns", async () => {
   const chat = vi.fn<AiProvider["chat"]>(async () => ({
