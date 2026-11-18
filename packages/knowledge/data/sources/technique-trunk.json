@@ -1,1 +1,145 @@
-[]
+[
+  {
+    "id": "src-ekstrom-2007",
+    "type": "review",
+    "citation": "Ekstrom RA, Donatelli RA, Carp KC. Electromyographic analysis of core trunk, hip, and thigh muscles during 9 rehabilitation exercises. J Orthop Sports Phys Ther. 2007;37(12):754-762.",
+    "pmid": "18560185",
+    "doi": "10.2519/jospt.2007.2471",
+    "year": 2007,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "Surface EMG, 30 healthy adults; covers side bridge, prone bridge on elbows and toes, quadruped arm/leg lift. Muscle activation only, not pain outcomes. Study type is a lab or narrative paper; schema has no such type, so 'review' is the nearest."
+    }
+  },
+  {
+    "id": "src-kavcic-2004",
+    "type": "review",
+    "citation": "Kavcic N, Grenier S, McGill SM. Quantifying tissue loads and spine stability while performing commonly prescribed low back stabilization exercises. Spine. 2004;29(20):2319-2329.",
+    "pmid": "15480148",
+    "doi": "10.1097/01.brs.0000142222.62203.67",
+    "year": 2004,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "Biomechanical model with EMG in healthy people; ranks eight stabilisation exercises by spine stability and L4-L5 load. Abstract does not name each exercise; reviewer to confirm bird dog is among them. Study type is a lab or narrative paper; schema has no such type, so 'review' is the nearest."
+    }
+  },
+  {
+    "id": "src-callaghan-1998",
+    "type": "review",
+    "citation": "Callaghan JP, Gunning JL, McGill SM. The relationship between lumbar spine load and muscle activity during extensor exercises. Phys Ther. 1998;78(1):8-18.",
+    "pmid": "9442191",
+    "doi": "10.1093/ptj/78.1.8",
+    "year": 1998,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "13 young men. Reports active trunk extension gives the highest spine loads and single-leg extension with the spine held still is a low-risk start. Healthy men only. Study type is a lab or narrative paper; schema has no such type, so 'review' is the nearest."
+    }
+  },
+  {
+    "id": "src-stevens-2007",
+    "type": "review",
+    "citation": "Stevens VK, Vleeming A, Bouche KG, Mahieu NN, Vanderstraeten GG, Danneels LA. Electromyographic activity of trunk and hip muscles during stabilization exercises in four-point kneeling in healthy volunteers. Eur Spine J. 2007;16(5):711-718.",
+    "pmid": "16896840",
+    "doi": "10.1007/s00586-006-0181-1",
+    "year": 2007,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "30 healthy volunteers, three four-point-kneeling exercises (leg lift, arm-and-leg lift). Muscle activity only. Study type is a lab or narrative paper; schema has no such type, so 'review' is the nearest."
+    }
+  },
+  {
+    "id": "src-okubo-2010",
+    "type": "review",
+    "citation": "Okubo Y, Kaneoka K, Imai A, Shiina I, Tatsumura M, Izumi S, Miyakawa S. Electromyographic analysis of transversus abdominis and lumbar multifidus using wire electrodes during lumbar stabilization exercises. J Orthop Sports Phys Ther. 2010;40(11):743-750.",
+    "pmid": "21041966",
+    "doi": "10.2519/jospt.2010.3192",
+    "year": 2010,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "Nine healthy men, fine-wire EMG. Elbow-toe plank with opposite arm and leg lift gave most deep abdominal (TrA) activity; side bridge also tested. Plain plank not isolated in the abstract. Study type is a lab or narrative paper; schema has no such type, so 'review' is the nearest."
+    }
+  },
+  {
+    "id": "src-youdas-2014",
+    "type": "review",
+    "citation": "Youdas JW, Boor MM, Darfler AL, Koenig MK, Mills KM, Hollman JH. Surface electromyographic analysis of core trunk and hip muscles during selected rehabilitation exercises in the side-bridge to neutral spine position. Sports Health. 2014;6(5):416-421.",
+    "pmid": "25177418",
+    "doi": "10.1177/1941738114539266",
+    "year": 2014,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "25 healthy adults; side-bridge variations, gluteus medius over 69% MVIC. Muscle activity only. Study type is a lab or narrative paper; schema has no such type, so 'review' is the nearest."
+    }
+  },
+  {
+    "id": "src-mcgill-1998",
+    "type": "review",
+    "citation": "McGill SM. Low back exercises: evidence for improving exercise regimens. Phys Ther. 1998;78(7):754-765.",
+    "pmid": "9672547",
+    "doi": "10.1093/ptj/78.7.754",
+    "year": 1998,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "Narrative review of biomechanics; says some exercises challenge muscle while minimising spine loading. Abstract does not name cat-camel, side bridge or dead bug; reviewer to confirm in full text. Study type is a lab or narrative paper; schema has no such type, so 'review' is the nearest."
+    }
+  },
+  {
+    "id": "src-juan-recio-2025",
+    "type": "review",
+    "citation": "Juan-Recio C, Prat-Luri A, Rondon-Espinosa H, Barbado D, Vera-Garcia FJ. Effect of body position and support surface on the postural control challenge during the Pallof press exercise: a smartphone accelerometer-based study. Medicina (Kaunas). 2025;61(2):312.",
+    "pmid": "40005429",
+    "doi": "10.3390/medicina61020312",
+    "year": 2025,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "12 active people, pelvis accelerometer. Shows Pallof press is a lumbopelvic control task and ranks variations; no EMG, no back pain group. Study type is a lab or narrative paper; schema has no such type, so 'review' is the nearest."
+    }
+  },
+  {
+    "id": "src-felicio-2019",
+    "type": "review",
+    "citation": "Felicio LR, de Carvalho CAM, Dias CLCA, Vigario PDS. Electromyographic activity of the quadriceps and gluteus medius muscles during different straight leg raise and squat exercises in women with patellofemoral pain syndrome. J Electromyogr Kinesiol. 2019;48:17-23.",
+    "pmid": "31185341",
+    "doi": "10.1016/j.jelekin.2019.05.017",
+    "year": 2019,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "46 women, half with patellofemoral pain. Straight leg raise gave more quadriceps and gluteus medius activity than squats. Women only; not post-injury or post-surgery. Study type is a lab or narrative paper; schema has no such type, so 'review' is the nearest."
+    }
+  },
+  {
+    "id": "src-ansari-2018",
+    "type": "review",
+    "citation": "Ansari B, Bhati P, Singla D, Nazish N, Hussain ME. Lumbar muscle activation pattern during forward and backward walking in participants with and without chronic low back pain: an electromyographic study. J Chiropr Med. 2018;17(4):217-225.",
+    "pmid": "30846913",
+    "doi": "10.1016/j.jcm.2018.03.008",
+    "year": 2018,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "21 people with chronic low back pain and 21 controls on a treadmill. Back muscles worked harder walking backward. Says nothing about pain relief or overground safety. Study type is a lab or narrative paper; schema has no such type, so 'review' is the nearest."
+    }
+  },
+  {
+    "id": "src-fukunaga-2022",
+    "type": "review",
+    "citation": "Fukunaga T, Fedge C, Tyler T, Mullaney M, Schmitt B, Orishimo K, McHugh M, Nicholas S. Band pull-apart exercise: effects of movement direction and hand position on shoulder muscle activity. Int J Sports Phys Ther. 2022;17(3):400-408.",
+    "pmid": "35391860",
+    "doi": "10.26603/001c.33026",
+    "year": 2022,
+    "licence": "Citation only; no source text reproduced",
+    "review": {
+      "state": "draft",
+      "notes": "10 healthy men. Measures shoulder-blade and rear-shoulder muscle activity at different hand positions and directions. Trunk posture not studied. Study type is a lab or narrative paper; schema has no such type, so 'review' is the nearest."
+    }
+  }
+]

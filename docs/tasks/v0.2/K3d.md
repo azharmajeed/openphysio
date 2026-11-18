@@ -1,7 +1,7 @@
 # K3d: Cues and faults: top trunk, rehab and conditioning exercises
 Project / milestone / feature: OpenPhysio / v0.2 / PRD-002
 Lane: Knowledge
-Status: Ready
+Status: In review
 Approved scope reference: docs/tasks/v0.2/README.md, docs/tasks/EXECUTION.md
 Approved product specification ID/version: PRD-002 0.2-draft, v0.2 slice (D-18)
 Approved technical plan ID/version: TP-002 v1 sections 1–4 (D-19); review states D-21
@@ -27,3 +27,16 @@ Execution budget and retry limit: one implementation run + one repair after revi
 When to request a product or consequential technical decision: per EXECUTION.md escalation conditions
 Completion condition: validated result + PR -> In review
 Merge authority: orchestrator into v0.1 after review (D-9); Azhar for v0.1 -> main
+
+## Checkpoint
+# K3d / run 1
+Agent/runtime/model, if reported: Claude Sonnet subagent, ponytail lite
+Execution host and checkout: local, ..\openphysio-wt\K3d
+Base commit / current branch / latest commit: ae3592d / feat/k3d-cues-trunk / see PR
+Work completed: 39 cues and 30 faults for the 10 exercises; 11 sources (PMIDs checked through NCBI E-utilities); 8 claims appended at grade C. All records draft.
+Uncommitted changes and where they are preserved: none after commit
+Validation performed and results: pnpm lint, typecheck, test (see PR).
+Open decisions/blockers: see Known gaps in the PR (dead bug and cat-cow have no exercise-specific source; Pallof press source is an accelerometer study; source type 'review' used for lab studies).
+Next action: Azhar review of sources and wording.
+Task state and reason: In review, PR open.
+Usage/cost, or unavailable: unavailable
