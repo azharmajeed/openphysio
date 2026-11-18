@@ -206,5 +206,136 @@
       "state": "draft",
       "notes": "Paraphrase of OpenStax actions. Grade C because it is textbook anatomy, not a guideline or study; confirm the grade."
     }
+  },
+  {
+    "id": "claim-pulldown-behind-neck",
+    "text": "In a surface-EMG comparison, the behind-the-neck lat pulldown gave no advantage for the lats over the front pulldown, and the authors advise preferring the front version.",
+    "sourceId": "src-sperandei-2009",
+    "grade": "C",
+    "subjects": [
+      "lat_pulldown"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Paraphrase of Sperandei conclusion. Healthy trained men only. Graded C: single lab study, not a guideline or systematic review; confirm."
+    }
+  },
+  {
+    "id": "claim-pulldown-grip-width",
+    "text": "Pulldown grips from one to two times shoulder width gave similar lat, trapezius and infraspinatus activity; the widest grip allowed slightly less load.",
+    "sourceId": "src-andersen-2014",
+    "grade": "C",
+    "subjects": [
+      "lat_pulldown"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Paraphrase of Andersen. Fifteen men. Graded C: single lab study, not a guideline or systematic review; confirm."
+    }
+  },
+  {
+    "id": "claim-pullup-chinup-activity",
+    "text": "In pull-ups and chin-ups, the lats worked hardest, then biceps, with lower trapezius more active in the pull-up and chest and biceps more in the chin-up.",
+    "sourceId": "src-youdas-2010",
+    "grade": "C",
+    "subjects": [
+      "pullup"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Paraphrase of Youdas 2010. Healthy adults. Graded C: single lab study, not a guideline or systematic review; confirm."
+    }
+  },
+  {
+    "id": "claim-inverted-row-low-spine-load",
+    "text": "The inverted row loaded the lumbar spine less than a standing bent-over row while still working the lats and upper back.",
+    "sourceId": "src-fenwick-2009",
+    "grade": "C",
+    "subjects": [
+      "inverted_row",
+      "dumbbell_row"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Paraphrase of Fenwick; seven men. Graded C: single lab study, not a guideline or systematic review; confirm."
+    }
+  },
+  {
+    "id": "claim-bent-row-lumbar-load",
+    "text": "The standing bent-over row gave the largest lumbar spine load of the rows tested.",
+    "sourceId": "src-fenwick-2009",
+    "grade": "C",
+    "subjects": [
+      "dumbbell_row"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Paraphrase of Fenwick. Does not test a bench-supported dumbbell row. Graded C: single lab study, not a guideline or systematic review; confirm."
+    }
+  },
+  {
+    "id": "claim-inverted-row-scapular",
+    "text": "During an inverted row, healthy people recruited the muscles that move and steady the shoulder blade.",
+    "sourceId": "src-youdas-2020",
+    "grade": "C",
+    "subjects": [
+      "inverted_row"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Paraphrase of Youdas 2020. Does not show it treats shoulder pain. Graded C: single lab study, not a guideline or systematic review; confirm."
+    }
+  },
+  {
+    "id": "claim-pushup-hands-elevated",
+    "text": "Push-ups with the hands raised on a box produced lower ground force than a regular push-up, so they are a lighter version.",
+    "sourceId": "src-ebben-2011",
+    "grade": "C",
+    "subjects": [
+      "incline_pushup"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Paraphrase of Ebben. Measures ground force, not muscle activity. Graded C: single lab study, not a guideline or systematic review; confirm."
+    }
+  },
+  {
+    "id": "claim-pushup-narrow-hands",
+    "text": "Push-ups with hands closer than shoulder width produced more chest and triceps activity than wide hands.",
+    "sourceId": "src-cogley-2005",
+    "grade": "C",
+    "subjects": [
+      "close_grip_pushup"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Paraphrase of Cogley. One repetition per position. Graded C: single lab study, not a guideline or systematic review; confirm."
+    }
+  },
+  {
+    "id": "claim-curl-shoulder-position",
+    "text": "A standard dumbbell curl and an incline dumbbell curl showed similar biceps long-head activity across the movement; the preacher version differed.",
+    "sourceId": "src-oliveira-2009",
+    "grade": "C",
+    "subjects": [
+      "dumbbell_curl"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Paraphrase of Oliveira 2009. Biceps long head only. Graded C: single lab study, not a guideline or systematic review; confirm."
+    }
+  },
+  {
+    "id": "claim-shoulder-press-posture",
+    "text": "Seated or standing, and dumbbell or barbell, changed how hard the deltoids and arm muscles worked in the shoulder press.",
+    "sourceId": "src-saeterbakken-2013",
+    "grade": "C",
+    "subjects": [
+      "dumbbell_shoulder_press"
+    ],
+    "review": {
+      "state": "draft",
+      "notes": "Paraphrase of Saeterbakken 2013. Healthy men. Graded C: single lab study, not a guideline or systematic review; confirm."
+    }
   }
 ]

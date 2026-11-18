@@ -1,1 +1,392 @@
-[]
+[
+  {
+    "id": "fault-lat-pulldown-behind-neck",
+    "exerciseId": "lat_pulldown",
+    "description": "The bar is pulled down behind your head.",
+    "whyItMatters": "The one study here found no extra lat activity versus the front pulldown, and its authors advise avoiding it. The position also asks a lot of the neck and shoulders; that part is Coaching convention, grade C.",
+    "cueId": "cue-lat-pulldown-bar-to-collarbone",
+    "severity": "high",
+    "sourceId": "src-sperandei-2009",
+    "review": {
+      "state": "draft",
+      "notes": "Study finding supported; shoulder and neck reasoning is convention."
+    }
+  },
+  {
+    "id": "fault-lat-pulldown-swing-lean",
+    "exerciseId": "lat_pulldown",
+    "description": "You lean far back and swing to yank the bar down.",
+    "whyItMatters": "Momentum takes work off the lats and puts it on the lower back. Coaching convention, grade C.",
+    "cueId": "cue-lat-pulldown-lean-back-little",
+    "severity": "medium",
+    "sourceId": "src-sperandei-2009",
+    "review": {
+      "state": "draft",
+      "notes": "Convention only."
+    }
+  },
+  {
+    "id": "fault-lat-pulldown-shoulders-shoot-up",
+    "exerciseId": "lat_pulldown",
+    "description": "Shoulders shoot up toward your ears as the bar rises.",
+    "whyItMatters": "A heavy bar hauling the shoulders up can pinch and strain the shoulder, mainly if it is already sore. Coaching convention, grade C.",
+    "cueId": "cue-lat-pulldown-slow-up-shoulders-down",
+    "severity": "medium",
+    "sourceId": "src-andersen-2014",
+    "review": {
+      "state": "draft",
+      "notes": "Convention only."
+    }
+  },
+  {
+    "id": "fault-dumbbell-row-round-back",
+    "exerciseId": "dumbbell_row",
+    "description": "Your back rounds or sags as you lift.",
+    "whyItMatters": "The spine takes load instead of the back muscles. Fenwick found the standing bent-over row gave the biggest lumbar load of those tested; a bench-supported row was not tested, so it is likely lower. Coaching convention, grade C.",
+    "cueId": "cue-dumbbell-row-bench-flat-back",
+    "severity": "high",
+    "sourceId": "src-fenwick-2009",
+    "review": {
+      "state": "draft",
+      "notes": "Fenwick supports that rows load the lumbar spine; the size for a bench-supported row is unknown."
+    }
+  },
+  {
+    "id": "fault-dumbbell-row-torso-twist",
+    "exerciseId": "dumbbell_row",
+    "description": "Your trunk twists open to heave the weight up.",
+    "whyItMatters": "Twisting under load swaps back-muscle work for momentum and rotates the lower back. Fenwick found one-arm rows make the trunk work to resist twisting. Coaching convention, grade C.",
+    "cueId": "cue-dumbbell-row-blade-back-no-twist",
+    "severity": "medium",
+    "sourceId": "src-fenwick-2009",
+    "review": {
+      "state": "draft",
+      "notes": "Partly supported by Fenwick (cable row)."
+    }
+  },
+  {
+    "id": "fault-dumbbell-row-shrug",
+    "exerciseId": "dumbbell_row",
+    "description": "Your shoulder shrugs up toward your ear.",
+    "whyItMatters": "The upper trapezius and neck take over from the mid-back and the lats. Coaching convention, grade C.",
+    "cueId": "cue-dumbbell-row-blade-back-no-twist",
+    "severity": "low",
+    "sourceId": "src-fenwick-2009",
+    "review": {
+      "state": "draft",
+      "notes": "Convention only."
+    }
+  },
+  {
+    "id": "fault-band-row-lean-back",
+    "exerciseId": "band_row",
+    "description": "You lean back to haul the band in.",
+    "whyItMatters": "The lower back does the work and the upper back does less. Coaching convention, grade C.",
+    "cueId": "cue-band-row-elbows-back-tall",
+    "severity": "medium",
+    "sourceId": "src-openstax-ap2e-ch11-5",
+    "review": {
+      "state": "draft",
+      "notes": "Convention only."
+    }
+  },
+  {
+    "id": "fault-band-row-shrug",
+    "exerciseId": "band_row",
+    "description": "Your shoulders rise toward your ears.",
+    "whyItMatters": "The neck and upper trapezius tense up and can ache; the mid-back works less. Coaching convention, grade C.",
+    "cueId": "cue-band-row-squeeze-blades",
+    "severity": "low",
+    "sourceId": "src-openstax-ap2e-ch11-5",
+    "review": {
+      "state": "draft",
+      "notes": "Convention only."
+    }
+  },
+  {
+    "id": "fault-band-row-snap-back",
+    "exerciseId": "band_row",
+    "description": "You let the band snap back.",
+    "whyItMatters": "The lowering phase is lost and the shoulders get jerked forward. Coaching convention, grade C.",
+    "cueId": "cue-band-row-return-slowly",
+    "severity": "low",
+    "sourceId": "src-openstax-ap2e-ch11-5",
+    "review": {
+      "state": "draft",
+      "notes": "Convention only."
+    }
+  },
+  {
+    "id": "fault-incline-pushup-hips-sag",
+    "exerciseId": "incline_pushup",
+    "description": "Your hips sag toward the bench.",
+    "whyItMatters": "The lower back arches and takes load; the shoulders and chest do less. Coaching convention, grade C.",
+    "cueId": "cue-incline-pushup-press-hips-level",
+    "severity": "medium",
+    "sourceId": "src-ebben-2011",
+    "review": {
+      "state": "draft",
+      "notes": "Convention only."
+    }
+  },
+  {
+    "id": "fault-incline-pushup-elbows-flare",
+    "exerciseId": "incline_pushup",
+    "description": "Your elbows flare out wide.",
+    "whyItMatters": "Wide elbows load the front of the shoulder more, which matters if it is already sore. Coaching convention, grade C.",
+    "cueId": "cue-incline-pushup-chest-to-edge",
+    "severity": "medium",
+    "sourceId": "src-ebben-2011",
+    "review": {
+      "state": "draft",
+      "notes": "Convention only."
+    }
+  },
+  {
+    "id": "fault-incline-pushup-head-drops",
+    "exerciseId": "incline_pushup",
+    "description": "Your head drops or pokes forward.",
+    "whyItMatters": "The neck is strained and the body line is lost. Coaching convention, grade C.",
+    "cueId": "cue-incline-pushup-neck-long",
+    "severity": "low",
+    "sourceId": "src-ebben-2011",
+    "review": {
+      "state": "draft",
+      "notes": "Convention only."
+    }
+  },
+  {
+    "id": "fault-close-grip-pushup-elbows-flare",
+    "exerciseId": "close_grip_pushup",
+    "description": "Your elbows flare out wide.",
+    "whyItMatters": "Flared elbows put more stress on the shoulder and take load off the triceps. Coaching convention, grade C.",
+    "cueId": "cue-close-grip-pushup-elbows-brush-ribs",
+    "severity": "medium",
+    "sourceId": "src-cogley-2005",
+    "review": {
+      "state": "draft",
+      "notes": "Cogley supports narrow hands giving more triceps and chest activity, not the shoulder reasoning."
+    }
+  },
+  {
+    "id": "fault-close-grip-pushup-wrists-bent",
+    "exerciseId": "close_grip_pushup",
+    "description": "Hands so close that your wrists bend sharply.",
+    "whyItMatters": "A sharp wrist bend loads the wrist and elbow, so stop if either hurts. Coaching convention, grade C.",
+    "cueId": "cue-close-grip-pushup-hands-under-chest",
+    "severity": "medium",
+    "sourceId": "src-cogley-2005",
+    "review": {
+      "state": "draft",
+      "notes": "Convention only; Cogley's narrow base was closer than shoulder width, not a diamond."
+    }
+  },
+  {
+    "id": "fault-close-grip-pushup-hips-sag",
+    "exerciseId": "close_grip_pushup",
+    "description": "Your hips sag or pike up.",
+    "whyItMatters": "The lower back arches or the load shifts off the arms. Coaching convention, grade C.",
+    "cueId": "cue-close-grip-pushup-one-line-neck-long",
+    "severity": "medium",
+    "sourceId": "src-cogley-2005",
+    "review": {
+      "state": "draft",
+      "notes": "Convention only."
+    }
+  },
+  {
+    "id": "fault-dumbbell-curl-swing",
+    "exerciseId": "dumbbell_curl",
+    "description": "You swing your body or lean back to get the weight up.",
+    "whyItMatters": "The lower back takes strain and the biceps work less. Coaching convention, grade C.",
+    "cueId": "cue-dumbbell-curl-curl-no-swing",
+    "severity": "medium",
+    "sourceId": "src-marcolin-2018",
+    "review": {
+      "state": "draft",
+      "notes": "Convention only."
+    }
+  },
+  {
+    "id": "fault-dumbbell-curl-elbows-forward",
+    "exerciseId": "dumbbell_curl",
+    "description": "Your elbows drift forward.",
+    "whyItMatters": "The front of the shoulder joins in and the biceps lose tension at the bottom. Oliveira shows shoulder position changes biceps activity. Coaching convention, grade C.",
+    "cueId": "cue-dumbbell-curl-elbows-ribs",
+    "severity": "low",
+    "sourceId": "src-oliveira-2009",
+    "review": {
+      "state": "draft",
+      "notes": "Oliveira supports that shoulder position changes biceps activity; the effect of drift is not tested."
+    }
+  },
+  {
+    "id": "fault-dumbbell-curl-drop-fast",
+    "exerciseId": "dumbbell_curl",
+    "description": "The weight drops quickly on the way down.",
+    "whyItMatters": "Control is lost and the elbow takes a jolt, which matters if the elbow is sore. Coaching convention, grade C.",
+    "cueId": "cue-dumbbell-curl-lower-soft-elbow",
+    "severity": "medium",
+    "sourceId": "src-oliveira-2009",
+    "review": {
+      "state": "draft",
+      "notes": "Convention only."
+    }
+  },
+  {
+    "id": "fault-hammer-curl-elbows-swing",
+    "exerciseId": "hammer_curl",
+    "description": "Your elbows swing forward.",
+    "whyItMatters": "The shoulder takes over and the arm muscles get less work. Coaching convention, grade C.",
+    "cueId": "cue-hammer-curl-elbows-still",
+    "severity": "low",
+    "sourceId": "src-marcolin-2018",
+    "review": {
+      "state": "draft",
+      "notes": "Convention only."
+    }
+  },
+  {
+    "id": "fault-hammer-curl-body-swing",
+    "exerciseId": "hammer_curl",
+    "description": "You swing your body to get the weight up.",
+    "whyItMatters": "The lower back takes strain and the arm muscles do less. Coaching convention, grade C.",
+    "cueId": "cue-hammer-curl-elbows-still",
+    "severity": "medium",
+    "sourceId": "src-marcolin-2018",
+    "review": {
+      "state": "draft",
+      "notes": "Convention only."
+    }
+  },
+  {
+    "id": "fault-hammer-curl-drop-fast",
+    "exerciseId": "hammer_curl",
+    "description": "The weight drops fast on the way down.",
+    "whyItMatters": "Control is lost and the elbow takes a jolt, which matters if it is already sore. Coaching convention, grade C.",
+    "cueId": "cue-hammer-curl-lower-slow",
+    "severity": "medium",
+    "sourceId": "src-marcolin-2018",
+    "review": {
+      "state": "draft",
+      "notes": "Convention only."
+    }
+  },
+  {
+    "id": "fault-inverted-row-hips-sag",
+    "exerciseId": "inverted_row",
+    "description": "Your hips sag toward the floor.",
+    "whyItMatters": "The lower back arches and the lumbar spine takes load. Fenwick found low spine load for this row with a straight body. Coaching convention, grade C.",
+    "cueId": "cue-inverted-row-plank-heels",
+    "severity": "high",
+    "sourceId": "src-fenwick-2009",
+    "review": {
+      "state": "draft",
+      "notes": "Partly supported."
+    }
+  },
+  {
+    "id": "fault-inverted-row-chin-pokes",
+    "exerciseId": "inverted_row",
+    "description": "Your chin pokes forward to reach the bar.",
+    "whyItMatters": "The neck is strained and the mid-back does less. Coaching convention, grade C.",
+    "cueId": "cue-inverted-row-chest-to-bar-blades",
+    "severity": "low",
+    "sourceId": "src-youdas-2020",
+    "review": {
+      "state": "draft",
+      "notes": "Convention only."
+    }
+  },
+  {
+    "id": "fault-inverted-row-shoulders-shrug",
+    "exerciseId": "inverted_row",
+    "description": "Your shoulders roll forward and up at the top.",
+    "whyItMatters": "The upper trapezius takes over from the muscles that pull the shoulder blades back, which is not the point of the row. Youdas measured scapular muscle balance in healthy people. Coaching convention, grade C.",
+    "cueId": "cue-inverted-row-chest-to-bar-blades",
+    "severity": "medium",
+    "sourceId": "src-youdas-2020",
+    "review": {
+      "state": "draft",
+      "notes": "Partly supported by Youdas 2020 balance data; not tested in painful shoulders."
+    }
+  },
+  {
+    "id": "fault-pullup-kipping",
+    "exerciseId": "pullup",
+    "description": "You swing or kick to get over the bar.",
+    "whyItMatters": "Momentum jerks the shoulders and elbows, which is hard on the joints, especially if sore. Coaching convention, grade C.",
+    "cueId": "cue-pullup-chest-to-bar",
+    "severity": "high",
+    "sourceId": "src-youdas-2010",
+    "review": {
+      "state": "draft",
+      "notes": "Convention only; Youdas tested strict pull-ups."
+    }
+  },
+  {
+    "id": "fault-pullup-neck-cranes",
+    "exerciseId": "pullup",
+    "description": "Your neck cranes forward to reach the bar.",
+    "whyItMatters": "The neck is strained and the body line is lost. Coaching convention, grade C.",
+    "cueId": "cue-pullup-chest-to-bar",
+    "severity": "low",
+    "sourceId": "src-youdas-2010",
+    "review": {
+      "state": "draft",
+      "notes": "Convention only."
+    }
+  },
+  {
+    "id": "fault-pullup-limp-hang",
+    "exerciseId": "pullup",
+    "description": "You drop fast into a limp hang at the bottom.",
+    "whyItMatters": "Letting the shoulders go slack under body weight can irritate a sore shoulder or elbow. Coaching convention, grade C.",
+    "cueId": "cue-pullup-lower-active-shoulders",
+    "severity": "high",
+    "sourceId": "src-youdas-2010",
+    "review": {
+      "state": "draft",
+      "notes": "Convention only; worth a clinician's view."
+    }
+  },
+  {
+    "id": "fault-dumbbell-shoulder-press-arch",
+    "exerciseId": "dumbbell_shoulder_press",
+    "description": "Your lower back arches as you press.",
+    "whyItMatters": "The spine, not the shoulders, takes the load. Coaching convention, grade C.",
+    "cueId": "cue-dumbbell-shoulder-press-ribs-down-no-lean",
+    "severity": "high",
+    "sourceId": "src-saeterbakken-2013",
+    "review": {
+      "state": "draft",
+      "notes": "Convention only."
+    }
+  },
+  {
+    "id": "fault-dumbbell-shoulder-press-forward-path",
+    "exerciseId": "dumbbell_shoulder_press",
+    "description": "The dumbbells drift forward of your shoulders.",
+    "whyItMatters": "The shoulder joint loads in a weaker line and pinching risk rises if it is already sore. Coaching convention, grade C.",
+    "cueId": "cue-dumbbell-shoulder-press-press-over-shoulders",
+    "severity": "medium",
+    "sourceId": "src-saeterbakken-2013",
+    "review": {
+      "state": "draft",
+      "notes": "Convention only."
+    }
+  },
+  {
+    "id": "fault-dumbbell-shoulder-press-shrug",
+    "exerciseId": "dumbbell_shoulder_press",
+    "description": "Your shoulders shrug up toward your ears.",
+    "whyItMatters": "The neck and upper trapezius tense up and the shoulder joint gets less room. Coaching convention, grade C.",
+    "cueId": "cue-dumbbell-shoulder-press-no-shrug",
+    "severity": "medium",
+    "sourceId": "src-saeterbakken-2013",
+    "review": {
+      "state": "draft",
+      "notes": "Convention only."
+    }
+  }
+]

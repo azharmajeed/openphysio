@@ -1,1 +1,420 @@
-[]
+[
+  {
+    "id": "cue-lat-pulldown-grip-sit-tall",
+    "exerciseId": "lat_pulldown",
+    "text": "Grip a little wider than shoulders, sit tall.",
+    "phase": "setup",
+    "sourceId": "src-andersen-2014",
+    "review": {
+      "state": "draft",
+      "notes": "Andersen found similar lat activity across grip widths, medium slightly stronger; the 'sit tall' part is convention."
+    }
+  },
+  {
+    "id": "cue-lat-pulldown-bar-to-collarbone",
+    "exerciseId": "lat_pulldown",
+    "text": "Pull the bar to your collarbone, not behind your neck.",
+    "phase": "ascent",
+    "sourceId": "src-sperandei-2009",
+    "review": {
+      "state": "draft",
+      "notes": "Supported: Sperandei's authors prefer the front pulldown and advise avoiding behind-the-neck. Wording is ours."
+    }
+  },
+  {
+    "id": "cue-lat-pulldown-lean-back-little",
+    "exerciseId": "lat_pulldown",
+    "text": "Lean back only slightly; don't swing the weight.",
+    "phase": "ascent",
+    "sourceId": "src-sperandei-2009",
+    "review": {
+      "state": "draft",
+      "notes": "Convention. The source does not test torso lean or momentum."
+    }
+  },
+  {
+    "id": "cue-lat-pulldown-slow-up-shoulders-down",
+    "exerciseId": "lat_pulldown",
+    "text": "Let the bar rise slowly, shoulders staying down.",
+    "phase": "descent",
+    "sourceId": "src-andersen-2014",
+    "review": {
+      "state": "draft",
+      "notes": "Andersen reports lat activity in the lowering phase; the shoulders-down cue is convention."
+    }
+  },
+  {
+    "id": "cue-dumbbell-row-bench-flat-back",
+    "exerciseId": "dumbbell_row",
+    "text": "Hand and knee on bench, back flat.",
+    "phase": "setup",
+    "sourceId": "src-fenwick-2009",
+    "review": {
+      "state": "draft",
+      "notes": "Convention. Fenwick studied standing rows, not a bench-supported row."
+    }
+  },
+  {
+    "id": "cue-dumbbell-row-elbow-to-hip",
+    "exerciseId": "dumbbell_row",
+    "text": "Pull your elbow toward your hip.",
+    "phase": "ascent",
+    "sourceId": "src-fenwick-2009",
+    "review": {
+      "state": "draft",
+      "notes": "Convention; Fenwick shows rows load the back muscles but does not test elbow path."
+    }
+  },
+  {
+    "id": "cue-dumbbell-row-blade-back-no-twist",
+    "exerciseId": "dumbbell_row",
+    "text": "Shoulder blade back and down; don't twist your torso.",
+    "phase": "top",
+    "sourceId": "src-fenwick-2009",
+    "review": {
+      "state": "draft",
+      "notes": "Partly supported: Fenwick found the one-arm cable row makes the trunk muscles resist twisting. Blade cue is convention."
+    }
+  },
+  {
+    "id": "cue-dumbbell-row-lower-slow-straight",
+    "exerciseId": "dumbbell_row",
+    "text": "Lower slowly until your arm is straight.",
+    "phase": "descent",
+    "sourceId": "src-fenwick-2009",
+    "review": {
+      "state": "draft",
+      "notes": "Convention."
+    }
+  },
+  {
+    "id": "cue-band-row-tall-legs-out",
+    "exerciseId": "band_row",
+    "text": "Sit tall, legs out, band around your feet.",
+    "phase": "setup",
+    "sourceId": "src-openstax-ap2e-ch11-5",
+    "review": {
+      "state": "draft",
+      "notes": "Convention. OpenStax only supports that the rhomboids pull the shoulder blade back; no band-row study cited."
+    }
+  },
+  {
+    "id": "cue-band-row-elbows-back-tall",
+    "exerciseId": "band_row",
+    "text": "Pull your elbows back, trunk staying tall.",
+    "phase": "ascent",
+    "sourceId": "src-openstax-ap2e-ch11-5",
+    "review": {
+      "state": "draft",
+      "notes": "Convention; anatomy source supports the shoulder-blade retraction idea only."
+    }
+  },
+  {
+    "id": "cue-band-row-squeeze-blades",
+    "exerciseId": "band_row",
+    "text": "Squeeze shoulder blades together, shoulders away from ears.",
+    "phase": "top",
+    "sourceId": "src-openstax-ap2e-ch11-5",
+    "review": {
+      "state": "draft",
+      "notes": "Convention; retraction action is from OpenStax, the shrug warning is ours."
+    }
+  },
+  {
+    "id": "cue-band-row-return-slowly",
+    "exerciseId": "band_row",
+    "text": "Let the band return slowly, no slumping.",
+    "phase": "descent",
+    "sourceId": "src-openstax-ap2e-ch11-5",
+    "review": {
+      "state": "draft",
+      "notes": "Convention."
+    }
+  },
+  {
+    "id": "cue-incline-pushup-hands-bench-line",
+    "exerciseId": "incline_pushup",
+    "text": "Hands on a sturdy bench, body in one line.",
+    "phase": "setup",
+    "sourceId": "src-ebben-2011",
+    "review": {
+      "state": "draft",
+      "notes": "Ebben supports that raising the hands lowers the push-up load; 'body in one line' is convention."
+    }
+  },
+  {
+    "id": "cue-incline-pushup-neck-long",
+    "exerciseId": "incline_pushup",
+    "text": "Look just ahead of your hands, neck long.",
+    "phase": "whole",
+    "sourceId": "src-ebben-2011",
+    "review": {
+      "state": "draft",
+      "notes": "Convention; no source on head position."
+    }
+  },
+  {
+    "id": "cue-incline-pushup-chest-to-edge",
+    "exerciseId": "incline_pushup",
+    "text": "Lower your chest to the edge, elbows angled back.",
+    "phase": "descent",
+    "sourceId": "src-ebben-2011",
+    "review": {
+      "state": "draft",
+      "notes": "Convention; elbow angle is not tested in Ebben."
+    }
+  },
+  {
+    "id": "cue-incline-pushup-press-hips-level",
+    "exerciseId": "incline_pushup",
+    "text": "Press up, keeping hips level with shoulders.",
+    "phase": "ascent",
+    "sourceId": "src-ebben-2011",
+    "review": {
+      "state": "draft",
+      "notes": "Convention."
+    }
+  },
+  {
+    "id": "cue-close-grip-pushup-hands-under-chest",
+    "exerciseId": "close_grip_pushup",
+    "text": "Hands directly under your chest, fingers forward.",
+    "phase": "setup",
+    "sourceId": "src-cogley-2005",
+    "review": {
+      "state": "draft",
+      "notes": "Cogley found narrow hands gave more chest and triceps activity than wide; exact hand placement is convention."
+    }
+  },
+  {
+    "id": "cue-close-grip-pushup-elbows-brush-ribs",
+    "exerciseId": "close_grip_pushup",
+    "text": "Elbows brush your ribs on the way down.",
+    "phase": "descent",
+    "sourceId": "src-cogley-2005",
+    "review": {
+      "state": "draft",
+      "notes": "Convention; elbow path is not tested."
+    }
+  },
+  {
+    "id": "cue-close-grip-pushup-press-lockout-hips",
+    "exerciseId": "close_grip_pushup",
+    "text": "Press to full lockout, hips staying level.",
+    "phase": "ascent",
+    "sourceId": "src-cogley-2005",
+    "review": {
+      "state": "draft",
+      "notes": "Convention."
+    }
+  },
+  {
+    "id": "cue-close-grip-pushup-one-line-neck-long",
+    "exerciseId": "close_grip_pushup",
+    "text": "Body in one straight line, neck long.",
+    "phase": "whole",
+    "sourceId": "src-cogley-2005",
+    "review": {
+      "state": "draft",
+      "notes": "Convention."
+    }
+  },
+  {
+    "id": "cue-dumbbell-curl-elbows-ribs",
+    "exerciseId": "dumbbell_curl",
+    "text": "Elbows beside your ribs, palms forward.",
+    "phase": "setup",
+    "sourceId": "src-oliveira-2009",
+    "review": {
+      "state": "draft",
+      "notes": "Oliveira shows shoulder position changes biceps activity; elbows-at-sides is convention."
+    }
+  },
+  {
+    "id": "cue-dumbbell-curl-curl-no-swing",
+    "exerciseId": "dumbbell_curl",
+    "text": "Curl up without swinging your body.",
+    "phase": "ascent",
+    "sourceId": "src-marcolin-2018",
+    "review": {
+      "state": "draft",
+      "notes": "Convention; Marcolin measured strict curls only."
+    }
+  },
+  {
+    "id": "cue-dumbbell-curl-top-shoulders-still",
+    "exerciseId": "dumbbell_curl",
+    "text": "Pause briefly, shoulders down and still.",
+    "phase": "top",
+    "sourceId": "src-oliveira-2009",
+    "review": {
+      "state": "draft",
+      "notes": "Convention."
+    }
+  },
+  {
+    "id": "cue-dumbbell-curl-lower-soft-elbow",
+    "exerciseId": "dumbbell_curl",
+    "text": "Lower slowly, elbow soft at the bottom.",
+    "phase": "descent",
+    "sourceId": "src-oliveira-2009",
+    "review": {
+      "state": "draft",
+      "notes": "Oliveira found less biceps activity lowering than lifting; slow lowering is convention for control and elbow comfort."
+    }
+  },
+  {
+    "id": "cue-hammer-curl-thumbs-up",
+    "exerciseId": "hammer_curl",
+    "text": "Thumbs up, palms facing each other.",
+    "phase": "setup",
+    "sourceId": "src-openstax-ap2e-ch11-5",
+    "review": {
+      "state": "draft",
+      "notes": "OpenStax says the brachioradialis works most with thumb up, which matches a hammer grip. Not a hammer-curl study."
+    }
+  },
+  {
+    "id": "cue-hammer-curl-elbows-still",
+    "exerciseId": "hammer_curl",
+    "text": "Curl up, keeping your elbows still.",
+    "phase": "ascent",
+    "sourceId": "src-marcolin-2018",
+    "review": {
+      "state": "draft",
+      "notes": "Convention. Marcolin tested no hammer grip."
+    }
+  },
+  {
+    "id": "cue-hammer-curl-lower-slow",
+    "exerciseId": "hammer_curl",
+    "text": "Lower slowly, don't let the weight drop.",
+    "phase": "descent",
+    "sourceId": "src-marcolin-2018",
+    "review": {
+      "state": "draft",
+      "notes": "Convention."
+    }
+  },
+  {
+    "id": "cue-inverted-row-plank-heels",
+    "exerciseId": "inverted_row",
+    "text": "Body straight like a plank, heels on floor.",
+    "phase": "setup",
+    "sourceId": "src-fenwick-2009",
+    "review": {
+      "state": "draft",
+      "notes": "Fenwick found the inverted row gave the lowest lumbar load of the rows tested; that presumes a straight body. Wording is ours."
+    }
+  },
+  {
+    "id": "cue-inverted-row-chest-to-bar-blades",
+    "exerciseId": "inverted_row",
+    "text": "Pull your chest to the bar, shoulder blades back.",
+    "phase": "ascent",
+    "sourceId": "src-youdas-2020",
+    "review": {
+      "state": "draft",
+      "notes": "Youdas 2020 measured scapular muscle activity during the row in healthy people; cue wording is convention."
+    }
+  },
+  {
+    "id": "cue-inverted-row-hips-up-top",
+    "exerciseId": "inverted_row",
+    "text": "Keep your hips up all the way.",
+    "phase": "top",
+    "sourceId": "src-fenwick-2009",
+    "review": {
+      "state": "draft",
+      "notes": "Convention."
+    }
+  },
+  {
+    "id": "cue-inverted-row-lower-slow-straight",
+    "exerciseId": "inverted_row",
+    "text": "Lower slowly, body staying straight.",
+    "phase": "descent",
+    "sourceId": "src-fenwick-2009",
+    "review": {
+      "state": "draft",
+      "notes": "Convention."
+    }
+  },
+  {
+    "id": "cue-pullup-hang-shoulders-down",
+    "exerciseId": "pullup",
+    "text": "Start hanging, shoulders down away from your ears.",
+    "phase": "setup",
+    "sourceId": "src-youdas-2010",
+    "review": {
+      "state": "draft",
+      "notes": "Youdas reports lower trapezius activity in the pull-up; 'shoulders down' is convention."
+    }
+  },
+  {
+    "id": "cue-pullup-chest-to-bar",
+    "exerciseId": "pullup",
+    "text": "Pull your chest toward the bar.",
+    "phase": "ascent",
+    "sourceId": "src-youdas-2010",
+    "review": {
+      "state": "draft",
+      "notes": "Youdas measured lats, biceps and others in pull-ups; wording is ours."
+    }
+  },
+  {
+    "id": "cue-pullup-lower-active-shoulders",
+    "exerciseId": "pullup",
+    "text": "Lower slowly; keep your shoulders active at the bottom.",
+    "phase": "descent",
+    "sourceId": "src-youdas-2010",
+    "review": {
+      "state": "draft",
+      "notes": "Convention, not tested. An injury-caution cue; worth a clinician's view."
+    }
+  },
+  {
+    "id": "cue-dumbbell-shoulder-press-ribs-down-no-lean",
+    "exerciseId": "dumbbell_shoulder_press",
+    "text": "Ribs down, glutes tight, no leaning back.",
+    "phase": "setup",
+    "sourceId": "src-saeterbakken-2013",
+    "review": {
+      "state": "draft",
+      "notes": "Saeterbakken shows body position changes deltoid activity; the rib cue is convention."
+    }
+  },
+  {
+    "id": "cue-dumbbell-shoulder-press-press-over-shoulders",
+    "exerciseId": "dumbbell_shoulder_press",
+    "text": "Press straight up over your shoulders.",
+    "phase": "ascent",
+    "sourceId": "src-saeterbakken-2013",
+    "review": {
+      "state": "draft",
+      "notes": "Convention."
+    }
+  },
+  {
+    "id": "cue-dumbbell-shoulder-press-ear-level-forearms",
+    "exerciseId": "dumbbell_shoulder_press",
+    "text": "Lower to ear level, forearms upright.",
+    "phase": "descent",
+    "sourceId": "src-saeterbakken-2013",
+    "review": {
+      "state": "draft",
+      "notes": "Convention."
+    }
+  },
+  {
+    "id": "cue-dumbbell-shoulder-press-no-shrug",
+    "exerciseId": "dumbbell_shoulder_press",
+    "text": "Don't shrug; keep your neck relaxed.",
+    "phase": "top",
+    "sourceId": "src-saeterbakken-2013",
+    "review": {
+      "state": "draft",
+      "notes": "Convention; Saeterbakken measured deltoid, biceps and triceps, not the upper trapezius."
+    }
+  }
+]
