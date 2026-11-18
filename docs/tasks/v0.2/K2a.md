@@ -44,3 +44,8 @@ Open decisions/blockers: questions in review.notes (gluteus minimus action, hip_
 Next action: review
 Task state and reason: In review, PR open
 Usage/cost, or unavailable: unavailable
+
+# K2a / run 2 (repair)
+Work completed: rebased on origin/v0.1 (conflict in knowledge.test.ts); took v0.1 tests using fixture.test-data.ts and re-added only the optional-bodyMapArea test.
+Validation performed and results: pnpm lint, typecheck, test pass.
+Task state and reason: In review, PR #43 awaiting CI.
