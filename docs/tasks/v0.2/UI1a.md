@@ -1,7 +1,7 @@
 # UI1a: Tokens package: tokens.json, generator, drift and contrast tests
 Project / milestone / feature: OpenPhysio / v0.2 / PRD-002
 Lane: UI
-Status: Ready
+Status: In review
 Approved scope reference: docs/tasks/v0.2/README.md, docs/tasks/EXECUTION.md
 Approved product specification ID/version: PRD-002 0.2-draft, v0.2 slice (D-18)
 Approved technical plan ID/version: TP-003 v1 section 3 (D-19); kit D-16
@@ -27,3 +27,6 @@ Execution budget and retry limit: one implementation run + one repair after revi
 When to request a product or consequential technical decision: per EXECUTION.md escalation conditions
 Completion condition: validated result + PR -> In review
 Merge authority: orchestrator into v0.1 after review (D-9); Azhar for v0.1 -> main
+
+## Checkpoint (UI1a implementation)
+Done: packages/ui-tokens (tokens.json, src/gen.ts + scripts/gen.ts, generated tokens.ts and apps/mobile/global.css, color.ts OKLCH maths, drift and contrast tests). plan.ts takes the session-type palette from tokens for the active theme (Uniwind.currentTheme, read lazily; dark in unit tests). Contrast fixes: light good and watch (see docs/evidence/UI1a/contrast.md). pnpm lint, typecheck, test, gen (no diff) and expo export pass. Open: Today before/after emulator screenshots were not taken because the shared adb server hung; session-type colours changed from the old hex list to the token palette (new hues per mode).

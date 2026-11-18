@@ -1,5 +1,6 @@
 import type { Exercise } from "@openphysio/catalog";
 import type { PlanItem } from "@openphysio/core";
+import { sessionTypeColors, type Theme } from "@openphysio/ui-tokens";
 import { draftFor, type SetDraft } from "./log";
 
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -11,11 +12,21 @@ export const addDays = (date: string, n: number) => {
   return ymd(d);
 };
 
-const PALETTE = ["#2563eb", "#059669", "#d97706", "#7c3aed", "#db2777", "#0891b2", "#65a30d", "#dc2626", "#4f46e5"];
-/** Colour per session type, handed out in order of first appearance, so types in one plan never share one. */
-export const typeColors = (types: string[]) => {
+/** The app's active theme; "dark" (the default) when Uniwind is not loaded, e.g. in unit tests. */
+function activeTheme(): Theme {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports -- lazy, so tests need no react-native
+    return require("uniwind").Uniwind.currentTheme === "light" ? "light" : "dark";
+  } catch {
+    return "dark";
+  }
+}
+
+/** Colour per session type from the token palette, handed out in order of first appearance, so types in one plan never share one. */
+export const typeColors = (types: string[], theme: Theme = activeTheme()) => {
   const order = [...new Set(types)];
-  return (type: string) => PALETTE[Math.max(0, order.indexOf(type)) % PALETTE.length]!;
+  const palette = sessionTypeColors[theme];
+  return (type: string) => palette[Math.max(0, order.indexOf(type)) % palette.length]!;
 };
 
 /** Colours for a whole plan, by order of first appearance by date. */

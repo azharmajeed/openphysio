@@ -14,6 +14,7 @@
     "@openphysio/catalog": "workspace:*",
     "@openphysio/core": "workspace:*",
     "@openphysio/integrations": "workspace:*",
+    "@openphysio/ui-tokens": "workspace:*",
     "@react-native-ml-kit/text-recognition": "2.0.0",
     "@rn-primitives/portal": "^1.5.3",
     "@rn-primitives/progress": "^1.5.2",
