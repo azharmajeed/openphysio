@@ -1,0 +1,2 @@
+# the repo root ignores data/ (local runtime data); this package's data/ is source
+!data/

@@ -1,0 +1,11 @@
+[
+  {
+    "id": "src-openstax-ap2e",
+    "type": "textbook",
+    "citation": "OpenStax. Anatomy and Physiology 2e. Rice University, 2022.",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e",
+    "year": 2022,
+    "licence": "CC BY 4.0",
+    "review": { "state": "draft", "notes": "Minimal example. Real content: K2-K5." }
+  }
+]

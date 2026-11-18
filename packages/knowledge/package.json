@@ -1,0 +1,20 @@
+{
+  "name": "@openphysio/knowledge",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "top": "node scripts/top-exercises.ts"
+  },
+  "dependencies": {
+    "@openphysio/catalog": "workspace:*",
+    "@openphysio/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6"
+  }
+}

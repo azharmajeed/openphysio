@@ -196,6 +196,19 @@ importers:
         specifier: workspace:*
         version: link:../core
 
+  packages/knowledge:
+    dependencies:
+      '@openphysio/catalog':
+        specifier: workspace:*
+        version: link:../catalog
+      '@openphysio/core':
+        specifier: workspace:*
+        version: link:../core
+    devDependencies:
+      '@types/node':
+        specifier: ^26.6.6
+        version: 26.6.6
+
 packages:
 
   2g@1.0.1:

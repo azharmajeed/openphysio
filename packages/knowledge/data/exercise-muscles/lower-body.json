@@ -1,0 +1,9 @@
+[
+  {
+    "exerciseId": "glute_bridge",
+    "muscleId": "gluteus-maximus",
+    "role": "primary",
+    "sourceId": "src-openstax-ap2e",
+    "review": { "state": "draft", "notes": "Minimal example." }
+  }
+]
