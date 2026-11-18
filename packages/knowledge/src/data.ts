@@ -25,10 +25,11 @@ import faultsTrunk from "../data/faults/trunk.json" with { type: "json" };
 import claimsHipTrunk from "../data/claims/hip-trunk.json" with { type: "json" };
 import claimsLowerLimb from "../data/claims/lower-limb.json" with { type: "json" };
 import claimsUpperLimb from "../data/claims/upper-limb.json" with { type: "json" };
+import sourcesVideos from "../data/sources/videos.json" with { type: "json" };
 import videoSegmentsAll from "../data/video-segments/all.json" with { type: "json" };
 
 export const all = {
-  sources: [...sourcesGeneral, ...sourcesAnatomyLower, ...sourcesAnatomyUpper, ...sourcesTechniqueLower, ...sourcesTechniqueUpper, ...sourcesTechniqueTrunk],
+  sources: [...sourcesGeneral, ...sourcesAnatomyLower, ...sourcesAnatomyUpper, ...sourcesTechniqueLower, ...sourcesTechniqueUpper, ...sourcesTechniqueTrunk, ...sourcesVideos],
   muscles: [...musclesHipTrunk, ...musclesLowerLimb, ...musclesUpperLimb, ...musclesNeckShoulder],
   muscleGroups: [...muscleGroupsAll, ...muscleGroupsLower, ...muscleGroupsUpper],
   exerciseMuscles: [...exerciseMusclesLowerBody],

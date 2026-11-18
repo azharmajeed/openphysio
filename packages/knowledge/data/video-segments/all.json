@@ -1,1 +1,88 @@
-[]
+[
+  {
+    "id": "vs-tLkmn3tXNd0-0",
+    "videoId": "tLkmn3tXNd0",
+    "channelId": "UCX05GffRKbxh_-6kcXkskBg",
+    "startSec": 0,
+    "endSec": 1,
+    "title": "Banded Glute Bridge | Stronger Glutes, Stronger Running Legs!",
+    "summary": "Short PhysioRun clip on the banded glute bridge: band just above the knees, lift the hips, plus a hard-to-easy progression. Description-based only.",
+    "subjects": [
+      "glute_bridge",
+      "banded_hip_lift"
+    ],
+    "sourceId": "src-yt-tLkmn3tXNd0",
+    "review": {
+      "state": "draft",
+      "notes": "Timestamp needed: no chapter for this exercise in the description. startSec is 0 and endSec is a placeholder (length not in the RSS feed); set both when watching."
+    }
+  },
+  {
+    "id": "vs-U5XgFuK2mpA-21",
+    "videoId": "U5XgFuK2mpA",
+    "channelId": "UCrv7drXTqeZRaJahLXeOqOQ",
+    "startSec": 21,
+    "endSec": 47,
+    "title": "3 Proven (Yet Underrated) Exercises to Help You Run Faster",
+    "summary": "Chapter on the clamshell in a running-strength video that argues it is not among the most useful exercises. Chapter title only.",
+    "subjects": [
+      "clam"
+    ],
+    "sourceId": "src-yt-U5XgFuK2mpA",
+    "review": {
+      "state": "draft",
+      "notes": "Chapter from the description (00:21 to 00:47). The video is critical of the clamshell; check the framing before surfacing."
+    }
+  },
+  {
+    "id": "vs-U5XgFuK2mpA-47",
+    "videoId": "U5XgFuK2mpA",
+    "channelId": "UCrv7drXTqeZRaJahLXeOqOQ",
+    "startSec": 47,
+    "endSec": 72,
+    "title": "3 Proven (Yet Underrated) Exercises to Help You Run Faster",
+    "summary": "Chapter on the double-leg glute bridge in a running-strength video. Chapter title only.",
+    "subjects": [
+      "glute_bridge"
+    ],
+    "sourceId": "src-yt-U5XgFuK2mpA",
+    "review": {
+      "state": "draft",
+      "notes": "Chapter from the description (00:47 to 01:12). Video frames it as an exercise that barely activates the target muscles; check before surfacing."
+    }
+  },
+  {
+    "id": "vs-U5XgFuK2mpA-72",
+    "videoId": "U5XgFuK2mpA",
+    "channelId": "UCrv7drXTqeZRaJahLXeOqOQ",
+    "startSec": 72,
+    "endSec": 125,
+    "title": "3 Proven (Yet Underrated) Exercises to Help You Run Faster",
+    "summary": "Chapter on bodyweight calf raises in a running-strength video. Chapter title only.",
+    "subjects": [
+      "calf_raise"
+    ],
+    "sourceId": "src-yt-U5XgFuK2mpA",
+    "review": {
+      "state": "draft",
+      "notes": "Chapter from the description (01:12 to 02:05). Video frames bodyweight calf raises as low-value for runners; check before surfacing."
+    }
+  },
+  {
+    "id": "vs-dhUHKsnN--0-0",
+    "videoId": "dhUHKsnN--0",
+    "channelId": "UCX05GffRKbxh_-6kcXkskBg",
+    "startSec": 0,
+    "endSec": 1,
+    "title": "Single Leg Strength",
+    "summary": "PhysioRun class for runners on single-leg stability; the description lists slow walks backwards as the second exercise. Description-based only.",
+    "subjects": [
+      "backward_walk"
+    ],
+    "sourceId": "src-yt-dhUHKsnN--0",
+    "review": {
+      "state": "draft",
+      "notes": "Timestamp needed: no chapter for this exercise in the description. startSec is 0 and endSec is a placeholder (length not in the RSS feed); set both when watching. Backward walking is one of several exercises in a class."
+    }
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "src-yt-tLkmn3tXNd0",
+    "type": "video",
+    "citation": "PhysioRun. \"Banded Glute Bridge | Stronger Glutes, Stronger Running Legs!\". YouTube.",
+    "url": "https://www.youtube.com/watch?v=tLkmn3tXNd0",
+    "licence": "YouTube standard licence (embed only)",
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "src-yt-U5XgFuK2mpA",
+    "type": "video",
+    "citation": "Run Smarter with Brodie Sharpe. \"3 Proven (Yet Underrated) Exercises to Help You Run Faster\". YouTube.",
+    "url": "https://www.youtube.com/watch?v=U5XgFuK2mpA",
+    "licence": "YouTube standard licence (embed only)",
+    "review": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "src-yt-dhUHKsnN--0",
+    "type": "video",
+    "citation": "PhysioRun. \"Single Leg Strength\". YouTube.",
+    "url": "https://www.youtube.com/watch?v=dhUHKsnN--0",
+    "licence": "YouTube standard licence (embed only)",
+    "review": {
+      "state": "draft"
+    }
+  }
+]
