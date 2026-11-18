@@ -1,0 +1,12 @@
+{
+  "points": {
+    "plannedSessionCompleted": 10,
+    "setLogged": 1,
+    "painCheckAnswered": 2,
+    "weeklyCheckIn": 5,
+    "unplannedSessionLogged": 3
+  },
+  "dailyCap": 25,
+  "streak": { "threshold": 0.8 },
+  "weekStartsOn": 1
+}

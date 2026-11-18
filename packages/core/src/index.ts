@@ -9,3 +9,4 @@ export * from "./plan/history.ts";
 export * from "./nutrition/index.ts";
 export * from "./voice/index.ts";
 export * from "./geo/index.ts";
+export * from "./play/index.ts";
