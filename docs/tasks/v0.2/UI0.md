@@ -1,7 +1,7 @@
 # UI0: Dev build with native UI libraries, kit spike on Today, D-16 note
 Project / milestone / feature: OpenPhysio / v0.2 / PRD-002
 Lane: UI
-Status: In review
+Status: Done
 Approved scope reference: docs/tasks/v0.2/README.md, docs/tasks/EXECUTION.md
 Approved product specification ID/version: PRD-002 0.2-draft, v0.2 slice (D-18)
 Approved technical plan ID/version: TP-003 v1 (D-19); build path D-22
