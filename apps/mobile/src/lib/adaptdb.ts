@@ -1,11 +1,13 @@
-import { exercises, historyLookup } from "@openphysio/catalog";
+import { exercises, historyLookup, playRules } from "@openphysio/catalog";
 import { adaptNextWeek, buildHistory, healthDaily, painEntry, plannedSession, setLog, workout, type AdaptResult, type PlannedSessionRow } from "@openphysio/core";
 import { and, eq, gte, inArray, isNull } from "drizzle-orm";
 import Storage from "expo-sqlite/kv-store";
 import { db } from "../db";
+import { addCheckIn } from "../play/checkins";
 import { allPlanned } from "./plandb";
 
 const REVIEWED_KEY = "adapt.reviewed";
+const CHECKINS_KEY = "play.checkins";
 const HISTORY_DAYS = 60;
 const DAY_MS = 86_400_000;
 
@@ -46,6 +48,22 @@ export const markReviewed = (nextStart: string) => {
     Storage.setItemSync(REVIEWED_KEY, nextStart);
   } catch {
     // the check-in just shows again
+  }
+};
+
+/** Dates (YYYY-MM-DD) the weekly check-in was completed. Feeds the points engine. */
+export const checkInDates = (): string[] => {
+  try {
+    return JSON.parse(Storage.getItemSync(CHECKINS_KEY) ?? "[]") as string[];
+  } catch {
+    return [];
+  }
+};
+export const recordCheckIn = (date: string) => {
+  try {
+    Storage.setItemSync(CHECKINS_KEY, JSON.stringify(addCheckIn(checkInDates(), date, playRules.weekStartsOn)));
+  } catch {
+    // no check-in point this week
   }
 };
 
