@@ -141,9 +141,20 @@ const DELOAD = 0.65;
 const DELOAD_WEEK = 3;
 const BLOCK_DAYS = 28;
 const LIGHT_DOSE = 0.3;
-const MAX_SESSIONS_PER_DAY = 2;
-/** Plan-wide rules. Grade C coaching convention (load and recovery, src-ioc-load-2016): keep a rest day each week. */
-export const PLAN_CONFIG = { minRestDaysPerWeek: 1, restSourceId: "src-ioc-load-2016" } as const;
+/**
+ * Plan-wide rules. Grade C coaching conventions (load and recovery, src-ioc-load-2016):
+ * keep a rest day each week, at most one hard session a day (plus one light session),
+ * and reduce load while an injury is active or recovering.
+ */
+export const PLAN_CONFIG = {
+  minRestDaysPerWeek: 1,
+  maxSessionsPerDay: 2,
+  /** A session is light when its demand kind is "light"; every other kind is hard. */
+  maxHardSessionsPerDay: 1,
+  injuredMaxHardSessionsPerWeek: 4,
+  injuredMinRestDaysPerWeek: 2,
+  restSourceId: "src-ioc-load-2016",
+} as const;
 const DAY_MS = 86_400_000;
 const DAYS = [0, 1, 2, 3, 4, 5, 6];
 
@@ -178,6 +189,11 @@ export function generateBlock(input: GenerateBlockInput): PlanBlockResult {
   if (poolDays.length) have.add("pool");
   const hasGym = have.has("gym");
   const homeEquip = new Set([...have].filter((e) => e !== "gym"));
+  // same rule as filterForInjuries: anything not resolved and not deleted
+  const injured = injuries.some((i) => i.status !== "resolved" && !i.deletedAt);
+  const minRest = injured ? PLAN_CONFIG.injuredMinRestDaysPerWeek : PLAN_CONFIG.minRestDaysPerWeek;
+  const maxHardWeek = injured ? PLAN_CONFIG.injuredMaxHardSessionsPerWeek : Infinity;
+  const isHard = (d: PlanDemand) => d.kind !== "light";
   const trainDays = profile.trainingDays?.length ? [...new Set(profile.trainingDays)] : DAYS;
 
   const start = Date.parse(`${startDate}T12:00:00Z`);
@@ -277,7 +293,10 @@ export function generateBlock(input: GenerateBlockInput): PlanBlockResult {
   function layout(avail: number[], rand: () => number) {
     const week: Slot[][] = DAYS.map(() => []);
     const high = (day: number) => week[day]!.some((x) => x.d.impact === "high");
+    const hardOn = (day: number) => week[day]!.filter((x) => isHard(x.d)).length;
+    let hardWeek = 0;
     function place(d: PlanDemand, n: number, from?: string): boolean {
+      if (isHard(d) && hardWeek >= maxHardWeek) return false;
       const keys = keysOf(d);
       const poolOnly = cands(d).every(needsPool);
       const pool = poolDays.length && poolOnly ? poolDays : DAYS;
@@ -287,7 +306,8 @@ export function generateBlock(input: GenerateBlockInput): PlanBlockResult {
       const ok = avail.filter(
         (day) =>
           pool.includes(day) &&
-          week[day]!.length < MAX_SESSIONS_PER_DAY &&
+          week[day]!.length < PLAN_CONFIG.maxSessionsPerDay &&
+          (!isHard(d) || hardOn(day) < PLAN_CONFIG.maxHardSessionsPerDay) &&
           !same.includes(day) &&
           // high-impact sessions never share a day or sit on neighbouring days (the week wraps)
           !(d.impact === "high" && DAYS.some((o) => cyc(o, day) <= 1 && high(o))),
@@ -299,6 +319,7 @@ export function generateBlock(input: GenerateBlockInput): PlanBlockResult {
         rand() * 0.9;
       const best = ok.map((day) => ({ day, s: score(day) })).sort((a, b) => a.s - b.s)[0]!;
       week[best.day]!.push({ d, n, from });
+      if (isHard(d)) hardWeek++;
       return true;
     }
     // Pass 1 places every demand's minimum, pass 2 tops up toward the maximum.
@@ -316,8 +337,8 @@ export function generateBlock(input: GenerateBlockInput): PlanBlockResult {
     return { week, placed, met };
   }
 
-  // Keep at least minRestDaysPerWeek days empty (trainingDays may leave more); try each choice of rest days, keep the best week.
-  const forced = Math.max(0, PLAN_CONFIG.minRestDaysPerWeek - (7 - trainDays.length));
+  // Keep at least minRest days empty (trainingDays may leave more); try each choice of rest days, keep the best week.
+  const forced = Math.max(0, minRest - (7 - trainDays.length));
   const restSets = (from: number[], k: number): number[][] =>
     k === 0
       ? [[]]
@@ -336,7 +357,7 @@ export function generateBlock(input: GenerateBlockInput): PlanBlockResult {
       warnings.push({
         demandId: r.d.id,
         title: r.d.title,
-        reason: `Only ${n} of ${r.count[0]} ${r.d.title.toLowerCase()} session(s) fit per week (days, rest days, pool days and the daily limit)`,
+        reason: `Only ${n} of ${r.count[0]} ${r.d.title.toLowerCase()} session(s) fit per week (days, rest days, pool days, or the limit of ${PLAN_CONFIG.maxHardSessionsPerDay} hard session a day${injured ? `; while injured, ${PLAN_CONFIG.injuredMaxHardSessionsPerWeek} hard sessions and ${PLAN_CONFIG.injuredMinRestDaysPerWeek} rest days a week` : ""})`,
       });
   }
 
