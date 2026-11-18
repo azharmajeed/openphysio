@@ -1,7 +1,7 @@
 # UI1c: Lint rule: no raw colours or font sizes in screens
 Project / milestone / feature: OpenPhysio / v0.2 / PRD-002
 Lane: UI
-Status: Ready
+Status: In review
 Approved scope reference: docs/tasks/v0.2/README.md, docs/tasks/EXECUTION.md
 Approved product specification ID/version: PRD-002 0.2-draft, v0.2 slice (D-18)
 Approved technical plan ID/version: TP-003 v1 section 3 (D-19)
@@ -27,3 +27,6 @@ Execution budget and retry limit: one implementation run + one repair after revi
 When to request a product or consequential technical decision: per EXECUTION.md escalation conditions
 Completion condition: validated result + PR -> In review
 Merge authority: orchestrator into v0.1 after review (D-9); Azhar for v0.1 -> main
+
+## Checkpoint (UI1c implementation)
+Done: no-restricted-syntax selectors in eslint.config.js (hex, rgb/rgba/hsl/hsla/oklch strings and template text, numeric fontSize/color/backgroundColor/borderColor) for apps/mobile/src/**/*.tsx, exempting components/ui/** and *.test.tsx. legacyColourAllowlist: 26 files, rule off for them. scripts/colour-lint.test.mjs: fixture fails lint, exemptions hold, and each allowlisted file must still violate (fails otherwise, so the list only shrinks). pnpm lint, typecheck, test pass. Open: none.
