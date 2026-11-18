@@ -1,6 +1,6 @@
 # TP-004: Application-layer plan for PRD-002 (accounts, social, gamification, providers, sync)
 
-Status: Draft, for Azhar's review (gate G2)
+Status: Section 4 (points and streaks only) and section 8 (F4) approved for v0.2 (D-19), 2026-11-18. Muscle levels and badges move to v0.3; everything else stays Draft for the v0.4 gate.
 Version: 1-draft, 2026-11-14
 Covers: PRD-002 AC-3 and AC-8 to AC-15 (logic and server). The screens are in TP-003, the models in TP-002.
 Lane: **App** (AP tasks), plus F4 (a v0.1 bug fix)

@@ -1,6 +1,6 @@
 # TP-003: UI plan for PRD-002 (design system and screens)
 
-Status: Draft, for Azhar's review (gate G2)
+Status: Approved (D-19), 2026-11-18. D-16 is decided by the UI0 spike; build fallback is WSL, then GitHub Actions (D-22). Screens for later releases (Friends, Camera, Settings providers) are built in v0.3/v0.4.
 Version: 1-draft, 2026-11-14
 Covers: PRD-002 AC-1 to AC-5, AC-9 to AC-11 and AC-13 (screens), plus every v0.1 screen
 Research: UI research, 2026-11-14 (the sources are in the appendix)

@@ -1,6 +1,6 @@
 # TP-002: Data and AI plan for PRD-002 (knowledge base, models, training, inference, deployment)
 
-Status: Draft, for Azhar's review (gate G2)
+Status: Sections 1–4 approved for v0.2 (D-19), 2026-11-18, with review states from D-21 (`draft`, `source-checked`, `clinician-reviewed`, `rejected`). In v0.2 records are drafted by implementer agents from open sources and reviewed by Azhar; the harvest/extract scripts and the SQLite search pack (section 5) move to v0.3. Sections 5–11 stay Draft.
 Version: 1-draft, 2026-11-14
 Covers: PRD-002 AC-5 to AC-7 and AC-12 to AC-16
 Audience: the data and AI work stream. Lanes **Knowledge** (K tasks) and **AI** (AI tasks).

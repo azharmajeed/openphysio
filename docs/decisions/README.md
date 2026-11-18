@@ -15,4 +15,21 @@ One file per decision (`D-<n>.md`, template: `docs/templates/WORK-TEMPLATES.md` 
 | D-9 | Merge flow | Integration branch v0.1 | Stop per merge, stacked PRs | Decided ([D-9](D-9.md)) |
 | D-10 | Android build | Local SDK + Gradle | EAS cloud | Decided ([D-10](D-10.md)) |
 
+## v0.2 (gate G2, 2026-11-18)
+
+| ID | Question | Recommendation | Alternatives | State |
+| --- | --- | --- | --- | --- |
+| D-11 | Hosting for friends | Small VPS | Laptop + tunnel, Fly.io | Deferred to the v0.4 gate |
+| D-12 | Friend sign-in | Passkey + Google (orchestrator now suggests invite code + device token first) | Email code | Deferred to the v0.4 gate |
+| D-13 | Camera at the gym | Opt-in only | — | Deferred to the v0.3 gate |
+| D-14 | Monthly GPU and paid API cap | — | — | Deferred to the v0.3 gate |
+| D-15 | Phone model download budget | ~3 GB | — | Deferred to the v0.3 gate |
+| D-16 | UI kit | Reusables on Uniwind | HeroUI Native | Decided by the UI0 spike |
+| D-17 | Video pipeline inputs | Own, CC and permitted videos | — | Deferred to the v0.4 gate |
+| D-18 | Approve PRD-002 for v0.2? | Approve the v0.2 slice | Everything; edits | Decided ([D-18](D-18.md)) |
+| D-19 | Approve TP-002/3/4 for v0.2? | Approve the v0.2 slice | Everything; edits | Decided ([D-19](D-19.md)) |
+| D-20 | Release split | 3 releases | 2; one | Decided ([D-20](D-20.md)) |
+| D-21 | Knowledge reviewer | Azhar, two levels | Plus a physio; one level | Decided ([D-21](D-21.md)) |
+| D-22 | Build path for native UI libraries | Windows, then WSL, then GitHub Actions | — | Decided ([D-22](D-22.md)) |
+
 Decided so far (2026-11-09): Android first on Pixel 8a; single user (Azhar); open source and self-hostable with a possible paid hosted layer later; no paid video subscriptions; injuries always considered; scans of both medical reports and old workout logs; expand to running and swimming; private GitHub repo.
